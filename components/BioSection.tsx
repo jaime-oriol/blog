@@ -70,33 +70,6 @@ const BioSection = () => {
             </p>
           </div>
         </div>
-
-        {/* Datos técnicos/académicos */}
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-800/50">
-          <h3 className="font-headings mb-4 text-lg font-semibold text-slate-900 dark:text-slate-100">
-            Perfil técnico
-          </h3>
-          <div className="grid gap-3 text-sm">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-body text-slate-600 dark:text-slate-400">Formación</span>
-              <span className="font-mono text-slate-900 dark:text-slate-100">
-                Business Analytics + Ing. Informática
-              </span>
-            </div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-body text-slate-600 dark:text-slate-400">Especialización</span>
-              <span className="font-mono text-slate-900 dark:text-slate-100">
-                Análisis táctico + Métricas avanzadas
-              </span>
-            </div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-body text-slate-600 dark:text-slate-400">Herramientas</span>
-              <span className="font-mono text-slate-900 dark:text-slate-100">
-                Python, R, SQL, Tableau
-              </span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   )
