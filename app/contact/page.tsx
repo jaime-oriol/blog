@@ -31,30 +31,25 @@ export default function Contact() {
                     {
                       title: 'Análisis táctico',
                       description: 'Estructuras de juego, sistemas y principios del fútbol moderno',
-                      icon: '🎯',
                     },
                     {
                       title: 'Scouting funcional',
                       description:
                         'Identificación de perfiles por rol y función táctica específica',
-                      icon: '🔍',
                     },
                     {
                       title: 'Métricas avanzadas',
                       description: 'Desarrollo de KPIs y modelos cuantitativos aplicados',
-                      icon: '📊',
                     },
                     {
                       title: 'Visualización de datos',
                       description: 'Dashboards interactivos y reportes ejecutivos para clubes',
-                      icon: '📈',
                     },
                   ].map((area, index) => (
                     <div
                       key={index}
-                      className="flex items-start space-x-3 rounded-lg bg-slate-50 p-4 dark:bg-slate-700/50"
+                      className="flex items-start rounded-lg bg-slate-50 p-4 dark:bg-slate-700/50"
                     >
-                      <div className="flex-shrink-0 text-lg">{area.icon}</div>
                       <div className="min-w-0">
                         <h3 className="font-headings mb-1 font-medium text-slate-900 dark:text-slate-100">
                           {area.title}
@@ -129,20 +124,8 @@ export default function Contact() {
               </div>
 
               {/* Información adicional */}
-              <div className="border-t border-slate-200 pt-6 dark:border-slate-700">
-                <div className="space-y-3 text-center">
-                  <p className="font-body text-sm text-slate-600 dark:text-slate-400">
-                    También puedes encontrarme en{' '}
-                    <a
-                      href="https://github.com/jaime-oriol"
-                      className="text-concept font-medium transition-colors hover:text-sky-600 dark:hover:text-sky-300"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      GitHub
-                    </a>{' '}
-                    para revisar mis proyectos técnicos
-                  </p>
+              <div className="border-t border-slate-200 pt-4 dark:border-slate-700">
+                <div className="text-center">
                   <div className="flex items-center justify-center space-x-4 font-mono text-xs text-slate-500 dark:text-slate-500">
                     <span>• Respuesta típica: 24-48h</span>
                     <span>• Zona horaria: CET (Madrid)</span>
@@ -152,26 +135,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* CTA complementario */}
-            <div className="mt-8 text-center">
-              <p className="font-body mb-4 text-slate-600 dark:text-slate-400">
-                ¿Prefieres ver mi trabajo antes de contactar?
-              </p>
-              <div className="flex flex-col justify-center gap-4 sm:flex-row">
-                <Link
-                  href="/blog"
-                  className="font-body inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-                >
-                  Explorar análisis
-                </Link>
-                <Link
-                  href="/newsletter"
-                  className="font-body inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-                >
-                  Leer newsletter
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
       </div>

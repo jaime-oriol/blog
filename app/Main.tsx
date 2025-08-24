@@ -154,7 +154,7 @@ function NewsletterSection() {
   return (
     <section className="pt-10">
       <div className="w-full px-4 sm:px-6">
-        <div className="rounded-lg border border-slate-200 bg-gradient-to-br from-sky-50 to-white p-6 shadow-sm dark:border-slate-700 dark:from-sky-900/10 dark:to-slate-800">
+        <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
           <div className="space-y-4 text-center">
             <h2 className="font-headings text-xl font-semibold text-slate-900 dark:text-slate-100">
               Newsletter Semanal

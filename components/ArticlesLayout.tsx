@@ -179,7 +179,7 @@ export default function ArticlesLayout({
           {/* Newsletter CTA al final */}
           {displayPosts.length > 0 && (
             <div className="mt-16 border-t border-slate-200 pt-8 dark:border-slate-700">
-              <div className="rounded-lg border border-slate-200 bg-gradient-to-br from-sky-50 to-white p-6 text-center dark:border-slate-700 dark:from-sky-900/10 dark:to-slate-800">
+              <div className="rounded-lg border border-slate-200 bg-white p-6 text-center dark:border-slate-700 dark:bg-slate-800">
                 <h3 className="font-headings mb-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
                   ¿Te gustó este análisis?
                 </h3>
