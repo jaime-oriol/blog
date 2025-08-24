@@ -24,7 +24,7 @@ export default function Newsletter() {
         {/* FORMULARIO PRINCIPAL - Hero section profesional */}
         <div className="pt-10">
           <div className="w-full px-4 sm:px-6">
-            <div className="relative overflow-hidden rounded-lg border border-slate-200 bg-gradient-to-br from-sky-50 via-white to-slate-50 dark:border-slate-700 dark:from-sky-900/10 dark:via-slate-800 dark:to-slate-900">
+            <div className="relative overflow-hidden rounded-lg border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
               <div className="relative px-8 py-12 lg:px-12 lg:py-16">
                 <div className="mx-auto max-w-3xl space-y-8 text-center">
                   {/* Título y propuesta de valor */}
