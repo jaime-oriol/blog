@@ -153,7 +153,6 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
           </div>
         )}
       </form>
-
     </div>
   )
 }

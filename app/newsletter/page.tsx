@@ -25,10 +25,8 @@ export default function Newsletter() {
         <div className="pt-10">
           <div className="w-full px-4 sm:px-6">
             <div className="relative overflow-hidden rounded-lg border border-slate-200 bg-gradient-to-br from-sky-50 via-white to-slate-50 dark:border-slate-700 dark:from-sky-900/10 dark:via-slate-800 dark:to-slate-900">
-
               <div className="relative px-8 py-12 lg:px-12 lg:py-16">
                 <div className="mx-auto max-w-3xl space-y-8 text-center">
-
                   {/* Título y propuesta de valor */}
                   <div className="space-y-4">
                     <h2 className="font-headings text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl dark:text-slate-100">
@@ -138,7 +136,6 @@ export default function Newsletter() {
             </div>
           </div>
         </div>
-
       </div>
     </>
   )
