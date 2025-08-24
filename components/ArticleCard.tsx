@@ -11,40 +11,31 @@ interface ArticleCardProps {
 
 const getSectionLabel = (section: string) => {
   switch (section) {
-    case 'tactical-analysis':
-      return 'Tactical Analysis'
-    case 'analytical-scouting':
-      return 'Analytical Scouting'
+    case 'player-decoded':
+      return 'Player Decoded'
+    case 'match-analysis':
+      return 'Match Analysis'
+    case 'team-architecture':
+      return 'Team Architecture'
+    case 'tactical-analysis': // Backward compatibility
+      return 'Player Decoded'
+    case 'analytical-scouting': // Backward compatibility
+      return 'Match Analysis'
     case 'scouting': // Backward compatibility
-      return 'Analytical Scouting'
-    case 'advanced-metrics':
-      return 'Advanced Metrics'
+      return 'Match Analysis'
+    case 'advanced-metrics': // Backward compatibility
+      return 'Team Architecture'
     case 'tactical-metrics-lab': // Backward compatibility
-      return 'Advanced Metrics'
+      return 'Team Architecture'
     case 'tactical-structures': // Backward compatibility
-      return 'Tactical Analysis'
+      return 'Player Decoded'
     default:
       return 'Análisis'
   }
 }
 
 const getSectionColor = (section: string) => {
-  switch (section) {
-    case 'tactical-analysis':
-      return 'bg-sky-600 text-white'
-    case 'tactical-structures': // Backward compatibility
-      return 'bg-sky-600 text-white'
-    case 'analytical-scouting':
-      return 'bg-emerald-600 text-white'
-    case 'scouting': // Backward compatibility
-      return 'bg-emerald-600 text-white'
-    case 'advanced-metrics':
-      return 'bg-indigo-600 text-white'
-    case 'tactical-metrics-lab': // Backward compatibility
-      return 'bg-indigo-600 text-white'
-    default:
-      return 'bg-slate-600 text-white'
-  }
+  return 'border border-sky-600 text-sky-700 bg-transparent dark:border-sky-400 dark:text-sky-400'
 }
 
 export default function ArticleCard({ post }: ArticleCardProps) {
