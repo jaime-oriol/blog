@@ -154,14 +154,6 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
         )}
       </form>
 
-      {/* Información adicional minimalista */}
-      {status === 'idle' && (
-        <div className="mt-3 text-center">
-          <p className="font-body text-xs text-slate-500 dark:text-slate-400">
-            Sin spam • Cancelación libre • Cada lunes
-          </p>
-        </div>
-      )}
     </div>
   )
 }
