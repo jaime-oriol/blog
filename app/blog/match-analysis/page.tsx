@@ -7,8 +7,7 @@ const POSTS_PER_PAGE = 4
 
 export const metadata = genPageMetadata({
   title: 'Match Analysis',
-  description:
-    'Análisis táctico detallado de partidos específicos y dinámicas de juego.',
+  description: 'Análisis táctico detallado de partidos específicos y dinámicas de juego.',
 })
 
 export default async function MatchAnalysisPage() {
@@ -17,7 +16,10 @@ export default async function MatchAnalysisPage() {
 
   // Filtrar posts de esta sección y también posts legacy de 'scouting'
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'match-analysis' || post.section === 'analytical-scouting' || post.section === 'scouting'
+    (post) =>
+      post.section === 'match-analysis' ||
+      post.section === 'analytical-scouting' ||
+      post.section === 'scouting'
   )
 
   const pageNumber = 1

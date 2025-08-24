@@ -9,7 +9,10 @@ export const generateStaticParams = async () => {
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const publishedPosts = allPosts.filter((post) => !post.draft)
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'match-analysis' || post.section === 'analytical-scouting' || post.section === 'scouting'
+    (post) =>
+      post.section === 'match-analysis' ||
+      post.section === 'analytical-scouting' ||
+      post.section === 'scouting'
   )
   const totalPages = Math.ceil(sectionPosts.length / POSTS_PER_PAGE)
 
@@ -31,7 +34,10 @@ export default async function MatchAnalysisPaginationPage(props: {
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const publishedPosts = allPosts.filter((post) => !post.draft)
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'match-analysis' || post.section === 'analytical-scouting' || post.section === 'scouting'
+    (post) =>
+      post.section === 'match-analysis' ||
+      post.section === 'analytical-scouting' ||
+      post.section === 'scouting'
   )
   const totalPages = Math.ceil(sectionPosts.length / POSTS_PER_PAGE)
 

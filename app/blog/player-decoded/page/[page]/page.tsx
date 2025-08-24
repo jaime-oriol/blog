@@ -9,7 +9,10 @@ export const generateStaticParams = async () => {
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const publishedPosts = allPosts.filter((post) => !post.draft)
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'player-decoded' || post.section === 'tactical-analysis' || post.section === 'tactical-structures'
+    (post) =>
+      post.section === 'player-decoded' ||
+      post.section === 'tactical-analysis' ||
+      post.section === 'tactical-structures'
   )
   const totalPages = Math.ceil(sectionPosts.length / POSTS_PER_PAGE)
 
@@ -31,7 +34,10 @@ export default async function PlayerDecodedPaginationPage(props: {
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const publishedPosts = allPosts.filter((post) => !post.draft)
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'player-decoded' || post.section === 'tactical-analysis' || post.section === 'tactical-structures'
+    (post) =>
+      post.section === 'player-decoded' ||
+      post.section === 'tactical-analysis' ||
+      post.section === 'tactical-structures'
   )
   const totalPages = Math.ceil(sectionPosts.length / POSTS_PER_PAGE)
 

@@ -9,7 +9,10 @@ export const generateStaticParams = async () => {
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const publishedPosts = allPosts.filter((post) => !post.draft)
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'team-architecture' || post.section === 'advanced-metrics' || post.section === 'tactical-metrics-lab'
+    (post) =>
+      post.section === 'team-architecture' ||
+      post.section === 'advanced-metrics' ||
+      post.section === 'tactical-metrics-lab'
   )
   const totalPages = Math.ceil(sectionPosts.length / POSTS_PER_PAGE)
 
@@ -31,7 +34,10 @@ export default async function TeamArchitecturePaginationPage(props: {
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const publishedPosts = allPosts.filter((post) => !post.draft)
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'team-architecture' || post.section === 'advanced-metrics' || post.section === 'tactical-metrics-lab'
+    (post) =>
+      post.section === 'team-architecture' ||
+      post.section === 'advanced-metrics' ||
+      post.section === 'tactical-metrics-lab'
   )
   const totalPages = Math.ceil(sectionPosts.length / POSTS_PER_PAGE)
 

@@ -7,8 +7,7 @@ const POSTS_PER_PAGE = 4
 
 export const metadata = genPageMetadata({
   title: 'Team Architecture',
-  description:
-    'Estructura de equipos, sistemas tácticos y diseño estratégico.',
+  description: 'Estructura de equipos, sistemas tácticos y diseño estratégico.',
 })
 
 export default async function TeamArchitecturePage() {
@@ -17,7 +16,10 @@ export default async function TeamArchitecturePage() {
 
   // Filtrar posts de esta sección y también posts legacy de 'tactical-metrics-lab'
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'team-architecture' || post.section === 'advanced-metrics' || post.section === 'tactical-metrics-lab'
+    (post) =>
+      post.section === 'team-architecture' ||
+      post.section === 'advanced-metrics' ||
+      post.section === 'tactical-metrics-lab'
   )
 
   const pageNumber = 1

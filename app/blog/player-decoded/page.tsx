@@ -17,7 +17,10 @@ export default async function PlayerDecodedPage() {
 
   // Filtrar posts de esta sección y también posts legacy de 'tactical-structures'
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'player-decoded' || post.section === 'tactical-analysis' || post.section === 'tactical-structures'
+    (post) =>
+      post.section === 'player-decoded' ||
+      post.section === 'tactical-analysis' ||
+      post.section === 'tactical-structures'
   )
 
   const pageNumber = 1

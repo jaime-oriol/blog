@@ -21,7 +21,8 @@ const sections: Section[] = [
   {
     href: '/blog/player-decoded',
     title: 'Player Decoded',
-    description: 'Análisis profundo de jugadores individuales, perfiles tácticos y scouting avanzado',
+    description:
+      'Análisis profundo de jugadores individuales, perfiles tácticos y scouting avanzado',
     icon: null,
   },
   {
