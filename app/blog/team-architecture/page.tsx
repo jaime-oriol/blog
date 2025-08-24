@@ -6,18 +6,18 @@ import ArticlesLayout from '@/components/ArticlesLayout'
 const POSTS_PER_PAGE = 4
 
 export const metadata = genPageMetadata({
-  title: 'Tactical Analysis',
+  title: 'Team Architecture',
   description:
-    'Estudio de estilos, partidos clave, entrenadores y dinámicas de juego a través de modelos, métricas y visualizaciones tácticas.',
+    'Estructura de equipos, sistemas tácticos y diseño estratégico.',
 })
 
-export default async function TacticalAnalysisPage() {
+export default async function TeamArchitecturePage() {
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const publishedPosts = allPosts.filter((post) => !post.draft)
 
-  // Filtrar posts de esta sección y también posts legacy de 'tactical-structures'
+  // Filtrar posts de esta sección y también posts legacy de 'tactical-metrics-lab'
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'tactical-analysis' || post.section === 'tactical-structures'
+    (post) => post.section === 'team-architecture' || post.section === 'advanced-metrics' || post.section === 'tactical-metrics-lab'
   )
 
   const pageNumber = 1
@@ -34,8 +34,8 @@ export default async function TacticalAnalysisPage() {
       posts={sectionPosts}
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
-      title="Tactical Analysis"
-      section="tactical-analysis"
+      title="Team Architecture"
+      section="team-architecture"
     />
   )
 }

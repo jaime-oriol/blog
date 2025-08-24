@@ -6,18 +6,18 @@ import ArticlesLayout from '@/components/ArticlesLayout'
 const POSTS_PER_PAGE = 4
 
 export const metadata = genPageMetadata({
-  title: 'Analytical Scouting',
+  title: 'Match Analysis',
   description:
-    'Identificación de perfiles tácticos mediante segmentación avanzada, agrupación funcional y análisis comparativo.',
+    'Análisis táctico detallado de partidos específicos y dinámicas de juego.',
 })
 
-export default async function AnalyticalScoutingPage() {
+export default async function MatchAnalysisPage() {
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const publishedPosts = allPosts.filter((post) => !post.draft)
 
   // Filtrar posts de esta sección y también posts legacy de 'scouting'
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'analytical-scouting' || post.section === 'scouting'
+    (post) => post.section === 'match-analysis' || post.section === 'analytical-scouting' || post.section === 'scouting'
   )
 
   const pageNumber = 1
@@ -34,8 +34,8 @@ export default async function AnalyticalScoutingPage() {
       posts={sectionPosts}
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
-      title="Analytical Scouting"
-      section="analytical-scouting"
+      title="Match Analysis"
+      section="match-analysis"
     />
   )
 }

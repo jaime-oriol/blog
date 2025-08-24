@@ -6,18 +6,18 @@ import ArticlesLayout from '@/components/ArticlesLayout'
 const POSTS_PER_PAGE = 4
 
 export const metadata = genPageMetadata({
-  title: 'Advanced Metrics',
+  title: 'Player Decoded',
   description:
-    'Exploración profunda de métricas avanzadas, modelos predictivos y visualización de datos aplicada al fútbol profesional.',
+    'Análisis profundo de jugadores individuales, perfiles tácticos y scouting avanzado.',
 })
 
-export default async function AdvancedMetricsPage() {
+export default async function PlayerDecodedPage() {
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const publishedPosts = allPosts.filter((post) => !post.draft)
 
-  // Filtrar posts de esta sección y también posts legacy de 'tactical-metrics-lab'
+  // Filtrar posts de esta sección y también posts legacy de 'tactical-structures'
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'advanced-metrics' || post.section === 'tactical-metrics-lab'
+    (post) => post.section === 'player-decoded' || post.section === 'tactical-analysis' || post.section === 'tactical-structures'
   )
 
   const pageNumber = 1
@@ -34,8 +34,8 @@ export default async function AdvancedMetricsPage() {
       posts={sectionPosts}
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
-      title="Advanced Metrics"
-      section="advanced-metrics"
+      title="Player Decoded"
+      section="player-decoded"
     />
   )
 }

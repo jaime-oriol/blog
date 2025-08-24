@@ -8,7 +8,7 @@ interface Section {
   href: string
   title: string
   description: string
-  icon: React.ReactNode
+  icon: React.ReactNode | null
 }
 
 const sections: Section[] = [
@@ -16,61 +16,25 @@ const sections: Section[] = [
     href: '/blog',
     title: 'Todos los artículos',
     description: 'Vista completa',
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M19 11H5m14-7l-7 7-7-7m14 18l-7-7-7 7"
-        />
-      </svg>
-    ),
+    icon: null,
   },
   {
-    href: '/blog/tactical-analysis',
-    title: 'Tactical Analysis',
-    description: 'Estudio de estilos, partidos clave, entrenadores y dinámicas de juego',
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-        />
-      </svg>
-    ),
+    href: '/blog/player-decoded',
+    title: 'Player Decoded',
+    description: 'Análisis profundo de jugadores individuales, perfiles tácticos y scouting avanzado',
+    icon: null,
   },
   {
-    href: '/blog/analytical-scouting',
-    title: 'Analytical Scouting',
-    description: 'Identificación de perfiles tácticos mediante segmentación avanzada',
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-        />
-      </svg>
-    ),
+    href: '/blog/match-analysis',
+    title: 'Match Analysis',
+    description: 'Análisis táctico detallado de partidos específicos y dinámicas de juego',
+    icon: null,
   },
   {
-    href: '/blog/advanced-metrics',
-    title: 'Advanced Metrics',
-    description: 'Exploración profunda de métricas avanzadas y modelos predictivos',
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-        />
-      </svg>
-    ),
+    href: '/blog/team-architecture',
+    title: 'Team Architecture',
+    description: 'Estructura de equipos, sistemas tácticos y diseño estratégico',
+    icon: null,
   },
 ]
 
@@ -125,9 +89,6 @@ export default function SectionsNavigation({ variant }: SectionsNavigationProps)
                     href={section.href}
                     className="flex min-w-[120px] flex-col items-center rounded-lg p-3 text-center transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/50"
                   >
-                    <div className="mb-2 flex-shrink-0 text-sky-600 dark:text-sky-400">
-                      {section.icon}
-                    </div>
                     <div className="font-headings text-sm font-medium text-slate-900 dark:text-slate-100">
                       {section.title}
                     </div>
@@ -197,15 +158,6 @@ export default function SectionsNavigation({ variant }: SectionsNavigationProps)
                     : 'text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-700/50'
                 }`}
               >
-                <div
-                  className={`mt-0.5 mr-3 flex-shrink-0 ${
-                    isActive
-                      ? 'text-sky-600 dark:text-sky-400'
-                      : 'text-slate-400 group-hover:text-slate-500 dark:group-hover:text-slate-400'
-                  }`}
-                >
-                  {section.icon}
-                </div>
                 <div className="min-w-0 flex-1">
                   <div className="font-headings truncate font-medium">{section.title}</div>
                   <div className="font-body mt-1 text-xs text-slate-500 dark:text-slate-400">

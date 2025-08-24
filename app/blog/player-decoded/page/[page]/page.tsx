@@ -9,7 +9,7 @@ export const generateStaticParams = async () => {
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const publishedPosts = allPosts.filter((post) => !post.draft)
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'analytical-scouting' || post.section === 'scouting'
+    (post) => post.section === 'player-decoded' || post.section === 'tactical-analysis' || post.section === 'tactical-structures'
   )
   const totalPages = Math.ceil(sectionPosts.length / POSTS_PER_PAGE)
 
@@ -18,7 +18,7 @@ export const generateStaticParams = async () => {
   }))
 }
 
-export default async function AnalyticalScoutingPaginationPage(props: {
+export default async function PlayerDecodedPaginationPage(props: {
   params: Promise<{ page: string }>
 }) {
   const params = await props.params
@@ -31,7 +31,7 @@ export default async function AnalyticalScoutingPaginationPage(props: {
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const publishedPosts = allPosts.filter((post) => !post.draft)
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'analytical-scouting' || post.section === 'scouting'
+    (post) => post.section === 'player-decoded' || post.section === 'tactical-analysis' || post.section === 'tactical-structures'
   )
   const totalPages = Math.ceil(sectionPosts.length / POSTS_PER_PAGE)
 
@@ -53,8 +53,8 @@ export default async function AnalyticalScoutingPaginationPage(props: {
       posts={sectionPosts}
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
-      title="Analytical Scouting"
-      section="analytical-scouting"
+      title="Player Decoded"
+      section="player-decoded"
     />
   )
 }

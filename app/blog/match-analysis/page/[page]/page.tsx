@@ -9,7 +9,7 @@ export const generateStaticParams = async () => {
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const publishedPosts = allPosts.filter((post) => !post.draft)
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'advanced-metrics' || post.section === 'tactical-metrics-lab'
+    (post) => post.section === 'match-analysis' || post.section === 'analytical-scouting' || post.section === 'scouting'
   )
   const totalPages = Math.ceil(sectionPosts.length / POSTS_PER_PAGE)
 
@@ -18,7 +18,7 @@ export const generateStaticParams = async () => {
   }))
 }
 
-export default async function AdvancedMetricsPaginationPage(props: {
+export default async function MatchAnalysisPaginationPage(props: {
   params: Promise<{ page: string }>
 }) {
   const params = await props.params
@@ -31,7 +31,7 @@ export default async function AdvancedMetricsPaginationPage(props: {
   const allPosts = allCoreContent(sortPosts(allBlogs))
   const publishedPosts = allPosts.filter((post) => !post.draft)
   const sectionPosts = publishedPosts.filter(
-    (post) => post.section === 'advanced-metrics' || post.section === 'tactical-metrics-lab'
+    (post) => post.section === 'match-analysis' || post.section === 'analytical-scouting' || post.section === 'scouting'
   )
   const totalPages = Math.ceil(sectionPosts.length / POSTS_PER_PAGE)
 
@@ -53,8 +53,8 @@ export default async function AdvancedMetricsPaginationPage(props: {
       posts={sectionPosts}
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
-      title="Advanced Metrics"
-      section="advanced-metrics"
+      title="Match Analysis"
+      section="match-analysis"
     />
   )
 }
