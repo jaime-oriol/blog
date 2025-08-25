@@ -13,9 +13,6 @@ export default function Page() {
           <h1 className="font-headings text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
             Sobre mí
           </h1>
-          <p className="font-body text-xl leading-relaxed text-slate-600 dark:text-slate-400">
-            La historia detrás de FootballDecoded
-          </p>
         </div>
       </div>
 
