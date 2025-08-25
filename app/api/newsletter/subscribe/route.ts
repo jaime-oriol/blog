@@ -72,7 +72,10 @@ async function storeSubscriber(subscriber: NewsletterSubscriber): Promise<void> 
     await client.set(key, JSON.stringify(subscriber))
 
     // También almacenar en una lista para estadísticas
-    await client.zadd('newsletter:subscribers', Date.now(), subscriber.email.toLowerCase())
+    await client.zAdd('newsletter:subscribers', {
+      score: Date.now(),
+      value: subscriber.email.toLowerCase(),
+    })
   } catch (error) {
     console.error('Error storing subscriber in Redis:', error)
     throw error
@@ -82,7 +85,7 @@ async function storeSubscriber(subscriber: NewsletterSubscriber): Promise<void> 
 async function getSubscriberStats(): Promise<{ total: number; confirmed: number }> {
   try {
     const client = await getRedisClient()
-    const allEmails = (await client.zrange('newsletter:subscribers', 0, -1)) as string[]
+    const allEmails = (await client.zRange('newsletter:subscribers', 0, -1)) as string[]
 
     let confirmed = 0
     for (const email of allEmails) {
