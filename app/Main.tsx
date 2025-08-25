@@ -23,7 +23,7 @@ interface MainProps {
  */
 export default function Main({ posts }: MainProps) {
   return (
-    <div className="divide-y divide-slate-200 dark:divide-slate-700">
+    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 xl:max-w-5xl xl:px-0">
       {/* === SECCIÓN INTRODUCTORIA === */}
       <IntroSection />
 
@@ -41,14 +41,14 @@ export default function Main({ posts }: MainProps) {
  */
 function IntroSection() {
   return (
-    <section className="mx-auto w-full space-y-6 px-4 pt-8 pb-10 sm:px-6">
+    <section className="mb-16">
       {/* Título principal */}
-      <h1 className="font-headings text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
+      <h1 className="font-headings mb-6 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
         FootballDecoded
       </h1>
 
       {/* Cita destacada */}
-      <blockquote className="border-l-4 border-slate-400 pl-4 italic">
+      <blockquote className="mb-8 border-l-4 border-slate-400 pl-4 italic">
         <p className="font-body text-lg leading-relaxed text-slate-600 dark:text-slate-400">
           "El fútbol es como el ajedrez, pero sin dados." — Lukas Podolski
         </p>
@@ -97,12 +97,10 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
   const hasArticles = recentPosts.length > 0
 
   return (
-    <section className="pt-10">
-      <div className="w-full px-4 sm:px-6">
-        <h2 className="font-headings mb-8 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-          Últimos Artículos
-        </h2>
-      </div>
+    <section className="mb-16">
+      <h2 className="font-headings mb-8 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+        Últimos Artículos
+      </h2>
 
       {/* Estado vacío */}
       {!hasArticles && <EmptyArticlesState />}
@@ -110,14 +108,14 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
       {/* Lista de artículos */}
       {hasArticles && (
         <>
-          <div className="w-full space-y-6 px-4 sm:px-6">
+          <div className="space-y-6">
             {recentPosts.map((post) => (
               <ArticleCard key={post.slug} post={post} />
             ))}
           </div>
 
           {/* CTA hacia todos los artículos */}
-          <div className="pt-10 text-center">
+          <div className="mt-10 text-center">
             <Link
               href="/blog"
               className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-50 hover:shadow-md dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
@@ -137,7 +135,7 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
  */
 function EmptyArticlesState() {
   return (
-    <div className="w-full px-4 py-16 text-center sm:px-6">
+    <div className="py-16 text-center">
       <DocumentIcon />
       <h3 className="font-headings mb-2 text-xl font-medium text-slate-900 dark:text-slate-100">
         Próximamente
@@ -155,23 +153,21 @@ function EmptyArticlesState() {
  */
 function NewsletterSection() {
   return (
-    <section className="pt-10">
-      <div className="w-full px-4 sm:px-6">
-        <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
-          <div className="space-y-4 text-center">
-            <p className="font-body text-lg text-slate-600 dark:text-slate-400">
-              <strong>Newsletter:</strong> Análisis futbolístico directo cuando realmente importa,
-              con rigor técnico y sin ruido
-            </p>
+    <section>
+      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+        <div className="space-y-4 text-center">
+          <p className="font-body text-lg text-slate-600 dark:text-slate-400">
+            <strong>Newsletter:</strong> Análisis futbolístico directo cuando realmente importa, con
+            rigor técnico y sin ruido
+          </p>
 
-            <Link
-              href="/newsletter"
-              className="inline-flex items-center rounded-lg bg-sky-600 px-6 py-3 font-medium text-white shadow-sm transition-colors hover:bg-sky-700 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
-            >
-              <span className="font-body">Suscribirse gratis</span>
-              <ArrowRightIcon />
-            </Link>
-          </div>
+          <Link
+            href="/newsletter"
+            className="inline-flex items-center rounded-lg bg-sky-600 px-6 py-3 font-medium text-white shadow-sm transition-colors hover:bg-sky-700 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+          >
+            <span className="font-body">Suscribirse gratis</span>
+            <ArrowRightIcon />
+          </Link>
         </div>
       </div>
     </section>

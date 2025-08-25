@@ -112,104 +112,102 @@ export default function ArticlesLayout({
   }
 
   return (
-    <div className="w-full">
+    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 xl:max-w-5xl xl:px-0">
       {/* Header de la sección */}
-      <div className="w-full px-4 pt-8 pb-6 sm:px-6">
-        <div className="space-y-4">
-          <h1 className="font-headings text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
-            {title}
-          </h1>
-          <p className="font-body text-xl leading-relaxed text-slate-600 dark:text-slate-400">
-            {getSectionDescription(section)}
-          </p>
-        </div>
+      <div className="mb-8 text-center">
+        <h1 className="font-headings text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
+          {title}
+        </h1>
+        <p className="font-body mt-4 text-xl text-slate-600 dark:text-slate-400">
+          {getSectionDescription(section)}
+        </p>
       </div>
 
       {/* Navegación de secciones */}
-      <SectionsNavigation variant="bar" />
+      <div className="mb-12">
+        <SectionsNavigation variant="bar" />
+      </div>
 
       {/* CONTENIDO PRINCIPAL */}
-      <div className="w-full px-4 sm:px-6">
-        <main className="py-10">
-          {/* Empty State - cuando no hay artículos */}
-          {!displayPosts.length && (
-            <div className="space-y-6 py-16 text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
-                <svg
-                  className="h-8 w-8 text-slate-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
+      <main>
+        {/* Empty State - cuando no hay artículos */}
+        {!displayPosts.length && (
+          <div className="space-y-6 py-16 text-center">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
+              <svg
+                className="h-8 w-8 text-slate-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </div>
+            <div className="space-y-2">
+              <h3 className="font-headings text-xl font-medium text-slate-900 dark:text-slate-100">
+                Próximamente
+              </h3>
+              <p className="font-body text-slate-600 dark:text-slate-400">
+                {section
+                  ? `Los análisis de ${section.replace('-', ' ')} estarán disponibles pronto.`
+                  : 'Los primeros análisis tácticos estarán disponibles pronto.'}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Lista de artículos */}
+        {displayPosts.length > 0 && (
+          <div className="space-y-8">
+            {displayPosts.map((post) => (
+              <ArticleCard key={post.slug} post={post} />
+            ))}
+          </div>
+        )}
+
+        {/* Paginación */}
+        {pagination && pagination.totalPages > 1 && (
+          <div className="mt-12">
+            <Pagination
+              currentPage={pagination.currentPage}
+              totalPages={pagination.totalPages}
+              basePath={section ? `/blog/${section}` : '/blog'}
+            />
+          </div>
+        )}
+
+        {/* Newsletter CTA al final */}
+        {displayPosts.length > 0 && (
+          <div className="mt-16 border-t border-slate-200 pt-8 dark:border-slate-700">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+              <h3 className="font-headings mb-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
+                ¿Te gustó este análisis?
+              </h3>
+              <p className="font-body mb-4 text-slate-600 dark:text-slate-400">
+                Recibe contenido similar cada lunes en tu bandeja de entrada
+              </p>
+              <Link
+                href="/newsletter"
+                className="font-body inline-flex items-center rounded-lg bg-sky-600 px-4 py-2 font-medium text-white transition-colors hover:bg-sky-700 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+              >
+                Suscribirse a la newsletter
+                <svg className="ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    fillRule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
                   />
                 </svg>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-headings text-xl font-medium text-slate-900 dark:text-slate-100">
-                  Próximamente
-                </h3>
-                <p className="font-body text-slate-600 dark:text-slate-400">
-                  {section
-                    ? `Los análisis de ${section.replace('-', ' ')} estarán disponibles pronto.`
-                    : 'Los primeros análisis tácticos estarán disponibles pronto.'}
-                </p>
-              </div>
+              </Link>
             </div>
-          )}
-
-          {/* Lista de artículos */}
-          {displayPosts.length > 0 && (
-            <div className="space-y-8">
-              {displayPosts.map((post) => (
-                <ArticleCard key={post.slug} post={post} />
-              ))}
-            </div>
-          )}
-
-          {/* Paginación */}
-          {pagination && pagination.totalPages > 1 && (
-            <div className="mt-12">
-              <Pagination
-                currentPage={pagination.currentPage}
-                totalPages={pagination.totalPages}
-                basePath={section ? `/blog/${section}` : '/blog'}
-              />
-            </div>
-          )}
-
-          {/* Newsletter CTA al final */}
-          {displayPosts.length > 0 && (
-            <div className="mt-16 border-t border-slate-200 pt-8 dark:border-slate-700">
-              <div className="rounded-lg border border-slate-200 bg-white p-6 text-center dark:border-slate-700 dark:bg-slate-800">
-                <h3 className="font-headings mb-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
-                  ¿Te gustó este análisis?
-                </h3>
-                <p className="font-body mb-4 text-slate-600 dark:text-slate-400">
-                  Recibe contenido similar cada lunes en tu bandeja de entrada
-                </p>
-                <Link
-                  href="/newsletter"
-                  className="font-body inline-flex items-center rounded-lg bg-sky-600 px-4 py-2 font-medium text-white transition-colors hover:bg-sky-700 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
-                >
-                  Suscribirse a la newsletter
-                  <svg className="ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          )}
-        </main>
-      </div>
+          </div>
+        )}
+      </main>
     </div>
   )
 }

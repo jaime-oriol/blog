@@ -88,11 +88,11 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
   }
 
   return (
-    <div className="w-full">
+    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 xl:max-w-5xl xl:px-0">
       <ScrollTopAndComment />
 
       {/* Breadcrumb profesional */}
-      <div className="mb-6 px-4 sm:px-6">
+      <div className="mb-8">
         <nav className="font-body flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
           <Link
             href="/"
@@ -129,12 +129,12 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
         </nav>
       </div>
 
-      <article className="w-full px-4 sm:px-6">
+      <article>
         <div>
           {/* Header del artículo - diseño profesional */}
-          <header className="relative mb-10">
+          <header className="relative mb-12">
             {/* Metadatos del artículo */}
-            <div className="mb-6 space-y-4">
+            <div className="mb-8 space-y-4">
               {/* Badge de sección y fecha */}
               <div className="flex items-center justify-between">
                 {section && (
@@ -162,7 +162,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
             {/* Imagen destacada */}
             {displayImage && (
-              <div className="relative mb-8 h-96 overflow-hidden rounded-lg md:h-[28rem] lg:h-[32rem]">
+              <div className="relative mb-10 h-96 overflow-hidden rounded-xl md:h-[28rem] lg:h-[32rem]">
                 <Image src={displayImage} alt={title} fill className="object-cover" priority />
                 {/* Overlay sutil para mejor integración */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
@@ -171,110 +171,110 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
           </header>
 
           {/* Contenido del artículo con prose optimizado - ANCHO COMPLETO */}
-          <div className="w-full">
+          <div className="mb-16">
             <div className="prose prose-slate prose-lg dark:prose-invert max-w-none">
               {children}
             </div>
+          </div>
 
-            {/* Información del autor */}
-            {authorDetails.length > 0 && (
-              <div className="mt-12 border-t border-slate-200 pt-8 dark:border-slate-700">
-                <div className="flex items-center space-x-4">
-                  {authorDetails.map((author, index) => (
-                    <div key={`${author.name}-${index}`} className="flex items-center">
-                      {author.avatar && (
-                        <Image
-                          src={author.avatar}
-                          width={56}
-                          height={56}
-                          alt="avatar"
-                          className="mr-4 h-14 w-14 rounded-full"
-                        />
-                      )}
-                      <div>
-                        <div className="font-headings text-lg font-semibold text-slate-900 dark:text-slate-100">
-                          {author.name}
-                        </div>
-                        <div className="font-body text-sm text-slate-600 dark:text-slate-400">
-                          {author.occupation}
-                        </div>
+          {/* Información del autor */}
+          {authorDetails.length > 0 && (
+            <div className="mb-16 border-t border-slate-200 pt-8 dark:border-slate-700">
+              <div className="flex items-center space-x-4">
+                {authorDetails.map((author, index) => (
+                  <div key={`${author.name}-${index}`} className="flex items-center">
+                    {author.avatar && (
+                      <Image
+                        src={author.avatar}
+                        width={56}
+                        height={56}
+                        alt="avatar"
+                        className="mr-4 h-14 w-14 rounded-full"
+                      />
+                    )}
+                    <div>
+                      <div className="font-headings text-lg font-semibold text-slate-900 dark:text-slate-100">
+                        {author.name}
+                      </div>
+                      <div className="font-body text-sm text-slate-600 dark:text-slate-400">
+                        {author.occupation}
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
-            )}
-
-            {/* Sistema de comentarios personalizado */}
-            <div className="mt-12 border-t border-slate-200 pt-8 dark:border-slate-700">
-              {/* Lista de comentarios existentes */}
-              <CommentsList
-                postSlug={slug.split('/').pop() || slug}
-                refreshTrigger={refreshComments}
-              />
-
-              {/* Formulario para nuevos comentarios */}
-              <CommentForm
-                postSlug={slug.split('/').pop() || slug}
-                onCommentAdded={handleCommentAdded}
-              />
             </div>
+          )}
 
-            {/* Navegación entre artículos */}
-            {(prev || next) && (
-              <div className="mt-12 border-t border-slate-200 pt-8 dark:border-slate-700">
-                <div className="grid gap-6 md:grid-cols-2">
-                  {prev && (
-                    <div className="group">
-                      <p className="mb-2 font-mono text-xs font-medium tracking-wide text-slate-500 uppercase dark:text-slate-400">
-                        Artículo anterior
-                      </p>
-                      <Link
-                        href={`/blog/${prev.slug}`}
-                        className="block rounded-lg border border-slate-200 bg-white p-4 transition-all hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
-                      >
-                        <h3 className="font-headings text-lg font-medium text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
-                          {prev.title}
-                        </h3>
-                      </Link>
-                    </div>
-                  )}
+          {/* Sistema de comentarios personalizado */}
+          <div className="mb-16 border-t border-slate-200 pt-8 dark:border-slate-700">
+            {/* Lista de comentarios existentes */}
+            <CommentsList
+              postSlug={slug.split('/').pop() || slug}
+              refreshTrigger={refreshComments}
+            />
 
-                  {next && (
-                    <div className="group">
-                      <p className="mb-2 font-mono text-xs font-medium tracking-wide text-slate-500 uppercase dark:text-slate-400">
-                        Siguiente artículo
-                      </p>
-                      <Link
-                        href={`/blog/${next.slug}`}
-                        className="block rounded-lg border border-slate-200 bg-white p-4 transition-all hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
-                      >
-                        <h3 className="font-headings text-lg font-medium text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
-                          {next.title}
-                        </h3>
-                      </Link>
-                    </div>
-                  )}
-                </div>
+            {/* Formulario para nuevos comentarios */}
+            <CommentForm
+              postSlug={slug.split('/').pop() || slug}
+              onCommentAdded={handleCommentAdded}
+            />
+          </div>
+
+          {/* Navegación entre artículos */}
+          {(prev || next) && (
+            <div className="mb-16 border-t border-slate-200 pt-8 dark:border-slate-700">
+              <div className="grid gap-6 md:grid-cols-2">
+                {prev && (
+                  <div className="group">
+                    <p className="mb-2 font-mono text-xs font-medium tracking-wide text-slate-500 uppercase dark:text-slate-400">
+                      Artículo anterior
+                    </p>
+                    <Link
+                      href={`/blog/${prev.slug}`}
+                      className="block rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
+                    >
+                      <h3 className="font-headings text-lg font-medium text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
+                        {prev.title}
+                      </h3>
+                    </Link>
+                  </div>
+                )}
+
+                {next && (
+                  <div className="group">
+                    <p className="mb-2 font-mono text-xs font-medium tracking-wide text-slate-500 uppercase dark:text-slate-400">
+                      Siguiente artículo
+                    </p>
+                    <Link
+                      href={`/blog/${next.slug}`}
+                      className="block rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
+                    >
+                      <h3 className="font-headings text-lg font-medium text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
+                        {next.title}
+                      </h3>
+                    </Link>
+                  </div>
+                )}
               </div>
-            )}
-
-            {/* CTA final para volver al blog */}
-            <div className="mt-12 text-center">
-              <Link
-                href="/blog"
-                className="font-body inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-              >
-                <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fillRule="evenodd"
-                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Volver a todos los artículos
-              </Link>
             </div>
+          )}
+
+          {/* CTA final para volver al blog */}
+          <div className="text-center">
+            <Link
+              href="/blog"
+              className="font-body inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+            >
+              <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Volver a todos los artículos
+            </Link>
           </div>
         </div>
       </article>

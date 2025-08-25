@@ -6,20 +6,20 @@ export const metadata = genPageMetadata({ title: 'About' })
 
 export default function Page() {
   return (
-    <div className="w-full">
+    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 xl:max-w-5xl xl:px-0">
       {/* Header de la sección - consistente con otras páginas */}
-      <div className="w-full px-4 pt-8 pb-6 sm:px-6">
-        <div className="space-y-4">
-          <h1 className="font-headings text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
-            Sobre mí
-          </h1>
-        </div>
+      <div className="mb-12 text-center">
+        <h1 className="font-headings text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
+          Sobre mí
+        </h1>
       </div>
 
-      {/* Galería de fotos profesional - ancho completo */}
-      <PhotoCarousel />
+      {/* Galería de fotos profesional */}
+      <div className="mb-16">
+        <PhotoCarousel />
+      </div>
 
-      {/* Sección biográfica con tipografía FootballDecoded - ancho completo */}
+      {/* Sección biográfica con tipografía FootballDecoded */}
       <BioSection />
     </div>
   )
