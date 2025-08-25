@@ -6,9 +6,9 @@ import ArticlesLayout from '@/components/ArticlesLayout'
 const POSTS_PER_PAGE = 4
 
 export const metadata = genPageMetadata({
-  title: 'Artículos',
+  title: 'Todos los Artículos',
   description:
-    'Análisis táctico avanzado, scouting funcional y métricas aplicadas al fútbol profesional.',
+    'Análisis técnico integral del fútbol moderno a través de métricas avanzadas, evaluación táctica y scouting especializado.',
 })
 
 export default async function BlogPage() {
