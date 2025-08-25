@@ -160,8 +160,8 @@ function NewsletterSection() {
         <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
           <div className="space-y-4 text-center">
             <p className="font-body text-lg text-slate-600 dark:text-slate-400">
-              <strong>Newsletter:</strong> Análisis futbolístico directo cuando realmente importa, con rigor técnico
-              y sin ruido
+              <strong>Newsletter:</strong> Análisis futbolístico directo cuando realmente importa,
+              con rigor técnico y sin ruido
             </p>
 
             <Link

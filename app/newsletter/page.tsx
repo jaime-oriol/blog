@@ -116,7 +116,10 @@ export default function Newsletter() {
                       'Métricas que expliquen comportamientos tácticos específicos o revelen patrones no evidentes en el análisis superficial. Estadísticas que construyan narrativas, no cifras aisladas.',
                   },
                 ].map((item, index) => (
-                  <div key={index} className="border-l-4 border-slate-200 pl-6 dark:border-slate-600">
+                  <div
+                    key={index}
+                    className="border-l-4 border-slate-200 pl-6 dark:border-slate-600"
+                  >
                     <h4 className="font-headings mb-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
                       {item.title}
                     </h4>
