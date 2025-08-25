@@ -35,9 +35,7 @@ const Header = () => {
       {/* Navegación principal - tipografía consistente */}
       <div className="flex items-center space-x-4 leading-5 sm:-mr-6 sm:space-x-6">
         <div className="hidden items-center gap-x-6 sm:flex lg:gap-x-8">
-          {headerNavLinks
-            .filter((link) => link.href !== '/')
-            .map((link) => {
+          {headerNavLinks.map((link) => {
               // Si es el enlace de artículos, usar el dropdown unificado
               if (link.title === 'Artículos') {
                 return <SectionsNavigation key="articles" variant="dropdown" />
