@@ -207,7 +207,10 @@ export async function POST(request: NextRequest) {
           await sendConfirmationEmail(email, existingSubscriber.confirmationToken, baseUrl)
         }
         return NextResponse.json(
-          { message: 'Te hemos reenviado el email de confirmación. Revisa tu bandeja de entrada.' },
+          {
+            message:
+              'Te hemos reenviado el email de confirmación. Revisa tu bandeja de entrada (y la carpeta de spam por si acaso).',
+          },
           { status: 200 }
         )
       }
