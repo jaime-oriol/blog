@@ -415,7 +415,7 @@ const siteMetadata = {
   socialBanner: '/static/images/twitter-card.png',
   email: 'joriolgo@gmail.com',
   github: 'https://github.com/jaime-oriol',
-  twitter: 'https://x.com/JaimeOriol_',
+  twitter: 'https://x.com/_orio1',
   linkedin: 'https://www.linkedin.com/in/jaime-oriol-goicoechea-801313276/',
   locale: 'es-ES',
   newsletter: {
