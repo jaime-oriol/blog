@@ -17,7 +17,7 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
     setMessage('')
 
     try {
-      const response = await fetch('/api/newsletter/subscribe', {
+      const response = await fetch('/api/newsletter/subscribe-resend', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

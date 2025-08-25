@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirma tu suscripción - FootballDecoded</title>
+    <style>
+      /* Reset básico */
+      body,
+      table,
+      td,
+      p,
+      a,
+      li,
+      blockquote {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      table,
+      td {
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      img {
+        -ms-interpolation-mode: bicubic;
+      }
+
+      /* Estilos principales */
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: #f8fafc;
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        line-height: 1.6;
+        color: #334155;
+      }
+
+      .email-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        padding: 40px 30px;
+        text-align: center;
+      }
+
+      .header h1 {
+        margin: 0;
+        color: #ffffff;
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+      }
+
+      .header .subtitle {
+        margin: 8px 0 0 0;
+        color: #e0f2fe;
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .content {
+        padding: 40px 30px;
+      }
+
+      .welcome-section {
+        background-color: #f1f5f9;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 30px;
+        border-left: 4px solid #0ea5e9;
+      }
+
+      .welcome-section h2 {
+        margin: 0 0 16px 0;
+        color: #0f172a;
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      .welcome-section p {
+        margin: 0 0 12px 0;
+        color: #475569;
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      .welcome-section p:last-child {
+        margin-bottom: 0;
+      }
+
+      .cta-section {
+        text-align: center;
+        margin: 40px 0;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        color: #ffffff !important;
+        text-decoration: none;
+        padding: 16px 32px;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.15);
+      }
+
+      .features-section {
+        background-color: #fefefe;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 30px;
+        margin: 30px 0;
+      }
+
+      .features-section h3 {
+        margin: 0 0 20px 0;
+        color: #0f172a;
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .features-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .features-list li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 16px;
+        padding-left: 0;
+      }
+
+      .features-list li:last-child {
+        margin-bottom: 0;
+      }
+
+      .feature-icon {
+        color: #0ea5e9;
+        font-size: 20px;
+        margin-right: 12px;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+
+      .feature-text {
+        color: #475569;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .footer-section {
+        background-color: #f8fafc;
+        padding: 30px;
+        border-top: 1px solid #e2e8f0;
+        text-align: center;
+      }
+
+      .footer-section p {
+        margin: 0 0 12px 0;
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .footer-section p:last-child {
+        margin-bottom: 0;
+      }
+
+      .footer-section .url-backup {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #e2e8f0;
+        font-size: 12px;
+        color: #94a3b8;
+        word-break: break-all;
+      }
+
+      .footer-branding {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e2e8f0;
+        font-size: 16px;
+        font-weight: 600;
+        color: #0ea5e9;
+      }
+
+      /* Responsive */
+      @media only screen and (max-width: 600px) {
+        .email-container {
+          width: 100% !important;
+        }
+
+        .header,
+        .content,
+        .footer-section {
+          padding: 30px 20px !important;
+        }
+
+        .welcome-section,
+        .features-section {
+          padding: 20px !important;
+        }
+
+        .header h1 {
+          font-size: 28px !important;
+        }
+
+        .cta-button {
+          padding: 14px 24px !important;
+          font-size: 16px !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="email-container">
+      <!-- Header -->
+      <div class="header">
+        <h1>⚽ FootballDecoded</h1>
+        <p class="subtitle">Análisis del fútbol moderno</p>
+      </div>
+
+      <!-- Main Content -->
+      <div class="content">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+          <h2>¡Hola!</h2>
+          <p>Gracias por suscribirte a <strong>FootballDecoded Newsletter</strong>.</p>
+          <p>
+            Cada <strong>lunes por la mañana</strong> recibirás las 5 noticias más importantes del
+            mundo del fútbol, contadas con criterio, sin ruido, y con mi análisis personal.
+          </p>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+          <a href="{{CONFIRMATION_URL}}" class="cta-button"> Confirmar suscripción </a>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+          <h3>¿Qué puedes esperar?</h3>
+          <ul class="features-list">
+            <li>
+              <span class="feature-icon">📊</span>
+              <span class="feature-text"
+                ><strong>Análisis táctico profundo</strong> de los equipos y jugadores más
+                relevantes</span
+              >
+            </li>
+            <li>
+              <span class="feature-icon">🎯</span>
+              <span class="feature-text"
+                ><strong>Scouting funcional</strong> con métricas avanzadas y contextualizadas</span
+              >
+            </li>
+            <li>
+              <span class="feature-icon">📈</span>
+              <span class="feature-text"
+                ><strong>Tendencias del fútbol moderno</strong> explicadas de forma clara y
+                práctica</span
+              >
+            </li>
+            <li>
+              <span class="feature-icon">⚡</span>
+              <span class="feature-text"
+                ><strong>Contenido directo</strong> - sin relleno, solo lo que realmente
+                importa</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer-section">
+        <p>Si no te has suscrito a esta newsletter, puedes ignorar este email.</p>
+        <p>Una vez confirmada tu suscripción, recibirás el primer newsletter el próximo lunes.</p>
+
+        <div class="url-backup">
+          <p>Si el botón no funciona, copia y pega este enlace en tu navegador:</p>
+          <p>{{CONFIRMATION_URL}}</p>
+        </div>
+
+        <div class="footer-branding">FootballDecoded</div>
+      </div>
+    </div>
+  </body>
+</html>

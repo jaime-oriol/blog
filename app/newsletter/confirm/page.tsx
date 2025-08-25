@@ -20,7 +20,7 @@ function ConfirmContent() {
       }
 
       try {
-        const response = await fetch(`/api/newsletter/confirm?token=${token}`)
+        const response = await fetch(`/api/newsletter/confirm-resend?token=${token}`)
         const data = await response.json()
 
         if (response.ok) {
