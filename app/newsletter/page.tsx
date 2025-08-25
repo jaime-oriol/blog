@@ -1,13 +1,19 @@
 import { genPageMetadata } from 'app/seo'
+import { allBlogs } from 'contentlayer/generated'
+import { sortPosts } from 'pliny/utils/contentlayer'
 import NewsletterForm from '@/components/NewsletterForm'
+import ArticleCard from '@/components/ArticleCard'
 
 export const metadata = genPageMetadata({
-  title: 'Newsletter - FootballDecoded Semanal',
+  title: 'Newsletter - FootballDecoded',
   description:
-    'Suscríbete y recibe cada lunes las 5 noticias más importantes del mundo del fútbol, contadas con criterio y opinión propia.',
+    'Análisis futbolístico directo cuando realmente importa, con rigor técnico y sin ruido',
 })
 
 export default function Newsletter() {
+  const sortedPosts = sortPosts(allBlogs)
+  const latestPost = sortedPosts[0]
+
   return (
     <>
       <div className="divide-y divide-slate-200 dark:divide-slate-700">
@@ -17,33 +23,19 @@ export default function Newsletter() {
             Newsletter
           </h1>
           <p className="font-body text-xl leading-relaxed text-slate-600 dark:text-slate-400">
-            Análisis semanal directo, sin ruido
+            Análisis futbolístico directo cuando realmente importa, con rigor técnico y sin ruido
           </p>
         </div>
 
-        {/* FORMULARIO PRINCIPAL - Hero section profesional */}
+        {/* FORMULARIO PRINCIPAL - Solo suscripción */}
         <div className="pt-10">
           <div className="w-full px-4 sm:px-6">
             <div className="relative overflow-hidden rounded-lg border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
               <div className="relative px-8 py-12 lg:px-12 lg:py-16">
-                <div className="mx-auto max-w-3xl space-y-8 text-center">
-                  {/* Título y propuesta de valor */}
-                  <div className="space-y-4">
-                    <h2 className="font-headings text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl dark:text-slate-100">
-                      Newsletter FootballDecoded
-                    </h2>
-                    <p className="font-body text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-                      Cada lunes,{' '}
-                      <strong className="text-concept">
-                        las 5 noticias más importantes del mundo del fútbol
-                      </strong>
-                      , analizadas con criterio técnico y sin ruido mediático.
-                    </p>
-                  </div>
-
+                <div className="mx-auto max-w-md space-y-8 text-center">
                   {/* FORMULARIO - Diseño limpio y profesional */}
-                  <div className="pt-4">
-                    <NewsletterForm className="mx-auto max-w-md" />
+                  <div>
+                    <NewsletterForm />
                   </div>
 
                   {/* Garantías profesionales */}
@@ -91,51 +83,64 @@ export default function Newsletter() {
                 ¿Qué puede incluir cada edición?
               </h3>
 
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="space-y-8">
                 {[
                   {
-                    title: 'Resultados clave',
+                    title: 'Análisis de partidos clave',
                     description:
-                      'Cuando haya pasado algo importante en el campo durante el fin de semana.',
+                      'Encuentros que revelen patrones tácticos significativos o marquen inflexiones en el rendimiento de equipos. Solo cuando el análisis aporte valor real más allá del resultado.',
                   },
                   {
-                    title: 'Movimientos de mercado',
+                    title: 'Movimientos estratégicos del mercado',
                     description:
-                      'Fichajes, rumores potentes u operaciones que merezcan atención técnica.',
+                      'Fichajes y operaciones que alteren dinámicas tácticas o confirmen tendencias en la construcción de plantillas. El enfoque en cómo cada incorporación modifica sistemas de juego.',
                   },
                   {
-                    title: 'Momentos destacados',
-                    description: 'Jugadas, goles o situaciones que generen conversación táctica.',
-                  },
-                  {
-                    title: 'Reflexión personal',
+                    title: 'Detalles técnicos reveladores',
                     description:
-                      'Mi análisis sobre algo que me haya llamado la atención profesionalmente.',
+                      'Situaciones específicas, jugadas o comportamientos colectivos que ilustren conceptos del fútbol moderno o expongan aspectos que pasan inadvertidos en el análisis convencional.',
                   },
                   {
-                    title: 'Recomendaciones',
-                    description: 'Contenido técnico, artículos o vídeos que no te deberías perder.',
+                    title: 'Reflexión analítica personal',
+                    description:
+                      'Mi perspectiva sobre tendencias emergentes, evoluciones tácticas o elementos del análisis que considere relevantes para comprender la dirección del juego actual.',
                   },
                   {
-                    title: 'Datos y métricas',
-                    description: 'Estadísticas interesantes que ayuden a entender mejor el juego.',
+                    title: 'Contenido técnico seleccionado',
+                    description:
+                      'Investigaciones, artículos especializados o recursos analíticos que aporten conocimiento aplicable. Solo recomendaciones que justifiquen el tiempo de lectura.',
+                  },
+                  {
+                    title: 'Datos contextualizados',
+                    description:
+                      'Métricas que expliquen comportamientos tácticos específicos o revelen patrones no evidentes en el análisis superficial. Estadísticas que construyan narrativas, no cifras aisladas.',
                   },
                 ].map((item, index) => (
-                  <div key={index} className="flex items-start">
-                    <div className="min-w-0">
-                      <h4 className="font-headings mb-1 font-medium text-slate-900 dark:text-slate-100">
-                        {item.title}
-                      </h4>
-                      <p className="font-body text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                        {item.description}
-                      </p>
-                    </div>
+                  <div key={index} className="border-l-4 border-slate-200 pl-6 dark:border-slate-600">
+                    <h4 className="font-headings mb-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
+                      {item.title}
+                    </h4>
+                    <p className="font-body leading-relaxed text-slate-600 dark:text-slate-400">
+                      {item.description}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
           </div>
         </div>
+
+        {/* ÚLTIMO ARTÍCULO */}
+        {latestPost && (
+          <div className="pt-12">
+            <div className="w-full px-4 sm:px-6">
+              <h3 className="font-headings mb-6 text-2xl font-semibold text-slate-900 dark:text-slate-100">
+                No te pierdas el último artículo
+              </h3>
+              <ArticleCard post={latestPost} />
+            </div>
+          </div>
+        )}
       </div>
     </>
   )
