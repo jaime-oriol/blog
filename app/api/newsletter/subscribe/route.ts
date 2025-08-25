@@ -1,8 +1,6 @@
 // app/api/newsletter/subscribe/route.ts
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, readFile, mkdir } from 'fs/promises'
-import { existsSync } from 'fs'
-import path from 'path'
+import { createClient } from 'redis'
 import { Resend } from 'resend'
 import crypto from 'crypto'
 
@@ -17,8 +15,18 @@ interface NewsletterSubscriber {
   userAgent?: string
 }
 
-const DATA_DIR = path.join(process.cwd(), 'data')
-const SUBSCRIBERS_FILE = path.join(DATA_DIR, 'newsletter-subscribers.json')
+// Redis connection
+let redis: ReturnType<typeof createClient> | null = null
+
+async function getRedisClient() {
+  if (!redis) {
+    redis = createClient({
+      url: process.env.REDIS_URL || process.env.KV_URL,
+    })
+    await redis.connect()
+  }
+  return redis
+}
 
 // Función para obtener la URL base correcta
 function getBaseUrl(request: NextRequest): string {
@@ -44,32 +52,50 @@ function getBaseUrl(request: NextRequest): string {
   return `${protocol}://${host}`
 }
 
-// Función para leer suscriptores existentes
-async function getSubscribers(): Promise<NewsletterSubscriber[]> {
+// Funciones Redis para newsletter
+async function getSubscriber(email: string): Promise<NewsletterSubscriber | null> {
   try {
-    if (!existsSync(SUBSCRIBERS_FILE)) {
-      return []
-    }
-    const data = await readFile(SUBSCRIBERS_FILE, 'utf8')
-    return JSON.parse(data)
+    const client = await getRedisClient()
+    const key = `newsletter:subscriber:${email.toLowerCase()}`
+    const data = await client.get(key)
+    return data ? JSON.parse(data) : null
   } catch (error) {
-    console.error('Error reading subscribers:', error)
-    return []
+    console.error('Error reading subscriber from Redis:', error)
+    return null
   }
 }
 
-// Función para guardar suscriptores
-async function saveSubscribers(subscribers: NewsletterSubscriber[]): Promise<void> {
+async function storeSubscriber(subscriber: NewsletterSubscriber): Promise<void> {
   try {
-    // Crear directorio si no existe
-    if (!existsSync(DATA_DIR)) {
-      await mkdir(DATA_DIR, { recursive: true })
+    const client = await getRedisClient()
+    const key = `newsletter:subscriber:${subscriber.email.toLowerCase()}`
+    await client.set(key, JSON.stringify(subscriber))
+
+    // También almacenar en una lista para estadísticas
+    await client.zadd('newsletter:subscribers', Date.now(), subscriber.email.toLowerCase())
+  } catch (error) {
+    console.error('Error storing subscriber in Redis:', error)
+    throw error
+  }
+}
+
+async function getSubscriberStats(): Promise<{ total: number; confirmed: number }> {
+  try {
+    const client = await getRedisClient()
+    const allEmails = await client.zrange('newsletter:subscribers', 0, -1)
+
+    let confirmed = 0
+    for (const email of allEmails) {
+      const subscriber = await getSubscriber(email)
+      if (subscriber?.confirmed) {
+        confirmed++
+      }
     }
 
-    await writeFile(SUBSCRIBERS_FILE, JSON.stringify(subscribers, null, 2))
+    return { total: allEmails.length, confirmed }
   } catch (error) {
-    console.error('Error saving subscribers:', error)
-    throw error
+    console.error('Error getting subscriber stats:', error)
+    return { total: 0, confirmed: 0 }
   }
 }
 
@@ -166,13 +192,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Email no válido' }, { status: 400 })
     }
 
-    // Leer suscriptores existentes
-    const subscribers = await getSubscribers()
-
     // Verificar si ya está suscrito
-    const existingSubscriber = subscribers.find(
-      (sub) => sub.email.toLowerCase() === email.toLowerCase()
-    )
+    const existingSubscriber = await getSubscriber(email)
     if (existingSubscriber) {
       if (existingSubscriber.confirmed) {
         return NextResponse.json(
@@ -205,11 +226,8 @@ export async function POST(request: NextRequest) {
       userAgent: request.headers.get('user-agent') || 'unknown',
     }
 
-    // Añadir a la lista
-    subscribers.push(newSubscriber)
-
-    // Guardar
-    await saveSubscribers(subscribers)
+    // Guardar en Redis
+    await storeSubscriber(newSubscriber)
 
     // Enviar email de confirmación
     const baseUrl = getBaseUrl(request)
@@ -230,19 +248,12 @@ export async function POST(request: NextRequest) {
 // Endpoint GET para obtener estadísticas (opcional, para tu uso)
 export async function GET() {
   try {
-    const subscribers = await getSubscribers()
-    const confirmedSubscribers = subscribers.filter((sub) => sub.confirmed)
+    const stats = await getSubscriberStats()
 
     return NextResponse.json({
-      total: subscribers.length,
-      confirmed: confirmedSubscribers.length,
-      pending: subscribers.length - confirmedSubscribers.length,
-      latest: confirmedSubscribers.slice(-5).reverse(), // Últimos 5 confirmados
-      recentCount: confirmedSubscribers.filter((sub) => {
-        const subDate = new Date(sub.subscribedAt)
-        const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
-        return subDate > weekAgo
-      }).length,
+      total: stats.total,
+      confirmed: stats.confirmed,
+      pending: stats.total - stats.confirmed,
     })
   } catch (error) {
     console.error('Error getting newsletter stats:', error)

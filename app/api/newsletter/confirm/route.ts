@@ -1,8 +1,6 @@
 // app/api/newsletter/confirm/route.ts
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, readFile } from 'fs/promises'
-import { existsSync } from 'fs'
-import path from 'path'
+import { createClient } from 'redis'
 
 interface NewsletterSubscriber {
   email: string
@@ -14,29 +12,58 @@ interface NewsletterSubscriber {
   userAgent?: string
 }
 
-const DATA_DIR = path.join(process.cwd(), 'data')
-const SUBSCRIBERS_FILE = path.join(DATA_DIR, 'newsletter-subscribers.json')
+// Redis connection
+let redis: ReturnType<typeof createClient> | null = null
 
-// Función para leer suscriptores existentes
-async function getSubscribers(): Promise<NewsletterSubscriber[]> {
+async function getRedisClient() {
+  if (!redis) {
+    redis = createClient({
+      url: process.env.REDIS_URL || process.env.KV_URL,
+    })
+    await redis.connect()
+  }
+  return redis
+}
+
+// Funciones Redis
+async function getSubscriber(email: string): Promise<NewsletterSubscriber | null> {
   try {
-    if (!existsSync(SUBSCRIBERS_FILE)) {
-      return []
-    }
-    const data = await readFile(SUBSCRIBERS_FILE, 'utf8')
-    return JSON.parse(data)
+    const client = await getRedisClient()
+    const key = `newsletter:subscriber:${email.toLowerCase()}`
+    const data = await client.get(key)
+    return data ? JSON.parse(data) : null
   } catch (error) {
-    console.error('Error reading subscribers:', error)
-    return []
+    console.error('Error reading subscriber from Redis:', error)
+    return null
   }
 }
 
-// Función para guardar suscriptores
-async function saveSubscribers(subscribers: NewsletterSubscriber[]): Promise<void> {
+async function findSubscriberByToken(token: string): Promise<NewsletterSubscriber | null> {
   try {
-    await writeFile(SUBSCRIBERS_FILE, JSON.stringify(subscribers, null, 2))
+    const client = await getRedisClient()
+    const allEmails = await client.zrange('newsletter:subscribers', 0, -1)
+
+    for (const email of allEmails) {
+      const subscriber = await getSubscriber(email)
+      if (subscriber?.confirmationToken === token) {
+        return subscriber
+      }
+    }
+
+    return null
   } catch (error) {
-    console.error('Error saving subscribers:', error)
+    console.error('Error finding subscriber by token:', error)
+    return null
+  }
+}
+
+async function updateSubscriber(subscriber: NewsletterSubscriber): Promise<void> {
+  try {
+    const client = await getRedisClient()
+    const key = `newsletter:subscriber:${subscriber.email.toLowerCase()}`
+    await client.set(key, JSON.stringify(subscriber))
+  } catch (error) {
+    console.error('Error updating subscriber in Redis:', error)
     throw error
   }
 }
@@ -50,20 +77,15 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Token de confirmación requerido' }, { status: 400 })
     }
 
-    // Leer suscriptores
-    const subscribers = await getSubscribers()
+    // Buscar suscriptor por token
+    const subscriber = await findSubscriberByToken(token)
 
-    // Buscar suscriptor con este token
-    const subscriberIndex = subscribers.findIndex((sub) => sub.confirmationToken === token)
-
-    if (subscriberIndex === -1) {
+    if (!subscriber) {
       return NextResponse.json(
         { error: 'Token de confirmación no válido o ya utilizado' },
         { status: 404 }
       )
     }
-
-    const subscriber = subscribers[subscriberIndex]
 
     // Si ya está confirmado
     if (subscriber.confirmed) {
@@ -74,15 +96,15 @@ export async function GET(request: NextRequest) {
     }
 
     // Confirmar suscripción
-    subscribers[subscriberIndex] = {
+    const updatedSubscriber = {
       ...subscriber,
       confirmed: true,
       confirmedAt: new Date().toISOString(),
       confirmationToken: undefined, // Eliminar el token usado
     }
 
-    // Guardar cambios
-    await saveSubscribers(subscribers)
+    // Actualizar en Redis
+    await updateSubscriber(updatedSubscriber)
 
     // Respuesta de éxito
     return NextResponse.json({
