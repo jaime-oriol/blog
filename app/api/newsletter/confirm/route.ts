@@ -87,11 +87,12 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Si ya está confirmado
+    // Si ya está confirmado - permitir reconfirmación para testing
     if (subscriber.confirmed) {
       return NextResponse.json({
-        message: 'Tu suscripción ya había sido confirmada anteriormente',
+        message: '¡Suscripción confirmada! Tu email ya estaba confirmado anteriormente.',
         email: subscriber.email,
+        status: 'already_confirmed'
       })
     }
 
