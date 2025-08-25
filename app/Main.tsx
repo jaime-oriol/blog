@@ -55,31 +55,34 @@ function IntroSection() {
       </blockquote>
 
       {/* Descripción del proyecto */}
-      <div className="font-body space-y-6 leading-relaxed text-slate-700 dark:text-slate-300">
-        <p className="text-lg">
+      <div className="font-body space-y-6 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+        <p>
           FootballDecoded nace precisamente de esta aparente contradicción: el fútbol tiene
-          estructuras, patrones y decisiones estratégicas claras, pero siempre mantiene algo que se
-          escapa a los números. Justo ahí, en la tensión constante entre lo previsible y lo
-          inesperado, surge la verdadera esencia del análisis.
+          estructuras, patrones y decisiones estratégicas claras, pero siempre conserva algo que se
+          resiste a los números puros. Justo ahí, en esa tensión constante entre lo calculable y lo
+          impredecible, surge la verdadera esencia del análisis moderno.
         </p>
 
         <p>
-          Este blog no es una colección de estadísticas frías ni un libro de jugadas tácticas. Es un
-          intento honesto de entender el juego a través de datos, visualizaciones claras y modelos
-          rigurosos. Aquí uso el análisis cuantitativo no para simplificar el fútbol, sino para
-          revelar lo que realmente importa: los patrones, los detalles estratégicos, las claves
-          ocultas que definen victorias y derrotas.
+          Este blog no es una colección de estadísticas en bruto ni un manual de esquemas tácticos.
+          Es una exploración rigurosa del juego a través de datos contextualizados, visualizaciones
+          que revelan patrones ocultos y modelos que van más allá del resultado final. Aquí el
+          análisis cuantitativo no simplifica el fútbol, sino que desvela lo que realmente define el
+          rendimiento: las micro-decisiones, los movimientos que preceden a la jugada clave, las
+          dinámicas colectivas que determinan victorias y derrotas.
         </p>
 
         <p>
-          Trabajo con herramientas avanzadas de ciencia de datos, modelos predictivos validados y
-          visualizaciones tácticas intuitivas, siempre orientado a transformar información compleja
-          en conocimiento práctico para entrenadores, analistas y responsables deportivos.
+          Mi trabajo combina herramientas avanzadas de ciencia de datos con modelos predictivos
+          validados y visualizaciones tácticas intuitivas, siempre orientado hacia un objetivo
+          claro: transformar información compleja en conocimiento aplicable para entrenadores,
+          analistas y profesionales del deporte.
         </p>
 
-        <p className="text-slate-600 italic dark:text-slate-400">
-          <em>FootballDecoded</em> es mi laboratorio personal y profesional, diseñado para explorar,
-          medir y comprender el fútbol con rigor y curiosidad.
+        <p>
+          FootballDecoded es mi laboratorio de exploración futbolística, donde cada análisis busca
+          medir, comprender y anticipar el juego con la curiosidad del investigador y la precisión
+          del especialista.
         </p>
       </div>
     </section>
@@ -97,7 +100,7 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
     <section className="pt-10">
       <div className="w-full px-4 sm:px-6">
         <h2 className="font-headings mb-8 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-          Análisis Recientes
+          Últimos Artículos
         </h2>
       </div>
 
@@ -156,16 +159,8 @@ function NewsletterSection() {
       <div className="w-full px-4 sm:px-6">
         <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
           <div className="space-y-4 text-center">
-            <h2 className="font-headings text-xl font-semibold text-slate-900 dark:text-slate-100">
-              Newsletter Semanal
-            </h2>
-
-            <p className="font-body text-slate-600 dark:text-slate-400">
-              Cada lunes, las{' '}
-              <strong className="text-concept">
-                5 noticias más importantes del mundo del fútbol
-              </strong>{' '}
-              contadas con criterio, sin ruido, y con algo de opinión propia.
+            <p className="font-body text-lg text-slate-600 dark:text-slate-400">
+              Newsletter: Análisis futbolístico directo cuando realmente importa, con rigor técnico y sin ruido
             </p>
 
             <Link
