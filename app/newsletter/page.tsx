@@ -31,8 +31,8 @@ export default function Newsletter() {
         <div className="pt-10">
           <div className="w-full px-4 sm:px-6">
             <div className="relative overflow-hidden rounded-lg border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
-              <div className="relative px-8 py-12 lg:px-12 lg:py-16">
-                <div className="mx-auto max-w-md space-y-8 text-center">
+              <div className="relative px-6 py-8 lg:px-8 lg:py-10">
+                <div className="mx-auto max-w-sm space-y-6 text-center">
                   {/* FORMULARIO - Diseño limpio y profesional */}
                   <div>
                     <NewsletterForm />
