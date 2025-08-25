@@ -120,9 +120,6 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
                 <p className="font-body mt-1 text-sm text-emerald-700 dark:text-emerald-300">
                   {message}
                 </p>
-                <p className="font-body mt-2 text-xs text-emerald-600 dark:text-emerald-400">
-                  Revisa tu bandeja de entrada (y la carpeta de spam por si acaso).
-                </p>
               </div>
             </div>
           </div>
