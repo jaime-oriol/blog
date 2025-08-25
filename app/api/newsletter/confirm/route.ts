@@ -41,7 +41,7 @@ async function getSubscriber(email: string): Promise<NewsletterSubscriber | null
 async function findSubscriberByToken(token: string): Promise<NewsletterSubscriber | null> {
   try {
     const client = await getRedisClient()
-    const allEmails = await client.zrange('newsletter:subscribers', 0, -1)
+    const allEmails = (await client.zrange('newsletter:subscribers', 0, -1)) as string[]
 
     for (const email of allEmails) {
       const subscriber = await getSubscriber(email)

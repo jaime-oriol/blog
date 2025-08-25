@@ -82,7 +82,7 @@ async function storeSubscriber(subscriber: NewsletterSubscriber): Promise<void> 
 async function getSubscriberStats(): Promise<{ total: number; confirmed: number }> {
   try {
     const client = await getRedisClient()
-    const allEmails = await client.zrange('newsletter:subscribers', 0, -1)
+    const allEmails = (await client.zrange('newsletter:subscribers', 0, -1)) as string[]
 
     let confirmed = 0
     for (const email of allEmails) {
