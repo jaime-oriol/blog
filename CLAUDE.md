@@ -16,6 +16,7 @@
 ## Project Structure
 
 ### Tech Stack
+
 - **Framework**: Next.js 15 with App Router
 - **Language**: TypeScript with strict mode
 - **Styling**: Tailwind CSS 4 with custom design system
@@ -26,6 +27,7 @@
 - **Analytics**: Umami for privacy-focused tracking
 
 ### Key Directories
+
 ```
 footballdecoded/
 ├── app/                    # Next.js App Router
@@ -78,10 +80,10 @@ interface ArticleCardProps {
   className?: string
 }
 
-export default function ArticleCard({ 
-  article, 
+export default function ArticleCard({
+  article,
   featured = false,
-  className = '' 
+  className = ''
 }: ArticleCardProps) {
   return (
     <article className={`article-card ${className}`}>
@@ -244,17 +246,20 @@ npm run newsletter       # Newsletter management CLI
 ### Adding New Articles
 
 1. **Create MDX file** in appropriate section:
+
    ```bash
    content/articles/tactical-analysis/nuevo-analisis.mdx
    ```
 
 2. **Add frontmatter** with all required fields
 3. **Add article image** to:
+
    ```bash
    public/static/images/articles/nuevo-analisis.jpg
    ```
 
 4. **Test locally**:
+
    ```bash
    npm run dev
    ```
@@ -268,21 +273,20 @@ npm run newsletter       # Newsletter management CLI
 
 ```mdx
 <!-- Technical concepts with semantic highlighting -->
+
 <TechnicalConcept type="metric">xG</TechnicalConcept>
 <TechnicalConcept type="role">Mediocentro defensivo</TechnicalConcept>
 <TechnicalConcept type="system">4-3-3</TechnicalConcept>
 
 <!-- Callouts for insights -->
-<Callout type="insight">
-Insight clave sobre el análisis táctico
-</Callout>
 
-<Callout type="warning">
-Limitación importante de esta métrica
-</Callout>
+<Callout type="insight">Insight clave sobre el análisis táctico</Callout>
+
+<Callout type="warning">Limitación importante de esta métrica</Callout>
 
 <!-- Statistics cards -->
-<StatCard 
+
+<StatCard
   title="Presión alta exitosa"
   value="78.4%"
   description="Porcentaje de recuperaciones en campo rival"
@@ -290,12 +294,12 @@ Limitación importante de esta métrica
 />
 
 <!-- Technical quotes -->
-<TechnicalQuote source="Pep Guardiola">
-El fútbol es un juego de espacios y tiempo
-</TechnicalQuote>
+
+<TechnicalQuote source="Pep Guardiola">El fútbol es un juego de espacios y tiempo</TechnicalQuote>
 
 <!-- Image with caption -->
-<Image 
+
+<Image
   src="/static/images/articles/pressure-map.jpg"
   alt="Mapa de presión del Manchester City"
   width={800}
@@ -407,7 +411,8 @@ const siteMetadata = {
   title: 'FootballDecoded',
   author: 'Jaime Oriol Goicoechea',
   headerTitle: 'FootballDecoded',
-  description: 'Análisis táctico avanzado, métricas cuantitativas y scouting funcional para el fútbol profesional',
+  description:
+    'Análisis táctico avanzado, métricas cuantitativas y scouting funcional para el fútbol profesional',
   language: 'es-ES',
   theme: 'system',
   siteUrl: 'https://footballdecoded.com',
@@ -419,14 +424,14 @@ const siteMetadata = {
   linkedin: 'https://www.linkedin.com/in/jaime-oriol-goicoechea-801313276/',
   locale: 'es-ES',
   newsletter: {
-    provider: 'resend'
+    provider: 'resend',
   },
   comments: {
     provider: 'giscus', // or 'disqus'
     giscusConfig: {
       // Configuration
-    }
-  }
+    },
+  },
 }
 ```
 
@@ -461,11 +466,11 @@ node scripts/newsletter-manager.mjs --help
 
 ```typescript
 // Rate limiting for API endpoints
-import { Ratelimit } from "@upstash/ratelimit"
+import { Ratelimit } from '@upstash/ratelimit'
 
 const ratelimit = new Ratelimit({
   redis: kv,
-  limiter: Ratelimit.slidingWindow(5, "1 m"), // 5 requests per minute
+  limiter: Ratelimit.slidingWindow(5, '1 m'), // 5 requests per minute
 })
 
 // Input validation
@@ -473,7 +478,7 @@ import { z } from 'zod'
 
 const newsletterSchema = z.object({
   email: z.string().email('Email inválido'),
-  name: z.string().min(2, 'Nombre requerido')
+  name: z.string().min(2, 'Nombre requerido'),
 })
 ```
 
@@ -602,17 +607,20 @@ claude --dangerously-skip-permissions
 ### Best Practices
 
 **File Operations**
+
 - Shift+drag to reference files (not regular drag)
 - Control+V to paste images (not Command+V)
 - Use `@filename` to reference specific files
 
 **Chat Management**
+
 - Queue multiple prompts for batch processing
 - Escape to stop Claude (not Control+C)
 - Escape twice to see message history
 - Up arrow to navigate previous commands
 
 **Project Context (CLAUDE.md)**
+
 - Root `CLAUDE.md` provides project overview and standards
 - Always reference these guidelines before starting work
 - Update this file when project conventions change
