@@ -38,53 +38,50 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
   const getSectionLabel = (section: string) => {
     switch (section) {
-      case 'tactical-analysis':
-        return 'Tactical Analysis'
-      case 'tactical-structures': // Backward compatibility
-        return 'Tactical Analysis'
-      case 'analytical-scouting':
-        return 'Analytical Scouting'
+      case 'player-decoded':
+        return 'Player Decoded'
+      case 'match-analysis':
+        return 'Match Analysis'
+      case 'team-architecture':
+        return 'Team Architecture'
+      case 'tactical-analysis': // Backward compatibility
+        return 'Player Decoded'
+      case 'analytical-scouting': // Backward compatibility
+        return 'Match Analysis'
       case 'scouting': // Backward compatibility
-        return 'Analytical Scouting'
-      case 'advanced-metrics':
-        return 'Advanced Metrics'
+        return 'Match Analysis'
+      case 'advanced-metrics': // Backward compatibility
+        return 'Team Architecture'
       case 'tactical-metrics-lab': // Backward compatibility
-        return 'Advanced Metrics'
+        return 'Team Architecture'
+      case 'tactical-structures': // Backward compatibility
+        return 'Player Decoded'
       default:
         return 'Análisis'
     }
   }
 
   const getSectionColor = (section: string) => {
-    switch (section) {
-      case 'tactical-analysis':
-        return 'bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-200'
-      case 'tactical-structures': // Backward compatibility
-        return 'bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-200'
-      case 'analytical-scouting':
-        return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-200'
-      case 'scouting': // Backward compatibility
-        return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-200'
-      case 'advanced-metrics':
-        return 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-200'
-      case 'tactical-metrics-lab': // Backward compatibility
-        return 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-200'
-      default:
-        return 'bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300'
-    }
+    return 'border border-sky-600 text-sky-700 bg-transparent dark:border-sky-400 dark:text-sky-400'
   }
 
   const getSectionHref = (section: string) => {
     switch (section) {
-      case 'tactical-analysis':
-      case 'tactical-structures': // Redirect legacy to new
-        return '/blog/tactical-analysis'
-      case 'analytical-scouting':
-      case 'scouting': // Redirect legacy to new
-        return '/blog/analytical-scouting'
-      case 'advanced-metrics':
-      case 'tactical-metrics-lab': // Redirect legacy to new
-        return '/blog/advanced-metrics'
+      case 'player-decoded':
+        return '/blog/player-decoded'
+      case 'match-analysis':
+        return '/blog/match-analysis'
+      case 'team-architecture':
+        return '/blog/team-architecture'
+      case 'tactical-analysis': // Backward compatibility
+      case 'tactical-structures': // Backward compatibility
+        return '/blog/player-decoded'
+      case 'analytical-scouting': // Backward compatibility
+      case 'scouting': // Backward compatibility
+        return '/blog/match-analysis'
+      case 'advanced-metrics': // Backward compatibility
+      case 'tactical-metrics-lab': // Backward compatibility
+        return '/blog/team-architecture'
       default:
         return '/blog'
     }
