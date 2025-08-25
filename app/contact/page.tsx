@@ -107,7 +107,7 @@ export default function Contact() {
               </div>
 
               {/* EMAIL principal - destacado */}
-              <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">
+              <div className="mt-8 border-t border-slate-200 pt-8 dark:border-slate-700">
                 <a
                   href="mailto:joriolgo@gmail.com"
                   className="font-body block w-full rounded-lg bg-sky-600 px-6 py-4 text-center text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:bg-sky-700 hover:shadow-xl focus:ring-4 focus:ring-sky-500/25"
