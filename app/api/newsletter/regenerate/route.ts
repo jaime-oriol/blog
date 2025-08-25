@@ -133,13 +133,13 @@ export async function POST(request: NextRequest) {
 
     // Generar nuevo token
     const newToken = generateConfirmationToken()
-    
+
     // Actualizar suscriptor con nuevo token
     const updatedSubscriber = {
       ...subscriber,
       confirmationToken: newToken,
       confirmed: false, // Reset confirmation status
-      confirmedAt: undefined
+      confirmedAt: undefined,
     }
 
     await updateSubscriber(updatedSubscriber)
@@ -150,9 +150,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       message: 'Se ha generado un nuevo token de confirmación. Revisa tu email.',
-      email: email
+      email: email,
     })
-
   } catch (error) {
     console.error('Newsletter regenerate token error:', error)
     return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 })

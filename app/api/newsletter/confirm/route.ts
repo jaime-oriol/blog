@@ -92,7 +92,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         message: '¡Suscripción confirmada! Tu email ya estaba confirmado anteriormente.',
         email: subscriber.email,
-        status: 'already_confirmed'
+        status: 'already_confirmed',
       })
     }
 
