@@ -41,14 +41,14 @@ export default function Main({ posts }: MainProps) {
  */
 function IntroSection() {
   return (
-    <section className="mb-16">
+    <section className="mb-12">
       {/* Título principal */}
       <h1 className="font-headings mb-6 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
         FootballDecoded
       </h1>
 
       {/* Cita destacada */}
-      <blockquote className="mb-8 border-l-4 border-slate-400 pl-4 italic">
+      <blockquote className="mb-6 border-l-4 border-slate-400 pl-4 italic">
         <p className="font-body text-lg leading-relaxed text-slate-600 dark:text-slate-400">
           "El fútbol es como el ajedrez, pero sin dados." — Lukas Podolski
         </p>
@@ -97,8 +97,8 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
   const hasArticles = recentPosts.length > 0
 
   return (
-    <section className="mb-16">
-      <h2 className="font-headings mb-8 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+    <section className="mb-12">
+      <h2 className="font-headings mb-6 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
         Últimos Artículos
       </h2>
 
@@ -115,7 +115,7 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
           </div>
 
           {/* CTA hacia todos los artículos */}
-          <div className="mt-10 text-center">
+          <div className="mt-8 text-center">
             <Link
               href="/blog"
               className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-50 hover:shadow-md dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"

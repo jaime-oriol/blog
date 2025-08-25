@@ -43,24 +43,17 @@
       }
 
       .header {
-        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-        padding: 40px 30px;
+        background-color: #0ea5e9;
+        padding: 30px 20px;
         text-align: center;
       }
 
       .header h1 {
         margin: 0;
         color: #ffffff;
-        font-size: 32px;
-        font-weight: 700;
+        font-size: 24px;
+        font-weight: 600;
         letter-spacing: -0.025em;
-      }
-
-      .header .subtitle {
-        margin: 8px 0 0 0;
-        color: #e0f2fe;
-        font-size: 16px;
-        font-weight: 400;
       }
 
       .content {
@@ -68,17 +61,14 @@
       }
 
       .welcome-section {
-        background-color: #f1f5f9;
-        border-radius: 12px;
-        padding: 30px;
-        margin-bottom: 30px;
-        border-left: 4px solid #0ea5e9;
+        padding: 20px 0;
+        text-align: center;
       }
 
       .welcome-section h2 {
         margin: 0 0 16px 0;
         color: #0f172a;
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 600;
       }
 
@@ -86,7 +76,7 @@
         margin: 0 0 12px 0;
         color: #475569;
         font-size: 16px;
-        line-height: 1.7;
+        line-height: 1.6;
       }
 
       .welcome-section p:last-child {
@@ -100,104 +90,40 @@
 
       .cta-button {
         display: inline-block;
-        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        background-color: #0ea5e9;
         color: #ffffff !important;
         text-decoration: none;
-        padding: 16px 32px;
-        border-radius: 8px;
-        font-size: 18px;
-        font-weight: 600;
-        letter-spacing: -0.025em;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        transition: all 0.2s ease;
-      }
-
-      .cta-button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.15);
-      }
-
-      .features-section {
-        background-color: #fefefe;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        padding: 30px;
-        margin: 30px 0;
-      }
-
-      .features-section h3 {
-        margin: 0 0 20px 0;
-        color: #0f172a;
-        font-size: 20px;
-        font-weight: 600;
-        text-align: center;
-      }
-
-      .features-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .features-list li {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 16px;
-        padding-left: 0;
-      }
-
-      .features-list li:last-child {
-        margin-bottom: 0;
-      }
-
-      .feature-icon {
-        color: #0ea5e9;
-        font-size: 20px;
-        margin-right: 12px;
-        margin-top: 2px;
-        flex-shrink: 0;
-      }
-
-      .feature-text {
-        color: #475569;
+        padding: 12px 24px;
+        border-radius: 6px;
         font-size: 16px;
-        line-height: 1.6;
+        font-weight: 500;
       }
 
       .footer-section {
         background-color: #f8fafc;
-        padding: 30px;
+        padding: 20px;
         border-top: 1px solid #e2e8f0;
         text-align: center;
       }
 
       .footer-section p {
-        margin: 0 0 12px 0;
+        margin: 0 0 8px 0;
         color: #64748b;
         font-size: 14px;
-        line-height: 1.6;
+        line-height: 1.5;
       }
 
       .footer-section p:last-child {
         margin-bottom: 0;
       }
 
-      .footer-section .url-backup {
-        margin-top: 20px;
-        padding-top: 20px;
+      .url-backup {
+        margin-top: 16px;
+        padding-top: 16px;
         border-top: 1px solid #e2e8f0;
         font-size: 12px;
         color: #94a3b8;
         word-break: break-all;
-      }
-
-      .footer-branding {
-        margin-top: 30px;
-        padding-top: 20px;
-        border-top: 1px solid #e2e8f0;
-        font-size: 16px;
-        font-weight: 600;
-        color: #0ea5e9;
       }
 
       /* Responsive */
@@ -222,8 +148,8 @@
         }
 
         .cta-button {
-          padding: 14px 24px !important;
-          font-size: 16px !important;
+          padding: 12px 20px !important;
+          font-size: 15px !important;
         }
       }
     </style>
@@ -233,73 +159,35 @@
     <div class="email-container">
       <!-- Header -->
       <div class="header">
-        <h1>⚽ FootballDecoded</h1>
-        <p class="subtitle">Análisis del fútbol moderno</p>
+        <h1>FootballDecoded Newsletter</h1>
       </div>
 
       <!-- Main Content -->
       <div class="content">
         <!-- Welcome Section -->
         <div class="welcome-section">
-          <h2>¡Hola!</h2>
-          <p>Gracias por suscribirte a <strong>FootballDecoded Newsletter</strong>.</p>
+          <h2>Confirma tu suscripción</h2>
+          <p>Gracias por suscribirte a FootballDecoded Newsletter.</p>
           <p>
-            Cada <strong>lunes por la mañana</strong> recibirás las 5 noticias más importantes del
-            mundo del fútbol, contadas con criterio, sin ruido, y con mi análisis personal.
+            Cada lunes por la mañana recibirás análisis futbolístico directo cuando realmente
+            importa, con rigor técnico y sin ruido.
           </p>
         </div>
 
         <!-- CTA Section -->
         <div class="cta-section">
-          <a href="{{CONFIRMATION_URL}}" class="cta-button"> Confirmar suscripción </a>
-        </div>
-
-        <!-- Features Section -->
-        <div class="features-section">
-          <h3>¿Qué puedes esperar?</h3>
-          <ul class="features-list">
-            <li>
-              <span class="feature-icon">📊</span>
-              <span class="feature-text"
-                ><strong>Análisis táctico profundo</strong> de los equipos y jugadores más
-                relevantes</span
-              >
-            </li>
-            <li>
-              <span class="feature-icon">🎯</span>
-              <span class="feature-text"
-                ><strong>Scouting funcional</strong> con métricas avanzadas y contextualizadas</span
-              >
-            </li>
-            <li>
-              <span class="feature-icon">📈</span>
-              <span class="feature-text"
-                ><strong>Tendencias del fútbol moderno</strong> explicadas de forma clara y
-                práctica</span
-              >
-            </li>
-            <li>
-              <span class="feature-icon">⚡</span>
-              <span class="feature-text"
-                ><strong>Contenido directo</strong> - sin relleno, solo lo que realmente
-                importa</span
-              >
-            </li>
-          </ul>
+          <a href="{{CONFIRMATION_URL}}" class="cta-button">Confirmar suscripción</a>
         </div>
       </div>
 
       <!-- Footer -->
       <div class="footer-section">
         <p>Si no te has suscrito a esta newsletter, puedes ignorar este email.</p>
-        <p>Una vez confirmada tu suscripción, recibirás el primer newsletter el próximo lunes.</p>
 
         <div class="url-backup">
-          <p>Si el botón no funciona, copia y pega este enlace en tu navegador:</p>
+          <p>Si el botón no funciona, copia y pega este enlace:</p>
           <p>{{CONFIRMATION_URL}}</p>
         </div>
-
-        <div class="footer-branding">FootballDecoded</div>
       </div>
     </div>
   </body>

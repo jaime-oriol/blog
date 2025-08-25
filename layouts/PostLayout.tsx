@@ -132,9 +132,9 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
       <article>
         <div>
           {/* Header del artículo - diseño profesional */}
-          <header className="relative mb-12">
+          <header className="relative mb-10">
             {/* Metadatos del artículo */}
-            <div className="mb-8 space-y-4">
+            <div className="mb-6 space-y-4">
               {/* Badge de sección y fecha */}
               <div className="flex items-center justify-between">
                 {section && (
@@ -171,7 +171,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
           </header>
 
           {/* Contenido del artículo con prose optimizado - ANCHO COMPLETO */}
-          <div className="mb-16">
+          <div className="mb-12">
             <div className="prose prose-slate prose-lg dark:prose-invert max-w-none">
               {children}
             </div>
@@ -179,7 +179,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
           {/* Información del autor */}
           {authorDetails.length > 0 && (
-            <div className="mb-16 border-t border-slate-200 pt-8 dark:border-slate-700">
+            <div className="mb-12 border-t border-slate-200 pt-8 dark:border-slate-700">
               <div className="flex items-center space-x-4">
                 {authorDetails.map((author, index) => (
                   <div key={`${author.name}-${index}`} className="flex items-center">
@@ -207,7 +207,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
           )}
 
           {/* Sistema de comentarios personalizado */}
-          <div className="mb-16 border-t border-slate-200 pt-8 dark:border-slate-700">
+          <div className="mb-12 border-t border-slate-200 pt-8 dark:border-slate-700">
             {/* Lista de comentarios existentes */}
             <CommentsList
               postSlug={slug.split('/').pop() || slug}
@@ -223,7 +223,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
           {/* Navegación entre artículos */}
           {(prev || next) && (
-            <div className="mb-16 border-t border-slate-200 pt-8 dark:border-slate-700">
+            <div className="mb-12 border-t border-slate-200 pt-8 dark:border-slate-700">
               <div className="grid gap-6 md:grid-cols-2">
                 {prev && (
                   <div className="group">

@@ -7,7 +7,7 @@ export default function Contact() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 xl:max-w-5xl xl:px-0">
       {/* Header profesional */}
-      <div className="mb-12 text-center">
+      <div className="mb-8 text-left">
         <h1 className="font-headings text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
           Contacto
         </h1>
@@ -18,9 +18,9 @@ export default function Contact() {
       </div>
 
       {/* ÁREAS DE ESPECIALIZACIÓN */}
-      <div className="mb-16">
+      <div className="mb-12">
         <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-700 dark:bg-slate-800">
-          <h2 className="font-headings mb-8 text-center text-2xl font-semibold text-slate-900 dark:text-slate-100">
+          <h2 className="font-headings mb-6 text-left text-2xl font-semibold text-slate-900 dark:text-slate-100">
             Áreas de especialización
           </h2>
 
@@ -61,7 +61,7 @@ export default function Contact() {
       {/* INFORMACIÓN PARA EL CONTACTO */}
       <div>
         <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-700 dark:bg-slate-800">
-          <h2 className="font-headings mb-8 text-center text-2xl font-semibold text-slate-900 dark:text-slate-100">
+          <h2 className="font-headings mb-6 text-left text-2xl font-semibold text-slate-900 dark:text-slate-100">
             Información para el contacto
           </h2>
 

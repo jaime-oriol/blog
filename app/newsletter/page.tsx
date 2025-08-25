@@ -18,7 +18,7 @@ export default function Newsletter() {
     <>
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 xl:max-w-5xl xl:px-0">
         {/* Header minimalista y directo */}
-        <div className="mb-12 text-center">
+        <div className="mb-8 text-left">
           <h1 className="font-headings text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
             Newsletter
           </h1>
@@ -28,7 +28,7 @@ export default function Newsletter() {
         </div>
 
         {/* FORMULARIO PRINCIPAL - Solo suscripción */}
-        <div className="mb-16">
+        <div className="mb-12">
           <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
             <div className="px-6 py-8 lg:px-8 lg:py-10">
               <div className="mx-auto max-w-sm space-y-6 text-center">
@@ -74,9 +74,9 @@ export default function Newsletter() {
         </div>
 
         {/* CONTENIDO INFORMATIVO - Briefing profesional */}
-        <div className="mb-16">
+        <div className="mb-12">
           <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-700 dark:bg-slate-800">
-            <h3 className="font-headings mb-8 text-center text-2xl font-semibold text-slate-900 dark:text-slate-100">
+            <h3 className="font-headings mb-6 text-left text-2xl font-semibold text-slate-900 dark:text-slate-100">
               ¿Qué puede incluir cada edición?
             </h3>
 
