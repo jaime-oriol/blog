@@ -13,95 +13,101 @@ export default function Contact() {
             Contacto
           </h1>
           <p className="font-body text-xl text-slate-600 dark:text-slate-400">
-            Colaboraciones, feedback técnico y consultoría analítica
+            Colaboraciones profesionales, consultoría especializada y desarrollo de proyectos
+            analíticos
           </p>
         </div>
 
+        {/* ÁREAS DE ESPECIALIZACIÓN */}
         <div className="pt-8">
           <div className="w-full px-4 sm:px-6">
-            {/* Card principal de contacto */}
             <div className="rounded-lg border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-700 dark:bg-slate-800">
-              {/* Áreas de especialización */}
-              <div className="mb-8">
-                <h2 className="font-headings mb-6 text-xl font-semibold text-slate-900 dark:text-slate-100">
-                  Áreas de especialización
-                </h2>
-                <div className="grid gap-4 md:grid-cols-2">
-                  {[
-                    {
-                      title: 'Análisis táctico',
-                      description: 'Estructuras de juego, sistemas y principios del fútbol moderno',
-                    },
-                    {
-                      title: 'Scouting funcional',
-                      description:
-                        'Identificación de perfiles por rol y función táctica específica',
-                    },
-                    {
-                      title: 'Métricas avanzadas',
-                      description: 'Desarrollo de KPIs y modelos cuantitativos aplicados',
-                    },
-                    {
-                      title: 'Visualización de datos',
-                      description: 'Dashboards interactivos y reportes ejecutivos para clubes',
-                    },
-                  ].map((area, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start rounded-lg bg-slate-50 p-4 dark:bg-slate-700/50"
-                    >
-                      <div className="min-w-0">
-                        <h3 className="font-headings mb-1 font-medium text-slate-900 dark:text-slate-100">
-                          {area.title}
-                        </h3>
-                        <p className="font-body text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                          {area.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              <h2 className="font-headings mb-8 text-center text-2xl font-semibold text-slate-900 dark:text-slate-100">
+                Áreas de especialización
+              </h2>
+
+              <div className="space-y-8">
+                {[
+                  {
+                    title: 'Análisis táctico integral',
+                    description:
+                      'Estudio de estructuras de juego, sistemas posicionales y principios del fútbol moderno. Desarrollo de informes de rival, análisis de rendimiento colectivo y evaluación de modelos de juego. Especialización en fases de transición y comportamientos tácticos específicos.',
+                  },
+                  {
+                    title: 'Scouting funcional y perfilado',
+                    description:
+                      'Identificación de jugadores por rol y función táctica específica. Desarrollo de matrices de evaluación, análisis comparativo de rendimientos y elaboración de informes técnicos para secretarías técnicas. Enfoque en compatibilidad sistémica y adaptabilidad táctica.',
+                  },
+                  {
+                    title: 'Desarrollo de métricas avanzadas',
+                    description:
+                      'Creación de KPIs personalizados, modelos cuantitativos aplicados y sistemas de medición de rendimiento. Implementación de modelos predictivos, análisis de Expected Goals (xG) contextualizados y desarrollo de métricas específicas por posición y función.',
+                  },
+                  {
+                    title: 'Visualización de datos y reportes',
+                    description:
+                      'Diseño de dashboards interactivos, reportes ejecutivos para clubes y herramientas de análisis visual. Desarrollo de interfaces intuitivas para la toma de decisiones técnicas y presentaciones estratégicas para cuerpos técnicos.',
+                  },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="border-l-4 border-slate-200 pl-6 dark:border-slate-600"
+                  >
+                    <h3 className="font-headings mb-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
+                      {item.title}
+                    </h3>
+                    <p className="font-body leading-relaxed text-slate-600 dark:text-slate-400">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
               </div>
+            </div>
+          </div>
+        </div>
 
-              {/* Guía para el contacto */}
-              <div className="mb-8 rounded-lg border border-slate-300 bg-slate-50 p-6 dark:border-slate-600 dark:bg-slate-800/50">
-                <h3 className="font-headings mb-4 text-lg font-semibold text-slate-900 dark:text-slate-100">
-                  Qué incluir en tu mensaje
-                </h3>
+        {/* INFORMACIÓN PARA EL CONTACTO */}
+        <div className="pt-8">
+          <div className="w-full px-4 sm:px-6">
+            <div className="rounded-lg border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+              <h2 className="font-headings mb-8 text-center text-2xl font-semibold text-slate-900 dark:text-slate-100">
+                Información para el contacto
+              </h2>
 
-                <div className="font-body space-y-3 text-slate-700 dark:text-slate-300">
-                  <div className="flex items-start">
-                    <span className="mr-3 text-sky-500 dark:text-sky-400">•</span>
-                    <div>
-                      <strong className="text-slate-900 dark:text-slate-100">
-                        Motivo del contacto:
-                      </strong>{' '}
-                      Colaboración, consultoría, feedback o propuesta específica
-                    </div>
+              <div className="space-y-8">
+                {[
+                  {
+                    title: 'Tipo de colaboración',
+                    description:
+                      'Especifica si buscas consultoría puntual, desarrollo de proyecto a largo plazo, análisis específico de rival, evaluación de jugadores, implementación de sistemas analíticos o colaboración en investigación aplicada.',
+                  },
+                  {
+                    title: 'Contexto profesional',
+                    description:
+                      'Detalla tu posición (entrenador, director deportivo, analista, scout, investigador), organización actual, nivel competitivo y experiencia previa en análisis cuantitativo.',
+                  },
+                  {
+                    title: 'Especificaciones del proyecto',
+                    description:
+                      'Incluye objetivos concretos, timeline disponible, recursos técnicos actuales, herramientas preferidas, presupuesto orientativo y entregables esperados. Menciona si requieres formación adicional o transferencia de conocimiento.',
+                  },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="border-l-4 border-slate-200 pl-6 dark:border-slate-600"
+                  >
+                    <h3 className="font-headings mb-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
+                      {item.title}
+                    </h3>
+                    <p className="font-body leading-relaxed text-slate-600 dark:text-slate-400">
+                      {item.description}
+                    </p>
                   </div>
-
-                  <div className="flex items-start">
-                    <span className="mr-3 text-sky-500 dark:text-sky-400">•</span>
-                    <div>
-                      <strong className="text-slate-900 dark:text-slate-100">
-                        Contexto profesional:
-                      </strong>{' '}
-                      Tu rol, organización o proyecto actual
-                    </div>
-                  </div>
-
-                  <div className="flex items-start">
-                    <span className="mr-3 text-sky-500 dark:text-sky-400">•</span>
-                    <div>
-                      <strong className="text-slate-900 dark:text-slate-100">Alcance:</strong>{' '}
-                      Detalles del proyecto, timeline y objetivos específicos
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
 
               {/* EMAIL principal - destacado */}
-              <div className="mb-8">
+              <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">
                 <a
                   href="mailto:joriolgo@gmail.com"
                   className="font-body block w-full rounded-lg bg-sky-600 px-6 py-4 text-center text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:bg-sky-700 hover:shadow-xl focus:ring-4 focus:ring-sky-500/25"
@@ -116,17 +122,15 @@ export default function Contact() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v10a2 2 0 002 2z"
                     />
                   </svg>
                   joriolgo@gmail.com
                 </a>
-              </div>
 
-              {/* Información adicional */}
-              <div className="border-t border-slate-200 pt-4 dark:border-slate-700">
-                <div className="text-center">
-                  <div className="flex items-center justify-center space-x-4 font-mono text-xs text-slate-500 dark:text-slate-500">
+                {/* Información adicional */}
+                <div className="mt-4 text-center">
+                  <div className="flex items-center justify-center space-x-4 font-mono text-xs text-slate-500 dark:text-slate-400">
                     <span>• Respuesta típica: 24-48h</span>
                     <span>• Zona horaria: CET (Madrid)</span>
                     <span>• Idiomas: ES/EN</span>
