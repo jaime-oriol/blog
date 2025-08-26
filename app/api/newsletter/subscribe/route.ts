@@ -119,9 +119,9 @@ async function sendConfirmationEmail(email: string, token: string, baseUrl: stri
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'FootballDecoded Newsletter <newsletter@footballdecoded.com>',
+      from: 'FootballDecoded - Jaime Oriol <newsletter@footballdecoded.com>',
       to: [email],
-      subject: '⚽ Confirma tu suscripción a FootballDecoded',
+      subject: 'Confirma tu suscripción a FootballDecoded',
       html: `
         <!DOCTYPE html>
         <html>
@@ -139,7 +139,7 @@ async function sendConfirmationEmail(email: string, token: string, baseUrl: stri
           
           <div style="background: #f8fafc; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
             <h2 style="color: #334155; font-size: 20px; margin-bottom: 15px;">¡Hola!</h2>
-            <p style="margin-bottom: 15px;">Gracias por suscribirte a <strong>FootballDecoded Newsletter</strong>.</p>
+            <p style="margin-bottom: 15px;">Gracias por suscribirte a <strong>FootballDecoded</strong>.</p>
             <p style="margin-bottom: 20px;">Cada lunes recibirás las <strong>5 noticias más importantes del mundo del fútbol</strong>, contadas con criterio, sin ruido, y con mi análisis personal.</p>
           </div>
           

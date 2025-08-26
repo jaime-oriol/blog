@@ -65,14 +65,7 @@ function ConfirmContent() {
                 Suscripción confirmada
               </h1>
               <p className="font-body text-lg text-slate-600 dark:text-slate-400">
-                Ya formas parte de FootballDecoded Newsletter.
-              </p>
-            </div>
-
-            <div className="mx-auto max-w-md rounded-lg border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-800">
-              <p className="font-body text-slate-600 dark:text-slate-400">
-                Cada lunes por la mañana recibirás análisis futbolístico directo cuando realmente
-                importa, con rigor técnico y sin ruido.
+                Ya formas parte de FootballDecoded.
               </p>
             </div>
 

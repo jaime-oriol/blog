@@ -122,9 +122,9 @@ async function sendConfirmationEmail(
     const htmlContent = template.replace(/{{CONFIRMATION_URL}}/g, confirmationUrl)
 
     const response = await resend.emails.send({
-      from: 'FootballDecoded Newsletter <newsletter@footballdecoded.com>',
+      from: 'FootballDecoded - Jaime Oriol <newsletter@footballdecoded.com>',
       to: [email],
-      subject: '⚽ Confirma tu suscripción a FootballDecoded',
+      subject: 'Confirma tu suscripción a FootballDecoded',
       html: htmlContent,
     })
 

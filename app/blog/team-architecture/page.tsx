@@ -7,7 +7,8 @@ const POSTS_PER_PAGE = 4
 
 export const metadata = genPageMetadata({
   title: 'Team Architecture',
-  description: 'Estructura de equipos, sistemas tácticos y diseño estratégico.',
+  description:
+    'Estudio de equipos y sus filosofías. Sistemas organizativos, principios tácticos e identidad colectiva.',
 })
 
 export default async function TeamArchitecturePage() {

@@ -89,23 +89,23 @@ export default function ArticlesLayout({
   const getSectionDescription = (section?: string) => {
     switch (section) {
       case 'player-decoded':
-        return 'Perfiles tácticos individualizados. Análisis funcional de roles, evolución posicional y impacto sistémico de jugadores específicos dentro de estructuras colectivas.'
+        return 'Análisis profundo de jugadores individuales. Roles, evolución posicional y impacto real en el sistema.'
       case 'analytical-scouting': // Backward compatibility
-        return 'Perfiles tácticos individualizados. Análisis funcional de roles, evolución posicional y impacto sistémico de jugadores específicos dentro de estructuras colectivas.'
+        return 'Análisis profundo de jugadores individuales. Roles, evolución posicional y impacto real en el sistema.'
       case 'scouting': // Backward compatibility
-        return 'Perfiles tácticos individualizados. Análisis funcional de roles, evolución posicional y impacto sistémico de jugadores específicos dentro de estructuras colectivas.'
+        return 'Análisis profundo de jugadores individuales. Roles, evolución posicional y impacto real en el sistema.'
       case 'match-analysis':
-        return 'Disección táctica de encuentros relevantes. Identificación de patrones de juego, momentos decisivos y dinámicas estratégicas que determinan resultados y tendencias.'
+        return 'Disección de partidos específicos. Patrones tácticos, momentos clave y dinámicas decisivas del encuentro.'
       case 'tactical-analysis': // Backward compatibility
-        return 'Disección táctica de encuentros relevantes. Identificación de patrones de juego, momentos decisivos y dinámicas estratégicas que determinan resultados y tendencias.'
+        return 'Disección de partidos específicos. Patrones tácticos, momentos clave y dinámicas decisivas del encuentro.'
       case 'tactical-structures': // Backward compatibility
-        return 'Disección táctica de encuentros relevantes. Identificación de patrones de juego, momentos decisivos y dinámicas estratégicas que determinan resultados y tendencias.'
+        return 'Disección de partidos específicos. Patrones tácticos, momentos clave y dinámicas decisivas del encuentro.'
       case 'team-architecture':
-        return 'Estudio de sistemas colectivos y filosofías de juego. Análisis de estructuras organizativas, principios tácticos y modelos de construcción de identidad futbolística.'
+        return 'Estudio de equipos y sus filosofías. Sistemas organizativos, principios tácticos e identidad colectiva.'
       case 'advanced-metrics': // Backward compatibility
-        return 'Estudio de sistemas colectivos y filosofías de juego. Análisis de estructuras organizativas, principios tácticos y modelos de construcción de identidad futbolística.'
+        return 'Estudio de equipos y sus filosofías. Sistemas organizativos, principios tácticos e identidad colectiva.'
       case 'tactical-metrics-lab': // Backward compatibility
-        return 'Estudio de sistemas colectivos y filosofías de juego. Análisis de estructuras organizativas, principios tácticos y modelos de construcción de identidad futbolística.'
+        return 'Estudio de equipos y sus filosofías. Sistemas organizativos, principios tácticos e identidad colectiva.'
       default:
         return 'Análisis técnico del fútbol moderno a través de métricas avanzadas, evaluación táctica y scouting especializado.'
     }

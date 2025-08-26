@@ -8,7 +8,7 @@ const POSTS_PER_PAGE = 4
 export const metadata = genPageMetadata({
   title: 'Player Decoded',
   description:
-    'Análisis profundo de jugadores individuales, perfiles tácticos y scouting avanzado.',
+    'Análisis profundo de jugadores individuales. Roles, evolución posicional y impacto real en el sistema.',
 })
 
 export default async function PlayerDecodedPage() {

@@ -114,9 +114,6 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
                 </svg>
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className="font-headings text-sm font-medium text-emerald-800 dark:text-emerald-200">
-                  ¡Perfecto!
-                </h3>
                 <p className="font-body mt-1 text-sm text-emerald-700 dark:text-emerald-300">
                   {message}
                 </p>

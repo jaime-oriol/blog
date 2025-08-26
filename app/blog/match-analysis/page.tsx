@@ -7,7 +7,8 @@ const POSTS_PER_PAGE = 4
 
 export const metadata = genPageMetadata({
   title: 'Match Analysis',
-  description: 'Análisis táctico detallado de partidos específicos y dinámicas de juego.',
+  description:
+    'Disección de partidos específicos. Patrones tácticos, momentos clave y dinámicas decisivas del encuentro.',
 })
 
 export default async function MatchAnalysisPage() {
