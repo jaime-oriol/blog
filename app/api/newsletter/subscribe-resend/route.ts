@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import crypto from 'crypto'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import { sendEmailWithRetry, createContactWithRetry, listContactsWithRetry } from '@/lib/resend'
-import { pendingConfirmations } from '@/lib/pending-confirmations'
+import { generateConfirmationToken } from '@/lib/jwt-tokens'
 
 function getBaseUrl(request: NextRequest): string {
   if (process.env.NODE_ENV === 'development') {
@@ -26,10 +25,6 @@ function getBaseUrl(request: NextRequest): string {
 function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return emailRegex.test(email)
-}
-
-function generateConfirmationToken(): string {
-  return crypto.randomBytes(32).toString('hex')
 }
 
 async function loadEmailTemplate(): Promise<string> {
@@ -78,8 +73,7 @@ async function checkExistingContact(
 }
 
 async function addContactToAudience(
-  email: string,
-  confirmationToken: string
+  email: string
 ): Promise<{ success: boolean; contactId?: string }> {
   if (!process.env.RESEND_AUDIENCE_ID) {
     throw new Error('RESEND_AUDIENCE_ID no configurado')
@@ -166,24 +160,14 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const confirmationToken = generateConfirmationToken()
-
-    let contactId: string | undefined
+    const confirmationToken = generateConfirmationToken(email)
 
     if (!existingContact.exists) {
-      const result = await addContactToAudience(email, confirmationToken)
+      const result = await addContactToAudience(email)
       if (!result.success) {
         throw new Error('Error al crear contacto en Resend')
       }
-      contactId = result.contactId
     }
-
-    pendingConfirmations.set(confirmationToken, {
-      email: email.toLowerCase(),
-      token: confirmationToken,
-      contactId,
-      createdAt: Date.now(),
-    })
 
     const baseUrl = getBaseUrl(request)
     await sendConfirmationEmail(email, confirmationToken, baseUrl)

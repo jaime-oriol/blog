@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { pendingConfirmations } from '@/lib/pending-confirmations'
+import { verifyConfirmationToken } from '@/lib/jwt-tokens'
 import { listContactsWithRetry, updateContactWithRetry } from '@/lib/resend'
 
 async function findContactByEmail(
@@ -76,30 +76,25 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Audience ID no configurado' }, { status: 500 })
     }
 
-    const pendingConfirmation = pendingConfirmations.get(token)
+    const tokenVerification = verifyConfirmationToken(token)
 
-    if (!pendingConfirmation) {
+    if (!tokenVerification.valid) {
+      if (tokenVerification.expired) {
+        return NextResponse.json(
+          { error: 'Token de confirmación expirado. Solicita una nueva suscripción.' },
+          { status: 404 }
+        )
+      }
       return NextResponse.json(
         { error: 'Token de confirmación no válido o expirado' },
         { status: 404 }
       )
     }
 
-    const tokenAge = Date.now() - pendingConfirmation.createdAt
-    const TOKEN_EXPIRY = 24 * 60 * 60 * 1000
-
-    if (tokenAge > TOKEN_EXPIRY) {
-      pendingConfirmations.delete(token)
-      return NextResponse.json(
-        { error: 'Token de confirmación expirado. Solicita una nueva suscripción.' },
-        { status: 404 }
-      )
-    }
-
-    const contact = await findContactByEmail(pendingConfirmation.email)
+    const email = tokenVerification.email!
+    const contact = await findContactByEmail(email)
 
     if (!contact) {
-      pendingConfirmations.delete(token)
       return NextResponse.json(
         { error: 'Contacto no encontrado. Solicita una nueva suscripción.' },
         { status: 404 }
@@ -107,10 +102,9 @@ export async function GET(request: NextRequest) {
     }
 
     if (!contact.unsubscribed) {
-      pendingConfirmations.delete(token)
       return NextResponse.json({
         message: '¡Suscripción confirmada! Tu email ya estaba confirmado anteriormente.',
-        email: pendingConfirmation.email,
+        email: email,
         status: 'already_confirmed',
       })
     }
@@ -124,11 +118,9 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    pendingConfirmations.delete(token)
-
     return NextResponse.json({
       message: '¡Suscripción confirmada correctamente! Recibirás la newsletter cada lunes.',
-      email: pendingConfirmation.email,
+      email: email,
     })
   } catch (error) {
     console.error('Newsletter confirmation error:', error)
