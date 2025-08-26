@@ -3,6 +3,7 @@ import crypto from 'crypto'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import { sendEmailWithRetry, createContactWithRetry, listContactsWithRetry } from '@/lib/resend'
+import { pendingConfirmations } from '@/lib/pending-confirmations'
 
 function getBaseUrl(request: NextRequest): string {
   if (process.env.NODE_ENV === 'development') {
@@ -136,16 +137,6 @@ async function sendConfirmationEmail(
   }
 }
 
-const pendingConfirmations = new Map<
-  string,
-  {
-    email: string
-    token: string
-    contactId?: string
-    createdAt: number
-  }
->()
-
 export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json()
@@ -242,5 +233,3 @@ export async function GET() {
     return NextResponse.json({ error: 'Error obteniendo estadísticas' }, { status: 500 })
   }
 }
-
-export { pendingConfirmations }

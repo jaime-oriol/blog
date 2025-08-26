@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { pendingConfirmations } from '../subscribe-resend/route'
+import { pendingConfirmations } from '@/lib/pending-confirmations'
 import { listContactsWithRetry, updateContactWithRetry } from '@/lib/resend'
 
 async function findContactByEmail(
