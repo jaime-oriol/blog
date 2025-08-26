@@ -93,7 +93,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
       {/* Breadcrumb profesional */}
       <div className="mb-8">
-        <nav className="font-body flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
+        <nav className="font-helvetica-light text-fd-body flex items-center space-x-2 text-slate-500 dark:text-slate-400">
           <Link
             href="/"
             className="transition-colors hover:text-slate-700 dark:hover:text-slate-300"
@@ -148,14 +148,14 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 )}
                 <time
                   dateTime={date}
-                  className="font-mono text-sm text-slate-500 dark:text-slate-400"
+                  className="font-helvetica-light text-fd-body text-slate-500 dark:text-slate-400"
                 >
                   {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
                 </time>
               </div>
 
               {/* Título principal */}
-              <h1 className="font-headings text-3xl leading-tight font-bold tracking-tight text-slate-900 lg:text-4xl xl:text-5xl dark:text-slate-100">
+              <h1 className="font-helvetica-bold text-fd-title leading-tight font-bold tracking-tight text-slate-900 lg:text-4xl xl:text-5xl dark:text-slate-100">
                 {title}
               </h1>
             </div>
@@ -193,10 +193,10 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       />
                     )}
                     <div>
-                      <div className="font-headings text-lg font-semibold text-slate-900 dark:text-slate-100">
+                      <div className="font-helvetica-bold text-fd-subtitle font-bold text-slate-900 dark:text-slate-100">
                         {author.name}
                       </div>
-                      <div className="font-body text-sm text-slate-600 dark:text-slate-400">
+                      <div className="font-helvetica-light text-fd-body text-slate-600 dark:text-slate-400">
                         {author.occupation}
                       </div>
                     </div>
@@ -227,14 +227,14 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               <div className="grid gap-6 md:grid-cols-2">
                 {prev && (
                   <div className="group">
-                    <p className="mb-2 font-mono text-xs font-medium tracking-wide text-slate-500 uppercase dark:text-slate-400">
+                    <p className="font-helvetica-light mb-2 text-xs font-medium tracking-wide text-slate-500 uppercase dark:text-slate-400">
                       Artículo anterior
                     </p>
                     <Link
                       href={`/blog/${prev.slug}`}
                       className="block rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
                     >
-                      <h3 className="font-headings text-lg font-medium text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
+                      <h3 className="font-helvetica-bold text-fd-subtitle font-medium text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
                         {prev.title}
                       </h3>
                     </Link>
@@ -243,14 +243,14 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
                 {next && (
                   <div className="group">
-                    <p className="mb-2 font-mono text-xs font-medium tracking-wide text-slate-500 uppercase dark:text-slate-400">
+                    <p className="font-helvetica-light mb-2 text-xs font-medium tracking-wide text-slate-500 uppercase dark:text-slate-400">
                       Siguiente artículo
                     </p>
                     <Link
                       href={`/blog/${next.slug}`}
                       className="block rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
                     >
-                      <h3 className="font-headings text-lg font-medium text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
+                      <h3 className="font-helvetica-bold text-fd-subtitle font-medium text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
                         {next.title}
                       </h3>
                     </Link>
@@ -264,7 +264,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
           <div className="text-center">
             <Link
               href="/blog"
-              className="font-body inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+              className="font-helvetica-regular inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
             >
               <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                 <path

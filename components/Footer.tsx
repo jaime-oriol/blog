@@ -14,15 +14,15 @@ export default function Footer() {
           <SocialIcon kind="github" href={siteMetadata.github} size={6} />
         </div>
 
-        {/* Información de copyright - tipografía mono para datos técnicos */}
-        <div className="mb-3 flex space-x-2 font-mono text-sm text-slate-500 dark:text-slate-400">
+        {/* Información de copyright - tipografía Helvética Light para datos técnicos */}
+        <div className="font-helvetica-light text-fd-body mb-3 flex space-x-2 text-slate-500 dark:text-slate-400">
           <div>{siteMetadata.author}</div>
           <div>{` • `}</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
           <div>{` • `}</div>
           <Link
             href="/"
-            className="transition-colors hover:text-slate-700 dark:hover:text-slate-300"
+            className="font-helvetica-regular transition-colors hover:text-slate-700 dark:hover:text-slate-300"
           >
             {siteMetadata.title}
           </Link>

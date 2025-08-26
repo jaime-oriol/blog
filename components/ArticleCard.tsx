@@ -64,7 +64,7 @@ export default function ArticleCard({ post }: ArticleCardProps) {
           {/* Header con título y etiqueta de sección en la misma línea */}
           <div className="flex items-start justify-between gap-4">
             {/* TÍTULO */}
-            <h3 className="font-headings flex-1 text-xl leading-tight font-semibold tracking-tight text-slate-900 transition-colors group-hover:text-sky-700 lg:text-2xl dark:text-slate-100 dark:group-hover:text-sky-400">
+            <h3 className="font-helvetica-bold text-fd-subtitle flex-1 leading-tight font-bold tracking-tight text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
               {title}
             </h3>
 
@@ -80,7 +80,7 @@ export default function ArticleCard({ post }: ArticleCardProps) {
 
           {/* Summary/descripción si existe */}
           {summary && (
-            <p className="font-body line-clamp-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            <p className="font-helvetica-light text-fd-body line-clamp-2 leading-relaxed text-slate-600 dark:text-slate-400">
               {summary}
             </p>
           )}
@@ -88,8 +88,8 @@ export default function ArticleCard({ post }: ArticleCardProps) {
           {/* Footer con CTA y fecha */}
           <div className="flex items-center justify-between pt-2">
             {/* CTA - lenguaje directo para profesionales */}
-            <div className="flex items-center text-sm font-medium text-sky-700 transition-all duration-200 group-hover:text-sky-600 dark:text-sky-400 dark:group-hover:text-sky-300">
-              <span className="font-body">Leer análisis</span>
+            <div className="text-fd-body flex items-center font-medium text-sky-700 transition-all duration-200 group-hover:text-sky-600 dark:text-sky-400 dark:group-hover:text-sky-300">
+              <span className="font-helvetica-regular">Leer análisis</span>
               <svg
                 className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
                 fill="currentColor"
@@ -103,10 +103,10 @@ export default function ArticleCard({ post }: ArticleCardProps) {
               </svg>
             </div>
 
-            {/* Fecha con formato monospace para consistencia */}
+            {/* Fecha con formato Helvética Light para consistencia */}
             <time
               dateTime={date}
-              className="flex-shrink-0 font-mono text-sm text-slate-500 dark:text-slate-400"
+              className="font-helvetica-light text-fd-body flex-shrink-0 text-slate-500 dark:text-slate-400"
             >
               {formatDate(date, siteMetadata.locale)}
             </time>

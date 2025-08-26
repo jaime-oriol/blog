@@ -158,6 +158,7 @@ async function sendConfirmationEmail(email: string, token: string, baseUrl: stri
           </div>
           
           <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+            <img src="${baseUrl}/static/images/logo/LOGO.png" alt="FootballDecoded" style="height: 40px; margin-bottom: 10px;" />
             <p style="margin: 0; font-size: 14px; color: #64748b;">
               FootballDecoded • Análisis del fútbol moderno
             </p>

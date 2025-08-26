@@ -2,7 +2,7 @@ import 'css/tailwind.css'
 import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
 
-import { Inter, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
+import { IBM_Plex_Mono } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
 import { SearchProvider, SearchConfig } from 'pliny/search'
 import Header from '@/components/Header'
@@ -13,20 +13,8 @@ import { ThemeProviders } from './theme-providers'
 import AuthSessionProvider from '@/components/SessionProvider'
 import { Metadata } from 'next'
 
-// Tipografías del sistema FootballDecoded
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-  weight: ['400', '500', '600', '700'],
-})
-
-const ibmPlexSans = IBM_Plex_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-ibm-plex-sans',
-  weight: ['300', '400', '500', '600'],
-})
+// Tipografías del sistema FootballDecoded según Manual de Identidad Corporativa
+// Helvética no está disponible en Google Fonts, usamos fallbacks web-safe optimizados
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ['latin'],
@@ -81,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={`${inter.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} scroll-smooth`}
+      className={`${ibmPlexMono.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <link
@@ -112,7 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
 
-      {/* Sistema tipográfico FootballDecoded: Inter para títulos, IBM Plex Sans para texto */}
+      {/* Sistema tipográfico FootballDecoded: Helvética para títulos y texto, IBM Plex Mono para código */}
       <body className="font-body bg-white pl-[calc(100vw-100%)] text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-100">
         <AuthSessionProvider>
           <ThemeProviders>

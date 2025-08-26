@@ -63,7 +63,7 @@ export default function CommentForm({ postSlug, onCommentAdded }: CommentFormPro
   if (!session) {
     return (
       <div className="mt-8">
-        <h3 className="mb-6 text-xl font-bold text-gray-900 dark:text-gray-100">
+        <h3 className="font-helvetica-bold text-fd-subtitle mb-6 font-bold text-gray-900 dark:text-gray-100">
           Deja tu comentario
         </h3>
 
@@ -82,10 +82,10 @@ export default function CommentForm({ postSlug, onCommentAdded }: CommentFormPro
             />
           </svg>
 
-          <h4 className="mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">
+          <h4 className="font-helvetica-bold text-fd-subtitle mb-2 font-medium text-gray-900 dark:text-gray-100">
             Inicia sesión para comentar
           </h4>
-          <p className="mb-4 text-gray-600 dark:text-gray-400">
+          <p className="font-helvetica-light text-fd-body mb-4 text-gray-600 dark:text-gray-400">
             Usa tu cuenta de Google para comentar de forma rápida y segura
           </p>
 
@@ -111,7 +111,7 @@ export default function CommentForm({ postSlug, onCommentAdded }: CommentFormPro
                 d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
               />
             </svg>
-            <span>Iniciar sesión con Google</span>
+            <span className="font-helvetica-regular">Iniciar sesión con Google</span>
           </button>
         </div>
       </div>
@@ -120,7 +120,7 @@ export default function CommentForm({ postSlug, onCommentAdded }: CommentFormPro
 
   return (
     <div className="mt-8">
-      <h3 className="mb-6 text-xl font-bold text-gray-900 dark:text-gray-100">
+      <h3 className="font-helvetica-bold text-fd-subtitle mb-6 font-bold text-gray-900 dark:text-gray-100">
         Deja tu comentario
       </h3>
 
@@ -136,10 +136,12 @@ export default function CommentForm({ postSlug, onCommentAdded }: CommentFormPro
           />
         )}
         <div>
-          <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
-            Comentando como <strong>{session.user?.name}</strong>
+          <p className="font-helvetica-regular text-fd-body font-medium text-gray-900 dark:text-gray-100">
+            Comentando como <strong className="font-helvetica-bold">{session.user?.name}</strong>
           </p>
-          <p className="text-xs text-gray-500 dark:text-gray-400">{session.user?.email}</p>
+          <p className="font-helvetica-light text-xs text-gray-500 dark:text-gray-400">
+            {session.user?.email}
+          </p>
         </div>
       </div>
 
@@ -148,7 +150,7 @@ export default function CommentForm({ postSlug, onCommentAdded }: CommentFormPro
         <div>
           <label
             htmlFor="comment-message"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            className="font-helvetica-regular text-fd-body block font-medium text-gray-700 dark:text-gray-300"
           >
             Tu comentario *
           </label>
@@ -162,7 +164,9 @@ export default function CommentForm({ postSlug, onCommentAdded }: CommentFormPro
             className="focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 shadow-sm disabled:opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
             placeholder="Comparte tu opinión sobre este análisis..."
           />
-          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Comparte tu opinión.</p>
+          <p className="font-helvetica-light text-fd-body mt-1 text-gray-500 dark:text-gray-400">
+            Comparte tu opinión.
+          </p>
         </div>
 
         {/* Botón de envío */}

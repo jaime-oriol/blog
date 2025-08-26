@@ -6,14 +6,19 @@
 
 /* Core theme configuration */
 @theme {
-  /* Font families - Sistema FootballDecoded */
+  /* Font families - Sistema FootballDecoded según Manual de Identidad Corporativa */
   --font-sans:
-    var(--font-ibm-plex-sans), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   --font-headings:
-    var(--font-inter), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
+    'Helvetica Neue', Helvetica, Arial, 'Liberation Sans', ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  /* Specific typography weights for FootballDecoded hierarchy */
+  --font-light: 'HelveticaNeue-Light', 'Helvetica Neue Light', Helvetica, Arial, sans-serif;
+  --font-regular: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-bold: 'HelveticaNeue-Bold', 'Helvetica Neue Bold', 'Helvetica Bold', Arial, sans-serif;
 
   --font-mono:
     var(--font-ibm-plex-mono), ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas,
@@ -56,24 +61,49 @@
   --z-80: 80;
 }
 
-/* Configuración de familias tipográficas */
+/* Configuración de familias tipográficas según Manual de Identidad Corporativa */
 @layer base {
-  /* Asignación de familias por elemento */
-  h1,
-  h2,
+  /* Asignación de familias por elemento - Helvética Bold para títulos */
+  h1 {
+    font-family: var(--font-bold);
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-family: var(--font-bold);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
   h3,
   h4,
   h5,
   h6 {
-    font-family: var(--font-headings);
-    font-weight: 600;
-    letter-spacing: var(--tracking-tight);
+    font-family: var(--font-bold);
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.3;
   }
 
+  /* Cuerpo de texto - Helvética Regular/Light */
   body {
-    font-family: var(--font-sans);
+    font-family: var(--font-regular);
     font-weight: 400;
-    line-height: var(--leading-relaxed);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* Texto de párrafos - Helvética Light para mejor legibilidad */
+  p {
+    font-family: var(--font-light);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.6;
   }
 
   code,
@@ -116,7 +146,7 @@
 }
 
 @layer utilities {
-  /* Utilidades tipográficas FootballDecoded */
+  /* Utilidades tipográficas FootballDecoded según Manual de Identidad Corporativa */
   .font-headings {
     font-family: var(--font-headings);
   }
@@ -127,6 +157,38 @@
 
   .font-mono {
     font-family: var(--font-mono);
+  }
+
+  /* Utilidades específicas para jerarquía FootballDecoded */
+  .font-helvetica-light {
+    font-family: var(--font-light);
+    font-weight: 300;
+  }
+
+  .font-helvetica-regular {
+    font-family: var(--font-regular);
+    font-weight: 400;
+  }
+
+  .font-helvetica-bold {
+    font-family: var(--font-bold);
+    font-weight: 700;
+  }
+
+  /* Tamaños según Manual de Identidad Corporativa */
+  .text-fd-title {
+    font-size: 26px; /* Títulos - Helvética Bold */
+    line-height: 1.2;
+  }
+
+  .text-fd-subtitle {
+    font-size: 19px; /* Subtítulos - Helvética Regular */
+    line-height: 1.3;
+  }
+
+  .text-fd-body {
+    font-size: 14px; /* Textos - Helvética Light */
+    line-height: 1.5;
   }
 
   /* Prose personalizado optimizado para análisis técnicos */

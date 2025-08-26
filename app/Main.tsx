@@ -43,19 +43,19 @@ function IntroSection() {
   return (
     <section className="mb-12">
       {/* Título principal */}
-      <h1 className="font-headings mb-6 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
+      <h1 className="font-helvetica-bold mb-6 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
         FootballDecoded
       </h1>
 
       {/* Cita destacada */}
       <blockquote className="mb-6 border-l-4 border-slate-400 pl-4 italic">
-        <p className="font-body text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+        <p className="font-helvetica-light text-fd-subtitle leading-relaxed text-slate-600 dark:text-slate-400">
           "El fútbol es como el ajedrez, pero sin dados." — Lukas Podolski
         </p>
       </blockquote>
 
       {/* Descripción del proyecto */}
-      <div className="font-body space-y-6 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+      <div className="font-helvetica-light text-fd-body space-y-6 leading-relaxed text-slate-700 dark:text-slate-300">
         <p>
           FootballDecoded nace precisamente de esta aparente contradicción: el fútbol tiene
           estructuras, patrones y decisiones estratégicas claras, pero siempre conserva algo que se
@@ -98,7 +98,7 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
 
   return (
     <section className="mb-12">
-      <h2 className="font-headings mb-6 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+      <h2 className="font-helvetica-bold text-fd-title mb-6 font-bold tracking-tight text-slate-900 dark:text-slate-100">
         Últimos Artículos
       </h2>
 
@@ -120,7 +120,7 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
               href="/blog"
               className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-50 hover:shadow-md dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
             >
-              <span className="font-body">Ver todos los artículos</span>
+              <span className="font-helvetica-regular">Ver todos los artículos</span>
               <ArrowRightIcon />
             </Link>
           </div>
@@ -137,10 +137,10 @@ function EmptyArticlesState() {
   return (
     <div className="py-16 text-center">
       <DocumentIcon />
-      <h3 className="font-headings mb-2 text-xl font-medium text-slate-900 dark:text-slate-100">
+      <h3 className="font-helvetica-bold text-fd-subtitle mb-2 font-medium text-slate-900 dark:text-slate-100">
         Próximamente
       </h3>
-      <p className="font-body text-slate-500 dark:text-slate-400">
+      <p className="font-helvetica-light text-fd-body text-slate-500 dark:text-slate-400">
         Los primeros análisis tácticos, scouting funcional y métricas avanzadas estarán disponibles
         muy pronto.
       </p>
@@ -156,16 +156,16 @@ function NewsletterSection() {
     <section>
       <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
         <div className="space-y-4 text-center">
-          <p className="font-body text-lg text-slate-600 dark:text-slate-400">
-            <strong>Newsletter:</strong> Análisis futbolístico directo cuando realmente importa, con
-            rigor técnico y sin ruido
+          <p className="font-helvetica-light text-fd-subtitle text-slate-600 dark:text-slate-400">
+            <strong className="font-helvetica-bold">Newsletter:</strong> Análisis futbolístico
+            directo cuando realmente importa, con rigor técnico y sin ruido
           </p>
 
           <Link
             href="/newsletter"
             className="inline-flex items-center rounded-lg bg-sky-600 px-6 py-3 font-medium text-white shadow-sm transition-colors hover:bg-sky-700 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
           >
-            <span className="font-body">Suscribirse gratis</span>
+            <span className="font-helvetica-regular">Suscribirse gratis</span>
             <ArrowRightIcon />
           </Link>
         </div>
