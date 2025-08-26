@@ -22,19 +22,21 @@ const sections: Section[] = [
     href: '/blog/player-decoded',
     title: 'Player Decoded',
     description:
-      'Análisis profundo de jugadores individuales, perfiles tácticos y scouting avanzado',
+      'Análisis profundo de jugadores individuales. Roles, evolución posicional y impacto real en el sistema.',
     icon: null,
   },
   {
     href: '/blog/match-analysis',
     title: 'Match Analysis',
-    description: 'Análisis táctico detallado de partidos específicos y dinámicas de juego',
+    description:
+      'Disección de partidos específicos. Patrones tácticos, momentos clave y dinámicas decisivas del encuentro.',
     icon: null,
   },
   {
     href: '/blog/team-architecture',
     title: 'Team Architecture',
-    description: 'Estructura de equipos, sistemas tácticos y diseño estratégico',
+    description:
+      'Estudio de equipos y sus filosofías. Sistemas organizativos, principios tácticos e identidad colectiva.',
     icon: null,
   },
 ]

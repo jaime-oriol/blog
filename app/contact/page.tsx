@@ -11,10 +11,6 @@ export default function Contact() {
         <h1 className="font-headings text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
           Contacto
         </h1>
-        <p className="font-body mt-4 text-xl text-slate-600 dark:text-slate-400">
-          Colaboraciones profesionales, consultoría especializada y desarrollo de proyectos
-          analíticos
-        </p>
       </div>
 
       {/* ÁREAS DE ESPECIALIZACIÓN */}
