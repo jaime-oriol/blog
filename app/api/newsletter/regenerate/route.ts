@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from 'redis'
-import { Resend } from 'resend'
 import crypto from 'crypto'
-
-const resend = new Resend(process.env.RESEND_API_KEY)
+import { sendEmailWithRetry } from '@/lib/resend'
 
 interface NewsletterSubscriber {
   email: string
@@ -74,10 +72,10 @@ async function sendConfirmationEmail(email: string, token: string, baseUrl: stri
   const confirmationUrl = `${baseUrl}/newsletter/confirm?token=${token}`
 
   try {
-    const { data, error } = await resend.emails.send({
-      from: 'FootballDecoded Newsletter <newsletter@footballdecoded.com>',
+    const response = await sendEmailWithRetry({
+      from: 'FootballDecoded <newsletter@footballdecoded.com>',
       to: [email],
-      subject: '⚽ Confirma tu suscripción a FootballDecoded (Nuevo enlace)',
+      subject: 'Confirma tu suscripción a FootballDecoded (Nuevo enlace)',
       html: `
         <!DOCTYPE html>
         <html>
@@ -90,7 +88,7 @@ async function sendConfirmationEmail(email: string, token: string, baseUrl: stri
           
           <div style="background: #f8fafc; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
             <h2 style="color: #334155; font-size: 20px; margin-bottom: 15px;">¡Hola!</h2>
-            <p style="margin-bottom: 15px;">Te hemos generado un <strong>nuevo enlace de confirmación</strong> para tu suscripción a FootballDecoded Newsletter.</p>
+            <p style="margin-bottom: 15px;">Te hemos generado un <strong>nuevo enlace de confirmación</strong> para tu suscripción a FootballDecoded.</p>
           </div>
           
           <div style="text-align: center; margin: 30px 0;">
@@ -105,10 +103,7 @@ async function sendConfirmationEmail(email: string, token: string, baseUrl: stri
       `,
     })
 
-    if (error) {
-      throw error
-    }
-    return data
+    return response
   } catch (error) {
     console.error('Failed to send confirmation email:', error)
     throw error

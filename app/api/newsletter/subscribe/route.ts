@@ -1,10 +1,8 @@
 // app/api/newsletter/subscribe/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from 'redis'
-import { Resend } from 'resend'
 import crypto from 'crypto'
-
-const resend = new Resend(process.env.RESEND_API_KEY)
+import { sendEmailWithRetry } from '@/lib/resend'
 
 interface NewsletterSubscriber {
   email: string
@@ -118,8 +116,8 @@ async function sendConfirmationEmail(email: string, token: string, baseUrl: stri
   const confirmationUrl = `${baseUrl}/newsletter/confirm?token=${token}`
 
   try {
-    const { data, error } = await resend.emails.send({
-      from: 'FootballDecoded - Jaime Oriol <newsletter@footballdecoded.com>',
+    const response = await sendEmailWithRetry({
+      from: 'FootballDecoded <newsletter@footballdecoded.com>',
       to: [email],
       subject: 'Confirma tu suscripción a FootballDecoded',
       html: `
@@ -170,12 +168,7 @@ async function sendConfirmationEmail(email: string, token: string, baseUrl: stri
       `,
     })
 
-    if (error) {
-      console.error('Error sending confirmation email:', error)
-      throw error
-    }
-
-    return data
+    return response
   } catch (error) {
     console.error('Failed to send confirmation email:', error)
     throw error

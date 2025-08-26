@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
 import crypto from 'crypto'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-
-const resend = new Resend(process.env.RESEND_API_KEY)
+import { sendEmailWithRetry, createContactWithRetry, listContactsWithRetry } from '@/lib/resend'
 
 function getBaseUrl(request: NextRequest): string {
   if (process.env.NODE_ENV === 'development') {
@@ -51,7 +49,7 @@ async function checkExistingContact(
   }
 
   try {
-    const response = await resend.contacts.list({
+    const response = await listContactsWithRetry({
       audienceId: process.env.RESEND_AUDIENCE_ID,
     })
 
@@ -87,7 +85,7 @@ async function addContactToAudience(
   }
 
   try {
-    const response = await resend.contacts.create({
+    const response = await createContactWithRetry({
       audienceId: process.env.RESEND_AUDIENCE_ID,
       email: email.toLowerCase(),
       firstName: '',
@@ -121,8 +119,8 @@ async function sendConfirmationEmail(
 
     const htmlContent = template.replace(/{{CONFIRMATION_URL}}/g, confirmationUrl)
 
-    const response = await resend.emails.send({
-      from: 'FootballDecoded - Jaime Oriol <newsletter@footballdecoded.com>',
+    const response = await sendEmailWithRetry({
+      from: 'FootballDecoded <newsletter@footballdecoded.com>',
       to: [email],
       subject: 'Confirma tu suscripción a FootballDecoded',
       html: htmlContent,
@@ -222,7 +220,7 @@ export async function GET() {
       return NextResponse.json({ error: 'Audience ID no configurado' }, { status: 500 })
     }
 
-    const response = await resend.contacts.list({
+    const response = await listContactsWithRetry({
       audienceId: process.env.RESEND_AUDIENCE_ID,
     })
 

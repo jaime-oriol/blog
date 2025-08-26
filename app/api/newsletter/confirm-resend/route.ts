@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
 import { pendingConfirmations } from '../subscribe-resend/route'
-
-const resend = new Resend(process.env.RESEND_API_KEY)
+import { listContactsWithRetry, updateContactWithRetry } from '@/lib/resend'
 
 async function findContactByEmail(
   email: string
@@ -12,7 +10,7 @@ async function findContactByEmail(
   }
 
   try {
-    const response = await resend.contacts.list({
+    const response = await listContactsWithRetry({
       audienceId: process.env.RESEND_AUDIENCE_ID,
     })
 
@@ -43,7 +41,7 @@ async function activateContact(contactId: string): Promise<boolean> {
   }
 
   try {
-    const response = await resend.contacts.update({
+    const response = await updateContactWithRetry({
       audienceId: process.env.RESEND_AUDIENCE_ID,
       id: contactId,
       unsubscribed: false,
