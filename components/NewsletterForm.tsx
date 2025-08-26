@@ -13,6 +13,10 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    // Protección anti-double-submission
+    if (status === 'loading') return
+
     setStatus('loading')
     setMessage('')
 
