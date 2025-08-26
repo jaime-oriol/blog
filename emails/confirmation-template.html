@@ -40,20 +40,9 @@
         max-width: 600px;
         margin: 0 auto;
         background-color: #ffffff;
-      }
-
-      .header {
-        background-color: #0ea5e9;
-        padding: 30px 20px;
-        text-align: center;
-      }
-
-      .header h1 {
-        margin: 0;
-        color: #ffffff;
-        font-size: 24px;
-        font-weight: 600;
-        letter-spacing: -0.025em;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
       }
 
       .content {
@@ -66,17 +55,19 @@
       }
 
       .welcome-section h2 {
-        margin: 0 0 16px 0;
+        margin: 0 0 20px 0;
         color: #0f172a;
-        font-size: 20px;
+        font-size: 24px;
         font-weight: 600;
+        letter-spacing: -0.025em;
       }
 
       .welcome-section p {
-        margin: 0 0 12px 0;
+        margin: 0 0 16px 0;
         color: #475569;
         font-size: 16px;
-        line-height: 1.6;
+        line-height: 1.7;
+        text-align: left;
       }
 
       .welcome-section p:last-child {
@@ -85,7 +76,7 @@
 
       .cta-section {
         text-align: center;
-        margin: 40px 0;
+        margin: 35px 0;
       }
 
       .cta-button {
@@ -93,15 +84,68 @@
         background-color: #0ea5e9;
         color: #ffffff !important;
         text-decoration: none;
-        padding: 12px 24px;
-        border-radius: 6px;
+        padding: 14px 28px;
+        border-radius: 8px;
         font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.025em;
+        transition: all 0.2s ease;
+      }
+
+      .cta-button:hover {
+        background-color: #0284c7;
+      }
+
+      .features-section {
+        background-color: #f8fafc;
+        padding: 25px;
+        border-radius: 8px;
+        margin: 30px 0;
+      }
+
+      .features-section h3 {
+        margin: 0 0 16px 0;
+        color: #0f172a;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .feature-item {
+        margin: 12px 0;
+        padding-left: 20px;
+        position: relative;
+        color: #475569;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .feature-item::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: #0ea5e9;
+        font-weight: 600;
+      }
+
+      .guarantee-section {
+        background-color: #f0f9ff;
+        border: 1px solid #e0f2fe;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 25px 0;
+        text-align: center;
+      }
+
+      .guarantee-section .guarantee-text {
+        margin: 0;
+        color: #075985;
+        font-size: 14px;
         font-weight: 500;
       }
 
       .footer-section {
         background-color: #f8fafc;
-        padding: 20px;
+        padding: 25px;
         border-top: 1px solid #e2e8f0;
         text-align: center;
       }
@@ -118,8 +162,8 @@
       }
 
       .url-backup {
-        margin-top: 16px;
-        padding-top: 16px;
+        margin-top: 18px;
+        padding-top: 18px;
         border-top: 1px solid #e2e8f0;
         font-size: 12px;
         color: #94a3b8;
@@ -130,25 +174,27 @@
       @media only screen and (max-width: 600px) {
         .email-container {
           width: 100% !important;
+          margin: 0 !important;
+          border-radius: 0 !important;
         }
 
-        .header,
         .content,
         .footer-section {
-          padding: 30px 20px !important;
+          padding: 25px 20px !important;
         }
 
-        .welcome-section,
-        .features-section {
+        .features-section,
+        .guarantee-section {
           padding: 20px !important;
+          margin: 20px 0 !important;
         }
 
-        .header h1 {
-          font-size: 28px !important;
+        .welcome-section h2 {
+          font-size: 22px !important;
         }
 
         .cta-button {
-          padding: 12px 20px !important;
+          padding: 12px 24px !important;
           font-size: 15px !important;
         }
       }
@@ -157,20 +203,16 @@
 
   <body>
     <div class="email-container">
-      <!-- Header -->
-      <div class="header">
-        <h1>FootballDecoded Newsletter</h1>
-      </div>
-
       <!-- Main Content -->
       <div class="content">
         <!-- Welcome Section -->
         <div class="welcome-section">
-          <h2>Confirma tu suscripción</h2>
-          <p>Gracias por suscribirte a FootballDecoded Newsletter.</p>
+          <h2>Bienvenido a la Newsletter de FootballDecoded</h2>
+
           <p>
-            Cada lunes por la mañana recibirás análisis futbolístico directo cuando realmente
-            importa, con rigor técnico y sin ruido.
+            Gracias por suscribirte! Haz clic en el enlace de abajo para confirmar tu suscripción y
+            estarás listo. Accede a perspectivas tácticas seleccionadas con criterio analítico
+            riguroso. Solo contenido que justifique tu atención.
           </p>
         </div>
 
@@ -178,11 +220,25 @@
         <div class="cta-section">
           <a href="{{CONFIRMATION_URL}}" class="cta-button">Confirmar suscripción</a>
         </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+          <h3>Lo que recibirás:</h3>
+          <div class="feature-item">Notificaciones de nuevos artículos y novedades del blog</div>
+          <div class="feature-item">Reflexión analítica personal</div>
+          <div class="feature-item">Movimientos estratégicos del mercado</div>
+          <div class="feature-item">Contenido técnico seleccionado</div>
+        </div>
+
+        <!-- Guarantee Section -->
+        <div class="guarantee-section">
+          <p class="guarantee-text">Sin spam • Cancelación inmediata</p>
+        </div>
       </div>
 
       <!-- Footer -->
       <div class="footer-section">
-        <p>Si no te has suscrito a esta newsletter, puedes ignorar este email.</p>
+        <p>Si no te has suscrito a FootballDecoded, puedes ignorar este email.</p>
 
         <div class="url-backup">
           <p>Si el botón no funciona, copia y pega este enlace:</p>

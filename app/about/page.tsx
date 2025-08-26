@@ -15,7 +15,7 @@ export default function Page() {
       </div>
 
       {/* Galería de fotos profesional */}
-      <div className="mb-10">
+      <div className="mb-4">
         <PhotoCarousel />
       </div>
 

@@ -22,9 +22,6 @@ export default function Newsletter() {
           <h1 className="font-headings text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
             Newsletter
           </h1>
-          <p className="font-body mt-4 text-xl leading-relaxed text-slate-600 dark:text-slate-400">
-            Análisis futbolístico directo cuando realmente importa, con rigor técnico y sin ruido
-          </p>
         </div>
 
         {/* FORMULARIO PRINCIPAL - Solo suscripción */}
@@ -83,34 +80,24 @@ export default function Newsletter() {
             <div className="space-y-6">
               {[
                 {
-                  title: 'Análisis de partidos clave',
+                  title: 'Notificaciones de nuevos artículos y novedades del blog',
                   description:
-                    'Encuentros que revelen patrones tácticos significativos o marquen inflexiones en el rendimiento de equipos. Solo cuando el análisis aporte valor real más allá del resultado.',
-                },
-                {
-                  title: 'Movimientos estratégicos del mercado',
-                  description:
-                    'Fichajes y operaciones que alteren dinámicas tácticas o confirmen tendencias en la construcción de plantillas. El enfoque en cómo cada incorporación modifica sistemas de juego.',
-                },
-                {
-                  title: 'Detalles técnicos reveladores',
-                  description:
-                    'Situaciones específicas, jugadas o comportamientos colectivos que ilustren conceptos del fútbol moderno o expongan aspectos que pasan inadvertidos en el análisis convencional.',
+                    'Acceso directo a análisis recién publicados, actualizaciones técnicas y contenido relevante del blog. Información sin ruido sobre lo que realmente importa.',
                 },
                 {
                   title: 'Reflexión analítica personal',
                   description:
-                    'Mi perspectiva sobre tendencias emergentes, evoluciones tácticas o elementos del análisis que considere relevantes para comprender la dirección del juego actual.',
+                    'Mi perspectiva sobre tendencias emergentes, evoluciones tácticas y elementos del análisis que considere reveladores. Incluye reflexiones sobre jugadores específicos, partidos concretos y dinámicas que definan la dirección actual del juego.',
+                },
+                {
+                  title: 'Movimientos estratégicos del mercado',
+                  description:
+                    'Fichajes y operaciones que generen impacto táctico real en los sistemas de juego. Análisis de cómo cada incorporación reconfigura la arquitectura colectiva y altera las dinámicas estratégicas del equipo.',
                 },
                 {
                   title: 'Contenido técnico seleccionado',
                   description:
-                    'Investigaciones, artículos especializados o recursos analíticos que aporten conocimiento aplicable. Solo recomendaciones que justifiquen el tiempo de lectura.',
-                },
-                {
-                  title: 'Datos contextualizados',
-                  description:
-                    'Métricas que expliquen comportamientos tácticos específicos o revelen patrones no evidentes en el análisis superficial. Estadísticas que construyan narrativas, no cifras aisladas.',
+                    'Investigaciones, recursos analíticos y material especializado curado por su valor aplicable. Recomendaciones técnicas que justifiquen la inversión de tiempo y aporten conocimiento genuino al análisis futbolístico.',
                 },
               ].map((item, index) => (
                 <div key={index} className="border-l-4 border-slate-200 pl-6 dark:border-slate-600">
