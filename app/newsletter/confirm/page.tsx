@@ -8,20 +8,31 @@ import Link from '@/components/Link'
 function ConfirmContent() {
   const [status, setStatus] = useState<'loading' | 'success' | 'error' | 'invalid'>('loading')
   const [message, setMessage] = useState('')
+  const [hasProcessed, setHasProcessed] = useState(false)
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
 
   useEffect(() => {
-    const confirmSubscription = async () => {
-      if (!token) {
+    // Evitar race condition - solo procesar una vez y cuando el token esté disponible
+    if (hasProcessed || !token) {
+      if (!token && !hasProcessed) {
         setStatus('invalid')
         setMessage('Token de confirmación no válido')
-        return
+        setHasProcessed(true)
       }
+      return
+    }
+
+    const confirmSubscription = async () => {
+      setHasProcessed(true)
 
       try {
+        console.log('Attempting to confirm with token:', token.substring(0, 20) + '...')
+
         const response = await fetch(`/api/newsletter/confirm-resend?token=${token}`)
         const data = await response.json()
+
+        console.log('Confirmation response:', { status: response.status, data })
 
         if (response.ok) {
           setStatus('success')
@@ -31,13 +42,14 @@ function ConfirmContent() {
           setMessage(data.error || 'Error al confirmar la suscripción')
         }
       } catch (error) {
+        console.error('Confirmation error:', error)
         setStatus('error')
         setMessage('Error de conexión al confirmar la suscripción')
       }
     }
 
     confirmSubscription()
-  }, [token])
+  }, [token, hasProcessed])
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6">

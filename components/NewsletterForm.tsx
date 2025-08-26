@@ -104,24 +104,11 @@ export default function NewsletterForm({ className = '' }: NewsletterFormProps) 
           </button>
         </div>
 
-        {/* Mensajes de estado - diseño mejorado */}
+        {/* Mensajes de estado - diseño azul corporativo sin tick */}
         {status === 'success' && (
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 dark:border-emerald-700/50 dark:bg-emerald-900/20">
-            <div className="flex items-start space-x-3">
-              <div className="flex-shrink-0">
-                <svg className="h-5 w-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="font-body mt-1 text-sm text-emerald-700 dark:text-emerald-300">
-                  {message}
-                </p>
-              </div>
+          <div className="rounded-lg border border-sky-200 bg-sky-50 p-4 dark:border-sky-700/50 dark:bg-sky-900/20">
+            <div className="min-w-0 flex-1">
+              <p className="font-body text-sm text-sky-700 dark:text-sky-300">{message}</p>
             </div>
           </div>
         )}
