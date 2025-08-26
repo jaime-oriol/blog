@@ -107,7 +107,7 @@ export default function ArticlesLayout({
       case 'tactical-metrics-lab': // Backward compatibility
         return 'Estudio de sistemas colectivos y filosofías de juego. Análisis de estructuras organizativas, principios tácticos y modelos de construcción de identidad futbolística.'
       default:
-        return 'Análisis técnico integral del fútbol moderno a través de métricas avanzadas, evaluación táctica y scouting especializado.'
+        return 'Análisis técnico del fútbol moderno a través de métricas avanzadas, evaluación táctica y scouting especializado.'
     }
   }
 
