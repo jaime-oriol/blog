@@ -8,7 +8,7 @@ const POSTS_PER_PAGE = 4
 export const metadata = genPageMetadata({
   title: 'Todos los Artículos',
   description:
-    'Análisis técnico integral del fútbol moderno a través de métricas avanzadas, evaluación táctica y scouting especializado.',
+    'Análisis técnico del fútbol moderno a través de métricas avanzadas, evaluación táctica y scouting especializado.',
 })
 
 export default async function BlogPage() {

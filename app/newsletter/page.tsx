@@ -82,7 +82,7 @@ export default function Newsletter() {
                 {
                   title: 'Notificaciones de nuevos artículos y novedades del blog',
                   description:
-                    'Acceso directo a análisis recién publicados, actualizaciones técnicas y contenido relevante del blog. Información sin ruido sobre lo que realmente importa.',
+                    'Acceso directo a análisis recién publicados, actualizaciones técnicas y contenido relevante del blog.',
                 },
                 {
                   title: 'Reflexión analítica personal',

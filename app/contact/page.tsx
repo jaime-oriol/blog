@@ -27,14 +27,14 @@ export default function Contact() {
           <div className="space-y-6">
             {[
               {
-                title: 'Análisis táctico integral',
+                title: 'Análisis táctico',
                 description:
-                  'Estudio de estructuras de juego, sistemas posicionales y principios del fútbol moderno. Desarrollo de informes de rival, análisis de rendimiento colectivo y evaluación de modelos de juego. Especialización en fases de transición y comportamientos tácticos específicos.',
+                  'Estudio de estructuras de juego, sistemas posicionales y principios del fútbol moderno. Desarrollo de informes de rival, análisis de rendimiento colectivo y evaluación de modelos de juego.',
               },
               {
                 title: 'Scouting funcional y perfilado',
                 description:
-                  'Identificación de jugadores por rol y función táctica específica. Desarrollo de matrices de evaluación, análisis comparativo de rendimientos y elaboración de informes técnicos para secretarías técnicas. Enfoque en compatibilidad sistémica y adaptabilidad táctica.',
+                  'Identificación de jugadores por rol y función táctica específica. Desarrollo de matrices de evaluación, análisis comparativo de rendimientos y elaboración de informes para secretarías técnicas. Enfoque en compatibilidad sistémica y adaptabilidad táctica.',
               },
               {
                 title: 'Desarrollo de métricas avanzadas',
