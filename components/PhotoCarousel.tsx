@@ -76,7 +76,8 @@ const PhotoCarousel = () => {
                 src={photo.src}
                 alt={photo.alt}
                 fill
-                className="object-cover"
+                className="object-cover object-center scale-125"
+                style={{ objectPosition: 'center 50%' }}
                 priority={index === 0}
               />
               {/* Overlay sutil para mejorar legibilidad si hay texto */}

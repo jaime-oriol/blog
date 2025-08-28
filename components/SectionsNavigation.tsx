@@ -27,7 +27,7 @@ const sections: Section[] = [
   },
   {
     href: '/blog/match-analysis',
-    title: 'Match Analysis',
+    title: 'Match\nAnalysis',
     description:
       'Disección de partidos específicos. Patrones tácticos, momentos clave y dinámicas decisivas del encuentro.',
     icon: null,
@@ -93,7 +93,12 @@ export default function SectionsNavigation({ variant }: SectionsNavigationProps)
                     className="flex min-w-[120px] flex-col items-center rounded-lg p-3 text-center transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/50"
                   >
                     <div className="font-headings text-sm font-medium text-slate-900 dark:text-slate-100">
-                      {section.title}
+                      {section.title.split('\n').map((line, index) => (
+                        <span key={index}>
+                          {line}
+                          {index < section.title.split('\n').length - 1 && <br />}
+                        </span>
+                      ))}
                     </div>
                   </Link>
                 ))}

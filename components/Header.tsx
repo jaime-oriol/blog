@@ -16,25 +16,16 @@ const Header = () => {
 
   return (
     <header className={headerClass}>
-      {/* Logo y título - usando Inter para marca */}
+      {/* Logo principal */}
       <Link href="/" aria-label={siteMetadata.headerTitle}>
-        <div className="flex items-center justify-between">
-          <div className="mr-3">
-            <Image
-              src="/static/images/logo/LOGO.png"
-              alt={siteMetadata.headerTitle}
-              width={120}
-              height={48}
-              className="h-12 w-auto"
-            />
-          </div>
-          {typeof siteMetadata.headerTitle === 'string' ? (
-            <div className="font-helvetica-bold text-fd-title hidden tracking-tight text-slate-900 sm:block dark:text-slate-100">
-              {siteMetadata.headerTitle}
-            </div>
-          ) : (
-            siteMetadata.headerTitle
-          )}
+        <div className="flex items-center">
+          <Image
+            src="/static/images/logo/LOGO.png"
+            alt={siteMetadata.headerTitle}
+            width={200}
+            height={80}
+            className="h-20 w-auto"
+          />
         </div>
       </Link>
 

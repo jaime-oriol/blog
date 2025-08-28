@@ -24,52 +24,6 @@ export default function Newsletter() {
           </h1>
         </div>
 
-        {/* FORMULARIO PRINCIPAL - Solo suscripción */}
-        <div className="mb-12">
-          <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
-            <div className="px-6 py-8 lg:px-8 lg:py-10">
-              <div className="mx-auto max-w-sm space-y-6 text-center">
-                {/* FORMULARIO - Diseño limpio y profesional */}
-                <div>
-                  <NewsletterForm />
-                </div>
-
-                {/* Garantías profesionales */}
-                <div className="flex flex-col items-center justify-center space-y-3 pt-4 sm:flex-row sm:space-y-0 sm:space-x-8">
-                  <div className="font-body flex items-center text-sm text-slate-500 dark:text-slate-400">
-                    <svg
-                      className="mr-2 h-4 w-4 text-sky-600 dark:text-sky-400"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Sin spam
-                  </div>
-                  <div className="font-body flex items-center text-sm text-slate-500 dark:text-slate-400">
-                    <svg
-                      className="mr-2 h-4 w-4 text-sky-600 dark:text-sky-400"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Cancelación libre
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* CONTENIDO INFORMATIVO - Briefing profesional */}
         <div className="mb-12">
           <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-700 dark:bg-slate-800">
@@ -107,6 +61,52 @@ export default function Newsletter() {
                   <p className="font-body text-slate-600 dark:text-slate-400">{item.description}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+
+        {/* FORMULARIO PRINCIPAL - Solo suscripción */}
+        <div className="mb-12">
+          <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
+            <div className="px-6 py-6 lg:px-8 lg:py-8">
+              <div className="mx-auto max-w-sm space-y-4 text-center">
+                {/* FORMULARIO - Diseño limpio y profesional */}
+                <div>
+                  <NewsletterForm />
+                </div>
+
+                {/* Garantías profesionales */}
+                <div className="flex flex-col items-center justify-center space-y-3 pt-3 sm:flex-row sm:space-y-0 sm:space-x-8">
+                  <div className="font-body flex items-center text-sm text-slate-500 dark:text-slate-400">
+                    <svg
+                      className="mr-2 h-4 w-4 text-sky-600 dark:text-sky-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Sin spam
+                  </div>
+                  <div className="font-body flex items-center text-sm text-slate-500 dark:text-slate-400">
+                    <svg
+                      className="mr-2 h-4 w-4 text-sky-600 dark:text-sky-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Cancelación libre
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

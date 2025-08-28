@@ -163,7 +163,14 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             {/* Imagen destacada */}
             {displayImage && (
               <div className="relative mb-10 h-96 overflow-hidden rounded-xl md:h-[28rem] lg:h-[32rem]">
-                <Image src={displayImage} alt={title} fill className="object-cover" priority />
+                <Image 
+                  src={displayImage} 
+                  alt={title} 
+                  fill 
+                  className="object-cover object-center scale-125" 
+                  style={{ objectPosition: 'center 50%' }}
+                  priority 
+                />
                 {/* Overlay sutil para mejor integración */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
               </div>
