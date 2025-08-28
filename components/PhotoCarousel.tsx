@@ -76,7 +76,7 @@ const PhotoCarousel = () => {
                 src={photo.src}
                 alt={photo.alt}
                 fill
-                className="object-cover object-center scale-125"
+                className="scale-125 object-cover object-center"
                 style={{ objectPosition: 'center 50%' }}
                 priority={index === 0}
               />
