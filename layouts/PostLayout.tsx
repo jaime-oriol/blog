@@ -167,8 +167,12 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   src={displayImage}
                   alt={title}
                   fill
-                  className="scale-125 object-cover object-center"
-                  style={{ objectPosition: 'center 50%' }}
+                  className="object-cover object-center"
+                  style={{
+                    objectPosition: 'center 50%',
+                    transform: 'scaleY(1.33)',
+                    transformOrigin: 'center',
+                  }}
                   priority
                 />
                 {/* Overlay sutil para mejor integración */}

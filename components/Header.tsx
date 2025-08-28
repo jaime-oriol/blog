@@ -22,9 +22,9 @@ const Header = () => {
           <Image
             src="/static/images/logo/LOGO.png"
             alt={siteMetadata.headerTitle}
-            width={200}
-            height={80}
-            className="h-20 w-auto"
+            width={320}
+            height={128}
+            className="h-32 w-auto"
           />
         </div>
       </Link>
