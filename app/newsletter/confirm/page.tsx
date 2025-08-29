@@ -129,21 +129,16 @@ function ConfirmContent() {
         {/* Invalid Token */}
         {status === 'invalid' && (
           <div className="space-y-6">
-            <div className="space-y-4">
-              <h1 className="font-headings text-3xl font-bold text-slate-900 dark:text-slate-100">
+            <div className="space-y-6">
+              <h1 className="font-headings text-4xl font-bold text-slate-900 dark:text-slate-100">
                 ¡Vaya, algo falló!
               </h1>
-              <p className="font-body text-lg text-slate-600 dark:text-slate-400">
-                Dale de nuevo a confirmar en el email por favor y ya estará!
-              </p>
+              <div className="mx-auto max-w-lg rounded-lg border-2 border-sky-200 bg-sky-50 p-6 dark:border-sky-700 dark:bg-sky-900/20">
+                <p className="font-body text-xl font-semibold text-sky-800 dark:text-sky-200">
+                  👆 Dale de nuevo a confirmar en el email por favor y ya estará!
+                </p>
+              </div>
             </div>
-
-            <Link
-              href="/newsletter"
-              className="font-body inline-flex items-center justify-center rounded-lg bg-sky-600 px-6 py-3 font-medium text-white transition-colors hover:bg-sky-700"
-            >
-              Suscribirse de nuevo
-            </Link>
           </div>
         )}
       </div>

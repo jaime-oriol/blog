@@ -23,7 +23,7 @@ interface MainProps {
  */
 export default function Main({ posts }: MainProps) {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 xl:max-w-5xl xl:px-0">
+    <div className="mx-auto max-w-4xl px-4 py-4 sm:px-6 xl:max-w-5xl xl:px-0">
       {/* === SECCIÓN INTRODUCTORIA === */}
       <IntroSection />
 
@@ -43,7 +43,7 @@ function IntroSection() {
   return (
     <section className="mb-12">
       {/* Título principal */}
-      <h1 className="font-helvetica-bold mb-6 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
+      <h1 className="font-helvetica-bold mb-4 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
         FootballDecoded
       </h1>
 

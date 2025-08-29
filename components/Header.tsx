@@ -20,7 +20,7 @@ const Header = () => {
     setMounted(true)
   }, [])
 
-  let headerClass = 'flex items-center w-full bg-white dark:bg-slate-900 justify-between py-3'
+  let headerClass = 'flex items-center w-full bg-white dark:bg-slate-900 justify-between py-1'
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0 z-50 border-b border-slate-200 dark:border-slate-700'
   }
@@ -35,7 +35,7 @@ const Header = () => {
     <header className={headerClass}>
       {/* Logo principal */}
       <Link href="/" aria-label={siteMetadata.headerTitle}>
-        <div className="flex items-center">
+        <div className="-ml-4 flex items-center">
           <Image
             src={logoSrc}
             alt={siteMetadata.headerTitle}
