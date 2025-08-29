@@ -79,6 +79,12 @@ export async function GET(request: NextRequest) {
     const tokenVerification = verifyConfirmationToken(token)
 
     if (!tokenVerification.valid) {
+      console.log('Token verification failed:', {
+        token: token.substring(0, 20) + '...',
+        expired: tokenVerification.expired,
+        valid: tokenVerification.valid,
+      })
+
       if (tokenVerification.expired) {
         return NextResponse.json(
           { error: 'Token de confirmación expirado. Solicita una nueva suscripción.' },
@@ -95,11 +101,18 @@ export async function GET(request: NextRequest) {
     const contact = await findContactByEmail(email)
 
     if (!contact) {
+      console.log('Contact not found for email:', email)
       return NextResponse.json(
         { error: 'Contacto no encontrado. Solicita una nueva suscripción.' },
         { status: 404 }
       )
     }
+
+    console.log('Contact found:', {
+      email: email,
+      contactId: contact.id,
+      unsubscribed: contact.unsubscribed,
+    })
 
     if (!contact.unsubscribed) {
       return NextResponse.json({

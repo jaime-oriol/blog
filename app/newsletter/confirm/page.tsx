@@ -82,12 +82,12 @@ function ConfirmContent() {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
-              <Link
-                href="/"
+              <a
+                href="https://footballdecoded.com"
                 className="font-body inline-flex items-center justify-center rounded-lg bg-sky-600 px-6 py-3 font-medium text-white transition-colors hover:bg-sky-700"
               >
                 Ir al blog
-              </Link>
+              </a>
               <Link
                 href="/newsletter"
                 className="font-body inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
@@ -131,10 +131,10 @@ function ConfirmContent() {
           <div className="space-y-6">
             <div className="space-y-4">
               <h1 className="font-headings text-3xl font-bold text-slate-900 dark:text-slate-100">
-                Enlace no válido
+                ¡Vaya, algo falló!
               </h1>
               <p className="font-body text-lg text-slate-600 dark:text-slate-400">
-                Este enlace ha expirado o no es válido.
+                Dale de nuevo a confirmar en el email por favor y ya estará!
               </p>
             </div>
 

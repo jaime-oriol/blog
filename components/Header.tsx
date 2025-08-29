@@ -1,3 +1,5 @@
+'use client'
+
 import siteMetadata from '@/content/siteMetadata'
 import headerNavLinks from '@/content/headerNavLinks'
 import Image from './Image'
@@ -7,12 +9,27 @@ import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 import SectionsNavigation from './SectionsNavigation'
 import AuthButton from './AuthButton'
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 
 const Header = () => {
-  let headerClass = 'flex items-center w-full bg-white dark:bg-slate-900 justify-between py-8'
+  const { theme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  let headerClass = 'flex items-center w-full bg-white dark:bg-slate-900 justify-between py-3'
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0 z-50 border-b border-slate-200 dark:border-slate-700'
   }
+
+  const isDark =
+    mounted && (resolvedTheme === 'dark' || (theme === 'system' && resolvedTheme === 'dark'))
+  const logoSrc = isDark
+    ? '/static/images/logo/Logo-color-secundario.png'
+    : '/static/images/logo/LOGO.png'
 
   return (
     <header className={headerClass}>
@@ -20,11 +37,11 @@ const Header = () => {
       <Link href="/" aria-label={siteMetadata.headerTitle}>
         <div className="flex items-center">
           <Image
-            src="/static/images/logo/LOGO.png"
+            src={logoSrc}
             alt={siteMetadata.headerTitle}
-            width={320}
-            height={128}
-            className="h-32 w-auto"
+            width={400}
+            height={160}
+            className="h-40 w-auto"
           />
         </div>
       </Link>
