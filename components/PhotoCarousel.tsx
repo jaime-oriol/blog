@@ -61,7 +61,7 @@ const PhotoCarousel = () => {
     <div className="relative w-full bg-gray-50 dark:bg-gray-900">
       {/* Contenedor principal del carrusel */}
       <div
-        className="relative h-96 overflow-hidden md:h-[28rem] lg:h-[32rem]"
+        className="relative h-64 overflow-hidden md:h-96 lg:h-[28rem] xl:h-[32rem]"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

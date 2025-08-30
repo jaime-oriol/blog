@@ -20,7 +20,7 @@ const Header = () => {
     setMounted(true)
   }, [])
 
-  let headerClass = 'flex items-center w-full bg-white dark:bg-slate-900 justify-between py-2'
+  let headerClass = 'flex items-center w-full bg-white dark:bg-slate-900 justify-between py-4'
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0 z-50 border-b border-slate-200 dark:border-slate-700'
   }
@@ -41,7 +41,7 @@ const Header = () => {
             alt={siteMetadata.headerTitle}
             width={350}
             height={70}
-            className="h-16 w-auto"
+            className="h-12 w-auto sm:h-16"
           />
         </div>
       </Link>
@@ -70,7 +70,9 @@ const Header = () => {
 
         {/* Herramientas de interfaz */}
         <div className="flex items-center space-x-3">
-          <AuthButton />
+          <div className="hidden sm:block">
+            <AuthButton />
+          </div>
           <SearchButton />
           <ThemeSwitch />
           <MobileNav />

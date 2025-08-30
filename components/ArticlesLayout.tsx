@@ -112,10 +112,10 @@ export default function ArticlesLayout({
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-2 sm:px-6 xl:max-w-5xl xl:px-0">
+    <div className="mx-auto max-w-4xl px-3 py-2 sm:px-4 md:px-6 xl:max-w-5xl xl:px-0">
       {/* Header de la sección */}
       <div className="mb-6 text-left">
-        <h1 className="font-headings mb-5 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
+        <h1 className="font-headings mb-8 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
           {title}
         </h1>
         <p className="font-body mt-4 text-xl text-slate-600 dark:text-slate-400">
@@ -149,7 +149,7 @@ export default function ArticlesLayout({
               </svg>
             </div>
             <div className="space-y-2">
-              <h3 className="font-headings mb-5 text-xl font-medium text-slate-900 dark:text-slate-100">
+              <h3 className="font-headings mb-8 text-xl font-medium text-slate-900 dark:text-slate-100">
                 Próximamente
               </h3>
               <p className="font-body text-slate-600 dark:text-slate-400">
@@ -185,7 +185,7 @@ export default function ArticlesLayout({
         {displayPosts.length > 0 && (
           <div className="mt-16 border-t border-slate-200 pt-8 dark:border-slate-700">
             <div className="rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
-              <h3 className="font-headings mb-5 text-lg font-semibold text-slate-900 dark:text-slate-100">
+              <h3 className="font-headings mb-8 text-lg font-semibold text-slate-900 dark:text-slate-100">
                 ¿Te gustó este análisis?
               </h3>
               <p className="font-body mb-4 text-slate-600 dark:text-slate-400">

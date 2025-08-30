@@ -88,7 +88,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-2 sm:px-6 xl:max-w-5xl xl:px-0">
+    <div className="mx-auto max-w-4xl px-3 py-2 sm:px-4 md:px-6 xl:max-w-5xl xl:px-0">
       <ScrollTopAndComment />
 
       {/* Breadcrumb profesional */}
@@ -135,10 +135,10 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
           <header className="relative mb-10">
             {/* Header con imagen de fondo difuminada */}
             {displayImage && (
-              <div className="relative mb-10 h-80 overflow-hidden rounded-xl">
+              <div className="relative mb-10 h-64 overflow-hidden rounded-xl md:h-80">
                 {/* Imagen de fondo recortada y difuminada */}
                 <div
-                  className="absolute inset-0 scale-110 bg-cover bg-center blur-sm"
+                  className="absolute inset-0 scale-110 bg-cover bg-center blur-[1px]"
                   style={{
                     backgroundImage: `url(${displayImage})`,
                     backgroundPosition: 'center center',
@@ -149,9 +149,9 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
                 {/* Contenido superpuesto */}
                 <div className="relative flex h-full flex-col justify-between p-8 text-white">
-                  {/* Título arriba a la izquierda */}
-                  <div className="flex flex-1 items-start">
-                    <h1 className="font-helvetica-bold text-3xl leading-tight font-bold tracking-tight text-white lg:text-4xl xl:text-5xl">
+                  {/* Título centrado */}
+                  <div className="flex flex-1 items-start justify-center">
+                    <h1 className="font-helvetica-bold rounded-lg bg-black/20 px-4 py-2 text-center text-2xl leading-tight font-bold tracking-tight text-white backdrop-blur-sm sm:px-6 sm:py-3 sm:text-3xl lg:text-4xl xl:text-5xl">
                       {title}
                     </h1>
                   </div>

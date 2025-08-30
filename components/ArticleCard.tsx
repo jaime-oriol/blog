@@ -44,9 +44,9 @@ export default function ArticleCard({ post }: ArticleCardProps) {
 
   return (
     <article className="group overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md dark:border-slate-700 dark:bg-slate-800">
-      <Link href={`/articles/${slug}`} className="flex items-stretch">
-        {/* Imagen a la izquierda */}
-        <div className="relative w-64 flex-shrink-0 overflow-hidden">
+      <Link href={`/articles/${slug}`} className="flex flex-col md:flex-row md:items-stretch">
+        {/* Imagen arriba en móvil, izquierda en desktop */}
+        <div className="relative h-48 w-full flex-shrink-0 overflow-hidden md:h-auto md:w-64">
           <div className="absolute inset-0">
             <Image
               src={displayImage}
@@ -60,7 +60,7 @@ export default function ArticleCard({ post }: ArticleCardProps) {
         </div>
 
         {/* Contenido principal - tipografía FootballDecoded */}
-        <div className="min-w-0 flex-1 space-y-4 p-6">
+        <div className="min-w-0 flex-1 space-y-4 p-4 md:p-6">
           {/* Header con título y etiqueta de sección en la misma línea */}
           <div className="flex items-start justify-between gap-4">
             {/* TÍTULO */}
