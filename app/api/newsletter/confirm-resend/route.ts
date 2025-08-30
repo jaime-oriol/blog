@@ -30,7 +30,7 @@ async function findContactByEmail(
       console.log(`[FIND] Attempt ${attempt}/${maxRetries} for ${email}`)
 
       const response = await listContactsWithRetry({
-        audienceId: process.env.RESEND_AUDIENCE_ID,
+        audience_id: process.env.RESEND_AUDIENCE_ID,
       })
 
       if (response.error) {
