@@ -164,7 +164,7 @@ export async function GET(request: NextRequest) {
       }
 
       result = {
-        message: '¡Suscripción confirmada correctamente! Recibirás la newsletter cada lunes.',
+        message: '¡Suscripción confirmada correctamente! Recibirás la newsletter periódicamente.',
         email: email,
         status: 'confirmed',
       }

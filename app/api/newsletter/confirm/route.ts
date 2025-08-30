@@ -109,7 +109,7 @@ export async function GET(request: NextRequest) {
 
     // Respuesta de éxito
     return NextResponse.json({
-      message: '¡Suscripción confirmada correctamente! Recibirás la newsletter cada lunes.',
+      message: '¡Suscripción confirmada correctamente! Recibirás la newsletter periódicamente.',
       email: subscriber.email,
     })
   } catch (error) {

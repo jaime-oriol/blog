@@ -5,6 +5,7 @@ import BlogNewsletterForm from 'pliny/ui/BlogNewsletterForm'
 import type { MDXComponents } from 'mdx/types'
 import Image from './Image'
 import CustomLink from './Link'
+import AnalysisCarousel from './AnalysisCarousel'
 
 // Table wrapper con diseño profesional
 const TableWrapper = ({ children }: { children: React.ReactNode }) => (
@@ -173,6 +174,7 @@ export const components: MDXComponents = {
   Callout,
   StatCard,
   TechnicalQuote,
+  AnalysisCarousel,
 
   // Headings con verificación de contenido y accesibilidad
   h1: (props) => {

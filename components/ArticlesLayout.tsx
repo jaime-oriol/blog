@@ -189,7 +189,7 @@ export default function ArticlesLayout({
                 ¿Te gustó este análisis?
               </h3>
               <p className="font-body mb-4 text-slate-600 dark:text-slate-400">
-                Recibe contenido similar cada lunes en tu bandeja de entrada
+                Recibe contenido similar en tu bandeja de entrada
               </p>
               <Link
                 href="/newsletter"
