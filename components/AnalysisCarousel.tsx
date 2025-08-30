@@ -114,7 +114,7 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
             <>
               <button
                 onClick={goToPrevious}
-                className="absolute top-1/2 left-1 z-10 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-lg transition-all duration-200 hover:scale-105 hover:bg-white md:left-4 md:p-3 dark:bg-slate-800/90 dark:hover:bg-slate-800"
+                className="absolute top-3/4 left-1 z-10 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-lg transition-all duration-200 hover:scale-105 hover:bg-white md:top-1/2 md:left-4 md:p-3 dark:bg-slate-800/90 dark:hover:bg-slate-800"
                 style={{ minWidth: '36px', minHeight: '36px' }} // Smaller on mobile
                 aria-label="Imagen anterior"
               >
@@ -135,7 +135,7 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
 
               <button
                 onClick={goToNext}
-                className="absolute top-1/2 right-1 z-10 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-lg transition-all duration-200 hover:scale-105 hover:bg-white md:right-4 md:p-3 dark:bg-slate-800/90 dark:hover:bg-slate-800"
+                className="absolute top-3/4 right-1 z-10 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-lg transition-all duration-200 hover:scale-105 hover:bg-white md:top-1/2 md:right-4 md:p-3 dark:bg-slate-800/90 dark:hover:bg-slate-800"
                 style={{ minWidth: '36px', minHeight: '36px' }} // Smaller on mobile
                 aria-label="Siguiente imagen"
               >

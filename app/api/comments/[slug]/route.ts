@@ -47,10 +47,11 @@ async function getCommentsForPost(slug: string): Promise<CommentsData> {
     }
 
     // En producción, intentar leer de JSONBin
-    const binId = `comments-${slug}`
+    const binId = `comments-${slug.replace(/[^a-zA-Z0-9]/g, '_')}`
     const response = await fetch(`${JSONBIN_API}/${binId}/latest`, {
       headers: {
         'X-Master-Key': JSONBIN_KEY,
+        'Content-Type': 'application/json',
       },
     })
 
@@ -81,18 +82,37 @@ async function saveCommentsForPost(slug: string, commentsData: CommentsData): Pr
     }
 
     // En producción, guardar en JSONBin
-    const binId = `comments-${slug}`
-    const response = await fetch(`${JSONBIN_API}/${binId}`, {
-      method: 'PUT',
+    const binId = `comments-${slug.replace(/[^a-zA-Z0-9]/g, '_')}`
+
+    // Primero intentar crear el bin si no existe
+    const createResponse = await fetch(`${JSONBIN_API}`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-Master-Key': JSONBIN_KEY,
+        'X-Bin-Name': binId,
       },
       body: JSON.stringify(commentsData),
     })
 
-    if (!response.ok) {
-      throw new Error(`JSONBin error: ${response.status}`)
+    if (!createResponse.ok && createResponse.status !== 400) {
+      throw new Error(`JSONBin create error: ${createResponse.status}`)
+    }
+
+    // Si el bin ya existe (400), actualizarlo
+    if (createResponse.status === 400) {
+      const updateResponse = await fetch(`${JSONBIN_API}/${binId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': JSONBIN_KEY,
+        },
+        body: JSON.stringify(commentsData),
+      })
+
+      if (!updateResponse.ok) {
+        throw new Error(`JSONBin update error: ${updateResponse.status}`)
+      }
     }
   } catch (error) {
     console.error('Error saving comments:', error)
