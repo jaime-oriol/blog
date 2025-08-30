@@ -101,7 +101,7 @@ async function activateContact(contactId: string, email: string): Promise<boolea
 
   try {
     const response = await updateContactWithRetry({
-      audienceId: process.env.RESEND_AUDIENCE_ID,
+      audience_id: process.env.RESEND_AUDIENCE_ID,
       id: contactId,
       unsubscribed: false,
     })
