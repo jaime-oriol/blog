@@ -9,12 +9,13 @@ function ConfirmContent() {
   const [status, setStatus] = useState<'loading' | 'success' | 'error' | 'invalid'>('loading')
   const [message, setMessage] = useState('')
   const [hasProcessed, setHasProcessed] = useState(false)
+  const [isProcessing, setIsProcessing] = useState(false)
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
 
   useEffect(() => {
     // Evitar race condition - solo procesar una vez y cuando el token esté disponible
-    if (hasProcessed || !token) {
+    if (hasProcessed || isProcessing || !token) {
       if (!token && !hasProcessed) {
         setStatus('invalid')
         setMessage('Token de confirmación no válido')
@@ -24,12 +25,23 @@ function ConfirmContent() {
     }
 
     const confirmSubscription = async () => {
+      if (isProcessing) return // Doble protección
+
+      setIsProcessing(true)
       setHasProcessed(true)
 
       try {
         console.log('Attempting to confirm with token:', token.substring(0, 20) + '...')
 
-        const response = await fetch(`/api/newsletter/confirm-resend?token=${token}`)
+        // Timeout de 10 segundos para evitar requests colgados
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 10000)
+
+        const response = await fetch(`/api/newsletter/confirm-resend?token=${token}`, {
+          signal: controller.signal,
+        })
+        clearTimeout(timeoutId)
+
         const data = await response.json()
 
         console.log('Confirmation response:', { status: response.status, data })
@@ -43,13 +55,22 @@ function ConfirmContent() {
         }
       } catch (error) {
         console.error('Confirmation error:', error)
-        setStatus('error')
-        setMessage('Error de conexión al confirmar la suscripción')
+        if (error.name === 'AbortError') {
+          setStatus('error')
+          setMessage('Tiempo de espera agotado. Inténtalo de nuevo.')
+        } else {
+          setStatus('error')
+          setMessage('Error de conexión al confirmar la suscripción')
+        }
+      } finally {
+        setIsProcessing(false)
       }
     }
 
-    confirmSubscription()
-  }, [token, hasProcessed])
+    // Pequeño delay para evitar llamadas inmediatas múltiples
+    const timer = setTimeout(confirmSubscription, 100)
+    return () => clearTimeout(timer)
+  }, [token, hasProcessed, isProcessing])
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6">

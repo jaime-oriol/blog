@@ -42,17 +42,10 @@ export default function Main({ posts }: MainProps) {
 function IntroSection() {
   return (
     <section className="mb-12">
-      {/* Título principal */}
+      {/* Cita destacada como título principal */}
       <h1 className="font-helvetica-bold mb-8 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-slate-100">
-        FootballDecoded
+        "El fútbol es como el ajedrez, pero sin dados." — Lukas Podolski
       </h1>
-
-      {/* Cita destacada */}
-      <blockquote className="mb-6 border-l-4 border-slate-400 pl-4 italic">
-        <p className="font-helvetica-light text-fd-subtitle leading-relaxed text-slate-600 dark:text-slate-400">
-          "El fútbol es como el ajedrez, pero sin dados." — Lukas Podolski
-        </p>
-      </blockquote>
 
       {/* Descripción del proyecto */}
       <div className="font-helvetica-light text-fd-body space-y-6 leading-relaxed text-slate-700 dark:text-slate-300">
