@@ -135,7 +135,7 @@ function ConfirmContent() {
               </h1>
               <div className="mx-auto max-w-lg rounded-lg border-2 border-sky-200 bg-sky-50 p-6 dark:border-sky-700 dark:bg-sky-900/20">
                 <p className="font-body text-xl font-semibold text-sky-800 dark:text-sky-200">
-                  👆 Dale de nuevo a confirmar en el email por favor y ya estará!
+                  Dale de nuevo a confirmar en el email por favor y ya estará!
                 </p>
               </div>
             </div>

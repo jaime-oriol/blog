@@ -41,9 +41,9 @@ footballdecoded/
 │   │   ├── comments/      # Comment system endpoints
 │   │   └── newsletter/    # Newsletter subscription
 │   ├── blog/              # Blog system with sections
-│   │   ├── tactical-analysis/
-│   │   ├── analytical-scouting/
-│   │   └── advanced-metrics/
+│   │   ├── player-decoded/
+│   │   ├── match-analysis/
+│   │   └── team-architecture/
 │   ├── contact/           # Contact form
 │   ├── newsletter/        # Newsletter pages
 │   └── tags/              # Tag-based article filtering
@@ -56,9 +56,9 @@ footballdecoded/
 │   └── social-icons/      # Social media icons
 ├── content/               # Blog content and configuration
 │   ├── articles/          # MDX articles by section
-│   │   ├── tactical-analysis/     # Blue section
-│   │   ├── analytical-scouting/   # Green section
-│   │   └── advanced-metrics/      # Purple section
+│   │   ├── player-decoded/        # Player analysis section
+│   │   ├── match-analysis/        # Match analysis section
+│   │   └── team-architecture/     # Team architecture section
 │   ├── headerNavLinks.ts  # Navigation configuration
 │   └── siteMetadata.js    # Global site settings
 ├── layouts/               # Page layouts
@@ -120,15 +120,15 @@ CommentsList.tsx
 
 # Pages: kebab-case
 app/about/page.tsx
-app/tactical-analysis/page.tsx
+app/player-decoded/page.tsx
 
 # Content: kebab-case
-analisis-presion-alta-guardiola.mdx
-perfiles-mediocentros-defensivos.mdx
+nuevo-articulo-ejemplo.mdx
+otro-articulo-ejemplo.mdx
 
 # Assets: kebab-case
-guardiola-tactical-analysis.jpg
-advanced-metrics-banner.png
+imagen-ejemplo-articulo.jpg
+otro-banner-ejemplo.png
 
 # Utilities and configs: camelCase or kebab-case
 siteMetadata.js
@@ -168,12 +168,12 @@ async function handleSubmit(formData: FormData) {
 ```typescript
 // MDX frontmatter for articles (REQUIRED FIELDS)
 ---
-title: 'Análisis Táctico: La Presión Alta de Guardiola'
+title: 'Título del Artículo de Ejemplo'
 date: '2024-01-15'
-section: 'tactical-analysis' // tactical-analysis | analytical-scouting | advanced-metrics
-image: '/static/images/articles/presion-alta-guardiola.jpg'
-tags: ['táctica', 'guardiola', 'presión', 'city']
-summary: 'Análisis detallado del sistema de presión alta implementado por Pep Guardiola en el Manchester City'
+section: 'player-decoded' // player-decoded | match-analysis | team-architecture
+image: '/static/images/articles/imagen-ejemplo.jpg'
+tags: ['táctica', 'análisis', 'ejemplo']
+summary: 'Resumen de ejemplo para un artículo del blog'
 author: 'Jaime Oriol'
 readingTime: '8 min'
 featured: false // Optional: highlight on homepage
@@ -185,22 +185,22 @@ featured: false // Optional: highlight on homepage
 ### Section Color Coding & Themes
 
 ```css
-/* Tactical Analysis - Blue theme */
-.tactical-analysis {
+/* Player Decoded - Blue theme */
+.player-decoded {
   --primary: theme(colors.sky.600);
   --primary-light: theme(colors.sky.100);
   --accent: theme(colors.sky.500);
 }
 
-/* Analytical Scouting - Green theme */
-.analytical-scouting {
+/* Match Analysis - Green theme */
+.match-analysis {
   --primary: theme(colors.emerald.600);
   --primary-light: theme(colors.emerald.100);
   --accent: theme(colors.emerald.500);
 }
 
-/* Advanced Metrics - Purple theme */
-.advanced-metrics {
+/* Team Architecture - Purple theme */
+.team-architecture {
   --primary: theme(colors.indigo.600);
   --primary-light: theme(colors.indigo.100);
   --accent: theme(colors.indigo.500);
@@ -251,7 +251,7 @@ npm run newsletter       # Newsletter management CLI
 1. **Create MDX file** in appropriate section:
 
    ```bash
-   content/articles/tactical-analysis/nuevo-analisis.mdx
+   content/articles/player-decoded/nuevo-analisis.mdx
    ```
 
 2. **Add frontmatter** with all required fields
@@ -298,7 +298,7 @@ npm run newsletter       # Newsletter management CLI
 
 <!-- Technical quotes -->
 
-<TechnicalQuote source="Pep Guardiola">El fútbol es un juego de espacios y tiempo</TechnicalQuote>
+<TechnicalQuote source="Autor Ejemplo">Cita de ejemplo para mostrar el componente</TechnicalQuote>
 
 <!-- Image with caption -->
 
@@ -317,7 +317,7 @@ npm run newsletter       # Newsletter management CLI
 
 ```
 main (protected branch)
-  ├── content/add-guardiola-analysis
+  ├── content/add-nuevo-articulo
   ├── feature/improve-newsletter-ui
   ├── fix/mobile-navigation-bug
   ├── style/update-article-cards
@@ -336,11 +336,11 @@ main (protected branch)
 # 1. Start new task - always from main
 git checkout main
 git pull origin main
-git checkout -b content/add-new-tactical-analysis
+git checkout -b content/add-new-player-analysis
 
 # 2. Work on content with incremental commits
-git add content/articles/tactical-analysis/new-analysis.mdx
-git commit -m "content: add tactical analysis structure"
+git add content/articles/player-decoded/new-analysis.mdx
+git commit -m "content: add player analysis structure"
 git add public/static/images/articles/new-analysis.jpg
 git commit -m "content: add featured image for tactical analysis"
 
@@ -349,12 +349,12 @@ git fetch origin
 git rebase origin/main
 
 # 4. Push to remote
-git push origin content/add-new-tactical-analysis
+git push origin content/add-new-player-analysis
 
 # 5. After merge, cleanup
 git checkout main
 git pull origin main
-git branch -d content/add-new-tactical-analysis
+git branch -d content/add-new-player-analysis
 ```
 
 ### Commit Message Format
@@ -375,7 +375,7 @@ perf: Performance improvements
 chore: Maintenance tasks
 
 # Examples
-git commit -m "content: add Ancelotti 3-2-5 tactical analysis"
+git commit -m "content: add new player analysis article"
 git commit -m "feat(newsletter): add confirmation email template"
 git commit -m "fix(mobile): resolve navigation menu positioning"
 git commit -m "style(cards): improve article card hover effects"
@@ -509,8 +509,8 @@ const newsletterSchema = z.object({
 import Image from 'next/image'
 
 <Image
-  src="/static/images/articles/tactical-analysis.jpg"
-  alt="Tactical analysis diagram"
+  src="/static/images/articles/player-analysis.jpg"
+  alt="Player analysis diagram"
   width={800}
   height={400}
   priority // For above-the-fold images

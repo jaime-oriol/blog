@@ -16,14 +16,14 @@
 
 - **Componentes React**: PascalCase (`ArticleCard.tsx`)
 - **Páginas**: kebab-case (`about/page.tsx`)
-- **Contenido MDX**: kebab-case (`analisis-presion-alta.mdx`)
+- **Contenido MDX**: kebab-case (`ejemplo-articulo.mdx`)
 - **Assets**: kebab-case (`imagen-destacada.jpg`)
 
 #### Secciones del Blog
 
-- `tactical-analysis` - Análisis táctico
-- `analytical-scouting` - Scouting funcional
-- `advanced-metrics` - Métricas avanzadas
+- `player-decoded` - Análisis de jugadores
+- `match-analysis` - Análisis de partidos
+- `team-architecture` - Arquitectura de equipos
 
 ## Creación de Contenido
 
@@ -41,7 +41,7 @@
    ---
    title: 'Título del Análisis'
    date: '2024-01-15'
-   section: 'tactical-analysis'
+   section: 'player-decoded'
    image: '/static/images/articles/imagen.jpg'
    tags: ['táctica', 'análisis']
    summary: 'Resumen del artículo'

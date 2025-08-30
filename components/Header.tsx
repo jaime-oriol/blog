@@ -35,7 +35,7 @@ const Header = () => {
     <header className={headerClass}>
       {/* Logo principal */}
       <Link href="/" aria-label={siteMetadata.headerTitle}>
-        <div className="-ml-4 flex items-center">
+        <div className="flex items-end">
           <Image
             src={logoSrc}
             alt={siteMetadata.headerTitle}

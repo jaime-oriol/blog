@@ -41,9 +41,9 @@ footballdecoded/
 ├── components/ # Componentes React reutilizables
 ├── content/ # Contenido del blog y configuración
 │ ├── articles/ # Artículos organizados por sección
-│ │ ├── tactical-analysis/
-│ │ ├── analytical-scouting/
-│ │ └── advanced-metrics/
+│ │ ├── player-decoded/
+│ │ ├── match-analysis/
+│ │ └── team-architecture/
 │ └── siteMetadata.js # Configuración del sitio
 ├── layouts/ # Layouts especializados
 └── public/ # Assets estáticos
@@ -122,19 +122,19 @@ Los artículos se organizan en tres secciones principales:
 #### 📊 Tactical Analysis
 
 \`\`\`
-content/articles/tactical-analysis/ejemplo-analisis.mdx
+content/articles/player-decoded/ejemplo-analisis.mdx
 \`\`\`
 
 #### 🔍 Analytical Scouting
 
 \`\`\`
-content/articles/analytical-scouting/perfil-jugador.mdx
+content/articles/match-analysis/perfil-jugador.mdx
 \`\`\`
 
 #### 📈 Advanced Metrics
 
 \`\`\`
-content/articles/advanced-metrics/metrica-personalizada.mdx
+content/articles/team-architecture/metrica-personalizada.mdx
 \`\`\`
 
 ### Frontmatter de Artículos
@@ -143,9 +143,9 @@ content/articles/advanced-metrics/metrica-personalizada.mdx
 
 title: 'Título del Análisis'
 date: '2024-01-15'
-section: 'tactical-analysis' # tactical-analysis | analytical-scouting | advanced-metrics
+section: 'player-decoded' # player-decoded | match-analysis | team-architecture
 image: '/static/images/articles/imagen-destacada.jpg'
-tags: ['táctica', 'guardiola', 'presión']
+tags: ['táctica', 'análisis', 'ejemplo']
 summary: 'Descripción breve del análisis para SEO y cards'
 
 ---
@@ -173,7 +173,7 @@ Insight importante sobre el análisis
   trend="up"
 />
 
-<TechnicalQuote source="Pep Guardiola">
+<TechnicalQuote source="Autor Ejemplo">
 El fútbol es un juego de espacios y tiempo
 </TechnicalQuote>
 \`\`\`
@@ -245,16 +245,16 @@ Configurar en Vercel dashboard:
 
 - **Componentes**: PascalCase (\`ArticleCard.tsx\`)
 - **Páginas**: kebab-case (\`about/page.tsx\`)
-- **Archivos de contenido**: kebab-case (\`analisis-presion-alta.mdx\`)
+- **Archivos de contenido**: kebab-case (\`ejemplo-articulo.mdx\`)
 - **Assets**: kebab-case (\`imagen-destacada.jpg\`)
 
 ### Colores Semánticos
 
 \`\`\`css
 /_ Secciones del blog _/
-.tactical-analysis /_ Azul sky _/
-.analytical-scouting /_ Verde emerald _/
-.advanced-metrics /_ Índigo _/
+.player-decoded /_ Azul sky _/
+.match-analysis /_ Verde emerald _/
+.team-architecture /_ Índigo _/
 
 /_ Estados _/
 .text-concept /_ Enlaces y conceptos importantes _/
