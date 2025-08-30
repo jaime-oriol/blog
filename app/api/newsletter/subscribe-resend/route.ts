@@ -46,7 +46,7 @@ async function checkExistingContact(
 
   try {
     const response = await listContactsWithRetry({
-      audience_id: process.env.RESEND_AUDIENCE_ID,
+      audienceId: process.env.RESEND_AUDIENCE_ID,
     })
 
     if (response.error) {
@@ -54,7 +54,7 @@ async function checkExistingContact(
       return { exists: false }
     }
 
-    const existingContact = response.data?.data?.find(
+    const existingContact = response.data?.data.find(
       (contact) => contact.email.toLowerCase() === email.toLowerCase()
     )
 
@@ -81,10 +81,10 @@ async function addContactToAudience(
 
   try {
     const response = await createContactWithRetry({
-      audience_id: process.env.RESEND_AUDIENCE_ID,
+      audienceId: process.env.RESEND_AUDIENCE_ID,
       email: email.toLowerCase(),
-      first_name: '',
-      last_name: '',
+      firstName: '',
+      lastName: '',
       unsubscribed: true,
     })
 
@@ -196,7 +196,7 @@ export async function GET() {
     }
 
     const response = await listContactsWithRetry({
-      audience_id: process.env.RESEND_AUDIENCE_ID,
+      audienceId: process.env.RESEND_AUDIENCE_ID,
     })
 
     if (response.error) {
