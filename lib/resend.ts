@@ -22,7 +22,7 @@ interface ContactData {
 
 interface UpdateContactData {
   id: string
-  audience_id?: string
+  audienceId?: string
   unsubscribed?: boolean
   first_name?: string
   last_name?: string
@@ -30,36 +30,6 @@ interface UpdateContactData {
 
 interface ListContactsData {
   audience_id?: string
-}
-
-interface ContactListData {
-  data: Array<{
-    id: string
-    email: string
-    first_name?: string
-    last_name?: string
-    created_at: string
-    unsubscribed: boolean
-  }>
-}
-
-interface EmailSendData {
-  id: string
-}
-
-interface ContactCreateData {
-  id: string
-  email: string
-  created_at: string
-}
-
-interface ContactUpdateData {
-  id: string
-  email?: string
-  first_name?: string
-  last_name?: string
-  created_at?: string
-  unsubscribed?: boolean
 }
 
 interface ResendResponse<T = unknown> {
@@ -90,7 +60,7 @@ export function getResendClient(): Resend {
 export async function sendEmailWithRetry(
   emailData: EmailData,
   maxRetries: number = 3
-): Promise<ResendResponse<EmailSendData>> {
+): Promise<ResendResponse> {
   const resend = getResendClient()
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -124,7 +94,7 @@ export async function sendEmailWithRetry(
 export async function createContactWithRetry(
   contactData: ContactData,
   maxRetries: number = 3
-): Promise<ResendResponse<ContactCreateData>> {
+): Promise<ResendResponse> {
   const resend = getResendClient()
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -156,12 +126,12 @@ export async function createContactWithRetry(
 export async function updateContactWithRetry(
   updateData: UpdateContactData,
   maxRetries: number = 3
-): Promise<ResendResponse<ContactUpdateData>> {
+): Promise<ResendResponse> {
   const resend = getResendClient()
 
   console.log(`[UPDATE] Starting update for contact:`, {
     contactId: updateData.id,
-    audience_id: updateData.audience_id,
+    audienceId: updateData.audienceId,
     unsubscribed: updateData.unsubscribed,
     maxRetries,
   })
@@ -232,7 +202,7 @@ export async function updateContactWithRetry(
 export async function listContactsWithRetry(
   listData: ListContactsData,
   maxRetries: number = 3
-): Promise<ResendResponse<ContactListData>> {
+): Promise<ResendResponse> {
   const resend = getResendClient()
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
