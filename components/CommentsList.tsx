@@ -66,7 +66,11 @@ export default function CommentsList({ postSlug, refreshTrigger }: CommentsListP
   // Refrescar cuando se añade un nuevo comentario
   useEffect(() => {
     if (refreshTrigger && refreshTrigger > 0) {
-      fetchComments()
+      // Pequeño delay para que JSONBin se actualice
+      const timer = setTimeout(() => {
+        fetchComments()
+      }, 1000)
+      return () => clearTimeout(timer)
     }
   }, [refreshTrigger]) // eslint-disable-line react-hooks/exhaustive-deps
 
