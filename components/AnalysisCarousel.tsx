@@ -17,7 +17,7 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
   images,
   title,
   description,
-  autoPlay = true,
+  autoPlay = false,
   showDots = true,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -86,7 +86,7 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
       {/* Contenedor principal del carrusel - optimizado para ratio 2:1 de las imágenes tácticas */}
       <div className="relative max-w-5xl">
         <div
-          className="relative h-60 overflow-hidden rounded-xl bg-slate-50 sm:h-80 md:h-90 lg:h-96 xl:h-[450px] dark:bg-slate-800"
+          className="relative h-48 overflow-hidden rounded-xl bg-slate-50 sm:h-64 md:h-72 lg:h-80 xl:h-[400px] dark:bg-slate-800"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
@@ -101,7 +101,7 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
                   src={`${basePath}/${imageName}`}
                   alt={`Análisis táctico - paso ${index + 1}`}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   priority={index === 0}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
                 />
@@ -156,9 +156,9 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
             </>
           )}
 
-          {/* Contador de imágenes */}
+          {/* Contador de imágenes - mejor para mobile */}
           {images.length > 1 && (
-            <div className="absolute right-3 bottom-3 rounded-full bg-black/70 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
+            <div className="absolute right-2 bottom-2 rounded-full bg-black/80 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm md:right-3 md:bottom-3 md:px-3 md:py-1.5 md:text-sm">
               {currentIndex + 1} / {images.length}
             </div>
           )}
