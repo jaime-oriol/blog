@@ -148,23 +148,30 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/40" />
 
                 {/* Contenido superpuesto */}
-                <div className="relative flex h-full flex-col justify-end p-8 text-white">
-                  {/* Badge de sección */}
-                  {section && (
-                    <span className="mb-4 inline-flex w-fit items-center rounded-full border border-white/30 bg-white/20 px-4 py-2 font-mono text-sm font-medium text-white shadow-sm backdrop-blur-sm">
-                      {getSectionLabel(section)}
-                    </span>
-                  )}
+                <div className="relative flex h-full flex-col justify-between p-8 text-white">
+                  {/* Título arriba a la izquierda */}
+                  <div className="flex flex-1 items-start">
+                    <h1 className="font-helvetica-bold text-3xl leading-tight font-bold tracking-tight text-white lg:text-4xl xl:text-5xl">
+                      {title}
+                    </h1>
+                  </div>
 
-                  {/* Título */}
-                  <h1 className="font-helvetica-bold text-3xl leading-tight font-bold tracking-tight text-white lg:text-4xl xl:text-5xl">
-                    {title}
-                  </h1>
+                  {/* Sección y fecha abajo a la derecha */}
+                  <div className="flex justify-end">
+                    <div className="flex flex-col items-end space-y-2">
+                      {/* Badge de sección con color azul corporativo */}
+                      {section && (
+                        <span className="inline-flex items-center rounded-full border border-sky-400/30 bg-sky-600/90 px-4 py-2 font-mono text-sm font-medium text-white shadow-sm backdrop-blur-sm">
+                          {getSectionLabel(section)}
+                        </span>
+                      )}
 
-                  {/* Fecha */}
-                  <time dateTime={date} className="font-helvetica-light mt-3 text-white/90">
-                    {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-                  </time>
+                      {/* Fecha */}
+                      <time dateTime={date} className="font-helvetica-light text-white/90">
+                        {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+                      </time>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}

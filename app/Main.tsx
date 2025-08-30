@@ -43,7 +43,7 @@ function IntroSection() {
   return (
     <section className="mb-12">
       {/* Título principal */}
-      <h1 className="font-helvetica-bold mb-4 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
+      <h1 className="font-helvetica-bold mb-5 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
         FootballDecoded
       </h1>
 
@@ -98,7 +98,7 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
 
   return (
     <section className="mb-12">
-      <h2 className="font-helvetica-bold text-fd-title mb-6 font-bold tracking-tight text-slate-900 dark:text-slate-100">
+      <h2 className="font-helvetica-bold text-fd-title mb-5 font-bold tracking-tight text-slate-900 dark:text-slate-100">
         Últimos Artículos
       </h2>
 
@@ -137,7 +137,7 @@ function EmptyArticlesState() {
   return (
     <div className="py-16 text-center">
       <DocumentIcon />
-      <h3 className="font-helvetica-bold text-fd-subtitle mb-2 font-medium text-slate-900 dark:text-slate-100">
+      <h3 className="font-helvetica-bold text-fd-subtitle mb-5 font-medium text-slate-900 dark:text-slate-100">
         Próximamente
       </h3>
       <p className="font-helvetica-light text-fd-body text-slate-500 dark:text-slate-400">

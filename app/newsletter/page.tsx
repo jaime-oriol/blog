@@ -19,7 +19,7 @@ export default function Newsletter() {
       <div className="mx-auto max-w-4xl px-4 py-2 sm:px-6 xl:max-w-5xl xl:px-0">
         {/* Header minimalista y directo */}
         <div className="mb-8 text-left">
-          <h1 className="font-headings text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
+          <h1 className="font-headings mb-5 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
             Newsletter
           </h1>
         </div>
@@ -27,7 +27,7 @@ export default function Newsletter() {
         {/* CONTENIDO INFORMATIVO - Briefing profesional */}
         <div className="mb-12">
           <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-700 dark:bg-slate-800">
-            <h3 className="font-headings mb-6 text-left text-2xl font-semibold text-slate-900 dark:text-slate-100">
+            <h3 className="font-headings mb-5 text-left text-2xl font-semibold text-slate-900 dark:text-slate-100">
               ¿Qué puede incluir cada edición?
             </h3>
 
@@ -55,7 +55,7 @@ export default function Newsletter() {
                 },
               ].map((item, index) => (
                 <div key={index} className="border-l-4 border-slate-200 pl-6 dark:border-slate-600">
-                  <h4 className="font-headings mb-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
+                  <h4 className="font-headings mb-5 text-lg font-semibold text-slate-900 dark:text-slate-100">
                     {item.title}
                   </h4>
                   <p className="font-body text-slate-600 dark:text-slate-400">{item.description}</p>
@@ -114,7 +114,7 @@ export default function Newsletter() {
         {/* ÚLTIMO ARTÍCULO */}
         {latestPost && (
           <div>
-            <h3 className="font-headings mb-6 text-2xl font-semibold text-slate-900 dark:text-slate-100">
+            <h3 className="font-headings mb-5 text-2xl font-semibold text-slate-900 dark:text-slate-100">
               No te pierdas el último artículo
             </h3>
             <ArticleCard post={latestPost} />

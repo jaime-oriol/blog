@@ -20,7 +20,7 @@ const Header = () => {
     setMounted(true)
   }, [])
 
-  let headerClass = 'flex items-center w-full bg-white dark:bg-slate-900 justify-between py-1'
+  let headerClass = 'flex items-center w-full bg-white dark:bg-slate-900 justify-between py-2'
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0 z-50 border-b border-slate-200 dark:border-slate-700'
   }
