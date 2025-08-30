@@ -20,7 +20,7 @@ interface ArticlesLayoutProps {
   section?: string
 }
 
-function Pagination({ totalPages, currentPage, basePath = '/blog' }: PaginationProps) {
+function Pagination({ totalPages, currentPage, basePath = '/articles' }: PaginationProps) {
   const prevPage = currentPage - 1 > 0
   const nextPage = currentPage + 1 <= totalPages
 
@@ -176,7 +176,7 @@ export default function ArticlesLayout({
             <Pagination
               currentPage={pagination.currentPage}
               totalPages={pagination.totalPages}
-              basePath={section ? `/blog/${section}` : '/blog'}
+              basePath={section ? `/articles/${section}` : '/articles'}
             />
           </div>
         )}

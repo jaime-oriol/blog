@@ -13,27 +13,27 @@ interface Section {
 
 const sections: Section[] = [
   {
-    href: '/blog',
+    href: '/articles',
     title: 'Todos los artículos',
     description: 'Vista completa',
     icon: null,
   },
   {
-    href: '/blog/player-decoded',
+    href: '/articles/player-decoded',
     title: 'Player Decoded',
     description:
       'Análisis profundo de jugadores individuales. Roles, evolución posicional y impacto real en el sistema.',
     icon: null,
   },
   {
-    href: '/blog/match-analysis',
+    href: '/articles/match-analysis',
     title: 'Match\nAnalysis',
     description:
       'Disección de partidos específicos. Patrones tácticos, momentos clave y dinámicas decisivas del encuentro.',
     icon: null,
   },
   {
-    href: '/blog/team-architecture',
+    href: '/articles/team-architecture',
     title: 'Team Architecture',
     description:
       'Estudio de equipos y sus filosofías. Sistemas organizativos, principios tácticos e identidad colectiva.',

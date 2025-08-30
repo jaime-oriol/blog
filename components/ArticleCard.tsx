@@ -44,7 +44,7 @@ export default function ArticleCard({ post }: ArticleCardProps) {
 
   return (
     <article className="group overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md dark:border-slate-700 dark:bg-slate-800">
-      <Link href={`/blog/${slug}`} className="flex items-stretch">
+      <Link href={`/articles/${slug}`} className="flex items-stretch">
         {/* Imagen a la izquierda */}
         <div className="relative w-64 flex-shrink-0 overflow-hidden">
           <div className="absolute inset-0">

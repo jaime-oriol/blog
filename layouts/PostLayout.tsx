@@ -68,22 +68,22 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
   const getSectionHref = (section: string) => {
     switch (section) {
       case 'player-decoded':
-        return '/blog/player-decoded'
+        return '/articles/player-decoded'
       case 'match-analysis':
-        return '/blog/match-analysis'
+        return '/articles/match-analysis'
       case 'team-architecture':
-        return '/blog/team-architecture'
+        return '/articles/team-architecture'
       case 'tactical-analysis': // Backward compatibility
       case 'tactical-structures': // Backward compatibility
-        return '/blog/player-decoded'
+        return '/articles/player-decoded'
       case 'analytical-scouting': // Backward compatibility
       case 'scouting': // Backward compatibility
-        return '/blog/match-analysis'
+        return '/articles/match-analysis'
       case 'advanced-metrics': // Backward compatibility
       case 'tactical-metrics-lab': // Backward compatibility
-        return '/blog/team-architecture'
+        return '/articles/team-architecture'
       default:
-        return '/blog'
+        return '/articles'
     }
   }
 
@@ -108,7 +108,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             />
           </svg>
           <Link
-            href="/blog"
+            href="/articles"
             className="transition-colors hover:text-slate-700 dark:hover:text-slate-300"
           >
             Artículos
@@ -133,39 +133,39 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
         <div>
           {/* Header del artículo - diseño profesional */}
           <header className="relative mb-10">
-            {/* Metadatos del artículo */}
-            <div className="mb-6 space-y-4">
-              {/* Badge de sección y fecha */}
-              <div className="flex items-center justify-between">
-                {section && (
-                  <Link href={getSectionHref(section)}>
-                    <span
-                      className={`inline-flex items-center rounded-full px-3 py-1.5 font-mono text-sm font-medium transition-colors hover:opacity-80 ${getSectionColor(section)}`}
-                    >
+            {/* Header con imagen de fondo difuminada */}
+            {displayImage && (
+              <div className="relative mb-10 h-80 overflow-hidden rounded-xl">
+                {/* Imagen de fondo recortada y difuminada */}
+                <div
+                  className="absolute inset-0 scale-110 bg-cover bg-center blur-sm"
+                  style={{
+                    backgroundImage: `url(${displayImage})`,
+                    backgroundPosition: 'center center',
+                  }}
+                />
+                {/* Overlay para legibilidad */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/40" />
+
+                {/* Contenido superpuesto */}
+                <div className="relative flex h-full flex-col justify-end p-8 text-white">
+                  {/* Badge de sección */}
+                  {section && (
+                    <span className="mb-4 inline-flex w-fit items-center rounded-full border border-white/30 bg-white/20 px-4 py-2 font-mono text-sm font-medium text-white shadow-sm backdrop-blur-sm">
                       {getSectionLabel(section)}
                     </span>
-                  </Link>
-                )}
-                <time
-                  dateTime={date}
-                  className="font-helvetica-light text-fd-body text-slate-500 dark:text-slate-400"
-                >
-                  {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-                </time>
-              </div>
+                  )}
 
-              {/* Título principal */}
-              <h1 className="font-helvetica-bold text-fd-title leading-tight font-bold tracking-tight text-slate-900 lg:text-4xl xl:text-5xl dark:text-slate-100">
-                {title}
-              </h1>
-            </div>
+                  {/* Título */}
+                  <h1 className="font-helvetica-bold text-3xl leading-tight font-bold tracking-tight text-white lg:text-4xl xl:text-5xl">
+                    {title}
+                  </h1>
 
-            {/* Imagen destacada */}
-            {displayImage && (
-              <div className="relative mb-10 h-96 overflow-hidden rounded-xl md:h-[28rem] lg:h-[32rem]">
-                <Image src={displayImage} alt={title} fill className="object-cover" priority />
-                {/* Overlay sutil para mejor integración */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+                  {/* Fecha */}
+                  <time dateTime={date} className="font-helvetica-light mt-3 text-white/90">
+                    {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
+                  </time>
+                </div>
               </div>
             )}
           </header>
@@ -231,7 +231,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       Artículo anterior
                     </p>
                     <Link
-                      href={`/blog/${prev.slug}`}
+                      href={`/articles/${prev.slug}`}
                       className="block rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
                     >
                       <h3 className="font-helvetica-bold text-fd-subtitle font-medium text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
@@ -247,7 +247,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       Siguiente artículo
                     </p>
                     <Link
-                      href={`/blog/${next.slug}`}
+                      href={`/articles/${next.slug}`}
                       className="block rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
                     >
                       <h3 className="font-helvetica-bold text-fd-subtitle font-medium text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
@@ -263,7 +263,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
           {/* CTA final para volver al blog */}
           <div className="text-center">
             <Link
-              href="/blog"
+              href="/articles"
               className="font-helvetica-regular inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
             >
               <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">

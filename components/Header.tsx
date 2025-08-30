@@ -39,9 +39,9 @@ const Header = () => {
           <Image
             src={logoSrc}
             alt={siteMetadata.headerTitle}
-            width={400}
-            height={160}
-            className="h-40 w-auto"
+            width={350}
+            height={70}
+            className="h-16 w-auto"
           />
         </div>
       </Link>

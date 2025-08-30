@@ -50,7 +50,7 @@ const computedFields: ComputedFields = {
   },
   path: {
     type: 'string',
-    resolve: (doc) => `blog/${doc._raw.flattenedPath.replace(/^.+?(\/)/, '')}`,
+    resolve: (doc) => `articles/${doc._raw.flattenedPath.replace(/^.+?(\/)/, '')}`,
   },
   filePath: {
     type: 'string',
@@ -124,7 +124,7 @@ export const Blog = defineDocumentType(() => ({
         dateModified: doc.lastmod || doc.date,
         description: doc.summary,
         image: doc.image || doc.images?.[0] || siteMetadata.socialBanner,
-        url: `${siteMetadata.siteUrl}/blog/${doc._raw.flattenedPath.replace(/^.+?(\/)/, '')}`,
+        url: `${siteMetadata.siteUrl}/articles/${doc._raw.flattenedPath.replace(/^.+?(\/)/, '')}`,
         articleSection: doc.section, // Agregar sección a structured data
       }),
     },

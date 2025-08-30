@@ -117,7 +117,7 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
           {/* CTA hacia todos los artículos */}
           <div className="mt-8 text-center">
             <Link
-              href="/blog"
+              href="/articles"
               className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-50 hover:shadow-md dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
             >
               <span className="font-helvetica-regular">Ver todos los artículos</span>
