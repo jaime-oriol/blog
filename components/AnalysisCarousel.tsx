@@ -114,12 +114,12 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
             <>
               <button
                 onClick={goToPrevious}
-                className="absolute top-1/2 left-2 z-10 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-lg transition-all duration-200 hover:scale-105 hover:bg-white md:left-4 dark:bg-slate-800/90 dark:hover:bg-slate-800"
-                style={{ minWidth: '44px', minHeight: '44px' }} // Touch-friendly size
+                className="absolute top-1/2 left-1 z-10 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-lg transition-all duration-200 hover:scale-105 hover:bg-white md:left-4 md:p-3 dark:bg-slate-800/90 dark:hover:bg-slate-800"
+                style={{ minWidth: '36px', minHeight: '36px' }} // Smaller on mobile
                 aria-label="Imagen anterior"
               >
                 <svg
-                  className="h-5 w-5 text-slate-800 dark:text-slate-200"
+                  className="h-4 w-4 text-slate-800 md:h-5 md:w-5 dark:text-slate-200"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -135,12 +135,12 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
 
               <button
                 onClick={goToNext}
-                className="absolute top-1/2 right-2 z-10 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-lg transition-all duration-200 hover:scale-105 hover:bg-white md:right-4 dark:bg-slate-800/90 dark:hover:bg-slate-800"
-                style={{ minWidth: '44px', minHeight: '44px' }} // Touch-friendly size
+                className="absolute top-1/2 right-1 z-10 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-lg transition-all duration-200 hover:scale-105 hover:bg-white md:right-4 md:p-3 dark:bg-slate-800/90 dark:hover:bg-slate-800"
+                style={{ minWidth: '36px', minHeight: '36px' }} // Smaller on mobile
                 aria-label="Siguiente imagen"
               >
                 <svg
-                  className="h-5 w-5 text-slate-800 dark:text-slate-200"
+                  className="h-4 w-4 text-slate-800 md:h-5 md:w-5 dark:text-slate-200"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -156,9 +156,9 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
             </>
           )}
 
-          {/* Contador de imágenes - mejor para mobile */}
+          {/* Contador de imágenes - más pequeño y más abajo en mobile */}
           {images.length > 1 && (
-            <div className="absolute right-2 bottom-2 rounded-full bg-black/80 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm md:right-3 md:bottom-3 md:px-3 md:py-1.5 md:text-sm">
+            <div className="absolute right-2 bottom-1 rounded-full bg-black/80 px-2 py-0.5 text-xs font-medium text-white backdrop-blur-sm md:right-3 md:bottom-3 md:px-3 md:py-1.5 md:text-sm">
               {currentIndex + 1} / {images.length}
             </div>
           )}

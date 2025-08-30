@@ -43,9 +43,14 @@ function IntroSection() {
   return (
     <section className="mb-12">
       {/* Cita destacada como título principal */}
-      <h1 className="font-helvetica-bold mb-8 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-slate-100">
-        "El fútbol es como el ajedrez, pero sin dados." — Lukas Podolski
-      </h1>
+      <blockquote className="mb-8 border-l-4 border-sky-600 bg-slate-50 py-4 pl-6 dark:border-sky-400 dark:bg-slate-800/50">
+        <p className="font-helvetica-bold text-xl font-bold text-slate-900 italic sm:text-2xl dark:text-slate-100">
+          "El fútbol es como el ajedrez, pero sin dados."
+        </p>
+        <cite className="font-helvetica-regular mt-2 block text-lg font-medium text-slate-600 not-italic dark:text-slate-400">
+          — Lukas Podolski
+        </cite>
+      </blockquote>
 
       {/* Descripción del proyecto */}
       <div className="font-helvetica-light text-fd-body space-y-6 leading-relaxed text-slate-700 dark:text-slate-300">

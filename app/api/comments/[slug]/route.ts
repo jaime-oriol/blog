@@ -36,7 +36,7 @@ interface CommentsData {
   comments: Comment[]
 }
 
-const DATA_DIR = path.join(process.cwd(), 'data', 'comments')
+const DATA_DIR = path.join(process.cwd(), 'public', 'data', 'comments')
 
 // Función para leer comentarios de un post
 async function getCommentsForPost(slug: string): Promise<CommentsData> {
@@ -58,6 +58,11 @@ async function getCommentsForPost(slug: string): Promise<CommentsData> {
 // Función para guardar comentarios
 async function saveCommentsForPost(slug: string, commentsData: CommentsData): Promise<void> {
   try {
+    // Crear directorio si no existe
+    if (!existsSync(DATA_DIR)) {
+      await mkdir(DATA_DIR, { recursive: true })
+    }
+
     const filePath = path.join(DATA_DIR, `${slug}.json`)
     await writeFile(filePath, JSON.stringify(commentsData, null, 2))
   } catch (error) {
