@@ -22,7 +22,7 @@ interface ContactData {
 
 interface UpdateContactData {
   id: string
-  audienceId?: string
+  audience_id?: string
   unsubscribed?: boolean
   first_name?: string
   last_name?: string
@@ -131,7 +131,7 @@ export async function updateContactWithRetry(
 
   console.log(`[UPDATE] Starting update for contact:`, {
     contactId: updateData.id,
-    audienceId: updateData.audienceId,
+    audience_id: updateData.audience_id,
     unsubscribed: updateData.unsubscribed,
     maxRetries,
   })
