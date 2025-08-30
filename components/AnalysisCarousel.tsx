@@ -22,17 +22,29 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlay, setIsAutoPlay] = useState(autoPlay)
+  const [isMobile, setIsMobile] = useState(false)
 
-  // Auto-play functionality
+  // Detect mobile for auto-play behavior
   useEffect(() => {
-    if (!isAutoPlay || images.length <= 1) return
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Auto-play functionality - paused on mobile for better control
+  useEffect(() => {
+    if (!isAutoPlay || images.length <= 1 || isMobile) return
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
-    }, 3000) // 3 segundos por imagen para análisis táctico
+    }, 3000)
 
     return () => clearInterval(interval)
-  }, [isAutoPlay, images.length])
+  }, [isAutoPlay, images.length, isMobile])
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index)
@@ -57,24 +69,24 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
     <div className="my-8 w-full">
       {/* Título y descripción */}
       {(title || description) && (
-        <div className="mb-4 text-center">
+        <div className="mb-6 text-center">
           {title && (
-            <h3 className="font-helvetica-bold text-xl font-semibold text-slate-900 dark:text-slate-100">
+            <h3 className="font-helvetica-bold mb-2 text-xl font-bold text-slate-900 dark:text-slate-100">
               {title}
             </h3>
           )}
           {description && (
-            <p className="font-helvetica-light mt-2 text-sm text-slate-600 dark:text-slate-400">
+            <p className="font-helvetica-light text-sm text-slate-600 dark:text-slate-400">
               {description}
             </p>
           )}
         </div>
       )}
 
-      {/* Contenedor principal del carrusel */}
-      <div className="relative mx-auto max-w-4xl">
+      {/* Contenedor principal del carrusel - optimizado para ratio 2:1 de las imágenes tácticas */}
+      <div className="relative mx-auto max-w-5xl">
         <div
-          className="relative h-64 overflow-hidden rounded-xl bg-slate-50 md:h-80 lg:h-96 dark:bg-slate-800"
+          className="relative h-60 overflow-hidden rounded-xl bg-slate-50 sm:h-80 md:h-90 lg:h-96 xl:h-[450px] dark:bg-slate-800"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
@@ -91,17 +103,19 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
                   fill
                   className="object-contain"
                   priority={index === 0}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
                 />
               </div>
             ))}
           </div>
 
-          {/* Controles de navegación */}
+          {/* Controles de navegación - mejorados para mobile */}
           {images.length > 1 && (
             <>
               <button
                 onClick={goToPrevious}
-                className="absolute top-1/2 left-4 z-10 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-lg transition-all duration-200 hover:bg-white/95 dark:bg-slate-800/80 dark:hover:bg-slate-800/95"
+                className="absolute top-1/2 left-2 z-10 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-lg transition-all duration-200 hover:scale-105 hover:bg-white md:left-4 dark:bg-slate-800/90 dark:hover:bg-slate-800"
+                style={{ minWidth: '44px', minHeight: '44px' }} // Touch-friendly size
                 aria-label="Imagen anterior"
               >
                 <svg
@@ -121,7 +135,8 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
 
               <button
                 onClick={goToNext}
-                className="absolute top-1/2 right-4 z-10 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-lg transition-all duration-200 hover:bg-white/95 dark:bg-slate-800/80 dark:hover:bg-slate-800/95"
+                className="absolute top-1/2 right-2 z-10 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-lg transition-all duration-200 hover:scale-105 hover:bg-white md:right-4 dark:bg-slate-800/90 dark:hover:bg-slate-800"
+                style={{ minWidth: '44px', minHeight: '44px' }} // Touch-friendly size
                 aria-label="Siguiente imagen"
               >
                 <svg
@@ -143,24 +158,25 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
 
           {/* Contador de imágenes */}
           {images.length > 1 && (
-            <div className="absolute top-4 right-4 rounded-full bg-black/60 px-3 py-1 text-sm text-white backdrop-blur-sm">
+            <div className="absolute top-3 right-3 rounded-full bg-black/70 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
               {currentIndex + 1} / {images.length}
             </div>
           )}
         </div>
 
-        {/* Indicadores (dots) */}
+        {/* Indicadores (dots) - más grandes en mobile */}
         {showDots && images.length > 1 && (
-          <div className="flex justify-center space-x-2 pt-4">
+          <div className="flex justify-center space-x-3 pt-6">
             {images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`h-3 w-3 rounded-full transition-all duration-200 ${
+                className={`rounded-full transition-all duration-200 ${
                   index === currentIndex
-                    ? 'scale-110 bg-sky-600 dark:bg-sky-400'
-                    : 'bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-500'
+                    ? 'h-3 w-3 scale-110 bg-sky-600 md:h-2.5 md:w-2.5 dark:bg-sky-400'
+                    : 'h-3 w-3 bg-slate-300 hover:bg-slate-400 md:h-2.5 md:w-2.5 dark:bg-slate-600 dark:hover:bg-slate-500'
                 }`}
+                style={{ minWidth: '12px', minHeight: '12px' }} // Touch-friendly minimum
                 aria-label={`Ir a la imagen ${index + 1}`}
               />
             ))}

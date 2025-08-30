@@ -82,7 +82,7 @@ const Callout = ({
     <div className={`rounded-lg border p-4 ${getStyles(type)}`}>
       <div className="flex items-start space-x-3">
         <span className="text-lg">{getIcon(type)}</span>
-        <div className="font-body leading-relaxed">{children}</div>
+        <div className="font-helvetica-light text-fd-body leading-relaxed">{children}</div>
       </div>
     </div>
   )
@@ -114,7 +114,7 @@ const StatCard = ({
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800">
       <div className="flex items-center justify-between">
-        <h3 className="font-body text-sm font-medium text-slate-600 dark:text-slate-400">
+        <h3 className="font-helvetica-regular text-sm font-medium text-slate-600 dark:text-slate-400">
           {title}
         </h3>
         {getTrendIcon(trend)}
@@ -125,7 +125,9 @@ const StatCard = ({
         </span>
       </div>
       {description && (
-        <p className="font-body mt-1 text-xs text-slate-500 dark:text-slate-400">{description}</p>
+        <p className="font-helvetica-light text-xs text-slate-500 dark:text-slate-400">
+          {description}
+        </p>
       )}
     </div>
   )
@@ -134,11 +136,11 @@ const StatCard = ({
 // Quote personalizado para citas técnicas
 const TechnicalQuote = ({ children, source }: { children: React.ReactNode; source?: string }) => (
   <blockquote className="border-l-4 border-slate-300 bg-slate-50 py-4 pr-4 pl-6 italic dark:border-slate-600 dark:bg-slate-800/50">
-    <div className="font-body text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+    <div className="font-helvetica-light text-lg leading-relaxed text-slate-700 dark:text-slate-300">
       {children}
     </div>
     {source && (
-      <cite className="font-body mt-2 block text-sm text-slate-500 dark:text-slate-400">
+      <cite className="font-helvetica-regular mt-2 block text-sm text-slate-500 dark:text-slate-400">
         — {source}
       </cite>
     )}
@@ -185,7 +187,7 @@ export const components: MDXComponents = {
     return (
       // eslint-disable-next-line jsx-a11y/heading-has-content
       <h1
-        className="font-headings mt-8 mb-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100"
+        className="font-helvetica-bold text-fd-title mt-8 mb-4 font-bold tracking-tight text-slate-900 dark:text-slate-100"
         {...props}
       />
     )
@@ -199,7 +201,7 @@ export const components: MDXComponents = {
     return (
       // eslint-disable-next-line jsx-a11y/heading-has-content
       <h2
-        className="font-headings mt-8 mb-4 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100"
+        className="font-helvetica-bold text-fd-subtitle mt-8 mb-4 font-bold tracking-tight text-slate-900 dark:text-slate-100"
         {...props}
       />
     )
@@ -213,7 +215,7 @@ export const components: MDXComponents = {
     return (
       // eslint-disable-next-line jsx-a11y/heading-has-content
       <h3
-        className="font-headings mt-6 mb-3 text-xl font-semibold text-slate-900 dark:text-slate-100"
+        className="font-helvetica-bold text-fd-subtitle mt-6 mb-3 font-bold text-slate-900 dark:text-slate-100"
         {...props}
       />
     )
@@ -221,15 +223,24 @@ export const components: MDXComponents = {
 
   // Párrafos optimizados
   p: (props) => (
-    <p className="font-body mb-4 leading-relaxed text-slate-700 dark:text-slate-300" {...props} />
+    <p
+      className="font-helvetica-light text-fd-body mb-4 leading-relaxed text-slate-700 dark:text-slate-300"
+      {...props}
+    />
   ),
 
   // Listas con mejor espaciado
   ul: (props) => (
-    <ul className="font-body space-y-2 text-slate-700 dark:text-slate-300" {...props} />
+    <ul
+      className="font-helvetica-light text-fd-body space-y-2 text-slate-700 dark:text-slate-300"
+      {...props}
+    />
   ),
   ol: (props) => (
-    <ol className="font-body space-y-2 text-slate-700 dark:text-slate-300" {...props} />
+    <ol
+      className="font-helvetica-light text-fd-body space-y-2 text-slate-700 dark:text-slate-300"
+      {...props}
+    />
   ),
 
   // Código inline con monospace
