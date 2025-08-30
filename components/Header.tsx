@@ -35,13 +35,13 @@ const Header = () => {
     <header className={headerClass}>
       {/* Logo principal */}
       <Link href="/" aria-label={siteMetadata.headerTitle}>
-        <div className="flex items-end">
+        <div className="-ml-4 flex items-end">
           <Image
             src={logoSrc}
             alt={siteMetadata.headerTitle}
             width={400}
             height={160}
-            className="h-40 w-auto"
+            className="h-32 w-auto"
           />
         </div>
       </Link>
