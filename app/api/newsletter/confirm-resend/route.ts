@@ -3,7 +3,16 @@ import { verifyConfirmationToken } from '@/lib/jwt-tokens'
 import { listContactsWithRetry, updateContactWithRetry } from '@/lib/resend'
 
 // Cache para idempotencia - evitar procesamiento doble del mismo token
-const confirmationCache = new Map<string, { result: any; timestamp: number }>()
+interface CachedResult {
+  result: {
+    message: string
+    email: string
+    status?: string
+  }
+  timestamp: number
+}
+
+const confirmationCache = new Map<string, CachedResult>()
 const CACHE_DURATION = 5 * 60 * 1000 // 5 minutos
 
 async function findContactByEmail(

@@ -107,10 +107,12 @@ export const Blog = defineDocumentType(() => ({
     images: { type: 'json' },
     image: { type: 'string' }, // Nueva imagen destacada
     authors: { type: 'list', of: { type: 'string' } },
+    author: { type: 'string' }, // Campo autor individual
     layout: { type: 'string' },
     bibliography: { type: 'string' },
     canonicalUrl: { type: 'string' },
     section: { type: 'string', required: true }, // Nuevo campo obligatorio
+    featured: { type: 'boolean' }, // Campo para artículos destacados
   },
   computedFields: {
     ...computedFields,
