@@ -113,6 +113,8 @@ export async function sendEmailWithRetry(
       throw resendError
     }
   }
+
+  throw new Error('All retry attempts failed')
 }
 
 export async function createContactWithRetry(
@@ -145,6 +147,8 @@ export async function createContactWithRetry(
       throw resendError
     }
   }
+
+  throw new Error('All retry attempts failed')
 }
 
 export async function updateContactWithRetry(
@@ -253,4 +257,6 @@ export async function listContactsWithRetry(
       throw resendError
     }
   }
+
+  throw new Error('All retry attempts failed')
 }
