@@ -1,8 +1,5 @@
 // app/api/comments/[slug]/route.ts
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, readFile, mkdir } from 'fs/promises'
-import { existsSync } from 'fs'
-import path from 'path'
 import crypto from 'crypto'
 
 interface Comment {
@@ -36,19 +33,38 @@ interface CommentsData {
   comments: Comment[]
 }
 
-const DATA_DIR = path.join(process.cwd(), 'public', 'data', 'comments')
+// Usar JSONBin.io como almacenamiento simple (gratis hasta 100k requests/mes)
+const JSONBIN_API = 'https://api.jsonbin.io/v3/b'
+const JSONBIN_KEY =
+  process.env.JSONBIN_API_KEY || '$2a$10$viVRz9keKfVOYAHpSWQ8duX0ErkoHNNOc10PPYdwlFHdDH/i5IVgy'
 
 // Función para leer comentarios de un post
 async function getCommentsForPost(slug: string): Promise<CommentsData> {
-  const filePath = path.join(DATA_DIR, `${slug}.json`)
-
   try {
-    if (!existsSync(filePath)) {
+    // En desarrollo local, devolver comentarios vacíos
+    if (process.env.NODE_ENV === 'development') {
       return { postSlug: slug, comments: [] }
     }
 
-    const data = await readFile(filePath, 'utf8')
-    return JSON.parse(data)
+    // En producción, intentar leer de JSONBin
+    const binId = `comments-${slug}`
+    const response = await fetch(`${JSONBIN_API}/${binId}/latest`, {
+      headers: {
+        'X-Master-Key': JSONBIN_KEY,
+      },
+    })
+
+    if (response.status === 404) {
+      return { postSlug: slug, comments: [] }
+    }
+
+    if (!response.ok) {
+      console.error('Error fetching from JSONBin:', response.status)
+      return { postSlug: slug, comments: [] }
+    }
+
+    const data = await response.json()
+    return data.record
   } catch (error) {
     console.error('Error reading comments:', error)
     return { postSlug: slug, comments: [] }
@@ -58,13 +74,26 @@ async function getCommentsForPost(slug: string): Promise<CommentsData> {
 // Función para guardar comentarios
 async function saveCommentsForPost(slug: string, commentsData: CommentsData): Promise<void> {
   try {
-    // Crear directorio si no existe
-    if (!existsSync(DATA_DIR)) {
-      await mkdir(DATA_DIR, { recursive: true })
+    // En desarrollo local, solo hacer log
+    if (process.env.NODE_ENV === 'development') {
+      console.log('DEV: Would save comment:', commentsData)
+      return
     }
 
-    const filePath = path.join(DATA_DIR, `${slug}.json`)
-    await writeFile(filePath, JSON.stringify(commentsData, null, 2))
+    // En producción, guardar en JSONBin
+    const binId = `comments-${slug}`
+    const response = await fetch(`${JSONBIN_API}/${binId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_KEY,
+      },
+      body: JSON.stringify(commentsData),
+    })
+
+    if (!response.ok) {
+      throw new Error(`JSONBin error: ${response.status}`)
+    }
   } catch (error) {
     console.error('Error saving comments:', error)
     throw error
