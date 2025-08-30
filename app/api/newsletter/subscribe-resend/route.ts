@@ -83,8 +83,8 @@ async function addContactToAudience(
     const response = await createContactWithRetry({
       audience_id: process.env.RESEND_AUDIENCE_ID,
       email: email.toLowerCase(),
-      firstName: '',
-      lastName: '',
+      first_name: '',
+      last_name: '',
       unsubscribed: true,
     })
 
