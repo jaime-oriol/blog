@@ -24,7 +24,7 @@ async function findContactByEmail(
 
   try {
     const response = await listContactsWithRetry({
-      audienceId: process.env.RESEND_AUDIENCE_ID,
+      audience_id: process.env.RESEND_AUDIENCE_ID,
     })
 
     if (response.error) {
@@ -55,7 +55,7 @@ async function activateContact(contactId: string): Promise<boolean> {
 
   try {
     const response = await updateContactWithRetry({
-      audienceId: process.env.RESEND_AUDIENCE_ID,
+      audience_id: process.env.RESEND_AUDIENCE_ID,
       id: contactId,
       unsubscribed: false,
     })
