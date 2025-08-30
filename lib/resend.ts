@@ -1,75 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// Newsletter functionality restored to working version from commit f73102e
+// Using 'any' types as they worked in the original implementation
 import { Resend } from 'resend'
 
 let resendInstance: Resend | null = null
-
-// Types for Resend API
-interface EmailData {
-  from: string
-  to: string | string[]
-  subject: string
-  html?: string
-  text?: string
-  reply_to?: string
-}
-
-interface ContactData {
-  email: string
-  first_name?: string
-  last_name?: string
-  unsubscribed?: boolean
-  audience_id?: string
-}
-
-interface UpdateContactData {
-  id: string
-  audience_id?: string
-  unsubscribed?: boolean
-  first_name?: string
-  last_name?: string
-}
-
-interface ListContactsData {
-  audience_id?: string
-}
-
-interface ContactResponse {
-  id: string
-  email: string
-  first_name?: string
-  last_name?: string
-  unsubscribed: boolean
-  created_at: string
-}
-
-interface ListContactsResponse {
-  data: ContactResponse[]
-  object: string
-}
-
-interface CreateContactResponse {
-  id: string
-  object: string
-}
-
-interface UpdateContactResponse {
-  id: string
-  object: string
-}
-
-interface ResendResponse<T = unknown> {
-  data?: T
-  error?: {
-    name?: string
-    message: string
-    statusCode?: number
-  }
-}
-
-interface ResendError {
-  name?: string
-  message: string
-  statusCode?: number
-}
 
 export function getResendClient(): Resend {
   if (!resendInstance) {
@@ -81,10 +15,7 @@ export function getResendClient(): Resend {
   return resendInstance
 }
 
-export async function sendEmailWithRetry(
-  emailData: EmailData,
-  maxRetries: number = 3
-): Promise<ResendResponse> {
+export async function sendEmailWithRetry(emailData: any, maxRetries: number = 3): Promise<any> {
   const resend = getResendClient()
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -96,10 +27,8 @@ export async function sendEmailWithRetry(
       }
 
       return response
-    } catch (error: unknown) {
-      const resendError = error as ResendError
-      const isRateLimit =
-        resendError?.name === 'rate_limit_exceeded' || resendError?.statusCode === 429
+    } catch (error: any) {
+      const isRateLimit = error?.name === 'rate_limit_exceeded' || error?.statusCode === 429
       const isLastAttempt = attempt === maxRetries
 
       if (isRateLimit && !isLastAttempt) {
@@ -110,17 +39,15 @@ export async function sendEmailWithRetry(
       }
 
       // Si no es rate limit o es el último intento, lanzar error
-      throw resendError
+      throw error
     }
   }
-
-  throw new Error('All retry attempts failed')
 }
 
 export async function createContactWithRetry(
-  contactData: ContactData,
+  contactData: any,
   maxRetries: number = 3
-): Promise<ResendResponse<CreateContactResponse>> {
+): Promise<any> {
   const resend = getResendClient()
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -132,10 +59,8 @@ export async function createContactWithRetry(
       }
 
       return response
-    } catch (error: unknown) {
-      const resendError = error as ResendError
-      const isRateLimit =
-        resendError?.name === 'rate_limit_exceeded' || resendError?.statusCode === 429
+    } catch (error: any) {
+      const isRateLimit = error?.name === 'rate_limit_exceeded' || error?.statusCode === 429
       const isLastAttempt = attempt === maxRetries
 
       if (isRateLimit && !isLastAttempt) {
@@ -144,93 +69,42 @@ export async function createContactWithRetry(
         continue
       }
 
-      throw resendError
+      throw error
     }
   }
-
-  throw new Error('All retry attempts failed')
 }
 
 export async function updateContactWithRetry(
-  updateData: UpdateContactData,
+  updateData: any,
   maxRetries: number = 3
-): Promise<ResendResponse<UpdateContactResponse>> {
+): Promise<any> {
   const resend = getResendClient()
-
-  console.log(`[UPDATE] Starting update for contact:`, {
-    contactId: updateData.id,
-    audience_id: updateData.audience_id,
-    unsubscribed: updateData.unsubscribed,
-    maxRetries,
-  })
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
-      console.log(`[UPDATE] Attempt ${attempt}/${maxRetries} for contact ${updateData.id}`)
-
       const response = await resend.contacts.update(updateData)
 
-      console.log(`[UPDATE] Raw response for contact ${updateData.id}:`, {
-        attempt,
-        hasError: !!response.error,
-        errorMessage: response.error?.message,
-        data: response.data,
-      })
-
       if (response.error) {
-        console.error(`[UPDATE] API returned error for contact ${updateData.id}:`, response.error)
-
-        // Don't throw immediately, let the retry logic handle it unless it's the last attempt
-        if (attempt === maxRetries) {
-          throw response.error
-        }
-
-        const waitTime = Math.pow(2, attempt - 1) * 1000
-        console.log(`[UPDATE] API error occurred, waiting ${waitTime}ms before retry...`)
-        await new Promise((resolve) => setTimeout(resolve, waitTime))
-        continue
+        throw response.error
       }
 
-      console.log(`[UPDATE] Successfully updated contact ${updateData.id} on attempt ${attempt}`)
       return response
-    } catch (error: unknown) {
-      const resendError = error as ResendError
-      const isRateLimit =
-        resendError?.name === 'rate_limit_exceeded' || resendError?.statusCode === 429
+    } catch (error: any) {
+      const isRateLimit = error?.name === 'rate_limit_exceeded' || error?.statusCode === 429
       const isLastAttempt = attempt === maxRetries
-
-      console.error(`[UPDATE] Exception in attempt ${attempt} for contact ${updateData.id}:`, {
-        errorName: resendError?.name,
-        statusCode: resendError?.statusCode,
-        message: resendError?.message,
-        isRateLimit,
-        isLastAttempt,
-      })
 
       if (isRateLimit && !isLastAttempt) {
         const waitTime = Math.pow(2, attempt - 1) * 1000
-        console.log(`[UPDATE] Rate limit hit, waiting ${waitTime}ms before retry...`)
         await new Promise((resolve) => setTimeout(resolve, waitTime))
         continue
       }
 
-      if (isLastAttempt) {
-        console.error(`[UPDATE] All attempts failed for contact ${updateData.id}`)
-        throw resendError
-      }
-
-      // For other errors, still wait before retry
-      const waitTime = Math.pow(2, attempt - 1) * 1000
-      console.log(`[UPDATE] Non-rate-limit error, waiting ${waitTime}ms before retry...`)
-      await new Promise((resolve) => setTimeout(resolve, waitTime))
+      throw error
     }
   }
 }
 
-export async function listContactsWithRetry(
-  listData: ListContactsData,
-  maxRetries: number = 3
-): Promise<ResendResponse<ListContactsResponse>> {
+export async function listContactsWithRetry(listData: any, maxRetries: number = 3): Promise<any> {
   const resend = getResendClient()
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -242,10 +116,8 @@ export async function listContactsWithRetry(
       }
 
       return response
-    } catch (error: unknown) {
-      const resendError = error as ResendError
-      const isRateLimit =
-        resendError?.name === 'rate_limit_exceeded' || resendError?.statusCode === 429
+    } catch (error: any) {
+      const isRateLimit = error?.name === 'rate_limit_exceeded' || error?.statusCode === 429
       const isLastAttempt = attempt === maxRetries
 
       if (isRateLimit && !isLastAttempt) {
@@ -254,9 +126,7 @@ export async function listContactsWithRetry(
         continue
       }
 
-      throw resendError
+      throw error
     }
   }
-
-  throw new Error('All retry attempts failed')
 }

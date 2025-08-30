@@ -30,7 +30,7 @@ async function findContactByEmail(
       console.log(`[FIND] Attempt ${attempt}/${maxRetries} for ${email}`)
 
       const response = await listContactsWithRetry({
-        audience_id: process.env.RESEND_AUDIENCE_ID,
+        audienceId: process.env.RESEND_AUDIENCE_ID,
       })
 
       if (response.error) {
@@ -101,7 +101,7 @@ async function activateContact(contactId: string, email: string): Promise<boolea
 
   try {
     const response = await updateContactWithRetry({
-      audience_id: process.env.RESEND_AUDIENCE_ID,
+      audienceId: process.env.RESEND_AUDIENCE_ID,
       id: contactId,
       unsubscribed: false,
     })
