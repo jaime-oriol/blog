@@ -54,7 +54,7 @@ async function checkExistingContact(
       return { exists: false }
     }
 
-    const existingContact = response.data?.data.find(
+    const existingContact = response.data?.data?.find(
       (contact) => contact.email.toLowerCase() === email.toLowerCase()
     )
 

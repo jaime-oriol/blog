@@ -49,7 +49,7 @@ async function findContactByEmail(
 
       console.log(`[FIND] Retrieved ${response.data?.data?.length || 0} contacts`)
 
-      const contact = response.data?.data.find(
+      const contact = response.data?.data?.find(
         (contact) => contact.email.toLowerCase() === email.toLowerCase()
       )
 
