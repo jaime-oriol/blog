@@ -75,9 +75,9 @@ export default function ArticleCard({ post }: ArticleCardProps) {
               </p>
             )}
 
-            {/* ETIQUETA DE SECCIÓN encima de fecha */}
+            {/* ETIQUETA DE SECCIÓN alineada a la derecha encima de fecha */}
             {section && (
-              <div className="mb-2">
+              <div className="mb-2 flex justify-end">
                 <span
                   className={`inline-flex items-center rounded-md px-2.5 py-1 font-mono text-xs font-semibold shadow-sm ${getSectionColor(section)}`}
                 >

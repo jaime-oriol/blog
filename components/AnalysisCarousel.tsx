@@ -84,7 +84,7 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
       )}
 
       {/* Contenedor principal del carrusel - optimizado para ratio 2:1 de las imágenes tácticas */}
-      <div className="relative mx-auto max-w-5xl">
+      <div className="relative max-w-5xl">
         <div
           className="relative h-60 overflow-hidden rounded-xl bg-slate-50 sm:h-80 md:h-90 lg:h-96 xl:h-[450px] dark:bg-slate-800"
           onMouseEnter={handleMouseEnter}
@@ -101,7 +101,7 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
                   src={`${basePath}/${imageName}`}
                   alt={`Análisis táctico - paso ${index + 1}`}
                   fill
-                  className="object-contain"
+                  className="object-cover"
                   priority={index === 0}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
                 />
@@ -158,7 +158,7 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
 
           {/* Contador de imágenes */}
           {images.length > 1 && (
-            <div className="absolute top-3 right-3 rounded-full bg-black/70 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
+            <div className="absolute right-3 bottom-3 rounded-full bg-black/70 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
               {currentIndex + 1} / {images.length}
             </div>
           )}
