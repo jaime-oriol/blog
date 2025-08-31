@@ -201,7 +201,7 @@ export const components: MDXComponents = {
     return (
       // eslint-disable-next-line jsx-a11y/heading-has-content
       <h2
-        className="font-helvetica-bold text-fd-subtitle mt-3 mb-1 font-bold tracking-tight text-slate-900 dark:text-slate-100"
+        className="font-helvetica-bold text-fd-subtitle mt-2 mb-1 font-bold tracking-tight text-slate-900 dark:text-slate-100"
         {...props}
       />
     )
@@ -215,7 +215,7 @@ export const components: MDXComponents = {
     return (
       // eslint-disable-next-line jsx-a11y/heading-has-content
       <h3
-        className="font-helvetica-bold text-fd-subtitle mt-2 mb-1 font-bold text-slate-900 dark:text-slate-100"
+        className="font-helvetica-bold text-fd-subtitle mt-1 mb-1 font-bold text-slate-900 dark:text-slate-100"
         {...props}
       />
     )
@@ -224,7 +224,7 @@ export const components: MDXComponents = {
   // Párrafos optimizados
   p: (props) => (
     <p
-      className="font-helvetica-light text-fd-body mb-2 leading-relaxed text-slate-700 dark:text-slate-300"
+      className="font-helvetica-light text-fd-body mb-1 leading-relaxed text-slate-700 dark:text-slate-300"
       {...props}
     />
   ),
