@@ -4,8 +4,7 @@ const siteMetadata = {
   title: 'FootballDecoded',
   author: 'Jaime Oriol',
   headerTitle: 'FootballDecoded',
-  description:
-    'Análisis táctico avanzado, métricas cuantitativas y scouting funcional para el fútbol profesional.',
+  description: 'FootballDecoded',
   language: 'es-ES',
   locale: 'es-ES',
 

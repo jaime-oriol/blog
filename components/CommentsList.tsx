@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useSession, signIn } from 'next-auth/react'
 import { formatDate } from 'pliny/utils/formatDate'
 import siteMetadata from '@/content/siteMetadata'
 import Image from '@/components/Image'
@@ -30,11 +31,12 @@ interface CommentsListProps {
 }
 
 export default function CommentsList({ postSlug, refreshTrigger }: CommentsListProps) {
+  const { data: session } = useSession()
   const [comments, setComments] = useState<Comment[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [replyingTo, setReplyingTo] = useState<string | null>(null)
-  const [replyForm, setReplyForm] = useState({ name: '', email: '', message: '' })
+  const [replyMessage, setReplyMessage] = useState('')
   const [likingComments, setLikingComments] = useState<Set<string>>(new Set())
 
   const fetchComments = async () => {
@@ -117,8 +119,13 @@ export default function CommentsList({ postSlug, refreshTrigger }: CommentsListP
 
   // Manejar respuesta
   const handleReply = async (parentId: string) => {
-    if (!replyForm.name || !replyForm.email || !replyForm.message) {
-      alert('Por favor completa todos los campos')
+    if (!session) {
+      signIn('google')
+      return
+    }
+
+    if (!replyMessage.trim()) {
+      alert('Por favor escribe una respuesta')
       return
     }
 
@@ -129,9 +136,10 @@ export default function CommentsList({ postSlug, refreshTrigger }: CommentsListP
         body: JSON.stringify({
           action: 'reply',
           commentId: parentId,
-          name: replyForm.name,
-          email: replyForm.email,
-          message: replyForm.message,
+          name: session.user?.name || 'Usuario',
+          email: session.user?.email || '',
+          message: replyMessage,
+          avatar: session.user?.image || '',
         }),
       })
 
@@ -141,7 +149,7 @@ export default function CommentsList({ postSlug, refreshTrigger }: CommentsListP
         // Refrescar comentarios para mostrar la nueva respuesta
         fetchComments()
         // Limpiar formulario y cerrar
-        setReplyForm({ name: '', email: '', message: '' })
+        setReplyMessage('')
         setReplyingTo(null)
       } else {
         alert(data.error || 'Error al enviar respuesta')
@@ -327,7 +335,13 @@ export default function CommentsList({ postSlug, refreshTrigger }: CommentsListP
                       </button>
                       <button
                         type="button"
-                        onClick={() => setReplyingTo(replyingTo === comment.id ? null : comment.id)}
+                        onClick={() => {
+                          if (!session) {
+                            signIn('google')
+                            return
+                          }
+                          setReplyingTo(replyingTo === comment.id ? null : comment.id)
+                        }}
                         className="flex items-center text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
                       >
                         <svg
@@ -343,52 +357,51 @@ export default function CommentsList({ postSlug, refreshTrigger }: CommentsListP
                             d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
                           />
                         </svg>
-                        Responder
+                        {session ? 'Responder' : 'Iniciar sesión para responder'}
                       </button>
                     </div>
 
                     {/* Formulario de respuesta */}
-                    {replyingTo === comment.id && (
+                    {replyingTo === comment.id && session && (
                       <div className="mt-4 rounded-md bg-gray-50 p-4 dark:bg-gray-700/50">
-                        <div className="space-y-3">
-                          <div className="grid gap-3 sm:grid-cols-2">
-                            <input
-                              type="text"
-                              placeholder="Tu nombre"
-                              value={replyForm.name}
-                              onChange={(e) => setReplyForm({ ...replyForm, name: e.target.value })}
-                              className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800"
+                        {/* Mostrar usuario logueado */}
+                        <div className="mb-3 flex items-center space-x-3">
+                          {session.user?.image && (
+                            <Image
+                              src={session.user.image}
+                              alt={session.user.name || 'Usuario'}
+                              width={32}
+                              height={32}
+                              className="rounded-full"
                             />
-                            <input
-                              type="email"
-                              placeholder="tu@email.com"
-                              value={replyForm.email}
-                              onChange={(e) =>
-                                setReplyForm({ ...replyForm, email: e.target.value })
-                              }
-                              className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800"
-                            />
+                          )}
+                          <div>
+                            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                              Respondiendo como <strong>{session.user?.name}</strong>
+                            </p>
                           </div>
+                        </div>
+
+                        <div className="space-y-3">
                           <textarea
                             rows={3}
                             placeholder="Tu respuesta..."
-                            value={replyForm.message}
-                            onChange={(e) =>
-                              setReplyForm({ ...replyForm, message: e.target.value })
-                            }
+                            value={replyMessage}
+                            onChange={(e) => setReplyMessage(e.target.value)}
                             className="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800"
                           />
                           <div className="flex space-x-2">
                             <button
                               onClick={() => handleReply(comment.id)}
-                              className="bg-primary-600 hover:bg-primary-700 rounded-md px-4 py-2 text-sm font-medium text-white"
+                              disabled={!replyMessage.trim()}
+                              className="bg-primary-600 hover:bg-primary-700 rounded-md px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
                             >
                               Enviar respuesta
                             </button>
                             <button
                               onClick={() => {
                                 setReplyingTo(null)
-                                setReplyForm({ name: '', email: '', message: '' })
+                                setReplyMessage('')
                               }}
                               className="rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
                             >
