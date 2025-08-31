@@ -1,18 +1,24 @@
-// Sistema de comentarios con almacenamiento Vercel KV
-import { kv } from '@vercel/kv'
+// Sistema de comentarios con almacenamiento Upstash Redis
+import { Redis } from '@upstash/redis'
 import type { CommentsData, Comment } from './shared-store'
 
 interface CommentsDatabase {
   [postSlug: string]: CommentsData
 }
 
+// Inicializar Redis client con variables de entorno específicas
+const redis = new Redis({
+  url: process.env.COMMENTS_KV_REST_API_URL!,
+  token: process.env.COMMENTS_KV_REST_API_TOKEN!,
+})
+
 // Función para obtener comentarios de un post específico
 export async function getCommentsForPost(postSlug: string): Promise<CommentsData> {
   try {
-    const commentsData = await kv.get<CommentsData>(`comments:${postSlug}`)
+    const commentsData = await redis.get<CommentsData>(`comments:${postSlug}`)
     return commentsData || { postSlug, comments: [] }
   } catch (error) {
-    console.error('Error reading comments from KV:', error)
+    console.error('Error reading comments from Redis:', error)
     return { postSlug, comments: [] }
   }
 }
@@ -23,10 +29,10 @@ export async function saveCommentsForPost(
   commentsData: CommentsData
 ): Promise<void> {
   try {
-    await kv.set(`comments:${postSlug}`, commentsData)
-    console.log(`Comments saved to KV for slug: ${postSlug}`)
+    await redis.set(`comments:${postSlug}`, commentsData)
+    console.log(`Comments saved to Redis for slug: ${postSlug}`)
   } catch (error) {
-    console.error('Error saving comments to KV:', error)
+    console.error('Error saving comments to Redis:', error)
     throw error
   }
 }
@@ -38,7 +44,7 @@ export async function addCommentToPost(postSlug: string, comment: Comment): Prom
     commentsData.comments.push(comment)
     await saveCommentsForPost(postSlug, commentsData)
   } catch (error) {
-    console.error('Error adding comment to KV:', error)
+    console.error('Error adding comment to Redis:', error)
     throw error
   }
 }
@@ -51,11 +57,11 @@ export async function getCommentsStats(): Promise<{
 }> {
   try {
     // Obtener todas las claves de comentarios
-    const keys = await kv.keys('comments:*')
+    const keys = await redis.keys('comments:*')
     const totalPosts = keys.length
 
     // Obtener todos los comentarios
-    const allCommentsData = await Promise.all(keys.map((key) => kv.get<CommentsData>(key)))
+    const allCommentsData = await Promise.all(keys.map((key) => redis.get<CommentsData>(key)))
 
     const allComments = allCommentsData
       .filter((data): data is CommentsData => data !== null)
@@ -71,20 +77,20 @@ export async function getCommentsStats(): Promise<{
       recentComments,
     }
   } catch (error) {
-    console.error('Error getting stats from KV:', error)
+    console.error('Error getting stats from Redis:', error)
     return { totalPosts: 0, totalComments: 0, recentComments: [] }
   }
 }
 
 // Función para migrar datos existentes (si es necesario)
-export async function migrateFromLocalToKV(localData: CommentsDatabase): Promise<void> {
+export async function migrateFromLocalToRedis(localData: CommentsDatabase): Promise<void> {
   try {
     for (const [postSlug, commentsData] of Object.entries(localData)) {
       await saveCommentsForPost(postSlug, commentsData)
     }
-    console.log('Migration to KV completed successfully')
+    console.log('Migration to Redis completed successfully')
   } catch (error) {
-    console.error('Error during migration to KV:', error)
+    console.error('Error during migration to Redis:', error)
     throw error
   }
 }
