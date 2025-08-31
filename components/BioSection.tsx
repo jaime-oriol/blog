@@ -8,50 +8,54 @@ const BioSection = () => {
         {/* Contenido biográfico - misma tipografía que Main.tsx */}
         <div className="font-body space-y-6 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
           <p>
-            Mi primera memoria futbolística real fue el Barça de Messi. Tenía unos 8 años y lo
-            recuerdo perfectamente: no era solo la victoria, era esa precisión absoluta que
-            convertía cada pase en parte de algo más grande. Desde entonces, lo que comenzó como
-            admiración pura se transformó en una curiosidad analítica que no he podido —ni querido—
-            abandonar.
+            Mi relación con el fútbol comenzó con el Barça de Messi cuando tenía ocho años. Recuerdo
+            perfectamente aquella sensación: no era solo presenciar victorias, era observar una
+            precisión quirúrgica donde cada pase formaba parte de una arquitectura mayor. Lo que
+            empezó como admiración infantil evolucionó hacia una curiosidad analítica que define mi
+            aproximación actual al juego.
           </p>
 
           <p>
-            El fútbol siempre ha estado presente en mi vida, primero como jugador, después como
-            observador obsesivo. Pero llegó un momento en que mirar ya no era suficiente. Necesitaba
-            entender el porqué detrás de cada movimiento, la lógica oculta que convierte once
-            individualidades en un sistema coherente. Esa necesidad de descifrar los patrones me
-            llevó a donde estoy hoy.
+            El fútbol ha sido una constante en mi vida, primero como jugador, después como
+            observador meticuloso. Pero llegó un momento en que la observación pasiva resultó
+            insuficiente. Necesitaba descifrar los mecanismos subyacentes, entender la lógica que
+            transforma once individualidades en un sistema coherente, identificar los patrones que
+            separan el caos aparente de la estrategia deliberada. Esa necesidad de comprensión
+            profunda marcó mi trayectoria académica y profesional.
           </p>
 
           <p>
-            Curso 4º de un doble grado en Business Analytics e Ingeniería Informática en la UFV, una
-            combinación que no fue casual. Creo firmemente que el futuro del análisis futbolístico
-            pasa por dominar tanto el lenguaje de los datos como las herramientas que los hacen
-            hablar. Este año, además, inicio el Máster en Big Data aplicado al Scouting en fútbol
-            del Sevilla FC en Sport Data Campus, porque hay algo fascinante en la idea de traducir
-            intuición futbolística en modelos predictivos rigurosos.
+            Actualmente curso el cuarto año de un doble grado en Business Analytics e Ingeniería
+            Informática en la Universidad Francisco de Vitoria, una combinación deliberadamente
+            elegida. El futuro del análisis futbolístico requiere dominar tanto el lenguaje
+            estadístico como las herramientas computacionales que lo hacen aplicable. Este año
+            inicio además el Máster en Big Data aplicado al Scouting del Sevilla FC en Sport Data
+            Campus, buscando traducir la intuición futbolística en modelos predictivos rigurosos y
+            aplicables al rendimiento profesional.
           </p>
 
           <p>
-            Lo que realmente me apasiona del análisis no son los highlights ni las jugadas obvias.
-            Es lo sutil: esos movimientos coordinados que preceden a la acción decisiva, las
-            micro-decisiones que alteran el equilibrio del juego, los patrones que se repiten pero
-            que solo se revelan cuando miras más allá del resultado. Mi gran pregunta siempre es la
-            misma: ¿esto se puede medir y explicar?
+            Mi interés analítico se centra en lo imperceptible: las secuencias coordinadas que
+            preceden a la acción decisiva, las micro-decisiones que alteran equilibrios tácticos,
+            los patrones recurrentes que solo emergen mediante análisis sistemático. La pregunta que
+            guía mi trabajo es siempre la misma: ¿puede esto medirse, explicarse y, eventualmente,
+            predecirse?
           </p>
 
           <p>
-            Soy del Barça, sí, pero he aprendido que la lealtad en el análisis debe ser solo con la
-            verdad y los datos. Si algo brillante sucede en cualquier equipo, merece ser comprendido
-            y explicado con la misma precisión. FootballDecoded nació de esa necesidad de equilibrio
-            entre pasión y rigor.
+            Soy barcelonista, pero en el análisis profesional la única lealtad debe ser con los
+            datos y la objetividad. Cuando algo extraordinario ocurre en cualquier equipo, merece
+            ser analizado con el mismo rigor metodológico. FootballDecoded nace precisamente de esa
+            convicción: equilibrar la pasión por el juego con el rigor analítico necesario para
+            comprenderlo verdaderamente.
           </p>
 
           <p>
-            Estoy en una etapa de exploración constante, aprendiendo sobre todas las áreas del
-            análisis moderno porque creo que la especialización prematura limita la perspectiva. Por
-            ahora, mi laboratorio es este blog donde intento unir lo que veo con lo que puedo
-            probar, siempre con la curiosidad de seguir preguntando.
+            Me encuentro en una fase de exploración multidisciplinar, convencido de que la
+            especialización prematura limita la perspectiva analítica. Este blog funciona como mi
+            laboratorio personal donde convergen observación táctica y validación empírica, siempre
+            con la ambición de expandir los límites de lo que podemos entender y medir en el fútbol
+            moderno.
           </p>
         </div>
       </div>

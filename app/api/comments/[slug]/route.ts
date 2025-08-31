@@ -1,37 +1,8 @@
 // app/api/comments/[slug]/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
-
-interface Comment {
-  id: string
-  name: string
-  email: string
-  message: string
-  timestamp: string
-  approved: boolean
-  ip?: string
-  userAgent?: string
-  likes: number
-  replies: Reply[]
-  parentId?: string // Para respuestas anidadas
-  avatar?: string // NUEVO: Avatar del usuario
-}
-
-interface Reply {
-  id: string
-  name: string
-  email: string
-  message: string
-  timestamp: string
-  approved: boolean
-  likes: number
-  avatar?: string // NUEVO: Avatar del usuario
-}
-
-interface CommentsData {
-  postSlug: string
-  comments: Comment[]
-}
+import { memoryStore } from '../shared-store'
+import type { CommentsData, Comment, Reply } from '../shared-store'
 
 // Usar JSONBin.io como almacenamiento simple (gratis hasta 100k requests/mes)
 const JSONBIN_API = 'https://api.jsonbin.io/v3/b'
@@ -41,12 +12,35 @@ const JSONBIN_KEY =
 // Función para leer comentarios de un post
 async function getCommentsForPost(slug: string): Promise<CommentsData> {
   try {
-    // En desarrollo local, devolver comentarios vacíos
+    // En desarrollo, usar almacenamiento en memoria si JSONBin falla
     if (process.env.NODE_ENV === 'development') {
-      return { postSlug: slug, comments: [] }
+      // Intentar JSONBin primero, pero con fallback a memoria
+      try {
+        const binId = `comments-${slug.replace(/[^a-zA-Z0-9]/g, '_')}`
+        const response = await fetch(`${JSONBIN_API}/${binId}/latest`, {
+          headers: {
+            'X-Master-Key': JSONBIN_KEY,
+            'Content-Type': 'application/json',
+          },
+        })
+
+        if (response.status === 404) {
+          return memoryStore[slug] || { postSlug: slug, comments: [] }
+        }
+
+        if (response.ok) {
+          const data = await response.json()
+          return data.record
+        }
+      } catch (error) {
+        console.log('JSONBin not available, using memory store for development')
+      }
+
+      // Fallback a almacenamiento en memoria para desarrollo
+      return memoryStore[slug] || { postSlug: slug, comments: [] }
     }
 
-    // En producción, intentar leer de JSONBin
+    // En producción, solo usar JSONBin
     const binId = `comments-${slug.replace(/[^a-zA-Z0-9]/g, '_')}`
     const response = await fetch(`${JSONBIN_API}/${binId}/latest`, {
       headers: {
@@ -75,16 +69,55 @@ async function getCommentsForPost(slug: string): Promise<CommentsData> {
 // Función para guardar comentarios
 async function saveCommentsForPost(slug: string, commentsData: CommentsData): Promise<void> {
   try {
-    // En desarrollo local, solo hacer log
+    // En desarrollo, usar almacenamiento en memoria si JSONBin falla
     if (process.env.NODE_ENV === 'development') {
-      console.log('DEV: Would save comment:', commentsData)
+      // Intentar JSONBin primero, pero con fallback a memoria
+      try {
+        const binId = `comments-${slug.replace(/[^a-zA-Z0-9]/g, '_')}`
+
+        const createResponse = await fetch(`${JSONBIN_API}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Master-Key': JSONBIN_KEY,
+            'X-Bin-Name': binId,
+          },
+          body: JSON.stringify(commentsData),
+        })
+
+        if (createResponse.ok) {
+          console.log(`Comments saved to JSONBin for slug: ${slug}`)
+          return
+        }
+
+        if (createResponse.status === 400) {
+          const updateResponse = await fetch(`${JSONBIN_API}/${binId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Master-Key': JSONBIN_KEY,
+            },
+            body: JSON.stringify(commentsData),
+          })
+
+          if (updateResponse.ok) {
+            console.log(`Comments updated in JSONBin for slug: ${slug}`)
+            return
+          }
+        }
+      } catch (error) {
+        console.log('JSONBin not available, falling back to memory store')
+      }
+
+      // Fallback a almacenamiento en memoria para desarrollo
+      memoryStore[slug] = commentsData
+      console.log(`Comments saved to memory store for slug: ${slug}`)
       return
     }
 
-    // En producción, guardar en JSONBin
+    // En producción, solo usar JSONBin
     const binId = `comments-${slug.replace(/[^a-zA-Z0-9]/g, '_')}`
 
-    // Primero intentar crear el bin si no existe
     const createResponse = await fetch(`${JSONBIN_API}`, {
       method: 'POST',
       headers: {
@@ -99,7 +132,6 @@ async function saveCommentsForPost(slug: string, commentsData: CommentsData): Pr
       throw new Error(`JSONBin create error: ${createResponse.status}`)
     }
 
-    // Si el bin ya existe (400), actualizarlo
     if (createResponse.status === 400) {
       const updateResponse = await fetch(`${JSONBIN_API}/${binId}`, {
         method: 'PUT',
@@ -114,6 +146,8 @@ async function saveCommentsForPost(slug: string, commentsData: CommentsData): Pr
         throw new Error(`JSONBin update error: ${updateResponse.status}`)
       }
     }
+
+    console.log(`Comments saved successfully for slug: ${slug}`)
   } catch (error) {
     console.error('Error saving comments:', error)
     throw error
@@ -189,9 +223,9 @@ export async function POST(
     const cleanName = sanitizeInput(name)
     const cleanMessage = sanitizeInput(message)
 
-    if (cleanMessage.length < 10) {
+    if (cleanMessage.length < 5) {
       return NextResponse.json(
-        { error: 'El comentario debe tener al menos 10 caracteres' },
+        { error: 'El comentario debe tener al menos 5 caracteres' },
         { status: 400 }
       )
     }

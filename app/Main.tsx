@@ -55,32 +55,38 @@ function IntroSection() {
       {/* Descripción del proyecto */}
       <div className="font-helvetica-light text-fd-body space-y-6 leading-relaxed text-slate-700 dark:text-slate-300">
         <p>
-          FootballDecoded nace precisamente de esta aparente contradicción: el fútbol tiene
-          estructuras, patrones y decisiones estratégicas claras, pero siempre conserva algo que se
-          resiste a los números puros. Justo ahí, en esa tensión constante entre lo calculable y lo
-          impredecible, surge la verdadera esencia del análisis moderno.
+          La paradoja de Podolski captura perfectamente la dualidad del fútbol moderno: un juego de
+          estrategia pura donde el azar no debería existir, pero donde lo impredecible define los
+          momentos decisivos. FootballDecoded nace precisamente en esa intersección entre lo medible
+          y lo intangible, donde cada partido genera miles de datos pero los números aislados nunca
+          cuentan la historia completa.
         </p>
 
         <p>
-          Este blog no es una colección de estadísticas en bruto ni un manual de esquemas tácticos.
-          Es una exploración rigurosa del juego a través de datos contextualizados, visualizaciones
-          que revelan patrones ocultos y modelos que van más allá del resultado final. Aquí el
-          análisis cuantitativo no simplifica el fútbol, sino que desvela lo que realmente define el
-          rendimiento: las micro-decisiones, los movimientos que preceden a la jugada clave, las
-          dinámicas colectivas que determinan victorias y derrotas.
+          Este no es otro repositorio de estadísticas ni un manual de formaciones tácticas. Es un
+          laboratorio de análisis aplicado donde los datos cobran sentido a través del contexto,
+          donde las visualizaciones revelan patrones invisibles, y donde los modelos predictivos van
+          más allá del resultado final para entender el proceso que lo genera. Mi enfoque
+          metodológico combina ciencia de datos avanzada con modelos predictivos validados
+          empíricamente, visualizaciones tácticas que traducen complejidad en claridad, y un
+          análisis profundo de las micro-decisiones y dinámicas colectivas que verdaderamente
+          determinan el rendimiento en el campo.
         </p>
 
         <p>
-          Mi trabajo combina herramientas avanzadas de ciencia de datos con modelos predictivos
-          validados y visualizaciones tácticas intuitivas, siempre orientado hacia un objetivo
-          claro: transformar información compleja en conocimiento aplicable para entrenadores,
-          analistas y profesionales del deporte.
+          Aquí, el análisis cuantitativo no simplifica el fútbol; lo decodifica. Cada artículo
+          examina los movimientos que preceden a la jugada decisiva, las secuencias tácticas que
+          construyen goles, las decisiones posicionales que definen partidos. El objetivo es
+          transformar información compleja en conocimiento aplicable, proporcionando insights
+          accionables para entrenadores, analistas y profesionales del deporte que buscan entender
+          el juego más allá de la superficie.
         </p>
 
         <p>
-          FootballDecoded es mi laboratorio de exploración futbolística, donde cada análisis busca
-          medir, comprender y anticipar el juego con la curiosidad del investigador y la precisión
-          del especialista.
+          FootballDecoded es mi espacio de exploración futbolística rigurosa, donde cada análisis
+          busca medir lo medible, interpretar lo complejo y anticipar lo posible. Porque el fútbol
+          del siglo XXI se juega tanto en el campo como en los datos, y entender ambas dimensiones
+          es fundamental para decodificar verdaderamente el juego moderno.
         </p>
       </div>
     </section>

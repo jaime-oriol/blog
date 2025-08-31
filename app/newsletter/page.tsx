@@ -34,28 +34,28 @@ export default function Newsletter() {
             <div className="space-y-6">
               {[
                 {
-                  title: 'Notificaciones de nuevos artículos y novedades del blog',
+                  title: 'Actualizaciones',
                   description:
-                    'Acceso directo a análisis recién publicados, actualizaciones técnicas y contenido relevante del blog.',
+                    'Acceso directo a los análisis tácticos recién publicados en el blog, actualizaciones metodológicas relevantes y contenido técnico destacado de la semana.',
                 },
                 {
-                  title: 'Reflexión analítica personal',
+                  title: 'Análisis personal',
                   description:
-                    'Mi perspectiva sobre tendencias emergentes, evoluciones tácticas y elementos del análisis que considere reveladores. Incluye reflexiones sobre jugadores específicos, partidos concretos y dinámicas que definan la dirección actual del juego.',
+                    'Mi perspectiva sobre las tendencias tácticas emergentes y evoluciones sistémicas que están redefiniendo el juego. Incluye reflexiones sobre jugadores específicos cuyo rendimiento merece atención, partidos que establecen nuevos paradigmas y dinámicas colectivas que marcan la dirección actual del fútbol moderno.',
                 },
                 {
-                  title: 'Movimientos estratégicos del mercado',
+                  title: 'Impacto de fichajes',
                   description:
-                    'Fichajes y operaciones que generen impacto táctico real en los sistemas de juego. Análisis de cómo cada incorporación reconfigura la arquitectura colectiva y altera las dinámicas estratégicas del equipo.',
+                    'Evaluación de las operaciones del mercado que generan impacto táctico real en los sistemas de juego. Análisis detallado de cómo cada incorporación significativa reconfigura la arquitectura colectiva del equipo receptor y altera las dinámicas estratégicas establecidas, más allá del precio o la reputación del jugador.',
                 },
                 {
-                  title: 'Contenido técnico seleccionado',
+                  title: 'Recursos curados',
                   description:
-                    'Investigaciones, recursos analíticos y material especializado curado por su valor aplicable. Recomendaciones técnicas que justifiquen la inversión de tiempo y aporten conocimiento genuino al análisis futbolístico.',
+                    'Investigaciones académicas, papers técnicos y material especializado seleccionado por su valor aplicable al análisis futbolístico. Recomendaciones de recursos y herramientas que justifican la inversión de tiempo y aportan conocimiento genuino para el desarrollo profesional en el análisis del juego.',
                 },
               ].map((item, index) => (
                 <div key={index} className="border-l-4 border-slate-200 pl-6 dark:border-slate-600">
-                  <h4 className="font-headings mb-8 text-lg font-semibold text-slate-900 dark:text-slate-100">
+                  <h4 className="font-headings mb-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
                     {item.title}
                   </h4>
                   <p className="font-body text-slate-600 dark:text-slate-400">{item.description}</p>

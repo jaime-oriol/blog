@@ -66,7 +66,7 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
   }
 
   return (
-    <div className="my-8 w-full">
+    <div className="w-full">
       {/* Título y descripción */}
       {(title || description) && (
         <div className="mb-6 text-center">
@@ -84,9 +84,9 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
       )}
 
       {/* Contenedor principal del carrusel - optimizado para ratio 2:1 de las imágenes tácticas */}
-      <div className="relative max-w-5xl">
+      <div className="relative w-full">
         <div
-          className="relative h-48 overflow-hidden rounded-xl bg-slate-50 sm:h-64 md:h-72 lg:h-80 xl:h-[400px] dark:bg-slate-800"
+          className="relative h-48 overflow-hidden sm:h-64 md:h-72 lg:h-80 xl:h-[400px]"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >

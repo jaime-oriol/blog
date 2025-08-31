@@ -1,67 +1,150 @@
 // app/api/comments/[slug]/actions/route.ts
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, readFile, mkdir } from 'fs/promises'
-import { existsSync } from 'fs'
-import path from 'path'
 import crypto from 'crypto'
+import { memoryStore } from '../../shared-store'
+import type { CommentsData, Comment, Reply } from '../../shared-store'
 
-interface Reply {
-  id: string
-  name: string
-  email: string
-  message: string
-  timestamp: string
-  approved: boolean
-  likes: number
-}
+// Usar JSONBin.io como almacenamiento (mismo que route.ts principal)
+const JSONBIN_API = 'https://api.jsonbin.io/v3/b'
+const JSONBIN_KEY =
+  process.env.JSONBIN_API_KEY || '$2a$10$viVRz9keKfVOYAHpSWQ8duX0ErkoHNNOc10PPYdwlFHdDH/i5IVgy'
 
-interface Comment {
-  id: string
-  name: string
-  email: string
-  message: string
-  timestamp: string
-  approved: boolean
-  ip?: string
-  userAgent?: string
-  likes: number
-  replies: Reply[]
-  parentId?: string
-}
-
-interface CommentsData {
-  postSlug: string
-  comments: Comment[]
-}
-
-const DATA_DIR = path.join(process.cwd(), 'data', 'comments')
-
-// Función para leer comentarios de un post
+// Función para leer comentarios de un post (usando JSONBin con fallback a memoria)
 async function getCommentsForPost(slug: string): Promise<CommentsData> {
-  const filePath = path.join(DATA_DIR, `${slug}.json`)
-
   try {
-    if (!existsSync(filePath)) {
+    // En desarrollo, usar almacenamiento en memoria si JSONBin falla
+    if (process.env.NODE_ENV === 'development') {
+      try {
+        const binId = `comments-${slug.replace(/[^a-zA-Z0-9]/g, '_')}`
+        const response = await fetch(`${JSONBIN_API}/${binId}/latest`, {
+          headers: {
+            'X-Master-Key': JSONBIN_KEY,
+            'Content-Type': 'application/json',
+          },
+        })
+
+        if (response.status === 404) {
+          return memoryStore[slug] || { postSlug: slug, comments: [] }
+        }
+
+        if (response.ok) {
+          const data = await response.json()
+          return data.record
+        }
+      } catch (error) {
+        console.log('JSONBin not available in actions, using memory store')
+      }
+
+      return memoryStore[slug] || { postSlug: slug, comments: [] }
+    }
+
+    // En producción, solo usar JSONBin
+    const binId = `comments-${slug.replace(/[^a-zA-Z0-9]/g, '_')}`
+    const response = await fetch(`${JSONBIN_API}/${binId}/latest`, {
+      headers: {
+        'X-Master-Key': JSONBIN_KEY,
+        'Content-Type': 'application/json',
+      },
+    })
+
+    if (response.status === 404) {
       return { postSlug: slug, comments: [] }
     }
 
-    const data = await readFile(filePath, 'utf8')
-    return JSON.parse(data)
+    if (!response.ok) {
+      console.error('Error fetching from JSONBin:', response.status)
+      return { postSlug: slug, comments: [] }
+    }
+
+    const data = await response.json()
+    return data.record
   } catch (error) {
     console.error('Error reading comments:', error)
     return { postSlug: slug, comments: [] }
   }
 }
 
-// Función para guardar comentarios
+// Función para guardar comentarios (usando JSONBin con fallback a memoria)
 async function saveCommentsForPost(slug: string, commentsData: CommentsData): Promise<void> {
   try {
-    if (!existsSync(DATA_DIR)) {
-      await mkdir(DATA_DIR, { recursive: true })
+    // En desarrollo, usar almacenamiento en memoria si JSONBin falla
+    if (process.env.NODE_ENV === 'development') {
+      try {
+        const binId = `comments-${slug.replace(/[^a-zA-Z0-9]/g, '_')}`
+
+        const createResponse = await fetch(`${JSONBIN_API}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Master-Key': JSONBIN_KEY,
+            'X-Bin-Name': binId,
+          },
+          body: JSON.stringify(commentsData),
+        })
+
+        if (createResponse.ok) {
+          console.log(`Comments saved to JSONBin (actions) for slug: ${slug}`)
+          return
+        }
+
+        if (createResponse.status === 400) {
+          const updateResponse = await fetch(`${JSONBIN_API}/${binId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Master-Key': JSONBIN_KEY,
+            },
+            body: JSON.stringify(commentsData),
+          })
+
+          if (updateResponse.ok) {
+            console.log(`Comments updated in JSONBin (actions) for slug: ${slug}`)
+            return
+          }
+        }
+      } catch (error) {
+        console.log('JSONBin not available in actions, falling back to memory store')
+      }
+
+      // Fallback a almacenamiento en memoria para desarrollo
+      memoryStore[slug] = commentsData
+      console.log(`Comments saved to memory store (actions) for slug: ${slug}`)
+      return
     }
 
-    const filePath = path.join(DATA_DIR, `${slug}.json`)
-    await writeFile(filePath, JSON.stringify(commentsData, null, 2))
+    // En producción, solo usar JSONBin
+    const binId = `comments-${slug.replace(/[^a-zA-Z0-9]/g, '_')}`
+
+    const createResponse = await fetch(`${JSONBIN_API}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_KEY,
+        'X-Bin-Name': binId,
+      },
+      body: JSON.stringify(commentsData),
+    })
+
+    if (!createResponse.ok && createResponse.status !== 400) {
+      throw new Error(`JSONBin create error: ${createResponse.status}`)
+    }
+
+    if (createResponse.status === 400) {
+      const updateResponse = await fetch(`${JSONBIN_API}/${binId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': JSONBIN_KEY,
+        },
+        body: JSON.stringify(commentsData),
+      })
+
+      if (!updateResponse.ok) {
+        throw new Error(`JSONBin update error: ${updateResponse.status}`)
+      }
+    }
+
+    console.log(`Comments updated successfully for slug: ${slug}`)
   } catch (error) {
     console.error('Error saving comments:', error)
     throw error
