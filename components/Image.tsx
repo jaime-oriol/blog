@@ -3,7 +3,7 @@ import NextImage, { ImageProps } from 'next/image'
 const basePath = process.env.BASE_PATH
 
 const Image = ({ src, ...rest }: ImageProps) => (
-  <div className="my-4 flex justify-center">
+  <div className="my-1 flex justify-center">
     <NextImage src={`${basePath || ''}${src}`} {...rest} />
   </div>
 )
