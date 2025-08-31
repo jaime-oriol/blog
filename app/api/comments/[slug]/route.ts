@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
 import type { Comment } from '../shared-store'
-import { getCommentsForPost, addCommentToPost } from '../local-storage'
+import { getCommentsForPost, addCommentToPost, saveCommentsForPost } from '../local-storage'
 
 // Validaciones
 function isValidEmail(email: string): boolean {
