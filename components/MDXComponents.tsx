@@ -187,7 +187,7 @@ export const components: MDXComponents = {
     return (
       // eslint-disable-next-line jsx-a11y/heading-has-content
       <h1
-        className="font-helvetica-bold text-fd-title mt-5 mb-2 font-bold tracking-tight text-slate-900 dark:text-slate-100"
+        className="font-helvetica-bold text-fd-title mt-4 mb-1 font-bold tracking-tight text-slate-900 dark:text-slate-100"
         {...props}
       />
     )
@@ -201,7 +201,7 @@ export const components: MDXComponents = {
     return (
       // eslint-disable-next-line jsx-a11y/heading-has-content
       <h2
-        className="font-helvetica-bold text-fd-subtitle mt-4 mb-2 font-bold tracking-tight text-slate-900 dark:text-slate-100"
+        className="font-helvetica-bold text-fd-subtitle mt-3 mb-1 font-bold tracking-tight text-slate-900 dark:text-slate-100"
         {...props}
       />
     )
@@ -215,7 +215,7 @@ export const components: MDXComponents = {
     return (
       // eslint-disable-next-line jsx-a11y/heading-has-content
       <h3
-        className="font-helvetica-bold text-fd-subtitle mt-3 mb-1 font-bold text-slate-900 dark:text-slate-100"
+        className="font-helvetica-bold text-fd-subtitle mt-2 mb-1 font-bold text-slate-900 dark:text-slate-100"
         {...props}
       />
     )
@@ -224,7 +224,7 @@ export const components: MDXComponents = {
   // Párrafos optimizados
   p: (props) => (
     <p
-      className="font-helvetica-light text-fd-body mb-3 leading-relaxed text-slate-700 dark:text-slate-300"
+      className="font-helvetica-light text-fd-body mb-2 leading-relaxed text-slate-700 dark:text-slate-300"
       {...props}
     />
   ),
@@ -232,13 +232,13 @@ export const components: MDXComponents = {
   // Listas con mejor espaciado
   ul: (props) => (
     <ul
-      className="font-helvetica-light text-fd-body space-y-2 text-slate-700 dark:text-slate-300"
+      className="font-helvetica-light text-fd-body space-y-1 text-slate-700 dark:text-slate-300"
       {...props}
     />
   ),
   ol: (props) => (
     <ol
-      className="font-helvetica-light text-fd-body space-y-2 text-slate-700 dark:text-slate-300"
+      className="font-helvetica-light text-fd-body space-y-1 text-slate-700 dark:text-slate-300"
       {...props}
     />
   ),

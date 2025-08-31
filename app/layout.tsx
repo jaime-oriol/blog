@@ -89,16 +89,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         sizes="16x16"
         href={`${basePath}/static/favicons/favicon-16x16.png`}
       />
-      <link rel="icon" href={`${basePath}/static/favicons/favicon.ico`} />
+      <link rel="shortcut icon" href={`${basePath}/static/favicons/favicon.ico`} />
       <link rel="manifest" href={`${basePath}/static/favicons/site.webmanifest`} />
       <link
         rel="mask-icon"
         href={`${basePath}/static/favicons/safari-pinned-tab.svg`}
-        color="#5bbad5"
+        color="#0ea5e9"
       />
-      <meta name="msapplication-TileColor" content="#000000" />
-      <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
-      <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
+      <meta name="apple-mobile-web-app-title" content="FootballDecoded" />
+      <meta name="application-name" content="FootballDecoded" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="msapplication-TileColor" content="#0ea5e9" />
+      <meta
+        name="msapplication-TileImage"
+        content={`${basePath}/static/favicons/mstile-150x150.png`}
+      />
+      <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+      <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
 
       {/* Sistema tipográfico FootballDecoded: Helvética para títulos y texto, IBM Plex Mono para código */}

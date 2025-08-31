@@ -1,14 +1,17 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "FootballDecoded",
+  "short_name": "FootballDecoded",
+  "description": "Análisis táctico avanzado, métricas cuantitativas y scouting funcional para el fútbol profesional",
   "icons": [
     {
-      "src": "/android-chrome-240x240.png",
+      "src": "/static/favicons/android-chrome-240x240.png",
       "sizes": "240x240",
       "type": "image/png"
     }
   ],
-  "theme_color": "#000000",
-  "background_color": "#000000",
-  "display": "standalone"
+  "theme_color": "#0ea5e9",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
 }

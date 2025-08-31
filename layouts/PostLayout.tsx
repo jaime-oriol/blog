@@ -149,9 +149,9 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
                 {/* Contenido superpuesto */}
                 <div className="relative flex h-full flex-col justify-between p-6 text-white md:p-8">
-                  {/* Título alineado a la izquierda */}
-                  <div className="flex flex-1 items-center justify-start">
-                    <h1 className="font-helvetica-bold w-full rounded-xl bg-gradient-to-r from-black/40 via-black/30 to-black/40 px-4 py-3 text-left text-xl leading-snug font-bold tracking-tight text-white shadow-2xl backdrop-blur-sm sm:px-6 sm:py-4 sm:text-2xl lg:text-3xl">
+                  {/* Título alineado en la esquina superior izquierda */}
+                  <div className="flex justify-start">
+                    <h1 className="font-helvetica-bold rounded-xl bg-gradient-to-r from-black/40 via-black/30 to-black/40 px-4 py-3 text-left text-xl leading-snug font-bold tracking-tight text-white shadow-2xl backdrop-blur-sm sm:px-6 sm:py-4 sm:text-2xl lg:text-3xl">
                       {title}
                     </h1>
                   </div>
@@ -179,7 +179,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
           {/* Contenido del artículo con prose optimizado - ANCHO COMPLETO y espaciado compacto */}
           <div className="mb-12">
-            <div className="prose prose-slate prose-lg dark:prose-invert prose-headings:mb-3 prose-headings:mt-5 prose-headings:text-slate-900 dark:prose-headings:text-slate-100 prose-p:mb-3 prose-p:leading-relaxed prose-ul:mb-3 prose-ol:mb-3 prose-blockquote:mb-3 prose-pre:mb-3 prose-h1:mb-3 prose-h1:mt-6 prose-h1:text-slate-900 dark:prose-h1:text-slate-100 prose-h2:mb-2 prose-h2:mt-5 prose-h2:text-slate-900 dark:prose-h2:text-slate-100 prose-h3:mb-2 prose-h3:mt-3 prose-h3:text-slate-900 dark:prose-h3:text-slate-100 prose-h4:mb-1 prose-h4:mt-2 prose-h4:text-slate-900 dark:prose-h4:text-slate-100 max-w-none">
+            <div className="prose prose-slate prose-lg dark:prose-invert prose-headings:mb-1 prose-headings:mt-3 prose-headings:text-slate-900 dark:prose-headings:text-slate-100 prose-p:mb-2 prose-p:leading-relaxed prose-ul:mb-2 prose-ol:mb-2 prose-blockquote:mb-2 prose-pre:mb-2 prose-h1:mb-1 prose-h1:mt-4 prose-h1:text-slate-900 dark:prose-h1:text-slate-100 prose-h2:mb-1 prose-h2:mt-3 prose-h2:text-slate-900 dark:prose-h2:text-slate-100 prose-h3:mb-1 prose-h3:mt-2 prose-h3:text-slate-900 dark:prose-h3:text-slate-100 prose-h4:mb-0 prose-h4:mt-1 prose-h4:text-slate-900 dark:prose-h4:text-slate-100 max-w-none">
               {children}
             </div>
           </div>
