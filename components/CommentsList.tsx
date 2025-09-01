@@ -12,6 +12,7 @@ interface Reply {
   message: string
   timestamp: string
   likes: number
+  likedBy?: string[]
   avatar?: string // NUEVO: Avatar del usuario
 }
 
@@ -21,6 +22,7 @@ interface Comment {
   message: string
   timestamp: string
   likes: number
+  likedBy?: string[]
   replies: Reply[]
   avatar?: string // NUEVO: Avatar del usuario
 }
@@ -78,6 +80,11 @@ export default function CommentsList({ postSlug, refreshTrigger }: CommentsListP
 
   // Manejar like
   const handleLike = async (commentId: string) => {
+    if (!session) {
+      signIn('google')
+      return
+    }
+
     if (likingComments.has(commentId)) return // Prevenir doble click
 
     setLikingComments((prev) => new Set(prev).add(commentId))
@@ -96,18 +103,33 @@ export default function CommentsList({ postSlug, refreshTrigger }: CommentsListP
         setComments((prevComments) =>
           prevComments.map((comment) => {
             if (comment.id === commentId) {
-              return { ...comment, likes: data.likes }
+              const updatedComment = { ...comment, likes: data.likes }
+              if (data.userLiked && session?.user?.email) {
+                updatedComment.likedBy = [...(comment.likedBy || []), session.user.email]
+              }
+              return updatedComment
             }
             // Buscar en respuestas
-            const updatedReplies = comment.replies.map((reply) =>
-              reply.id === commentId ? { ...reply, likes: data.likes } : reply
-            )
+            const updatedReplies = comment.replies.map((reply) => {
+              if (reply.id === commentId) {
+                const updatedReply = { ...reply, likes: data.likes }
+                if (data.userLiked && session?.user?.email) {
+                  updatedReply.likedBy = [...(reply.likedBy || []), session.user.email]
+                }
+                return updatedReply
+              }
+              return reply
+            })
             return { ...comment, replies: updatedReplies }
           })
         )
+      } else {
+        // Mostrar error si ya dio like o no está autenticado
+        alert(data.error || 'Error al dar me gusta')
       }
     } catch (error) {
       console.error('Error liking comment:', error)
+      alert('Error de conexión')
     } finally {
       setLikingComments((prev) => {
         const newSet = new Set(prev)
@@ -185,6 +207,11 @@ export default function CommentsList({ postSlug, refreshTrigger }: CommentsListP
       .join('')
       .toUpperCase()
       .slice(0, 2)
+  }
+
+  // Verificar si el usuario actual ya dio like
+  const hasUserLiked = (likedBy?: string[]): boolean => {
+    return session?.user?.email ? (likedBy || []).includes(session.user.email) : false
   }
 
   if (loading) {
@@ -315,12 +342,20 @@ export default function CommentsList({ postSlug, refreshTrigger }: CommentsListP
                       <button
                         type="button"
                         onClick={() => handleLike(comment.id)}
-                        disabled={likingComments.has(comment.id)}
-                        className="flex items-center text-sm text-gray-500 hover:text-red-500 disabled:opacity-50 dark:text-gray-400 dark:hover:text-red-400"
+                        disabled={likingComments.has(comment.id) || hasUserLiked(comment.likedBy)}
+                        className={`flex items-center text-sm disabled:opacity-50 ${
+                          hasUserLiked(comment.likedBy)
+                            ? 'text-red-500 dark:text-red-400'
+                            : session
+                              ? 'text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400'
+                              : 'cursor-not-allowed text-gray-400'
+                        }`}
                       >
                         <svg
-                          className="mr-1 h-4 w-4"
-                          fill="none"
+                          className={`mr-1 h-4 w-4 ${
+                            hasUserLiked(comment.likedBy) ? 'fill-current' : ''
+                          }`}
+                          fill={hasUserLiked(comment.likedBy) ? 'currentColor' : 'none'}
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
@@ -331,7 +366,11 @@ export default function CommentsList({ postSlug, refreshTrigger }: CommentsListP
                             d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                           />
                         </svg>
-                        Me gusta ({comment.likes})
+                        {hasUserLiked(comment.likedBy)
+                          ? `Te gusta (${comment.likes})`
+                          : session
+                            ? `Me gusta (${comment.likes})`
+                            : `Iniciar sesión para dar me gusta (${comment.likes})`}
                       </button>
                       <button
                         type="button"
@@ -453,12 +492,20 @@ export default function CommentsList({ postSlug, refreshTrigger }: CommentsListP
                           </p>
                           <button
                             onClick={() => handleLike(reply.id)}
-                            disabled={likingComments.has(reply.id)}
-                            className="mt-2 flex items-center text-xs text-gray-500 hover:text-red-500 disabled:opacity-50 dark:text-gray-400 dark:hover:text-red-400"
+                            disabled={likingComments.has(reply.id) || hasUserLiked(reply.likedBy)}
+                            className={`mt-2 flex items-center text-xs disabled:opacity-50 ${
+                              hasUserLiked(reply.likedBy)
+                                ? 'text-red-500 dark:text-red-400'
+                                : session
+                                  ? 'text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400'
+                                  : 'cursor-not-allowed text-gray-400'
+                            }`}
                           >
                             <svg
-                              className="mr-1 h-3 w-3"
-                              fill="none"
+                              className={`mr-1 h-3 w-3 ${
+                                hasUserLiked(reply.likedBy) ? 'fill-current' : ''
+                              }`}
+                              fill={hasUserLiked(reply.likedBy) ? 'currentColor' : 'none'}
                               stroke="currentColor"
                               viewBox="0 0 24 24"
                             >
@@ -469,7 +516,11 @@ export default function CommentsList({ postSlug, refreshTrigger }: CommentsListP
                                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                               />
                             </svg>
-                            Me gusta ({reply.likes})
+                            {hasUserLiked(reply.likedBy)
+                              ? `Te gusta (${reply.likes})`
+                              : session
+                                ? `Me gusta (${reply.likes})`
+                                : `Iniciar sesión para dar me gusta (${reply.likes})`}
                           </button>
                         </div>
                       </div>

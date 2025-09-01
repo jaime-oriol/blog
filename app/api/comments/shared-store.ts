@@ -9,6 +9,7 @@ interface Reply {
   timestamp: string
   approved: boolean
   likes: number
+  likedBy: string[]
   avatar?: string
 }
 
@@ -22,6 +23,7 @@ interface Comment {
   ip?: string
   userAgent?: string
   likes: number
+  likedBy: string[]
   replies: Reply[]
   parentId?: string
   avatar?: string

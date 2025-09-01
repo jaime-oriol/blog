@@ -96,6 +96,7 @@ export async function POST(
       ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown',
       userAgent: request.headers.get('user-agent') || 'unknown',
       likes: 0,
+      likedBy: [],
       replies: [],
       parentId: undefined,
       avatar: avatar || undefined, // NUEVO: Guardar avatar

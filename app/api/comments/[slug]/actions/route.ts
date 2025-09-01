@@ -1,6 +1,7 @@
 // app/api/comments/[slug]/actions/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
+import { getServerSession } from 'next-auth'
 import type { CommentsData, Comment, Reply } from '../../shared-store'
 import { getCommentsForPost, saveCommentsForPost } from '../../kv-storage'
 
@@ -28,7 +29,7 @@ export async function POST(
 
     switch (action) {
       case 'like':
-        return await handleLike(slug, commentId)
+        return await handleLike(slug, commentId, request)
 
       case 'reply':
         return await handleReply(slug, commentId, name, email, message, request)
@@ -43,8 +44,15 @@ export async function POST(
 }
 
 // Manejar likes
-async function handleLike(slug: string, commentId: string) {
+async function handleLike(slug: string, commentId: string, request: NextRequest) {
   try {
+    // Verificar autenticación
+    const session = await getServerSession()
+    if (!session?.user?.email) {
+      return NextResponse.json({ error: 'Debes iniciar sesión para dar me gusta' }, { status: 401 })
+    }
+
+    const userEmail = session.user.email
     const commentsData = await getCommentsForPost(slug)
 
     // Buscar el comentario principal
@@ -52,13 +60,31 @@ async function handleLike(slug: string, commentId: string) {
 
     if (commentIndex !== -1) {
       // Es un comentario principal
-      commentsData.comments[commentIndex].likes += 1
+      const comment = commentsData.comments[commentIndex]
+
+      // Inicializar likedBy si no existe (compatibilidad)
+      if (!comment.likedBy) {
+        comment.likedBy = []
+      }
+
+      // Verificar si ya dio like
+      if (comment.likedBy.includes(userEmail)) {
+        return NextResponse.json(
+          { error: 'Ya has dado me gusta a este comentario' },
+          { status: 400 }
+        )
+      }
+
+      // Añadir like
+      comment.likedBy.push(userEmail)
+      comment.likes = comment.likedBy.length
       await saveCommentsForPost(slug, commentsData)
 
       return NextResponse.json({
         success: true,
-        likes: commentsData.comments[commentIndex].likes,
+        likes: comment.likes,
         commentId: commentId,
+        userLiked: true,
       })
     }
 
@@ -66,13 +92,31 @@ async function handleLike(slug: string, commentId: string) {
     for (let i = 0; i < commentsData.comments.length; i++) {
       const replyIndex = commentsData.comments[i].replies.findIndex((r) => r.id === commentId)
       if (replyIndex !== -1) {
-        commentsData.comments[i].replies[replyIndex].likes += 1
+        const reply = commentsData.comments[i].replies[replyIndex]
+
+        // Inicializar likedBy si no existe (compatibilidad)
+        if (!reply.likedBy) {
+          reply.likedBy = []
+        }
+
+        // Verificar si ya dio like
+        if (reply.likedBy.includes(userEmail)) {
+          return NextResponse.json(
+            { error: 'Ya has dado me gusta a esta respuesta' },
+            { status: 400 }
+          )
+        }
+
+        // Añadir like
+        reply.likedBy.push(userEmail)
+        reply.likes = reply.likedBy.length
         await saveCommentsForPost(slug, commentsData)
 
         return NextResponse.json({
           success: true,
-          likes: commentsData.comments[i].replies[replyIndex].likes,
+          likes: reply.likes,
           commentId: commentId,
+          userLiked: true,
         })
       }
     }
@@ -131,6 +175,7 @@ async function handleReply(
       timestamp: new Date().toISOString(),
       approved: true, // Aprobación automática
       likes: 0,
+      likedBy: [],
     }
 
     // Añadir respuesta al comentario padre

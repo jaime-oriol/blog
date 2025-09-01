@@ -121,22 +121,6 @@ const PhotoCarousel = () => {
           </svg>
         </button>
       </div>
-
-      {/* Indicadores (dots) */}
-      <div className="flex justify-center space-x-2 py-4">
-        {photos.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`h-3 w-3 rounded-full transition-all duration-200 ${
-              index === currentIndex
-                ? 'bg-primary-500 scale-110'
-                : 'bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500'
-            }`}
-            aria-label={`Ir a la imagen ${index + 1}`}
-          />
-        ))}
-      </div>
     </div>
   )
 }

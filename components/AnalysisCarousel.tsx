@@ -163,25 +163,6 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
             </div>
           )}
         </div>
-
-        {/* Indicadores (dots) - más grandes en mobile */}
-        {showDots && images.length > 1 && (
-          <div className="flex justify-center space-x-3 pt-6">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`rounded-full transition-all duration-200 ${
-                  index === currentIndex
-                    ? 'h-3 w-3 scale-110 bg-sky-600 md:h-2.5 md:w-2.5 dark:bg-sky-400'
-                    : 'h-3 w-3 bg-slate-300 hover:bg-slate-400 md:h-2.5 md:w-2.5 dark:bg-slate-600 dark:hover:bg-slate-500'
-                }`}
-                style={{ minWidth: '12px', minHeight: '12px' }} // Touch-friendly minimum
-                aria-label={`Ir a la imagen ${index + 1}`}
-              />
-            ))}
-          </div>
-        )}
       </div>
     </div>
   )

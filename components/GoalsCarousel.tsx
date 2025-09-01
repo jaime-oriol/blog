@@ -115,24 +115,6 @@ const GoalsCarousel = ({
           {currentIndex + 1} / {goals.length}
         </div>
       </div>
-
-      {/* Indicadores (dots) - Solo mostrar si hay más de 1 imagen */}
-      {goals.length > 1 && (
-        <div className="mt-4 flex justify-center space-x-2">
-          {goals.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`h-3 w-3 rounded-full transition-all duration-200 ${
-                index === currentIndex
-                  ? 'scale-110 bg-sky-600'
-                  : 'bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-500'
-              }`}
-              aria-label={`Ir al gol ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
     </div>
   )
 }
