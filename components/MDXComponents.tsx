@@ -79,7 +79,7 @@ const Callout = ({
   }
 
   return (
-    <div className={`rounded-lg border p-4 ${getStyles(type)}`}>
+    <div className={`my-1.5 rounded-lg border p-4 ${getStyles(type)}`}>
       <div className="flex items-start space-x-3">
         <span className="text-lg">{getIcon(type)}</span>
         <div className="font-helvetica-light text-fd-body leading-relaxed">{children}</div>
@@ -112,7 +112,7 @@ const StatCard = ({
   }
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800">
+    <div className="my-1.5 rounded-lg border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800">
       <div className="flex items-center justify-between">
         <h3 className="font-helvetica-regular text-sm font-medium text-slate-600 dark:text-slate-400">
           {title}
@@ -135,7 +135,7 @@ const StatCard = ({
 
 // Quote personalizado para citas técnicas
 const TechnicalQuote = ({ children, source }: { children: React.ReactNode; source?: string }) => (
-  <blockquote className="border-l-4 border-slate-300 bg-slate-50 py-4 pr-4 pl-6 italic dark:border-slate-600 dark:bg-slate-800/50">
+  <blockquote className="my-1.5 border-l-4 border-slate-300 bg-slate-50 py-4 pr-4 pl-6 italic dark:border-slate-600 dark:bg-slate-800/50">
     <div className="font-helvetica-light text-lg leading-relaxed text-slate-700 dark:text-slate-300">
       {children}
     </div>
@@ -162,9 +162,16 @@ const hasValidContent = (children: React.ReactNode): boolean => {
   return true
 }
 
+// Wrapper para Image con espaciado consistente
+const ImageWithSpacing = (props: React.ComponentProps<typeof Image>) => (
+  <div className="my-1.5">
+    <Image {...props} />
+  </div>
+)
+
 export const components: MDXComponents = {
   // Componentes base
-  Image,
+  Image: ImageWithSpacing,
   TOCInline,
   a: CustomLink,
   pre: Pre,
@@ -187,7 +194,7 @@ export const components: MDXComponents = {
     return (
       // eslint-disable-next-line jsx-a11y/heading-has-content
       <h1
-        className="font-helvetica-bold text-fd-title mt-4 mb-1 font-bold tracking-tight text-slate-900 dark:text-slate-100"
+        className="font-helvetica-bold text-fd-title my-1.5 font-bold tracking-tight text-slate-900 dark:text-slate-100"
         {...props}
       />
     )
@@ -201,7 +208,7 @@ export const components: MDXComponents = {
     return (
       // eslint-disable-next-line jsx-a11y/heading-has-content
       <h2
-        className="font-helvetica-bold text-fd-subtitle mt-2 mb-1 font-bold tracking-tight text-slate-900 dark:text-slate-100"
+        className="font-helvetica-bold text-fd-subtitle my-1.5 font-bold tracking-tight text-slate-900 dark:text-slate-100"
         {...props}
       />
     )
@@ -215,7 +222,7 @@ export const components: MDXComponents = {
     return (
       // eslint-disable-next-line jsx-a11y/heading-has-content
       <h3
-        className="font-helvetica-bold text-fd-subtitle mt-1 mb-1 font-bold text-slate-900 dark:text-slate-100"
+        className="font-helvetica-bold text-fd-subtitle my-1.5 font-bold text-slate-900 dark:text-slate-100"
         {...props}
       />
     )
@@ -224,7 +231,7 @@ export const components: MDXComponents = {
   // Párrafos optimizados
   p: (props) => (
     <p
-      className="font-helvetica-light text-fd-body mb-1 leading-relaxed text-slate-700 dark:text-slate-300"
+      className="font-helvetica-light text-fd-body my-1 leading-relaxed text-slate-700 dark:text-slate-300"
       {...props}
     />
   ),
@@ -232,13 +239,13 @@ export const components: MDXComponents = {
   // Listas con mejor espaciado
   ul: (props) => (
     <ul
-      className="font-helvetica-light text-fd-body space-y-1 text-slate-700 dark:text-slate-300"
+      className="font-helvetica-light text-fd-body my-1.5 space-y-1 text-slate-700 dark:text-slate-300"
       {...props}
     />
   ),
   ol: (props) => (
     <ol
-      className="font-helvetica-light text-fd-body space-y-1 text-slate-700 dark:text-slate-300"
+      className="font-helvetica-light text-fd-body my-1.5 space-y-1 text-slate-700 dark:text-slate-300"
       {...props}
     />
   ),
