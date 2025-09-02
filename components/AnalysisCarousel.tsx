@@ -86,7 +86,7 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
       {/* Contenedor principal del carrusel - optimizado para ratio 2:1 de las imágenes tácticas */}
       <div className="relative w-full">
         <div
-          className="relative h-24 overflow-hidden bg-transparent sm:h-32 md:h-36 lg:h-40 xl:h-48"
+          className="relative h-48 overflow-hidden bg-transparent sm:h-64 md:h-72 lg:h-80 xl:h-[400px]"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
