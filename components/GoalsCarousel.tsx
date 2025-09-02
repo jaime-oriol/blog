@@ -35,7 +35,7 @@ const GoalsCarousel = ({
   }
 
   return (
-    <div className="relative my-0.5 w-full">
+    <div className="relative my-2 w-full">
       {/* Título */}
       {title && (
         <h3 className="font-helvetica-bold mb-1 text-xl font-semibold text-slate-900 dark:text-slate-100">
@@ -44,7 +44,7 @@ const GoalsCarousel = ({
       )}
 
       {/* Contenedor principal del carrusel */}
-      <div className="relative h-64 overflow-hidden rounded-xl md:h-96 lg:h-[28rem] xl:h-[32rem]">
+      <div className="relative h-32 overflow-hidden rounded-xl sm:h-40 md:h-48 lg:h-56 xl:h-64">
         {/* Imágenes */}
         <div
           className="flex h-full transition-transform duration-500 ease-in-out"
