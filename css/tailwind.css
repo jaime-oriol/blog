@@ -212,8 +212,8 @@
 
     /* Espaciado optimizado para lectura técnica */
     & p {
-      margin-top: 0.125rem;
-      margin-bottom: 0.125rem;
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
       font-family: var(--font-sans);
       line-height: 1.75;
     }
@@ -255,16 +255,16 @@
 
     & h2 {
       font-size: 1.875em;
-      margin-top: 0.125rem;
-      margin-bottom: 0.125rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
       line-height: 1.3333333;
       font-weight: 600;
     }
 
     & h3 {
       font-size: 1.5em;
-      margin-top: 0.125rem;
-      margin-bottom: 0.125rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
       line-height: 1.6;
       font-weight: 600;
     }
@@ -306,7 +306,7 @@
       padding-left: 1.5rem;
       font-style: italic;
       color: var(--tw-prose-quotes);
-      margin: 0.125rem 0;
+      margin: 1rem 0;
       background-color: var(--color-slate-50);
       padding: 1rem 1.5rem;
       border-radius: 0 0.5rem 0.5rem 0;
@@ -315,14 +315,14 @@
     /* Listas con mejor espaciado */
     & ul,
     & ol {
-      margin-top: 0.125rem;
-      margin-bottom: 0.125rem;
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
       padding-left: 1.625em;
     }
 
     & li {
-      margin-top: 0.125rem;
-      margin-bottom: 0.125rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0.25rem;
       font-family: var(--font-sans);
     }
 

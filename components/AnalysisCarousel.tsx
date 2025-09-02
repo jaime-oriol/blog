@@ -69,9 +69,9 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
     <div className="my-0.5 w-full">
       {/* Título y descripción */}
       {(title || description) && (
-        <div className="mb-6 text-center">
+        <div className="mb-2 text-center">
           {title && (
-            <h3 className="font-helvetica-bold mb-2 text-xl font-bold text-slate-900 dark:text-slate-100">
+            <h3 className="font-helvetica-bold mb-1 text-xl font-bold text-slate-900 dark:text-slate-100">
               {title}
             </h3>
           )}
