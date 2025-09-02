@@ -66,7 +66,7 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
   }
 
   return (
-    <div className="my-1.5 w-full">
+    <div className="my-0.5 w-full">
       {/* Título y descripción */}
       {(title || description) && (
         <div className="mb-6 text-center">

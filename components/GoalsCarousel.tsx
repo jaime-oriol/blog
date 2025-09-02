@@ -35,7 +35,7 @@ const GoalsCarousel = ({
   }
 
   return (
-    <div className="relative my-8 w-full">
+    <div className="relative my-0.5 w-full">
       {/* Título */}
       {title && (
         <h3 className="font-helvetica-bold mb-4 text-xl font-semibold text-slate-900 dark:text-slate-100">
