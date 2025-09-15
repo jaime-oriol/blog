@@ -54,7 +54,7 @@ const siteMetadata = {
   },
 
   newsletter: {
-    provider: 'convertkit',
+    provider: 'resend',
   },
 }
 

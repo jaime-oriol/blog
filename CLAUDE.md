@@ -48,12 +48,30 @@ footballdecoded/
 │   ├── newsletter/        # Newsletter pages
 │   └── tags/              # Tag-based article filtering
 ├── components/             # Reusable React components
-│   ├── ArticleCard.tsx    # Article preview cards
-│   ├── AuthButton.tsx     # Authentication UI
-│   ├── CommentForm.tsx    # Comment submission
-│   ├── Header.tsx         # Site navigation
-│   ├── NewsletterForm.tsx # Newsletter subscription
-│   └── social-icons/      # Social media icons
+│   ├── AnalysisCarousel.tsx   # Carousel for analysis images
+│   ├── ArticleCard.tsx        # Article preview cards
+│   ├── ArticlesLayout.tsx     # Layout for articles listing
+│   ├── AuthButton.tsx         # Authentication UI
+│   ├── BioSection.tsx         # About page bio section
+│   ├── CommentForm.tsx        # Comment submission form
+│   ├── CommentsList.tsx       # Comments display component
+│   ├── Footer.tsx             # Site footer
+│   ├── GoalsCarousel.tsx      # Goals analysis carousel
+│   ├── Header.tsx             # Site navigation header
+│   ├── Image.tsx              # Next.js Image wrapper
+│   ├── Link.tsx               # Next.js Link wrapper
+│   ├── MDXComponents.tsx      # Custom MDX components
+│   ├── MobileNav.tsx          # Mobile navigation menu
+│   ├── NewsletterForm.tsx     # Newsletter subscription
+│   ├── PhotoCarousel.tsx      # Photo carousel component
+│   ├── ScrollTopAndComment.tsx # Scroll utilities
+│   ├── SearchButton.tsx       # Search functionality
+│   ├── SectionContainer.tsx   # Layout container
+│   ├── SectionsNavigation.tsx # Section navigation
+│   ├── SessionProvider.tsx    # Auth session provider
+│   ├── SimpleTagLayout.tsx    # Tag page layout
+│   ├── ThemeSwitch.tsx        # Dark/light theme toggle
+│   └── social-icons/          # Social media icons
 ├── content/               # Blog content and configuration
 │   ├── articles/          # MDX articles by section
 │   │   ├── player-decoded/        # Player analysis section
@@ -67,7 +85,10 @@ footballdecoded/
 │   ├── images/            # Article images and assets
 │   └── favicons/          # Site icons
 └── scripts/               # Utility scripts
-    ├── newsletter-manager.mjs  # Newsletter management
+    ├── clear-comments.mjs      # Clear all comments utility
+    ├── migrate-comments.mjs    # Comment migration script
+    ├── newsletter-manager.mjs  # Newsletter management CLI
+    ├── postbuild.mjs          # Post-build processing
     └── rss.mjs                # RSS feed generation
 ```
 
@@ -229,19 +250,21 @@ npm update
 
 ```bash
 # Development
-npm run dev              # Start development server (localhost:3000)
-npm run build            # Build for production
-npm run start            # Start production server
+npm start                # Start development server (localhost:3000)
+npm run dev              # Alternative development command
+npm run build            # Build for production with postbuild script
+npm run serve            # Start production server
 
 # Code Quality
-npm run lint             # ESLint with auto-fix for app, components, layouts
+npm run lint             # ESLint with auto-fix for pages, app, components, lib, layouts, scripts
 npm run analyze          # Bundle analyzer for performance optimization
+npm run prepare          # Husky git hooks setup
 
 # Content & Newsletter
 npm run newsletter       # Newsletter management CLI
-# - npm run newsletter list     # View subscriber statistics
-# - npm run newsletter export   # Export confirmed emails
-# - npm run newsletter test     # Test API connection
+# - node scripts/newsletter-manager.mjs list     # View subscriber statistics
+# - node scripts/newsletter-manager.mjs export   # Export confirmed emails
+# - node scripts/newsletter-manager.mjs test     # Test API connection
 ```
 
 ## Content Creation Workflow
@@ -388,22 +411,29 @@ git commit -m "docs: update MDX component usage guide"
 
 ```env
 # NextAuth Configuration
-NEXTAUTH_URL=http://localhost:3000  # Change to production URL
-NEXTAUTH_SECRET=your-nextauth-secret-key-here
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-nextauth-secret-here
 
-# Google OAuth (Google Console)
-GOOGLE_CLIENT_ID=your-google-oauth-client-id
-GOOGLE_CLIENT_SECRET=your-google-oauth-client-secret
+# Google OAuth (para sistema de comentarios)
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
 
-# Resend Email Service
-RESEND_API_KEY=your-resend-api-key-for-newsletter
+# Resend (para newsletter)
+RESEND_API_KEY=your-resend-api-key
+RESEND_AUDIENCE_ID=your-resend-audience-id
 
-# Umami Analytics (optional)
-UMAMI_WEBSITE_ID=your-umami-tracking-id
-UMAMI_URL=your-umami-instance-url
+# Redis/Upstash (para newsletter)
+REDIS_URL=your-redis-connection-string
+# O alternativamente:
+# KV_URL=your-upstash-kv-url
 
-# Content Configuration
-NEXT_PUBLIC_SITE_URL=http://localhost:3000  # Production: https://footballdecoded.com
+# Umami Analytics (opcional)
+UMAMI_WEBSITE_ID=your-umami-website-id
+
+# Base Path (para deployment personalizado)
+BASE_PATH=
+EXPORT=
+UNOPTIMIZED=
 ```
 
 ### Site Metadata Configuration
@@ -412,27 +442,49 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000  # Production: https://footballdecode
 // content/siteMetadata.js
 const siteMetadata = {
   title: 'FootballDecoded',
-  author: 'Jaime Oriol Goicoechea',
+  author: 'Jaime Oriol',
   headerTitle: 'FootballDecoded',
-  description:
-    'Análisis táctico avanzado, métricas cuantitativas y scouting funcional para el fútbol profesional',
+  description: 'FootballDecoded',
   language: 'es-ES',
+  locale: 'es-ES',
   theme: 'system',
   siteUrl: 'https://footballdecoded.com',
-  siteLogo: '/static/images/logo.png',
-  socialBanner: '/static/images/twitter-card.png',
+  siteRepo: 'https://github.com/jaime-oriol/FootballDecoded',
+  siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
+  socialBanner: `${process.env.BASE_PATH || ''}/static/images/football-decoded-banner.jpg`,
   email: 'joriolgo@gmail.com',
   github: 'https://github.com/jaime-oriol',
-  twitter: 'https://x.com/_orio1',
+  x: 'https://x.com/_orio1',
   linkedin: 'https://www.linkedin.com/in/jaime-oriol-goicoechea-801313276/',
-  locale: 'es-ES',
+  instagram: 'https://www.instagram.com/orio1_/',
+  analytics: {
+    umamiAnalytics: {
+      umamiWebsiteId: '00cdd21e-95b5-41a4-b2c1-aa12fd3fde2b',
+      umamiSrc: 'https://cloud.umami.is/script.js',
+    },
+  },
   newsletter: {
     provider: 'resend',
   },
   comments: {
-    provider: 'giscus', // or 'disqus'
     giscusConfig: {
-      // Configuration
+      repo: 'jaime-oriol/FootballDecoded',
+      repositoryId: 'R_kgDOOxLT5g',
+      category: 'General',
+      categoryId: 'DIC_kwDOOxLT5s4Cqo_m',
+      mapping: 'pathname',
+      reactions: '1',
+      metadata: '0',
+      inputPosition: 'bottom',
+      theme: 'preferred_color_scheme',
+      lang: 'es',
+      loading: 'lazy',
+    },
+  },
+  search: {
+    provider: 'kbar',
+    kbarConfig: {
+      searchDocumentsPath: `${process.env.BASE_PATH || ''}/search.json`,
     },
   },
 }
@@ -555,23 +607,45 @@ npm run build
 
 ## Deployment
 
-### Vercel Configuration
+### Next.js Configuration
 
 ```javascript
-// next.config.js key settings
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    appDir: true,
+// next.config.js - Tailwind CSS 4 compatible
+const { withContentlayer } = require('next-contentlayer2')
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
+// Security headers with CSP
+const securityHeaders = [
+  {
+    key: 'Content-Security-Policy',
+    value:
+      "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app analytics.umami.is;",
   },
-  images: {
-    domains: ['footballdecoded.com'],
+  {
+    key: 'Referrer-Policy',
+    value: 'strict-origin-when-cross-origin',
   },
-  async redirects() {
-    return [
-      // Add redirects as needed
-    ]
-  },
+]
+
+module.exports = () => {
+  const plugins = [withContentlayer, withBundleAnalyzer]
+  return plugins.reduce((acc, next) => next(acc), {
+    reactStrictMode: true,
+    trailingSlash: false,
+    pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+    images: {
+      remotePatterns: [
+        { protocol: 'https', hostname: 'picsum.photos' },
+        { protocol: 'https', hostname: 'lh3.googleusercontent.com' },
+        { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
+      ],
+    },
+    async headers() {
+      return [{ source: '/(.*)', headers: securityHeaders }]
+    },
+  })
 }
 ```
 
