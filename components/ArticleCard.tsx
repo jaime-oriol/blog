@@ -53,6 +53,9 @@ export default function ArticleCard({ post }: ArticleCardProps) {
               alt={title}
               fill
               className="object-cover transition-transform duration-200 group-hover:scale-105"
+              priority={true}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              quality={85}
             />
             {/* Overlay sutil para mejor contraste */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/5 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
