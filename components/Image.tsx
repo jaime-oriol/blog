@@ -2,7 +2,7 @@ import NextImage, { ImageProps } from 'next/image'
 
 const basePath = process.env.BASE_PATH
 
-interface CustomImageProps extends Omit<ImageProps, 'fill'> {
+interface CustomImageProps extends ImageProps {
   caption?: string
 }
 
