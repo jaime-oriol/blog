@@ -19,7 +19,7 @@ const Image = ({ src, caption, width, height, alt, ...rest }: CustomImageProps) 
       />
     </div>
     {caption && (
-      <p className="mt-2 text-center text-sm italic text-slate-600 dark:text-slate-400">
+      <p className="mt-2 text-center text-sm text-slate-600 italic dark:text-slate-400">
         {caption}
       </p>
     )}
