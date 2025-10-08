@@ -112,7 +112,7 @@ export default function SectionsNavigation({ variant }: SectionsNavigationProps)
 
   if (variant === 'bar') {
     return (
-      <div className="hidden w-full border-b border-slate-200 bg-white md:block dark:border-slate-700 dark:bg-slate-900">
+      <div className="hidden w-full border-b border-slate-200 bg-white sm:block dark:border-slate-700 dark:bg-slate-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 xl:px-0">
           <nav className="scrollbar-hide flex space-x-8 overflow-x-auto" aria-label="Secciones">
             {sections.map((section) => {

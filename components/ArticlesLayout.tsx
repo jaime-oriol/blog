@@ -46,7 +46,7 @@ function Pagination({ totalPages, currentPage, basePath = '/articles' }: Paginat
         )}
       </div>
 
-      <div className="hidden md:flex">
+      <div className="hidden sm:flex">
         <span className="font-mono text-sm text-slate-600 dark:text-slate-400">
           Página{' '}
           <span className="font-medium text-slate-900 dark:text-slate-100">{currentPage}</span> de{' '}
