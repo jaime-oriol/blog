@@ -40,9 +40,10 @@ const Header = () => {
           <Image
             src={logoSrc}
             alt={siteMetadata.headerTitle}
-            width={350}
-            height={70}
-            className="h-12 w-auto sm:h-16"
+            width={2351}
+            height={600}
+            className="h-auto w-36 sm:w-44 lg:w-52"
+            priority
           />
         </div>
       </Link>
