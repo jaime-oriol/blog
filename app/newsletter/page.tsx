@@ -16,7 +16,7 @@ export default function Newsletter() {
 
   return (
     <>
-      <div className="mx-auto max-w-4xl px-4 py-2 sm:px-6 xl:max-w-5xl xl:px-0">
+      <div className="mx-auto max-w-4xl px-4 py-2 sm:px-6 lg:max-w-5xl xl:px-0">
         {/* Header minimalista y directo */}
         <div className="mb-8 text-left">
           <h1 className="font-headings mb-8 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
