@@ -44,19 +44,20 @@ const GoalsCarousel = ({
       )}
 
       {/* Contenedor principal del carrusel */}
-      <div className="relative h-32 overflow-hidden rounded-xl sm:h-40 md:h-48 lg:h-56 xl:h-[400px]">
+      <div className="relative min-h-[8rem] max-h-[500px] overflow-hidden rounded-xl">
         {/* Imágenes */}
         <div
-          className="flex h-full transition-transform duration-500 ease-in-out"
+          className="flex transition-all duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {goals.map((goal, index) => (
-            <div key={index} className="relative h-full min-w-full">
+            <div key={index} className="relative min-w-full">
               <Image
                 src={goal.src}
                 alt={goal.alt}
-                fill
-                className="object-cover"
+                width={1600}
+                height={900}
+                className="h-auto w-full object-contain"
                 priority={index === 0}
               />
               {/* Overlay sutil */}

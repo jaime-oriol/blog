@@ -61,22 +61,23 @@ const PhotoCarousel = () => {
     <div className="relative w-full bg-gray-50 dark:bg-gray-900">
       {/* Contenedor principal del carrusel */}
       <div
-        className="relative h-64 overflow-hidden md:h-96 lg:h-[28rem] xl:h-[32rem]"
+        className="relative min-h-[16rem] max-h-[40rem] overflow-hidden"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         {/* Imágenes */}
         <div
-          className="flex h-full transition-transform duration-500 ease-in-out"
+          className="flex transition-all duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {photos.map((photo, index) => (
-            <div key={index} className="relative h-full min-w-full">
+            <div key={index} className="relative min-w-full">
               <Image
                 src={photo.src}
                 alt={photo.alt}
-                fill
-                className="object-cover"
+                width={1200}
+                height={800}
+                className="h-auto w-full object-contain"
                 priority={index === 0}
               />
               {/* Overlay sutil para mejorar legibilidad si hay texto */}

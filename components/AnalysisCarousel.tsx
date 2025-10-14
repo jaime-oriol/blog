@@ -86,22 +86,23 @@ const AnalysisCarousel: React.FC<AnalysisCarouselProps> = ({
       {/* Contenedor principal del carrusel - optimizado para ratio 2:1 de las imágenes tácticas */}
       <div className="relative w-full">
         <div
-          className="relative h-72 overflow-hidden bg-transparent sm:h-96 md:h-[28rem] lg:h-[32rem] xl:h-[36rem]"
+          className="relative min-h-[18rem] max-h-[700px] overflow-hidden bg-transparent"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
           {/* Imágenes */}
           <div
-            className="flex h-full transition-transform duration-500 ease-in-out"
+            className="flex transition-all duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {images.map((imageName, index) => (
-              <div key={index} className="relative h-full min-w-full">
+              <div key={index} className="relative min-w-full">
                 <Image
                   src={`${basePath}/${imageName}`}
                   alt={`Análisis táctico - paso ${index + 1}`}
-                  fill
-                  className="object-contain"
+                  width={1600}
+                  height={800}
+                  className="h-auto w-full object-contain"
                   priority={index === 0}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
                 />
