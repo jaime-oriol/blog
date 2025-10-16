@@ -165,6 +165,7 @@ const hasValidContent = (children: React.ReactNode): boolean => {
 // Wrapper para Image con espaciado consistente
 const ImageWithSpacing = (props: React.ComponentProps<typeof Image>) => (
   <div className="my-1.5">
+    {/* eslint-disable-next-line jsx-a11y/alt-text */}
     <Image {...props} />
   </div>
 )
