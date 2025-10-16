@@ -44,7 +44,7 @@ const GoalsCarousel = ({
       )}
 
       {/* Contenedor principal del carrusel */}
-      <div className="relative max-h-[500px] min-h-[8rem] overflow-hidden rounded-xl">
+      <div className="relative min-h-[8rem] overflow-hidden rounded-xl">
         {/* Imágenes */}
         <div
           className="flex transition-all duration-500 ease-in-out"
