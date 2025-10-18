@@ -82,7 +82,9 @@ const Callout = ({
     <div className={`my-1.5 rounded-lg border p-4 ${getStyles(type)}`}>
       <div className="flex items-start space-x-3">
         <span className="text-lg">{getIcon(type)}</span>
-        <div className="font-helvetica-light text-fd-body leading-relaxed">{children}</div>
+        <div className="font-helvetica-light text-fd-body leading-relaxed text-slate-900 dark:text-slate-100">
+          {children}
+        </div>
       </div>
     </div>
   )
@@ -136,7 +138,7 @@ const StatCard = ({
 // Quote personalizado para citas técnicas
 const TechnicalQuote = ({ children, source }: { children: React.ReactNode; source?: string }) => (
   <blockquote className="my-1.5 border-l-4 border-slate-300 bg-slate-50 py-4 pr-4 pl-6 italic dark:border-slate-600 dark:bg-slate-800/50">
-    <div className="font-helvetica-light text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+    <div className="font-helvetica-light text-lg leading-relaxed text-slate-900 dark:text-slate-100">
       {children}
     </div>
     {source && (
@@ -232,7 +234,7 @@ export const components: MDXComponents = {
   // Párrafos optimizados
   p: (props) => (
     <p
-      className="font-helvetica-light text-fd-body my-1 leading-relaxed text-slate-700 dark:text-slate-300"
+      className="font-helvetica-light text-fd-body my-1 leading-relaxed text-slate-900 dark:text-slate-100"
       {...props}
     />
   ),
@@ -240,13 +242,13 @@ export const components: MDXComponents = {
   // Listas con mejor espaciado
   ul: (props) => (
     <ul
-      className="font-helvetica-light text-fd-body my-1.5 space-y-1 text-slate-700 dark:text-slate-300"
+      className="font-helvetica-light text-fd-body my-1.5 space-y-1 text-slate-900 dark:text-slate-100"
       {...props}
     />
   ),
   ol: (props) => (
     <ol
-      className="font-helvetica-light text-fd-body my-1.5 space-y-1 text-slate-700 dark:text-slate-300"
+      className="font-helvetica-light text-fd-body my-1.5 space-y-1 text-slate-900 dark:text-slate-100"
       {...props}
     />
   ),

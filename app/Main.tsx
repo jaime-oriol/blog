@@ -53,7 +53,7 @@ function IntroSection() {
       </blockquote>
 
       {/* Descripción del proyecto */}
-      <div className="font-helvetica-light text-fd-body space-y-6 leading-relaxed text-slate-700 dark:text-slate-300">
+      <div className="font-helvetica-light text-fd-body space-y-6 leading-relaxed text-slate-900 dark:text-slate-100">
         <p>
           La paradoja de Podolski captura perfectamente la dualidad del fútbol moderno: un juego de
           estrategia pura donde el azar no debería existir, pero donde lo impredecible define los

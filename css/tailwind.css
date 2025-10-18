@@ -94,7 +94,7 @@
   body {
     font-family: var(--font-regular);
     font-weight: 400;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.5;
   }
 
@@ -102,7 +102,7 @@
   p {
     font-family: var(--font-light);
     font-weight: 300;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.6;
   }
 
@@ -187,13 +187,13 @@
   }
 
   .text-fd-body {
-    font-size: 14px; /* Textos - Helvética Light */
+    font-size: 15px; /* Textos - Helvética Light */
     line-height: 1.5;
   }
 
   /* Prose personalizado optimizado para análisis técnicos */
   .prose {
-    --tw-prose-body: var(--color-slate-700);
+    --tw-prose-body: var(--color-slate-900);
     --tw-prose-headings: var(--color-slate-900);
     --tw-prose-lead: var(--color-slate-600);
     --tw-prose-links: var(--color-sky-700);
@@ -371,7 +371,7 @@
 
   /* Modo oscuro para prose */
   .prose-invert {
-    --tw-prose-body: var(--color-slate-300);
+    --tw-prose-body: var(--color-slate-100);
     --tw-prose-headings: var(--color-slate-100);
     --tw-prose-lead: var(--color-slate-400);
     --tw-prose-links: var(--color-sky-400);

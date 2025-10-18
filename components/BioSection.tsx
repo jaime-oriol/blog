@@ -6,7 +6,7 @@ const BioSection = () => {
 
       <div className="w-full space-y-6 px-4 py-16 sm:px-6">
         {/* Contenido biográfico - misma tipografía que Main.tsx */}
-        <div className="font-body space-y-6 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+        <div className="font-body space-y-6 text-lg leading-relaxed text-slate-900 dark:text-slate-100">
           <p>
             Mi relación con el fútbol comenzó con el Barça de Messi cuando tenía ocho años. Recuerdo
             perfectamente aquella sensación: no era solo presenciar victorias, era observar una
