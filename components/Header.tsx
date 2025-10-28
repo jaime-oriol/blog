@@ -11,10 +11,12 @@ import SectionsNavigation from './SectionsNavigation'
 import AuthButton from './AuthButton'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 const Header = () => {
   const { theme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     setMounted(true)
@@ -49,22 +51,33 @@ const Header = () => {
       </Link>
 
       {/* Navegación principal - tipografía consistente */}
-      <div className="flex items-center space-x-4 leading-5 sm:-mr-6 sm:space-x-6">
-        <div className="hidden items-center gap-x-6 sm:flex lg:gap-x-8">
+      <div className="flex items-center space-x-3 leading-5 sm:-mr-6 sm:space-x-4">
+        <div className="hidden items-center gap-x-4 sm:flex lg:gap-x-6">
           {headerNavLinks.map((link) => {
             // Si es el enlace de artículos, usar el dropdown unificado
             if (link.title === 'Artículos') {
               return <SectionsNavigation key="articles" variant="dropdown" />
             }
 
-            // Para el resto de enlaces, tipografía profesional
+            const isActive = pathname === link.href
+            const Icon = link.icon
+
+            // Para el resto de enlaces, tipografía profesional con iconos
             return (
               <Link
                 key={link.title}
                 href={link.href}
-                className="font-helvetica-regular text-fd-body font-medium text-slate-700 transition-colors hover:text-sky-700 dark:text-slate-300 dark:hover:text-sky-400"
+                className={`group font-helvetica-regular text-fd-body relative flex items-center gap-2 font-medium transition-colors duration-300 ${
+                  isActive
+                    ? 'text-sky-700 dark:text-sky-400'
+                    : 'text-slate-700 hover:text-sky-700 dark:text-slate-300 dark:hover:text-sky-400'
+                } `}
               >
+                <Icon className="h-4 w-4" />
                 {link.title}
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-sky-700 transition-all duration-300 dark:bg-sky-400 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'} `}
+                />
               </Link>
             )
           })}

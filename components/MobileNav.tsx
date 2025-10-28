@@ -6,6 +6,7 @@ import { Fragment, useState, useEffect, useRef } from 'react'
 import Link from './Link'
 import headerNavLinks from '@/content/headerNavLinks'
 import AuthButton from './AuthButton'
+import { usePathname } from 'next/navigation'
 
 const sections = [
   { href: '/articles', title: 'Todos los artículos' },
@@ -18,6 +19,7 @@ const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)
   const [articlesOpen, setArticlesOpen] = useState(false)
   const navRef = useRef(null)
+  const pathname = usePathname()
 
   const onToggleNav = () => {
     setNavShow((status) => {
@@ -84,15 +86,17 @@ const MobileNav = () => {
                 {headerNavLinks.map((link) => {
                   // Manejo especial para Artículos con submenú
                   if (link.title === 'Artículos') {
+                    const Icon = link.icon
                     return (
                       <div key={link.title} className="mb-4">
                         <button
-                          className="font-helvetica-bold hover:text-primary-500 dark:hover:text-primary-400 text-fd-title flex items-center py-2 pr-4 font-bold tracking-widest text-gray-900 outline outline-0 dark:text-gray-100"
+                          className="font-helvetica-bold hover:text-primary-500 dark:hover:text-primary-400 text-fd-title flex items-center gap-3 py-2 pr-4 font-bold tracking-widest text-gray-900 outline outline-0 dark:text-gray-100"
                           onClick={() => setArticlesOpen(!articlesOpen)}
                         >
+                          <Icon className="h-5 w-5" />
                           {link.title}
                           <svg
-                            className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                            className={`ml-1 h-4 w-4 transition-transform duration-200 ${
                               articlesOpen ? 'rotate-180' : ''
                             }`}
                             fill="none"
@@ -110,30 +114,45 @@ const MobileNav = () => {
                         {/* Submenú de artículos */}
                         {articlesOpen && (
                           <div className="mt-2 ml-4 space-y-2">
-                            {sections.map((section) => (
-                              <Link
-                                key={section.href}
-                                href={section.href}
-                                className="font-helvetica-regular hover:text-primary-500 dark:hover:text-primary-400 block py-1 text-sm text-gray-700 dark:text-gray-300"
-                                onClick={onToggleNav}
-                              >
-                                {section.title}
-                              </Link>
-                            ))}
+                            {sections.map((section) => {
+                              const isActive = pathname === section.href
+                              return (
+                                <Link
+                                  key={section.href}
+                                  href={section.href}
+                                  className={`font-helvetica-regular block py-1 text-sm transition-colors duration-300 ${
+                                    isActive
+                                      ? 'font-medium text-sky-700 dark:text-sky-400'
+                                      : 'text-gray-700 hover:text-sky-700 dark:text-gray-300 dark:hover:text-sky-400'
+                                  } `}
+                                  onClick={onToggleNav}
+                                >
+                                  {section.title}
+                                </Link>
+                              )
+                            })}
                           </div>
                         )}
                       </div>
                     )
                   }
 
+                  const isActive = pathname === link.href
+                  const Icon = link.icon
+
                   // Para el resto de enlaces normales
                   return (
                     <Link
                       key={link.title}
                       href={link.href}
-                      className="font-helvetica-bold hover:text-primary-500 dark:hover:text-primary-400 text-fd-title mb-4 py-2 pr-4 font-bold tracking-widest text-gray-900 outline outline-0 dark:text-gray-100"
+                      className={`font-helvetica-bold text-fd-title mb-4 flex items-center gap-3 py-2 pr-4 font-bold tracking-widest outline outline-0 transition-colors duration-300 ${
+                        isActive
+                          ? 'text-sky-700 dark:text-sky-400'
+                          : 'text-gray-900 hover:text-sky-700 dark:text-gray-100 dark:hover:text-sky-400'
+                      } `}
                       onClick={onToggleNav}
                     >
+                      <Icon className="h-5 w-5" />
                       {link.title}
                     </Link>
                   )

@@ -10,7 +10,7 @@ export default function Page() {
       {/* Header de la sección - consistente con otras páginas */}
       <div className="mb-8 text-left">
         <h1 className="font-headings mb-8 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
-          Sobre mí
+          About
         </h1>
       </div>
 
