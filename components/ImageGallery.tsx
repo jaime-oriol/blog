@@ -61,10 +61,10 @@ const images: GalleryImage[] = [
     category: 'Comparativa',
   },
   {
-    src: '/static/images/articles/extras/conv_españa/Raya_vs_UnaiSimon_combined.png',
-    alt: 'Comparación estadística David Raya vs Unai Simón',
-    title: 'Comparativo Porteros',
-    category: 'Comparativa',
+    src: '/static/images/articles/atm/sorloth/scatter_xg_goals_total.png',
+    alt: 'Scatter plot xG vs Goles',
+    title: 'Scatter Plot',
+    category: 'Análisis',
   },
   {
     src: '/static/images/articles/villareal/J8-RM/pf.png',
