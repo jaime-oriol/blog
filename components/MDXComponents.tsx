@@ -6,6 +6,7 @@ import type { MDXComponents } from 'mdx/types'
 import Image from './Image'
 import CustomLink from './Link'
 import AnalysisCarousel from './AnalysisCarousel'
+import VideoPlayer from './VideoPlayer'
 
 // Table wrapper con diseño profesional
 const TableWrapper = ({ children }: { children: React.ReactNode }) => (
@@ -187,6 +188,7 @@ export const components: MDXComponents = {
   StatCard,
   TechnicalQuote,
   AnalysisCarousel,
+  VideoPlayer,
 
   // Headings con verificación de contenido y accesibilidad
   h1: (props) => {
