@@ -46,7 +46,7 @@ La precisión de un modelo de xG depende críticamente de la calidad y profundid
 
 - **Variables de Contexto y Juego:** Tipo de asistencia (centro, pase filtrado, rebote), patrón de juego (contraataque, jugada a balón parado, ataque posicional) y la presencia de defensores entre el balón y la portería.
 
-### 3. Limitaciones, Sesgos y Desafíos Críticos (Sección Fundamental)
+### 3. Limitaciones, Sesgos y Desafíos Críticos
 
 A pesar de su aceptación generalizada, el modelo de xG no es una representación perfecta de la realidad, sino una simplificación estadística. Para un analista profesional, comprender estas limitaciones es más importante que conocer el valor de xG en sí mismo.
 
@@ -54,7 +54,7 @@ A pesar de su aceptación generalizada, el modelo de xG no es una representació
 
 La limitación más intrínseca del xG estándar es que asume que el ejecutor del disparo es un "jugador promedio". La mayoría de los modelos se entrenan con bases de datos masivas que diluyen las habilidades individuales. Esto genera dos problemas graves:
 
-1. **Subestimación de la Élite:** Los mejores finalizadores del mundo, como Lionel Messi, Harry Kane o Erling Haaland, superan sistemáticamente su xG acumulado durante años. Investigaciones recientes indican que los modelos convencionales pueden subestimar la capacidad goleadora de Messi en un 17% debido a este sesgo.
+1. **Subestimación de la Élite:** Los mejores finalizadores del mundo, como Lionel Messi, Harry Kane o Erling Haaland, superan sistemáticamente su xG acumulado durante años. Pero el xG es "genérico" para todos los jugadores.
 
 2. **Sobreestimación de Jugadores de Nivel Bajo:** Inversamente, un defensor que toma un disparo ocasional desde 20 metros recibe la misma probabilidad que un especialista en tiros lejanos, lo que infla artificialmente las expectativas sobre jugadores menos técnicos.
 
@@ -233,8 +233,8 @@ Para una comparación justa con el modelo comercial de StatsBomb, se utiliza Pha
 
 - Brier Score: 0.0755 vs 0.0745 (comparable, diferencia no significativa)
 - AUC-ROC: 0.8132 (capacidad de discriminación robusta)
-- Correlación: 0.77 (alta consistencia general)
-- Mean Absolute Error: 0.071 (diferencia promedio de 7.1 puntos porcentuales de xG)
+- Correlación: 0.932 (muy alto)
+- Mean Absolute Error: 0.027 (diferencia promedio de 2.7 puntos porcentuales de xG)
 
 El modelo Phase 2 Tuned alcanza métricas comparables al modelo comercial de StatsBomb utilizando exclusivamente datos públicos y features pre-shot, validando la arquitectura y el enfoque de ingeniería de características empleado.
 
@@ -299,7 +299,7 @@ A pesar de alcanzar métricas comparables a modelos comerciales utilizando exclu
   className="h-auto w-full object-contain"
 />
 
-### Conclusiones Estratégicas
+### Conclusiones
 
 El modelo de Expected Goals ha madurado de ser una estadística avanzada a convertirse en un lenguaje fundamental para la toma de decisiones en el fútbol profesional. Sin embargo, la sofisticación técnica debe ir acompañada de una interpretación cautelosa. El xG es más potente cuando se agrega en muestras grandes y cuando se utiliza para evaluar procesos, no resultados aislados.
 
