@@ -17,6 +17,8 @@ const getSectionLabel = (section: string) => {
       return 'Match Analysis'
     case 'team-architecture':
       return 'Team Architecture'
+    case 'analytics-lab':
+      return 'Analytics Lab'
     case 'tactical-analysis': // Backward compatibility
       return 'Player Decoded'
     case 'analytical-scouting': // Backward compatibility
@@ -35,7 +37,18 @@ const getSectionLabel = (section: string) => {
 }
 
 const getSectionColor = (section: string) => {
-  return 'border border-sky-600 text-sky-700 bg-transparent dark:border-sky-400 dark:text-sky-400'
+  switch (section) {
+    case 'player-decoded':
+      return 'border border-sky-600 text-sky-700 bg-transparent dark:border-sky-400 dark:text-sky-400'
+    case 'match-analysis':
+      return 'border border-emerald-600 text-emerald-700 bg-transparent dark:border-emerald-400 dark:text-emerald-400'
+    case 'team-architecture':
+      return 'border border-indigo-600 text-indigo-700 bg-transparent dark:border-indigo-400 dark:text-indigo-400'
+    case 'analytics-lab':
+      return 'border border-orange-600 text-orange-700 bg-transparent dark:border-orange-400 dark:text-orange-400'
+    default:
+      return 'border border-sky-600 text-sky-700 bg-transparent dark:border-sky-400 dark:text-sky-400'
+  }
 }
 
 export default function ArticleCard({ post }: ArticleCardProps) {

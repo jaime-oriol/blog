@@ -44,6 +44,8 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
         return 'Match Analysis'
       case 'team-architecture':
         return 'Team Architecture'
+      case 'analytics-lab':
+        return 'Analytics Lab'
       case 'tactical-analysis': // Backward compatibility
         return 'Player Decoded'
       case 'analytical-scouting': // Backward compatibility
@@ -62,7 +64,18 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
   }
 
   const getSectionColor = (section: string) => {
-    return 'border border-sky-600 text-sky-700 bg-transparent dark:border-sky-400 dark:text-sky-400'
+    switch (section) {
+      case 'player-decoded':
+        return 'border border-sky-600 text-sky-700 bg-transparent dark:border-sky-400 dark:text-sky-400'
+      case 'match-analysis':
+        return 'border border-emerald-600 text-emerald-700 bg-transparent dark:border-emerald-400 dark:text-emerald-400'
+      case 'team-architecture':
+        return 'border border-indigo-600 text-indigo-700 bg-transparent dark:border-indigo-400 dark:text-indigo-400'
+      case 'analytics-lab':
+        return 'border border-orange-600 text-orange-700 bg-transparent dark:border-orange-400 dark:text-orange-400'
+      default:
+        return 'border border-sky-600 text-sky-700 bg-transparent dark:border-sky-400 dark:text-sky-400'
+    }
   }
 
   const getSectionHref = (section: string) => {
@@ -73,6 +86,8 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
         return '/articles/match-analysis'
       case 'team-architecture':
         return '/articles/team-architecture'
+      case 'analytics-lab':
+        return '/articles/analytics-lab'
       case 'tactical-analysis': // Backward compatibility
       case 'tactical-structures': // Backward compatibility
         return '/articles/player-decoded'

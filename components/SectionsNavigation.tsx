@@ -39,6 +39,13 @@ const sections: Section[] = [
       'Estudio de equipos y sus filosofías. Sistemas organizativos, principios tácticos e identidad colectiva.',
     icon: null,
   },
+  {
+    href: '/articles/analytics-lab',
+    title: 'Analytics\nLab',
+    description:
+      'Laboratorio de datos y métricas. Machine Learning, IA y análisis estadístico avanzado aplicado al fútbol.',
+    icon: null,
+  },
 ]
 
 interface SectionsNavigationProps {
