@@ -13,6 +13,7 @@ const sections = [
   { href: '/articles/player-decoded', title: 'Player Decoded' },
   { href: '/articles/match-analysis', title: 'Match Analysis' },
   { href: '/articles/team-architecture', title: 'Team Architecture' },
+  { href: '/articles/analytics-lab', title: 'Analytics Lab' },
 ]
 
 const MobileNav = () => {

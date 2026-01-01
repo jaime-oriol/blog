@@ -72,6 +72,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${ibmPlexMono.variable} scroll-smooth`}
       suppressHydrationWarning
     >
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link rel="dns-prefetch" href="https://analytics.umami.is" />
+      <link rel="dns-prefetch" href="https://giscus.app" />
       <link
         rel="apple-touch-icon"
         sizes="450x450"

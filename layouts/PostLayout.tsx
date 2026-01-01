@@ -4,12 +4,14 @@
 import { ReactNode, useState } from 'react'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog, Authors } from 'contentlayer/generated'
-import CommentForm from '@/components/CommentForm'
-import CommentsList from '@/components/CommentsList'
+import dynamic from 'next/dynamic'
 import Link from '@/components/Link'
 import Image from '@/components/Image'
 import siteMetadata from '@/content/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+
+const CommentForm = dynamic(() => import('@/components/CommentForm'), { ssr: false })
+const CommentsList = dynamic(() => import('@/components/CommentsList'), { ssr: false })
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
   year: 'numeric',

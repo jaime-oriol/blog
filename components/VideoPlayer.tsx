@@ -8,13 +8,12 @@ interface VideoPlayerProps {
 export default function VideoPlayer({ src, className = '' }: VideoPlayerProps) {
   return (
     <div className={`my-1.5 ${className}`}>
-      {}
       <video
         className="h-auto w-full rounded-lg"
         controls
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         style={{ maxHeight: '500px', objectFit: 'cover' }}
         src={src}
       >

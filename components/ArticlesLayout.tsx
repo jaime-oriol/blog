@@ -106,6 +106,8 @@ export default function ArticlesLayout({
         return 'Estudio de equipos y sus filosofías. Sistemas organizativos, principios tácticos e identidad colectiva.'
       case 'tactical-metrics-lab': // Backward compatibility
         return 'Estudio de equipos y sus filosofías. Sistemas organizativos, principios tácticos e identidad colectiva.'
+      case 'analytics-lab':
+        return 'Laboratorio de datos y métricas. Machine Learning, IA y análisis estadístico avanzado aplicado al fútbol.'
       default:
         return 'Análisis técnico del fútbol moderno a través de métricas avanzadas, evaluación táctica y scouting especializado.'
     }

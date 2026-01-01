@@ -3,11 +3,13 @@ import TOCInline from 'pliny/ui/TOCInline'
 import Pre from 'pliny/ui/Pre'
 import BlogNewsletterForm from 'pliny/ui/BlogNewsletterForm'
 import type { MDXComponents } from 'mdx/types'
+import dynamic from 'next/dynamic'
 import Image from './Image'
 import CustomLink from './Link'
-import AnalysisCarousel from './AnalysisCarousel'
-import VideoPlayer from './VideoPlayer'
-import YouTubeEmbed from './YouTubeEmbed'
+
+const AnalysisCarousel = dynamic(() => import('./AnalysisCarousel'), { ssr: false })
+const VideoPlayer = dynamic(() => import('./VideoPlayer'), { ssr: false })
+const YouTubeEmbed = dynamic(() => import('./YouTubeEmbed'), { ssr: false })
 
 // Table wrapper con diseño profesional
 const TableWrapper = ({ children }: { children: React.ReactNode }) => (
