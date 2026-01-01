@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import TOCInline from 'pliny/ui/TOCInline'
 import Pre from 'pliny/ui/Pre'
@@ -9,9 +7,9 @@ import dynamic from 'next/dynamic'
 import Image from './Image'
 import CustomLink from './Link'
 
-const AnalysisCarousel = dynamic(() => import('./AnalysisCarousel'), { ssr: false })
-const VideoPlayer = dynamic(() => import('./VideoPlayer'), { ssr: false })
-const YouTubeEmbed = dynamic(() => import('./YouTubeEmbed'), { ssr: false })
+const AnalysisCarousel = dynamic(() => import('./AnalysisCarousel'))
+const VideoPlayer = dynamic(() => import('./VideoPlayer'))
+const YouTubeEmbed = dynamic(() => import('./YouTubeEmbed'))
 
 // Table wrapper con diseño profesional
 const TableWrapper = ({ children }: { children: React.ReactNode }) => (
