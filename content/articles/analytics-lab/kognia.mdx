@@ -1,0 +1,126 @@
+---
+title: 'Mi Experiencia con Kognia: Review y Análisis de Erik Lira'
+date: '2026-01-17'
+section: 'analytics-lab'
+image: '/static/images/articles/analytics-lab/kognia/portada.jpg'
+featured: true
+---
+
+Conseguir datos de fútbol es complicado. Si has intentado analizar partidos más allá de lo que te dan gratis en FBref, Understat, Whoscored o Transfermarkt, lo sabes. Los proveedores profesionales (Opta, StatsBomb, Wyscout) cuestan miles de euros al año. Y aunque consigas acceso, muchas veces te dan números sin contexto visual: sabes que hubo 23 pases progresivos, pero no ves cómo ni cuándo.
+
+Yo llevo meses construyendo scrapers, peleando con APIs, limpiando CSVs mal formateados. Horas de trabajo para conseguir data que luego hay que cruzar manualmente con vídeo. Es el pan de cada día para cualquier analista independiente o equipo con recursos limitados.
+
+Kognia resuelve esto de una forma diferente. Es una plataforma de análisis táctico con inteligencia artificial que genera datos, gráficos y clips de vídeo automáticamente desde una sola grabación del partido. Sin cámaras especiales, sin integrar data externa. Subes el vídeo y la IA hace el resto.
+
+He tenido acceso a una demo con datos de la Liga MX Apertura 2025. Poder acceder a radares, scatters, clips y métricas sin tener que construir todo desde cero ha sido un cambio brutal. Esto es lo que he encontrado.
+
+### Qué Ofrece Kognia
+
+La plataforma está pensada para analistas y cuerpos técnicos. No es un juguete con estadísticas bonitas. Es una herramienta de trabajo real.
+
+**Lo que he probado en la demo:**
+
+- **Clips de vídeo:** Puedes generar clips de acciones específicas para revisar o preparar sesiones con jugadores.
+- **Playlists personalizadas:** Agrupas clips por jugador, por acción, por zona del campo. Muy útil para preparar sesiones de vídeo con el cuerpo técnico.
+- **Radares y scatters:** Gráficos comparativos con percentiles para enfrentar jugadores entre sí o contra la media de la competición.
+- **Métricas físicas:** Datos de distancia, velocidad y esfuerzo extraídos directamente del vídeo.
+- **Exportación de datos:** Descarga en Excel para análisis propio.
+- **Overlays tácticos:** Dibujos automáticos sobre el vídeo mostrando líneas de pase y movimientos.
+
+Lo que más me ha llamado la atención es que no necesitas data de terceros. Kognia extrae la información directamente del vídeo, sin depender de proveedores externos. Esto abre posibilidades para equipos que no pueden pagar licencias de Opta o StatsBomb.
+
+### Case Study: Erik Lira
+
+Para probar la plataforma elegí analizar a Erik Lira, mediocentro del Cruz Azul. 170cm, 25 años, 1877 minutos en la Liga MX Apertura 2025.
+
+¿Por qué él? Porque representa un arquetipo que me fascina: el pivote pequeño que compensa físico con inteligencia y agresividad. Jugadores como Gavi o Verratti han demostrado que 170 centímetros no impiden dominar el centro del campo. Son perfiles mandones, valientes en la disputa, que organizan con balón y destruyen sin él. Los datos de Kognia confirman que Lira encaja perfectamente en este molde.
+
+### Radar Ofensivo: Valentía con Balón
+
+<Image
+  src="/static/images/articles/analytics-lab/kognia/radar_ofensivo.png"
+  alt="Radar ofensivo de Erik Lira - Cruz Azul Liga MX Apertura 2025"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Su métrica estrella es la **conducción progresiva (P94)**. Erik no circula lateral, avanza con el balón controlado rompiendo líneas. Esencial en pivotes pequeños: compensan físico con técnica para superar presiones.
+
+Es élite filtrando pases entre líneas (P89) y superando oponentes con pases verticales (P88). Tiene visión para encontrar espacios reducidos y ambición para el pase vertical. Su pase a la espalda de la defensa completado (P85) demuestra timing preciso para romper la última línea.
+
+**Recibir falta después de recuperar (P86):** típico en estos arquetipos con centro de gravedad bajo. Cuesta quitarles el balón. Además, su posesión después de recuperar (P87) confirma que cuando recupera no se quita el balón de encima, juega con criterio. Muchas de esas acciones son progresiones (P71), confirmando mentalidad de transición rápida.
+
+Duelos de balón dividido ofensivo ganados (P77): agresividad pese al físico. No rehuye el contacto y compite por cada pelota suelta en zona ofensiva.
+
+### Radar Defensivo: Lectura e Interceptación
+
+<Image
+  src="/static/images/articles/analytics-lab/kognia/radar_defensivo.png"
+  alt="Radar defensivo de Erik Lira - Cruz Azul Liga MX Apertura 2025"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+**Recuperación en segundo tercio (P95) + Defender movimiento a la espalda (P91) + Interceptación tras defensa de movimientos (P91):** el tridente defensivo clave. Erik compensa su tamaño con anticipación constante. No puede permitirse errores posicionales que le obliguen a duelos físicos donde será superado. Se posiciona anticipadamente, lee carreras rivales e intercepta con timing preciso.
+
+Recuperar segunda jugada después de juego directo (P93): intensidad para acercarse a rebotes. Aunque no gane duelos aéreos, siempre está cerca del balón dividido.
+
+Su defensa de paredes (P78) y capacidad para neutralizar ventajas rivales en desequilibrios defensivos (P78) muestran inteligencia táctica para leer triangulaciones y recuperar posición en inferioridad numérica.
+
+**Limpiar el área (P74):** el patadón para arriba en situaciones límite. Me encanta ver esto en un pivote pequeño. Sin llegar a extremos, pero con esa mentalidad de "ante peligro, lo saco lejos". Valentía para meterse en zonas congestionadas donde su físico no ayuda.
+
+Hace pocas faltas (P47). Disciplina táctica excelente, evita tarjetas sin perder agresividad. También es difícil de regatear (P34 regates en contra), buen posicionamiento corporal en el 1vs1.
+
+Su única carencia real es la **presión al poseedor (P48)**. No presiona directamente con agresividad tipo Gavi. Prioriza organización sobre pressing, posiblemente por limitación física o instrucción táctica del Cruz Azul.
+
+### Comparativa: Lira vs Richard Sánchez
+
+<Image
+  src="/static/images/articles/analytics-lab/kognia/radar_lira_sanchez.png"
+  alt="Radar comparativo Erik Lira vs Richard Sánchez - Liga MX Apertura 2025"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Una de las funciones más útiles de Kognia es la comparación directa entre jugadores. Aquí enfrentamos a Lira con Richard Sánchez, otro mediocentro de la Liga MX.
+
+El radar muestra perfiles complementarios más que opuestos. Lira domina en conducción progresiva y lectura defensiva. Sánchez tiene otras fortalezas. No es que uno sea mejor que otro: son pivotes distintos para sistemas distintos.
+
+Este tipo de comparativas son oro para departamentos de scouting. En lugar de mirar números sueltos, ves de un vistazo dónde destaca cada jugador y dónde flaquea. Y lo generas en segundos.
+
+### Scatter: Defensa de Movimientos a la Espalda
+
+<Image
+  src="/static/images/articles/analytics-lab/kognia/defender_movimientos_espalda_scatter.png"
+  alt="Scatter plot de defensa de movimientos a la espalda - Liga MX Apertura 2025"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+El scatter es otra herramienta potente. Aquí vemos a todos los mediocentros de la Liga MX posicionados según su capacidad para defender movimientos a la espalda.
+
+Lira aparece en zona élite (P91). No es casualidad: como hemos visto en su radar defensivo, la anticipación es su arma principal. En un scatter así puedes identificar rápidamente outliers, jugadores que destacan por encima de la media en métricas específicas.
+
+Para scouting, este tipo de visualizaciones ahorran horas de trabajo. En lugar de filtrar tablas de Excel buscando valores altos, el scatter te muestra directamente quién está por encima y quién por debajo. Además, en la plataforma puedes pasar el cursor sobre cada punto y ver qué jugador es, con acceso directo a su perfil completo.
+
+### Conclusión
+
+**Sobre Erik Lira:** es el mediocentro que compensa centímetros con cerebro. Las métricas reflejan las cualidades esenciales de este perfil: conducción valiente, verticalidad en el pase, lectura defensiva excepcional y valentía en disputas. En la Liga MX, donde el físico prima, Erik demuestra que la inteligencia táctica sigue siendo la mejor arma de un pivote. Un jugador a seguir.
+
+**Sobre Kognia:** mi experiencia con la plataforma ha sido muy positiva. Después de meses construyendo herramientas propias para conseguir y visualizar data, usar algo que te lo da todo integrado es un alivio. No es perfecta ni sustituye el criterio del analista, pero te quita de encima la parte más tediosa del trabajo: conseguir los datos y cruzarlos con vídeo.
+
+¿Para quién es Kognia? Para equipos de cantera que necesitan analizar a sus juveniles sin presupuesto para Wyscout. Para analistas independientes que quieren ofrecer informes profesionales sin invertir miles en licencias. Para clubes de ligas menores que no tienen acceso a proveedores premium. Para cualquiera que haya perdido horas limpiando CSVs y buscando clips en YouTube.
+
+La combinación de vídeo + datos + gráficos en una sola plataforma ahorra mucho tiempo. Y el hecho de que genere todo desde un solo vídeo, sin depender de data externa, es un diferencial importante. Democratiza el acceso a análisis que antes solo estaba al alcance de clubes con recursos.
+
+No me pongo a detallar aquí cada métrica que he visto, pero hay muchas que son novedosas y difíciles de modelar por cuenta propia: tipos específicos de intercepciones, clasificaciones de pases, movimientos sin balón... El catálogo es extenso.
+
+La recomiendo. No porque sea perfecta, sino porque resuelve un problema real que cualquier analista conoce.
+
+---
+
+¿Conocías plataformas de análisis que generen data desde vídeo sin fuentes externas? ¿Qué herramientas usas para tu análisis táctico?
