@@ -7,6 +7,8 @@
 Antes de realizar cualquier tarea, revisa cuidadosamente el archivo CLAUDE.md.
 Ahí encontrarás las directrices de trabajo y la estructura del proyecto que debes seguir.
 
+Color FD: "#0043D8"
+
 ### Development Principles
 
 - **KISS (Keep It Simple, Stupid)**: Choose straightforward solutions over complex ones

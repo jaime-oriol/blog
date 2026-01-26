@@ -1,0 +1,142 @@
+---
+title: 'Normalización de Métricas: Por qué los 90 Minutos Mienten'
+date: '2026-01-26'
+section: 'analytics-lab'
+image: '/static/images/articles/analytics-lab/normalizacion/portada.jpg'
+featured: true
+---
+
+Cuando comparas jugadores usando métricas por 90 minutos, asumes que todos juegan en las mismas condiciones. Pero no es así. Un mediocampista del Barcelona tiene el balón en juego con su equipo en posesión unos 36 minutos por partido. Uno del Getafe, apenas 21. Si ambos acumulan el mismo número de pases progresivos, ¿quién es realmente más productivo?
+
+La normalización por 90' es el estándar porque es simple y accesible. FBref, Transfermarkt, la mayoría de plataformas la usan. Pero esa simplicidad tiene un coste: infravalora sistemáticamente a jugadores de equipos con poco tiempo efectivo y sobrestima a los que disfrutan de más balón.
+
+En este artículo voy a explicar los distintos métodos de normalización, cuándo usar cada uno y por qué el tiempo de juego efectivo puede cambiar completamente tu percepción de un jugador.
+
+_Nota: las visualizaciones de tiempo efectivo por equipo, el scatter y el desglose del partido Espanyol-Barcelona, así como los datos de Raillo, son de [Jesús Lagos](https://x.com/Vdot_Spain) ([LinkedIn](https://www.linkedin.com/in/jesuslagos/)). Os animo a seguirle, su contenido de data y fútbol es top._
+
+### Los 5 Niveles de Normalización
+
+<Image
+  src="/static/images/articles/analytics-lab/normalizacion/Infografia.png"
+  alt="Infografía: 5 niveles de normalización de métricas en fútbol"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Aclaración importante: aquí hablo de normalización en el sentido de ajustar métricas para hacerlas comparables entre jugadores con distinto tiempo de juego. No confundir con normalización estadística (transformar distribuciones) ni con estandarización (z-scores). El objetivo es simple: si un jugador juega más minutos, acumula más acciones. Necesitamos un denominador común. La pregunta es cuál.
+
+Voy a usar un ejemplo consistente para ilustrar cada método: Raillo (Mallorca), 1620 minutos en 18 partidos, 39 pases progresivos.
+
+**1. Por 90 minutos (estándar).** El método que usa todo el mundo. Divides minutos entre 90 para obtener "partidos equivalentes" y normalizas: 39 / (1620/90) = 2.16 pases progresivos por 90'. El problema es doble: los partidos no duran 90 minutos (con añadidos pueden ser 97-102), y esos minutos incluyen tiempo muerto donde el balón no está en juego. Faltas, saques, VAR, lesiones. Un jugador puede estar 90 minutos en el campo pero el balón solo estar en juego 55.
+
+**2. Por 90 minutos reales.** Usas la duración real de cada partido. Si los 18 partidos de Raillo duraron realmente 1787 minutos: 39 / (1787/90) = 1.96 por 90' reales. La diferencia parece pequeña (2.16 vs 1.96), pero en percentiles puede mover varios puntos. Y cuando filtras por umbrales, importa. Aun así, sigue sin distinguir tiempo de juego real de tiempo muerto.
+
+**3. Por tiempo de juego efectivo (~55').** El tiempo efectivo es cuando el balón está realmente en juego. En La Liga, la media ronda los 55 minutos por partido. Si Raillo acumuló 1002 minutos efectivos: 39 / (1002/55) = 2.14 por 55' efectivos. Este método elimina el ruido del tiempo muerto: dos jugadores con el mismo valor han tenido las mismas oportunidades reales de actuar. Matiz: calcular tiempo efectivo requiere datos de eventos con timestamps precisos o tracking. No está en FBref.
+
+**4. Por tiempo efectivo en posesión propia.** Aquí está la clave para métricas ofensivas. Un jugador solo puede dar pases progresivos cuando su equipo tiene el balón. Si su equipo tiene poca posesión, tiene menos oportunidades. Compararlo por 90' con uno cuyo equipo domina es injusto. Si Raillo tuvo 462 minutos efectivos con Mallorca en posesión: 39 / (462/27.5) = 2.32 por 27.5' efectivos en posesión. ¿Por qué 27.5? Es la mitad del tiempo efectivo medio (55/2), para mantener escala comparable. Este método iguala las condiciones entre un mediocampista del Getafe (21' de posesión propia) y uno del Barcelona (36'). Para métricas defensivas, el razonamiento es inverso: normalizas por posesión rival.
+
+**5. Por cada 100 acciones.** Cambia el enfoque completamente. En lugar de "¿cuánto hace por tiempo?", pregunta "¿qué proporción de sus acciones son de este tipo?". Si Raillo dio 39 pases al último tercio en 450 pases totales: 39/450×100 = 8.66 por cada 100 pases. Habla del estilo, no del volumen. Un jugador con 8.66 es más vertical que uno con 4, independientemente de cuántos pases totales dé. Útil para perfiles: ¿arriesga o es conservador? ¿Qué porcentaje de conducciones son progresivas? La limitación: no dice nada del volumen absoluto. Puedes ser muy vertical en proporción pero tocar poco el balón.
+
+### ¿Cuál usar?
+
+Ninguno es universalmente mejor. Cada uno responde a una pregunta distinta. La correlación entre métodos suele ser alta (R² de 0.86 entre el estándar y el avanzado en mis análisis). La mayoría de jugadores que destacan con uno también destacan con otro. Pero la clave está en los outliers: los que el método simple infravalora o sobrestima. En scouting, esos outliers pueden ser la perla que buscas o el fichaje sobrevalorado que quieres evitar.
+
+### El Tiempo Efectivo por Equipo
+
+<Image
+  src="/static/images/articles/analytics-lab/normalizacion/Tiempo_ef_propio.png"
+  alt="Boxplot: Tiempo efectivo propio por equipo en La Liga 25/26"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Este gráfico muestra el tiempo efectivo en posesión propia de cada equipo de La Liga. Barcelona lidera con 36:15 de media. Getafe cierra la tabla con 21:20. Son 15 minutos de diferencia por partido. En una temporada de 38 jornadas, eso son más de 9 horas adicionales de balón en juego para un jugador del Barcelona respecto a uno del Getafe.
+
+<Image
+  src="/static/images/articles/analytics-lab/normalizacion/Tiempo_ef_rivales.png"
+  alt="Boxplot: Tiempo efectivo de los rivales por equipo en La Liga 25/26"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Y aquí el tiempo efectivo que tienen los rivales cuando juegan contra cada equipo. Espanyol lidera: sus rivales disfrutan de 31:58 de media. Barcelona cierra: sus rivales solo tienen 19:33.
+
+Esto explica mucho sobre modelos de juego. El Espanyol cede el balón, juega poco, pero minimiza el peligro rival y maximiza su eficiencia en las posesiones que tiene. Barcelona domina el balón y asfixia al rival.
+
+Cuando mires métricas de jugadores del Espanyol o Getafe, recuerda esto. El volumen que acumulan siempre será menor que el de otros equipos. No porque sean peores, sino porque su modelo de juego les da menos oportunidades de acumular acciones.
+
+### Caso Práctico: Luis Milla
+
+<Image
+  src="/static/images/articles/analytics-lab/normalizacion/milla_per100_vs_per90_combined.png"
+  alt="Radar comparativo de Luis Milla: normalización por 90' vs por 100 toques"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Luis Milla, mediocentro del Getafe. Según FBref: 1304 minutos, 502 pases → 34.66 pases por 90'. Pero el Getafe es de los equipos con menos tiempo efectivo en posesión. Milla acumula solo 315 minutos de posesión propia efectiva. Si normalizamos por 30' efectivos: 47.8 pases. **Un 38% más.**
+
+En el radar se ve claro. La línea azul (per 100 toques) y la roja (per 90') muestran perfiles distintos del mismo jugador. Milla pasa de percentil 45 a percentil 71 según el método. Si filtras por métricas per 90', no destaca. Si ajustas por tiempo efectivo, aparece como un mediocentro muy productivo para el contexto en el que juega.
+
+### El Riesgo de Infravalorar y Sobrestimar
+
+<Image
+  src="/static/images/articles/analytics-lab/normalizacion/boxplot.png"
+  alt="Scatter: Percentil por tiempo efectivo vs percentil por 100 pases"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Este scatter compara dos formas de normalizar. Eje X: percentil por tiempo efectivo en posesión. Eje Y: percentil por cada 100 pases. Los puntos sobre la diagonal son jugadores que parecen mejores con el método de 100 pases. Los puntos bajo la diagonal parecen mejores con tiempo efectivo.
+
+Las zonas marcadas son las interesantes:
+
+- **Cuadrante superior izquierdo:** Jugadores con alto porcentaje de acciones de un tipo, pero bajo volumen. Arriesgados, directos, pero con pocas oportunidades.
+- **Cuadrante inferior derecho:** Jugadores con alto volumen pero bajo porcentaje. Tienen muchas oportunidades pero no destacan en proporción.
+
+Lo ideal es combinar ambos métodos. Un jugador que está alto en ambos ejes es productivo en volumen y en proporción.
+
+### Modelo de Juego y Tiempo Efectivo
+
+<Image
+  src="/static/images/articles/analytics-lab/normalizacion/Barça_español.jpg"
+  alt="Desglose de tiempos de reinicio: Espanyol vs Barcelona"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Este gráfico desglosa un partido Espanyol-Barcelona. Muestra el tiempo efectivo (50:19), el dead time (35:28) y los tiempos de reinicio por tipo: banda, corner, falta, saque de puerta.
+
+Cada barra compara al equipo con la media de la liga. Barcelona tarda más en sacar de banda (0:17 vs 0:16 de media) pero menos en otras acciones. Espanyol tiene sus propios patrones.
+
+El tiempo efectivo no es solo una métrica. Refleja el modelo de juego. Equipos que quieren ritmo alto tienen tiempos de reinicio cortos. Equipos que quieren romper el ritmo alargan cada saque.
+
+Bordalás lo sabe mejor que nadie. El Getafe juega partidos de 50 minutos efectivos mientras otros juegan 60. Y en esos 50 minutos, maximiza lo que puede sacar.
+
+### Conclusión
+
+No existe un método perfecto de normalización. Cada uno responde a una pregunta distinta y tiene implicaciones diferentes para el análisis:
+
+- **Por 90' (estándar):** Útil para comparaciones rápidas, compatible con datos públicos (FBref, Transfermarkt). Pero introduce sesgo sistemático: favorece a jugadores de equipos con más posesión y partidos con más tiempo añadido. El denominador asume condiciones iguales que no existen.
+
+- **Por tiempo efectivo total:** Elimina el ruido del tiempo muerto. Más justo para comparar volumen real de actividad. Pero requiere datos de eventos con timestamps, no disponibles públicamente. Y sigue sin distinguir si el jugador podía actuar (posesión propia) o no.
+
+- **Por tiempo efectivo en posesión:** El más preciso para métricas ofensivas. Compara lo que el jugador hace con las oportunidades reales que tiene. Iguala condiciones entre modelos de juego opuestos. Para métricas defensivas, usa posesión rival. Limitación: requiere cálculo de tiempo efectivo por fase de posesión, datos aún más específicos.
+
+- **Por 100 acciones:** No mide productividad temporal sino proporción y estilo. Útil para perfiles: verticalidad, atrevimiento, conservadurismo. Complementa bien a los métodos temporales pero no los sustituye. Un jugador puede ser muy vertical en proporción pero acumular poco volumen absoluto.
+
+**Recomendación práctica:** usa al menos dos métodos en paralelo. El estándar (por 90') para mantener comparabilidad con datos públicos y benchmarks conocidos. Y uno avanzado (tiempo efectivo en posesión o por 100 acciones) para detectar outliers que el método simple infravalora o sobrestima.
+
+La correlación entre métodos es alta (R² ~0.86), así que para la mayoría de jugadores no cambia mucho. Pero en los extremos, donde están las perlas ocultas y los fichajes sobrevalorados, la diferencia es significativa. Si solo filtras por métricas per 90', puedes estar descartando jugadores como Luis Milla (P45 → P71) o sobrestimando a otros que simplemente disfrutan de más oportunidades por contexto de equipo.
+
+El método de normalización no es un detalle técnico menor. Es una decisión metodológica que afecta directamente a qué jugadores identificas y cuáles descartas.
+
+---
+
+¿Cómo normalizas tus métricas? ¿Tienes acceso a datos de tiempo efectivo o trabajas solo con lo que dan las plataformas públicas?
