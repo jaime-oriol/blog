@@ -16,14 +16,6 @@ _Nota: las visualizaciones de tiempo efectivo por equipo, el scatter y el desglo
 
 ### Los 5 Niveles de Normalización
 
-<Image
-  src="/static/images/articles/analytics-lab/normalizacion/Infografia.png"
-  alt="Infografía: 5 niveles de normalización de métricas en fútbol"
-  width={1600}
-  height={800}
-  className="h-auto w-full object-contain"
-/>
-
 Aclaración importante: aquí hablo de normalización en el sentido de ajustar métricas para hacerlas comparables entre jugadores con distinto tiempo de juego. No confundir con normalización estadística (transformar distribuciones) ni con estandarización (z-scores). El objetivo es simple: si un jugador juega más minutos, acumula más acciones. Necesitamos un denominador común. La pregunta es cuál.
 
 Voy a usar un ejemplo consistente para ilustrar cada método: Raillo (Mallorca), 1620 minutos en 18 partidos, 39 pases progresivos.
@@ -37,6 +29,14 @@ Voy a usar un ejemplo consistente para ilustrar cada método: Raillo (Mallorca),
 **4. Por tiempo efectivo en posesión propia.** Aquí está la clave para métricas ofensivas. Un jugador solo puede dar pases progresivos cuando su equipo tiene el balón. Si su equipo tiene poca posesión, tiene menos oportunidades. Compararlo por 90' con uno cuyo equipo domina es injusto. Si Raillo tuvo 462 minutos efectivos con Mallorca en posesión: 39 / (462/27.5) = 2.32 por 27.5' efectivos en posesión. ¿Por qué 27.5? Es la mitad del tiempo efectivo medio (55/2), para mantener escala comparable. Este método iguala las condiciones entre un mediocampista del Getafe (21' de posesión propia) y uno del Barcelona (36'). Para métricas defensivas, el razonamiento es inverso: normalizas por posesión rival.
 
 **5. Por cada 100 acciones.** Cambia el enfoque completamente. En lugar de "¿cuánto hace por tiempo?", pregunta "¿qué proporción de sus acciones son de este tipo?". Si Raillo dio 39 pases al último tercio en 450 pases totales: 39/450×100 = 8.66 por cada 100 pases. Habla del estilo, no del volumen. Un jugador con 8.66 es más vertical que uno con 4, independientemente de cuántos pases totales dé. Útil para perfiles: ¿arriesga o es conservador? ¿Qué porcentaje de conducciones son progresivas? La limitación: no dice nada del volumen absoluto. Puedes ser muy vertical en proporción pero tocar poco el balón.
+
+<Image
+  src="/static/images/articles/analytics-lab/normalizacion/Infografia.png"
+  alt="Infografía: 5 niveles de normalización de métricas en fútbol"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
 
 ### ¿Cuál usar?
 
