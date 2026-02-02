@@ -6,11 +6,11 @@ image: '/static/images/articles/extras/iñigo/portada.png'
 featured: true
 ---
 
-La marcha de Iñigo Martínez del FC Barcelona dejó un hueco que el club no supo o no pudo cubrir. De momento, el equipo está consiguiendo suplir su baja con un Gerard Martín reconvertido que, pese a dar un nivel correcto, no creo que esté capacitado para partidos de máxima exigencia. Afortunadamente, la confirmación del buen nivel de Eric García y la irrupción de Cubarsí han mantenido la defensa competitiva.
+La marcha de Iñigo Martínez del FC Barcelona dejó un hueco que el club no supo o no pudo cubrir. De momento, el equipo está consiguiendo suplir su baja con un Gerard Martín reconvertido que, pese a dar un nivel correcto, no creo que esté capacitado para partidos de máxima exigencia. Afortunadamente, la confirmación del buen nivel de Eric García y la madurez de Cubarsí han mantenido la defensa competitiva.
 
 Sin embargo, la dupla Eric-Cubarsí, pese a tener fortalezas muy buenas (salida de balón élite, buena comunicación, jugadores inteligentes y agresivos), no me parece la ideal para el club a largo plazo ni en partidos de máxima exigencia. Por ello voy a dar mi opinión sobre qué jugadores me gustan y creo que el Barça debería intentar fichar este próximo mercado de verano.
 
-Siendo mi blog sobre data y fútbol, antes de soltar nombres he querido ver qué dicen los datos. Tenía tres jugadores en mente por conocimiento y seguimiento del fútbol europeo. La pregunta era: ¿coinciden con lo que dice el algoritmo?
+Siendo mi blog sobre data y fútbol, antes de soltar nombres he querido ver qué dicen los datos. Tenía tres jugadores en mente por conocimiento y seguimiento del fútbol europeo. La pregunta era, ¿coinciden con lo que dicen los datos?
 
 ### El Método: PCA + Similitud Coseno
 
@@ -26,7 +26,7 @@ He creado un algoritmo de similitud basado en PCA (Análisis de Componentes Prin
 
 Sobre esta representación simplificada se calcula la similitud coseno entre el vector de Iñigo Martínez y cada jugador del pool. La similitud coseno oscila entre -1 (perfiles opuestos) y 1 (perfiles idénticos).
 
-Para validar los resultados, lo he ejecutado con dos normalizaciones: per 100 toques y per 90 minutos.
+Para validar los resultados, lo he ejecutado con dos normalizaciones: per 100 toques (imagen 1) y per 90 minutos (imagen 2).
 
 ### Los Rankings de Similitud
 
@@ -39,11 +39,11 @@ El pool de jugadores sobre el que se ha ejecutado el algoritmo: centrales de las
 
 Esa edad es coherente con el perfil que buscarían: un jugador más experimentado para complementar a Cubarsí, que es muy precoz y al que le va mejor ir acompañado de alguien con más experiencia y jerarquía. El valor de mercado podría ser asumible si el club decide hacer una inversión potente.
 
-Mis tres jugadores que ya tenía en mente eran **Gonçalo Inácio**, **Nico Schlotterbeck** e **Ibrahima Konaté**. Los tres aparecen en ambos rankings con scores de similitud válidos:
+Mis tres jugadores que ya tenía en mente eran **Nico Schlotterbeck**, **Ibrahima Konaté** y **Gonçalo Inácio**. Los tres aparecen en ambos rankings con scores de similitud válidos:
 
-- **Gonçalo Inácio:** #2 per 100 toques (0.765), #4 per 90 (0.676)
 - **Nico Schlotterbeck:** #9 per 100 toques (0.695), #5 per 90 (0.659)
 - **Ibrahima Konaté:** #5 per 100 toques (0.744), #6 per 90 (0.619)
+- **Gonçalo Inácio:** #2 per 100 toques (0.765), #4 per 90 (0.676)
 
 <Image
   src="/static/images/articles/extras/iñigo/infografia_top.png"
@@ -54,24 +54,6 @@ Mis tres jugadores que ya tenía en mente eran **Gonçalo Inácio**, **Nico Schl
 />
 
 Ahora toca ver cómo comparan en detalle. He creado radares con 10 métricas clave para un central perfil Barça/Iñigo, normalizados tanto per 100 toques como per 90 minutos.
-
-### Gonçalo Inácio (Sporting CP)
-
-<AnalysisCarousel
-  basePath="/static/images/articles/extras/iñigo"
-  images={[
-    'Inigo_Martinez_vs_Goncalo_combined.png',
-    'Inigo_Martinez_vs_Goncalo_per90_combined.png',
-  ]}
-/>
-
-24 años, zurdo, 45M€. Contrato hasta 2030 (renovado en 2025), con cláusula accesible para equipos top.
-
-El radar confirma lo que esperaba: Inácio es un constructor nato. En la faceta ofensiva ambos son élite absoluta: P98-99 en pases progresivos, P98-99 en pases al último tercio. Inácio incluso supera a Iñigo en Final Third Passes (P99 vs P98 per 100 toques). Son centrales que construyen desde atrás con verticalidad y criterio, buscando el pase que rompe líneas.
-
-Donde se separan es en defensa pura. Iñigo gana claramente en Tackle Success (P86 vs P37 per 100 toques) y en duelos aéreos: mejor porcentaje de éxito (P78 vs P48) aunque volumen similar. Inácio no es un central de duelos ganados, es un central de anticipación. Compensa con más intercepciones (P28 vs P6) y tackles+intercepciones totales (P51 vs P5 per 90). Menos reactivo, más anticipativo.
-
-Ha jugado Champions con el Sporting esta temporada, tiene experiencia internacional con Portugal y es zurdo natural. La juventud (24 años) es un plus para el proyecto a largo plazo, aunque le falta ese bagaje en escenarios de máxima exigencia (finales, eliminatorias decisivas) que otros candidatos sí tienen.
 
 ### Nico Schlotterbeck (Borussia Dortmund)
 
@@ -108,6 +90,24 @@ El punto en contra: es diestro, igual que Cubarsí. Pero la clave para mí es qu
 
 El Liverpool acaba de fichar a Guéhi, Van Dijk cumple años. Konaté tiene poder de negociación. Podría salir gratis o muy barato. Sí, salario alto y prima, pero a sus 26 años y con su experiencia en élite absoluta (Premier League, Champions, selección francesa), es una oportunidad que el Barça debería explorar seriamente.
 
+### Gonçalo Inácio (Sporting CP)
+
+<AnalysisCarousel
+  basePath="/static/images/articles/extras/iñigo"
+  images={[
+    'Inigo_Martinez_vs_Goncalo_combined.png',
+    'Inigo_Martinez_vs_Goncalo_per90_combined.png',
+  ]}
+/>
+
+24 años, zurdo, 45M€. Contrato hasta 2030 (renovado en 2025), con cláusula accesible para equipos top.
+
+El radar confirma lo que esperaba: Inácio es un constructor nato. En la faceta ofensiva ambos son élite absoluta: P98-99 en pases progresivos, P98-99 en pases al último tercio. Inácio incluso supera a Iñigo en Final Third Passes (P99 vs P98 per 100 toques). Son centrales que construyen desde atrás con verticalidad y criterio, buscando el pase que rompe líneas.
+
+Donde se separan es en defensa pura. Iñigo gana claramente en Tackle Success (P86 vs P37 per 100 toques) y en duelos aéreos: mejor porcentaje de éxito (P78 vs P48) aunque volumen similar. Inácio no es un central de duelos ganados, es un central de anticipación. Compensa con más intercepciones (P28 vs P6) y tackles+intercepciones totales (P51 vs P5 per 90). Menos reactivo, más anticipativo.
+
+Ha jugado Champions con el Sporting esta temporada, tiene experiencia internacional con Portugal y es zurdo natural. La juventud (24 años) es un plus para el proyecto a largo plazo, aunque le falta ese bagaje en escenarios de máxima exigencia (finales, eliminatorias decisivas) que otros candidatos sí tienen.
+
 ### Conclusión
 
 Los tres perfiles son diferentes entre sí, pero los datos confirman que todos son estadísticamente similares a Iñigo Martínez en las métricas clave para un central de su perfil.
@@ -126,4 +126,4 @@ Adicionalmente, aplicando los conocimientos del módulo 5 del máster de Sport D
 
 ---
 
-¿Qué central ficharías tú? ¿Crees que el Barça debería priorizar un perfil constructor o uno más físico?
+¿Qué central ficharías tú? ¿Crees que el Barça debería priorizar un perfil constructor o uno más físico? ¿Ves a Cubarsí preparado para liderar la defensa o necesita un compañero de más jerarquía?
