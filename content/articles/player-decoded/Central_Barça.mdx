@@ -1,0 +1,129 @@
+---
+title: 'Buscando al Sucesor de Iñigo: PCA, Radares y Opinión'
+date: '2026-01-30'
+section: 'player-decoded'
+image: '/static/images/articles/extras/iñigo/portada.png'
+featured: true
+---
+
+La marcha de Iñigo Martínez del FC Barcelona dejó un hueco que el club no supo o no pudo cubrir. De momento, el equipo está consiguiendo suplir su baja con un Gerard Martín reconvertido que, pese a dar un nivel correcto, no creo que esté capacitado para partidos de máxima exigencia. Afortunadamente, la confirmación del buen nivel de Eric García y la irrupción de Cubarsí han mantenido la defensa competitiva.
+
+Sin embargo, la dupla Eric-Cubarsí, pese a tener fortalezas muy buenas (salida de balón élite, buena comunicación, jugadores inteligentes y agresivos), no me parece la ideal para el club a largo plazo ni en partidos de máxima exigencia. Por ello voy a dar mi opinión sobre qué jugadores me gustan y creo que el Barça debería intentar fichar este próximo mercado de verano.
+
+Siendo mi blog sobre data y fútbol, antes de soltar nombres he querido ver qué dicen los datos. Tenía tres jugadores en mente por conocimiento y seguimiento del fútbol europeo. La pregunta era: ¿coinciden con lo que dice el algoritmo?
+
+### El Método: PCA + Similitud Coseno
+
+He creado un algoritmo de similitud basado en PCA (Análisis de Componentes Principales) y similitud coseno. El método proyecta el espacio de alta dimensionalidad (~150-170 variables per 100 toques) a un subespacio reducido que retiene el 85% de la varianza explicada. El número de componentes resultante (típicamente 20-30) varía según el pool analizado.
+
+**¿Por qué PCA y no comparación directa de métricas?** Comparar 140+ métricas directamente genera tres problemas:
+
+1. **Multicolinealidad:** Muchas métricas miden conceptos similares (xG correlaciona con goles, pases completados con asistencias). PCA colapsa variables correlacionadas en componentes independientes.
+
+2. **Ruido estadístico:** Variables con poca varianza entre jugadores añaden ruido sin información discriminante. PCA las elimina al retener solo el 85% de varianza explicada.
+
+3. **Maldición de la dimensionalidad:** En espacios de alta dimensión, las distancias euclidianas pierden significado. Reducir a 20-30 dimensiones preserva estructura geométrica interpretable.
+
+Sobre esta representación simplificada se calcula la similitud coseno entre el vector de Iñigo Martínez y cada jugador del pool. La similitud coseno oscila entre -1 (perfiles opuestos) y 1 (perfiles idénticos).
+
+Para validar los resultados, lo he ejecutado con dos normalizaciones: per 100 toques y per 90 minutos.
+
+### Los Rankings de Similitud
+
+<AnalysisCarousel
+  basePath="/static/images/articles/extras/iñigo"
+  images={['inigo_martinez_top10_filtrado.png', 'inigo_martinez_top10_filtrado_per90.png']}
+/>
+
+El pool de jugadores sobre el que se ha ejecutado el algoritmo: centrales de las Big 5 + Liga Portugal, menores de 32 años, mínimo 1000 minutos esta temporada. Después, el ranking se filtra por máximo 26 años y máximo 60M€ de valor en Transfermarkt, ajustándome a las necesidades reales del Barça.
+
+Esa edad es coherente con el perfil que buscarían: un jugador más experimentado para complementar a Cubarsí, que es muy precoz y al que le va mejor ir acompañado de alguien con más experiencia y jerarquía. El valor de mercado podría ser asumible si el club decide hacer una inversión potente.
+
+Mis tres jugadores que ya tenía en mente eran **Gonçalo Inácio**, **Nico Schlotterbeck** e **Ibrahima Konaté**. Los tres aparecen en ambos rankings con scores de similitud válidos:
+
+- **Gonçalo Inácio:** #2 per 100 toques (0.765), #4 per 90 (0.676)
+- **Nico Schlotterbeck:** #9 per 100 toques (0.695), #5 per 90 (0.659)
+- **Ibrahima Konaté:** #5 per 100 toques (0.744), #6 per 90 (0.619)
+
+<Image
+  src="/static/images/articles/extras/iñigo/infografia_top.png"
+  alt="Infografía resumen: Candidatos a central del Barça"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Ahora toca ver cómo comparan en detalle. He creado radares con 10 métricas clave para un central perfil Barça/Iñigo, normalizados tanto per 100 toques como per 90 minutos.
+
+### Gonçalo Inácio (Sporting CP)
+
+<AnalysisCarousel
+  basePath="/static/images/articles/extras/iñigo"
+  images={[
+    'Inigo_Martinez_vs_Goncalo_combined.png',
+    'Inigo_Martinez_vs_Goncalo_per90_combined.png',
+  ]}
+/>
+
+24 años, zurdo, 45M€. Contrato hasta 2030 (renovado en 2025), con cláusula accesible para equipos top.
+
+El radar confirma lo que esperaba: Inácio es un constructor nato. En la faceta ofensiva ambos son élite absoluta: P98-99 en pases progresivos, P98-99 en pases al último tercio. Inácio incluso supera a Iñigo en Final Third Passes (P99 vs P98 per 100 toques). Son centrales que construyen desde atrás con verticalidad y criterio, buscando el pase que rompe líneas.
+
+Donde se separan es en defensa pura. Iñigo gana claramente en Tackle Success (P86 vs P37 per 100 toques) y en duelos aéreos: mejor porcentaje de éxito (P78 vs P48) aunque volumen similar. Inácio no es un central de duelos ganados, es un central de anticipación. Compensa con más intercepciones (P28 vs P6) y tackles+intercepciones totales (P51 vs P5 per 90). Menos reactivo, más anticipativo.
+
+Ha jugado Champions con el Sporting esta temporada, tiene experiencia internacional con Portugal y es zurdo natural. La juventud (24 años) es un plus para el proyecto a largo plazo, aunque le falta ese bagaje en escenarios de máxima exigencia (finales, eliminatorias decisivas) que otros candidatos sí tienen.
+
+### Nico Schlotterbeck (Borussia Dortmund)
+
+<AnalysisCarousel
+  basePath="/static/images/articles/extras/iñigo"
+  images={[
+    'Inigo_Martinez_vs_Schlotterbeck_combined.png',
+    'Inigo_Martinez_vs_Schlotterbeck_per90_combined.png',
+  ]}
+/>
+
+26 años, zurdo, 40M€. Contrato hasta 2027, no parece que vaya a renovar.
+
+Es el perfil más parecido a Iñigo de los tres. Los radares son prácticamente calcados: ambos en P98-99 en pases progresivos y al último tercio. Schlotterbeck incluso iguala o supera a Iñigo en Final Third Passes (P99 vs P98 per 90). Pass Accuracy similar (P90 vs P84), ambos élite en salida de balón. Son centrales que construyen con verticalidad, no circuladores conservadores.
+
+En defensa hay matices pero no grandes diferencias. Iñigo gana en Tackle Success (P87 vs P48), pero Schlotterbeck tiene mejores números en intercepciones (P50 vs P17 per 90), bloqueos de tiro (P72 vs P24) y duelos aéreos ganados (P81 vs P74). Defensivamente son complementarios: Iñigo más agresivo en el tackle, Schlotterbeck más anticipativo y contundente por arriba.
+
+Lo que me convence: ha jugado final de Champions con el Dortmund, semifinales de Eurocopa con Alemania, partidos de máxima exigencia donde hay que rendir bajo presión. Conoce a Flick de la selección. Es zurdo. Y su situación contractual (acaba en 2027, no va a renovar) le da poder de negociación para salir por debajo de los 40M€ actuales. Es la opción más segura en calidad-precio. Encaje casi garantizado en el sistema.
+
+### Ibrahima Konaté (Liverpool)
+
+<AnalysisCarousel
+  basePath="/static/images/articles/extras/iñigo"
+  images={['Inigo_Martinez_vs_Konate_combined.png', 'Inigo_Martinez_vs_Konate_per90_combined.png']}
+/>
+
+26 años, diestro, 60M€. **Acaba contrato en junio 2026.** Podría salir gratis.
+
+Es el perfil más diferente de los tres, y precisamente por eso me interesa. Los radares lo dejan claro: Konaté no es un constructor como Iñigo. En pases progresivos está en P69 per 90 (vs P99 de Iñigo), en pases al último tercio P87 vs P98. No es malo, simplemente no es su rol principal. Donde Konaté destroza es en la faceta física y defensiva pura.
+
+Duelos aéreos: P78 en volumen ganado y P95 en porcentaje de éxito. Es una bestia por arriba. También gana claramente en clearances (P71 vs P58 per 90), bloqueos de tiro (P58 vs P24) y tackles+intercepciones (P17 vs P5 per 100). Es un central que defiende el área, gana por arriba, limpia balones y cierra espacios con su envergadura. 1.94m de altura, potente a campo abierto.
+
+El punto en contra: es diestro, igual que Cubarsí. Pero la clave para mí es que al Barça le falta ese perfil de central élite a nivel físico. Lo que era Araujo antes de diluirse. Mira alrededor: Saliba en el Arsenal, Rüdiger en el Madrid, Van Dijk en el Liverpool, Upamecano en el Bayern... todos los equipos top tienen un central dominante físicamente. El Barça no.
+
+El Liverpool acaba de fichar a Guéhi, Van Dijk cumple años. Konaté tiene poder de negociación. Podría salir gratis o muy barato. Sí, salario alto y prima, pero a sus 26 años y con su experiencia en élite absoluta (Premier League, Champions, selección francesa), es una oportunidad que el Barça debería explorar seriamente.
+
+### Conclusión
+
+Los tres perfiles son diferentes entre sí, pero los datos confirman que todos son estadísticamente similares a Iñigo Martínez en las métricas clave para un central de su perfil.
+
+**Mi ranking personal:**
+
+1. **Schlotterbeck** - La opción más segura. Perfil casi idéntico a Iñigo, zurdo, experiencia en partidos de élite, conoce a Flick, situación contractual favorable. Calidad-precio top.
+
+2. **Konaté** - La opción más arriesgada pero potencialmente más diferencial. No encaja en el perfil constructor, pero aporta algo que el Barça no tiene: dominancia física absoluta. Acaba contrato, podría ser una oportunidad única.
+
+3. **Inácio** - La opción de futuro. Muy buen constructor, zurdo, joven. Le falta experiencia en escenarios de máxima exigencia, pero tiene margen de crecimiento. Si el Barça piensa a largo plazo y Cubarsí necesita un compañero más joven para crecer juntos, es una buena opción.
+
+En cualquier caso, lo importante es que el Barça actúe. La defensa necesita un refuerzo de nivel, y los tres candidatos encajan por diferentes razones. El verano se acerca.
+
+Adicionalmente, aplicando los conocimientos del módulo 5 del máster de Sport Data Campus, he desarrollado un **[dashboard interactivo en Tableau](https://public.tableau.com/app/profile/jaime.oriol3867/viz/TareaM5_Scouting_Report_IM/Dashboard1)** para identificar sustitutos de Iñigo Martínez.
+
+---
+
+¿Qué central ficharías tú? ¿Crees que el Barça debería priorizar un perfil constructor o uno más físico?
