@@ -396,3 +396,17 @@ Tenía tres centrales en mente para sustituir a Iñigo Martínez. Antes de solta
 Mi análisis completo con radares, comparativas y dashboard interactivo: https://lnkd.in/ehjXK4YN
 
 ¿Cuándo fue la última vez que los datos os hicieron cambiar de opinión sobre algo que creíais seguro?
+
+Las discusiones más largas suelen ser las que nadie se ha molestado en medir.
+
+En cualquier organización hay debates eternos. El equipo que "siempre tiene más recursos". El departamento que "recibe trato preferencial". La métrica que "nos perjudica sistemáticamente".
+
+Años repitiendo las mismas acusaciones. Nadie verifica. Nadie cuantifica. Solo percepciones que se refuerzan cada vez que algo confirma el sesgo.
+
+El coste no es solo tiempo perdido en discusiones. Es la erosión de confianza. Las decisiones basadas en narrativas falsas. La energía invertida en problemas inexistentes mientras los reales quedan sin resolver.
+
+Domingo 01/02/2026, Madrid - Rayo Vallecano, minuto 97, otro penalti para el Madrid. Explota mi grupo de WhatsApp. "Buff, lo de siempre", "Siempre favorecidos". Y dije, coño, vamos a cerrar esto. Solo datos. Los resultados... sorprenden.
+
+Análisis completo: https://lnkd.in/ej7hWRVG
+
+¿Qué discusión eterna en vuestra organización nadie se ha molestado en medir?
