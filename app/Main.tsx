@@ -1,6 +1,7 @@
 // app/Main.tsx
 import Link from '@/components/Link'
 import ArticleCard from '@/components/ArticleCard'
+import FadeIn from '@/components/FadeIn'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
 
@@ -113,8 +114,10 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
       {hasArticles && (
         <>
           <div className="space-y-6">
-            {recentPosts.map((post) => (
-              <ArticleCard key={post.slug} post={post} />
+            {recentPosts.map((post, i) => (
+              <FadeIn key={post.slug} delay={i * 80}>
+                <ArticleCard post={post} />
+              </FadeIn>
             ))}
           </div>
 
@@ -122,7 +125,7 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
           <div className="mt-8 text-center">
             <Link
               href="/articles"
-              className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-50 hover:shadow-md dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+              className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-50 hover:shadow-md active:scale-95 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
             >
               <span className="font-helvetica-regular">Ver todos los artículos</span>
               <ArrowRightIcon />
@@ -167,7 +170,7 @@ function NewsletterSection() {
 
           <Link
             href="/newsletter"
-            className="inline-flex items-center rounded-lg bg-sky-600 px-6 py-3 font-medium text-white shadow-sm transition-colors hover:bg-sky-700 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+            className="inline-flex items-center rounded-lg bg-sky-600 px-6 py-3 font-medium text-white shadow-sm transition-all hover:bg-sky-700 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 active:scale-95"
           >
             <span className="font-helvetica-regular">Suscribirse gratis</span>
             <ArrowRightIcon />

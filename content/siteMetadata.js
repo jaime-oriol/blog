@@ -18,9 +18,7 @@ const siteMetadata = {
   // === CONTACTO ===
   email: 'joriolgo@gmail.com',
   github: 'https://github.com/jaime-oriol',
-  x: 'https://x.com/_orio1',
   linkedin: 'https://www.linkedin.com/in/jaime-oriol-goicoechea-801313276/',
-  instagram: 'https://www.instagram.com/orio1_/',
 
   // === HERRAMIENTAS ACTIVAS ===
   analytics: {

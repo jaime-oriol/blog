@@ -51,15 +51,32 @@ const getSectionColor = (section: string) => {
   }
 }
 
+const getSectionAccentBg = (section: string) => {
+  switch (section) {
+    case 'player-decoded':
+      return 'bg-sky-600 dark:bg-sky-400'
+    case 'match-analysis':
+      return 'bg-emerald-600 dark:bg-emerald-400'
+    case 'team-architecture':
+      return 'bg-indigo-600 dark:bg-indigo-400'
+    case 'analytics-lab':
+      return 'bg-orange-600 dark:bg-orange-400'
+    default:
+      return 'bg-sky-600 dark:bg-sky-400'
+  }
+}
+
 export default function ArticleCard({ post }: ArticleCardProps) {
-  const { slug, date, title, section, image, summary } = post
+  const { slug, date, title, section, image, summary, readingTime } = post
+  const minutes = readingTime ? Math.ceil(JSON.parse(JSON.stringify(readingTime)).minutes) : null
   const displayImage = image || '/static/images/default-article.jpg'
 
   return (
-    <article className="group overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md dark:border-slate-700 dark:bg-slate-800">
+    <article className="group relative overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md dark:border-slate-700 dark:bg-slate-800">
       <Link href={`/articles/${slug}`} className="flex flex-col sm:flex-row sm:items-stretch">
         {/* Imagen arriba en móvil, izquierda en desktop */}
-        <div className="relative h-48 w-full flex-shrink-0 overflow-hidden sm:h-auto sm:w-64">
+        <div className="relative h-48 w-full flex-shrink-0 overflow-hidden bg-slate-200 sm:h-auto sm:w-64 dark:bg-slate-700">
+          <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 dark:from-slate-700 dark:via-slate-600 dark:to-slate-700" />
           <div className="absolute inset-0">
             <Image
               src={displayImage}
@@ -121,13 +138,16 @@ export default function ArticleCard({ post }: ArticleCardProps) {
                 </svg>
               </div>
 
-              {/* Fecha */}
-              <time
-                dateTime={date}
-                className="font-helvetica-light text-fd-body flex-shrink-0 text-slate-500 dark:text-slate-400"
-              >
-                {formatDate(date, siteMetadata.locale)}
-              </time>
+              {/* Fecha y reading time */}
+              <div className="flex flex-shrink-0 items-center gap-2 text-slate-500 dark:text-slate-400">
+                {minutes && (
+                  <span className="font-helvetica-light text-fd-body">{minutes} min</span>
+                )}
+                {minutes && <span className="text-slate-300 dark:text-slate-600">|</span>}
+                <time dateTime={date} className="font-helvetica-light text-fd-body">
+                  {formatDate(date, siteMetadata.locale)}
+                </time>
+              </div>
             </div>
           </div>
 
@@ -175,16 +195,26 @@ export default function ArticleCard({ post }: ArticleCardProps) {
                 </svg>
               </div>
 
-              {/* Fecha con formato Helvética Light para consistencia */}
-              <time
-                dateTime={date}
-                className="font-helvetica-light text-fd-body flex-shrink-0 text-slate-500 dark:text-slate-400"
-              >
-                {formatDate(date, siteMetadata.locale)}
-              </time>
+              {/* Fecha y reading time */}
+              <div className="flex flex-shrink-0 items-center gap-2 text-slate-500 dark:text-slate-400">
+                {minutes && (
+                  <span className="font-helvetica-light text-fd-body">{minutes} min</span>
+                )}
+                {minutes && <span className="text-slate-300 dark:text-slate-600">|</span>}
+                <time dateTime={date} className="font-helvetica-light text-fd-body">
+                  {formatDate(date, siteMetadata.locale)}
+                </time>
+              </div>
             </div>
           </div>
         </div>
+
+        {/* Accent bar de sección */}
+        {section && (
+          <div className="absolute bottom-0 left-0 h-[3px] w-full transition-all duration-300 sm:w-0 sm:group-hover:w-full">
+            <div className={`h-full w-full ${getSectionAccentBg(section)}`} />
+          </div>
+        )}
       </Link>
     </article>
   )

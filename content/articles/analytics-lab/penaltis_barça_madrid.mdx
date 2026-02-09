@@ -1,0 +1,278 @@
+---
+title: 'Barça vs Madrid: El Debate Interminable de los Penaltis'
+date: '2026-02-05'
+section: 'analytics-lab'
+image: '/static/images/articles/analytics-lab/penaltis/portada.jpeg'
+featured: true
+---
+
+Domingo, Madrid-Rayo Vallecano, minuto 97, 1-1, y otro penalti para el Madrid. Explota el grupo de WhatsApp de colegas: "Buff, otro penalti, lo de siempre", "Mbappé lleva ya 8 así...". Y mis colegas saltan contra mí, atacando al Barça: "Que si el que más penaltis", "Que si Messi un año no sé cuántos...". Y dije: coño, vamos a poner fin a esto. Vamos a mirar qué dicen los datos.
+
+Como soy del 2004, he decidido coger desde ahí hasta día de hoy. Son 22 temporadas de LaLiga, desde 2004-05 hasta 2025-26. **Solo LaLiga**, sin Copa ni Champions. ¿Por qué? Porque quiero distribución equivalente: mismos árbitros, mismos rivales, mismo formato de competición. Si meto Champions o Copa, sesgo el análisis: volumen diferente de partidos, árbitros internacionales vs españoles, escenarios distintos. Aquí comparamos manzanas con manzanas.
+
+**Fuente:** Transfermarkt. Si alguien quisiera otra ventana temporal, yo le paso los datos encantado, porque la historia es prácticamente la misma.
+
+### Los Números Generales
+
+Empecemos por lo básico. En estas 22 temporadas:
+
+- **Barcelona:** 173 penaltis a favor, 81 en contra
+- **Real Madrid:** 194 penaltis a favor, 93 en contra
+
+Madrid ha recibido **21 penaltis más** que el Barça. Balance neto: Barça +92, Madrid +101. Una diferencia de 9 penaltis netos en 22 años. No es la barbaridad que algunos venden, pero está ahí.
+
+### Evolución Temporal
+
+<Image
+  src="/static/images/articles/analytics-lab/penaltis/01_evolucion_temporal.png"
+  alt="Evolución temporal de penaltis a favor y en contra (2004-2025)"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+El primer gráfico muestra la evolución temporada a temporada. Hay picos y valles. La 2015-16 el Barça recibió 19 penaltis (récord), Madrid 9. La 2022-23 fue al revés: Madrid 12, Barça 2. Las oscilaciones existen, pero la tendencia media favorece ligeramente al Madrid. Los penaltis en contra también fluctúan. El Barça ha recibido menos (81 vs 93), pero la diferencia no es enorme.
+
+### Comparativa con la Media de LaLiga
+
+<Image
+  src="/static/images/articles/analytics-lab/penaltis/02_comparativa_laliga.png"
+  alt="Desviación de penaltis a favor vs media de LaLiga"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Este gráfico muestra cuánto se desvía cada equipo de la media de LaLiga cada temporada. Barras hacia la derecha = más penaltis que la media. Ambos equipos están casi siempre por encima. Es lógico: dominan la posesión, atacan más, generan más situaciones en el área.
+
+Madrid tiene más temporadas con desviaciones positivas grandes: +8.1 en 2011-12, +7.5 en 2014-15 y 2024-25, +7.0 en 2025-26. El Barça también tuvo picos: +14.2 en 2015-16, +6.2 en 2013-14. Pero en general, Madrid está más consistentemente por encima.
+
+### El Efecto VAR
+
+<Image
+  src="/static/images/articles/analytics-lab/penaltis/03_efecto_var.png"
+  alt="Efecto del VAR en penaltis a favor y en contra"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+El VAR llegó en la 2018-19. Antes (14 temporadas): Barça 8.6 a favor por temporada, Madrid 8.4. Después (8 temporadas): Barça 6.6, Madrid 9.6. El Barça bajó 2.0 penaltis/temporada. El Madrid subió 1.2. Con VAR, Madrid recibe 3.0 penaltis más por temporada que el Barça.
+
+**Ojo con la falacia estadística típica:** el argumento de "ahora con el VAR os pitan menos y a nosotros más" es falaz si solo miras el volumen total. Que el VAR aumente o disminuya los penaltis de un equipo **no implica automáticamente favoritismo**.
+
+¿Por qué? Porque habría que ver cuántos penaltis **anuló** el VAR que el árbitro había pitado, cuántos **corrigió a favor** que no habían pitado, y cuántos **validó** tras revisión. Puede que con VAR te piten 3 más, pero si el VAR te anuló otros 3 que el árbitro había pitado incorrectamente, el efecto neto es neutral. O al revés: puede que te bajen los penaltis totales, pero porque el VAR anuló varios que te habían dado mal.
+
+El volumen final solo dice "penaltis totales pitados", no "en qué dirección actuó el VAR". Para eso necesitas datos de revisiones: cuántas fueron a favor, cuántas en contra, cuántas anulaciones, cuántas validaciones. Ese sí sería un análisis del sesgo direccional del VAR. Aquí solo muestro el cambio en la tendencia.
+
+**¿Queréis que lo analice?** Si hay interés, puedo hacer un segundo artículo revisando cada intervención del VAR en penaltis desde 2018-19. Pero tendría que ver si tengo acceso públicamente a los datos de revisiones VAR.
+
+### Factor Local
+
+<Image
+  src="/static/images/articles/analytics-lab/penaltis/04_factor_local.png"
+  alt="Penaltis como local vs visitante"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+El factor campo existe, pero no afecta a la conversión de forma dramática.
+
+- **Barcelona:** Local 77.7% (112 penaltis), Visitante 78.7% (61). Casi idéntico.
+- **Real Madrid:** Local 82.2% (107), Visitante 80.5% (87). También similar.
+
+Madrid recibe más penaltis como visitante (87 vs 61), pero la efectividad es parecida. El Barça tiene una diferencia mínima como local. No hay gran efecto psicológico del Camp Nou o el Bernabéu en la conversión.
+
+### Distribución por Minutos
+
+<Image
+  src="/static/images/articles/analytics-lab/penaltis/05_distribucion_minutos.png"
+  alt="Distribución de penaltis por rango de minutos"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Los últimos 15 minutos (76-90+) concentran más penaltis. Barça 48 (27.7%), Madrid 56 (28.9%). Es cuando los equipos atacan más desesperados o los rivales están más cansados. Madrid sobresale en los minutos finales con +8 penaltis respecto al Barça, y del 46-60 con +10. Momentos críticos de partido donde la diferencia se acentúa. El resto de distribuciones son casi iguales.
+
+### Situación del Partido
+
+<Image
+  src="/static/images/articles/analytics-lab/penaltis/06_analisis_marcador.png"
+  alt="Penaltis según situación del partido (ganando, empatando, perdiendo)"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Ambos equipos reciben la mayoría de penaltis cuando van ganando. Barça 67.1% (116 de 173), Madrid 69.1% (134 de 194). Lógico: cuando vas ganando, atacas más, el rival defiende más replegado, hay más situaciones en el área.
+
+Empatando: Barça 23.7% (41), Madrid 23.2% (45). Perdiendo: Barça 9.2% (16), Madrid 7.7% (15). Distribuciones prácticamente idénticas. Ambos reciben dos tercios de sus penaltis ganando, y un porcentaje similar empatando o perdiendo. No hay diferencias significativas aquí.
+
+### Penaltis Críticos
+
+<Image
+  src="/static/images/articles/analytics-lab/penaltis/07_criticidad.png"
+  alt="Penaltis críticos vs no críticos"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Defino "penalti crítico" como: minuto 76+, empatando o perdiendo. Es decir, situaciones donde el penalti puede cambiar el resultado.
+
+- **Barcelona:** 19 críticos de 173 (11.0%). Anotados: 16/19 = 84.2%
+- **Real Madrid:** 18 críticos de 194 (9.3%). Anotados: 14/18 = 77.8%
+
+Fallos críticos del Barça (3):
+
+- 2008-09 min 90: Eto'o vs Mallorca (perdiendo 2:1)
+- 2011-12 min 90: Messi vs Sevilla (empatando 0:0)
+- 2025-26 min 76: Lewandowski vs Sevilla (perdiendo 2:1)
+
+Fallos críticos del Madrid (4):
+
+- 2005-06 min 76: Robinho vs Zaragoza (empatando 0:0)
+- 2005-06 min 90: Ronaldo vs Valencia (empatando 0:0)
+- 2008-09 min 77: Higuaín vs Málaga (empatando 3:3)
+- 2022-23 min 79: Benzema vs Osasuna (empatando 1:1)
+
+El Barça convirtió 16 de 19 críticos, con nombres como Ronaldinho (3), Messi (5), Lewandowski (3), Memphis, Gündoğan y Raphinha. El Madrid convirtió 14 de 18, con Cristiano (4), Sergio Ramos (3), Higuaín, Zidane, Roberto Carlos, Bale (2), Modrić y Mbappé.
+
+**En enfrentamiento directo**, hubo 2 penaltis críticos y ambos se convirtieron: Cristiano Ronaldo en 2010-11 (min 82, perdiendo 0:1, empató a 1) y Messi en 2013-14 (min 84, empatando 3:3, puso el 3:4 de visitante). Máxima presión, Clásico, minutos finales, y los dos respondieron.
+
+**¿Alguno fue decisivo para ganar una liga?** Ninguno. Las temporadas donde la liga se decidió por diferencias mínimas (2006-07 con empate a puntos, 2015-16 con 1 punto) no coinciden con penaltis críticos de esta lista. Los más cercanos son los de la temporada 2016-17, donde la liga se decidió por 3 puntos: Messi convirtió dos penaltis críticos que transformaron empates en victorias (+4 puntos netos) y Cristiano uno que convirtió una derrota en empate (+1 punto). Pero incluso invirtiendo todos esos resultados, Madrid habría ganado la liga igualmente.
+
+Dramáticos sí, decisivos para un título no. Aunque es difícil medir el impacto indirecto: un penalti convertido en el minuto 90 puede cambiar dinámicas, meter presión al rival en jornadas siguientes. Pero eso escapa a lo que los datos pueden demostrar.
+
+<Image
+  src="/static/images/articles/analytics-lab/penaltis/09_efectividad_presion.png"
+  alt="Efectividad general vs momentos críticos"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Y aquí viene lo interesante: el Barça **sube** su efectividad bajo presión (78.0% general -> 84.2% en críticos), mientras que el Madrid **baja** (81.4% -> 77.8%). Curioso. Madrid es más efectivo en general, pero el Barça responde mejor cuando el resultado está en juego.
+
+### Top Goleadores de Penaltis
+
+<Image
+  src="/static/images/articles/analytics-lab/penaltis/08_top_goleadores.png?v=2"
+  alt="Top 5 goleadores de penaltis (2004-2025)"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+**Barcelona:**
+
+1. Lionel Messi: 53 goles, 13 fallos (66 totales, 17 temporadas, 80.3%)
+2. Ronaldinho: 17 goles, 4 fallos (21, 5 temporadas, 81%)
+3. Luis Suárez: 9 goles, 2 fallos (11, 6 temporadas, 82%)
+4. Neymar: 8 goles, 2 fallos (10, 4 temporadas, 80%)
+5. Robert Lewandowski: 8 goles, 4 fallos (12, 3 temporadas, 67%)
+
+**Real Madrid:**
+
+1. Cristiano Ronaldo: 61 goles, 11 fallos (72, 9 temporadas, 84.7%)
+2. Karim Benzema: 25 goles, 5 fallos (30, 14 temporadas, 83%)
+3. Sergio Ramos: 16 goles, 1 fallo (17, 16 temporadas, 94%)
+4. Kylian Mbappé: 15 goles, 3 fallos (18, 2 temporadas, 83%)
+5. Ruud van Nistelrooy: 7 goles, 1 fallo (8, 4 temporadas, 88%)
+
+**Matiz**: Las temporadas mostradas son las totales en el club (dentro del periodo 2004-2025), no solo las que tiraron penaltis. Por ejemplo, Ramos estuvo 16 temporadas en el Madrid pero solo fue lanzador principal en 5 de ellas.
+
+Cristiano tiene 8 goles más que Messi y mejor porcentaje (84.7% vs 80.3%). Sergio Ramos tiene el mejor porcentaje de todos: 94% en 17 penaltis.
+
+### TOP 5: Máximas Temporadas Individuales
+
+<Image
+  src="/static/images/articles/analytics-lab/penaltis/top5_goleadores_temporada.png"
+  alt="TOP 5: Máximos goleadores de penaltis en una temporada"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Las mejores temporadas individuales:
+
+1. **Cristiano Ronaldo 2011-12:** 12 convertidos, 1 fallado (Real Madrid)
+2. **Cristiano Ronaldo 2014-15:** 10 convertidos, 2 fallados (Real Madrid)
+3. **Lionel Messi 2011-12:** 10 convertidos, 1 fallado (Barcelona)
+4. **Kylian Mbappé 2025-26:** 8 convertidos, 1 fallado (Real Madrid)
+5. **Cristiano Ronaldo 2010-11:** 8 convertidos, 0 fallados (Real Madrid)
+
+Cristiano domina el TOP 5 con 3 entradas. Messi aparece una vez. La temporada 2011-12 fue histórica para ambos: Cristiano 12, Messi 10.
+
+**Ojo con Mbappé:** aún queda mucha liga y lleva ya 8 convertidos + 1 fallado. Puede entrar en el TOP 3 histórico esta misma temporada.
+
+### El Clásico
+
+<Image
+  src="/static/images/articles/analytics-lab/penaltis/12_el_clasico.png"
+  alt="Penaltis en El Clásico (2004-2025)"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+En los Clásicos de este período:
+
+- **Madrid tirando vs Barcelona:** 10 penaltis, 9 anotados (90%)
+- **Barcelona tirando vs Madrid:** 8 penaltis, 7 anotados (88%)
+
+<Image
+  src="/static/images/articles/analytics-lab/penaltis/10b_clasico_situacion.png"
+  alt="Penaltis en El Clásico por situación del partido"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+Madrid ha tenido más penaltis en Clásicos, pero la efectividad es similar (90% vs 88%). La mayoría se convirtieron. Los fallos:
+
+- Barça: Eto'o 2008-09 (0:0)
+- Madrid: Mbappé 2025-26 (2:1)
+
+Dato curioso: de los 18 penaltis en Clásicos, **solo 1 se pitó perdiendo**: Cristiano Ronaldo en 2010-11 (min 82, 0:1, convirtió). El Barça nunca ha tenido un penalti yendo por detrás en un Clásico. El resto fueron ganando (mayoría) o empatando. Ambos equipos mantienen la frialdad en el Clásico: son partidos de máxima tensión, pero los lanzadores casi no fallan.
+
+### Penaltis en Contra
+
+<Image
+  src="/static/images/articles/analytics-lab/penaltis/infografia.png"
+  alt="Infografía resumen ejecutivo: Penaltis Barça vs Madrid (2004-2025)"
+  width={1600}
+  height={800}
+  className="h-auto w-full object-contain"
+/>
+
+El Barça encaja menos en contra. 81 vs 93 de Madrid. Pero la diferencia importante está en los porteros rivales:
+
+- **Barça:** 67 goles encajados (82.7%), 14 parados/fallados (17.3%)
+- **Madrid:** 69 goles encajados (74.2%), 24 parados/fallados (25.8%)
+
+Los rivales del Madrid fallan **más** penaltis contra ellos (25.8% vs 17.3%). Eso puede ser Courtois, Casillas, o simplemente varianza. Pero es un dato curioso: cuando pitan penalti contra el Madrid, hay más probabilidad de que no sea gol.
+
+**Ratio acierto propio vs fallo rival:** Barça 0.94x, Madrid 1.10x. Madrid tiene mejor balance: convierten más de los suyos y los rivales fallan más contra ellos.
+
+Promedio por temporada: Barça 7.9 a favor, Madrid 8.8. Ambos están por encima de la media de LaLiga (5.7), pero Madrid más (+3.21 vs +2.21). En 18 de 22 temporadas, Madrid estuvo por encima de la media. El Barça en 16.
+
+### Conclusiones
+
+Vale, después de 22 temporadas y casi 500 penaltis analizados, ¿qué tenemos?
+
+**Madrid recibe más penaltis.** 21 más que el Barça en 22 años. Casi un penalti por temporada de diferencia. No es la conspiración del siglo, pero tampoco insignificante. ¿Cuándo se acentúa? Con el VAR. Antes estaban prácticamente iguales (8.6 vs 8.4), ahora Madrid recibe 3 más por temporada (9.6 vs 6.6). ¿Es culpa del VAR o coincidencia temporal? No lo puedo saber sin revisar cada intervención.
+
+**Cristiano fue más efectivo que Messi.** 61 goles vs 53, y mejor porcentaje (84.7% vs 80.3%). Pero el más fiable de todos fue Sergio Ramos: 94% en 17 penaltis. Dato curioso que nadie menciona: los rivales fallan más contra el Madrid (25.8% vs 17.3%). ¿Courtois y Casillas intimidaban más? ¿O es simplemente varianza? No sé, pero el dato está ahí.
+
+**En momentos críticos, el Barça responde mejor.** Minuto 76+, empatando o perdiendo: Barça 84.2% (16/19), Madrid 77.8% (14/18). El Barça sube respecto a su media general, el Madrid baja. Y ninguno de esos penaltis críticos fue decisivo para ganar una liga. En el Clásico las diferencias casi desaparecen: 10 vs 8 penaltis, efectividad idéntica (90% vs 88%). Solo 1 pitado perdiendo (Cristiano, 2010-11). ¿Dónde está el favoritismo en el partido más vigilado del mundo?
+
+**Los datos no prueban sesgo arbitral.** Solo muestran volumen y conversión. Para saber si hay favoritismo habría que analizar cada penalti: si era claro, dudoso o inventado. Ese análisis requiere criterio subjetivo que los números no dan.
+
+**El debate nunca se cerrará.** Cada época tiene sus picos: la 2015-16 fue del Barça (+10), la 2022-23 del Madrid (+10). Las narrativas cambian según el momento. Lo único constante es que ambos están muy por encima de la media de LaLiga, y que este tema seguirá incendiando grupos de WhatsApp cada domingo.
+
+---
+
+¿Qué opinas? ¿Te sorprenden estos números? ¿Cambia algo tu percepción del debate o sigues pensando lo mismo? Si quieres los datos para hacer tu propio análisis, avísame.

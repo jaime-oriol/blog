@@ -9,6 +9,9 @@ import Link from '@/components/Link'
 import Image from '@/components/Image'
 import siteMetadata from '@/content/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import ReadingProgressBar from '@/components/ReadingProgressBar'
+import ShareButtons from '@/components/ShareButtons'
+import TableOfContents from '@/components/TableOfContents'
 
 const CommentForm = dynamic(() => import('@/components/CommentForm'), { ssr: false })
 const CommentsList = dynamic(() => import('@/components/CommentsList'), { ssr: false })
@@ -19,15 +22,29 @@ const postDateTemplate: Intl.DateTimeFormatOptions = {
   day: 'numeric',
 }
 
+interface TocItem {
+  value: string
+  url: string
+  depth: number
+}
+
 interface LayoutProps {
   content: CoreContent<Blog>
+  toc?: TocItem[]
   authorDetails: CoreContent<Authors>[]
   next?: { path: string; title: string; slug: string } | null
   prev?: { path: string; title: string; slug: string } | null
   children: ReactNode
 }
 
-export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
+export default function PostLayout({
+  content,
+  toc,
+  authorDetails,
+  next,
+  prev,
+  children,
+}: LayoutProps) {
   const { filePath, path, slug, date, title, image, section } = content
   const displayImage = image || '/static/images/default-article-banner.jpg'
 
@@ -106,7 +123,9 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
   return (
     <div className="mx-auto max-w-full px-3 py-2 sm:max-w-5xl sm:px-4 md:px-6 xl:px-0">
+      <ReadingProgressBar />
       <ScrollTopAndComment />
+      {toc && <TableOfContents toc={toc} />}
 
       {/* Breadcrumb profesional */}
       <div className="mb-8">
@@ -152,7 +171,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
           <header className="relative mb-10">
             {/* Header con imagen de fondo difuminada */}
             {displayImage && (
-              <div className="relative mb-10 h-64 overflow-hidden rounded-xl md:h-80">
+              <div className="relative mb-10 h-64 overflow-hidden rounded-xl bg-slate-200 md:h-80 dark:bg-slate-700">
                 {/* Imagen de fondo recortada y difuminada */}
                 <div
                   className="absolute inset-0 scale-110 bg-cover bg-center blur-[1px]"
@@ -230,6 +249,11 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             </div>
           )}
 
+          {/* Compartir */}
+          <div className="mb-12 border-t border-slate-200 pt-8 dark:border-slate-700">
+            <ShareButtons title={title} slug={slug} />
+          </div>
+
           {/* Sistema de comentarios personalizado */}
           <div className="mb-12 border-t border-slate-200 pt-8 dark:border-slate-700">
             {/* Lista de comentarios existentes */}
@@ -288,7 +312,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
           <div className="text-center">
             <Link
               href="/articles"
-              className="font-helvetica-regular inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+              className="font-helvetica-regular inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 transition-all hover:bg-slate-50 active:scale-95 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
             >
               <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                 <path

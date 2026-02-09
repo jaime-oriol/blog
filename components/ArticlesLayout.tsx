@@ -5,6 +5,7 @@ import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
 import SectionsNavigation from '@/components/SectionsNavigation'
 import ArticleCard from '@/components/ArticleCard'
+import FadeIn from '@/components/FadeIn'
 
 interface PaginationProps {
   totalPages: number
@@ -30,7 +31,7 @@ function Pagination({ totalPages, currentPage, basePath = '/articles' }: Paginat
         {prevPage ? (
           <Link
             href={currentPage - 1 === 1 ? basePath : `${basePath}/page/${currentPage - 1}`}
-            className="font-body inline-flex items-center rounded-lg border border-slate-300 bg-white px-4 py-2 font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+            className="font-body inline-flex items-center rounded-lg border border-slate-300 bg-white px-4 py-2 font-medium text-slate-700 transition-all hover:bg-slate-50 active:scale-95 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
           >
             <svg className="mr-3 h-5 w-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
               <path
@@ -58,7 +59,7 @@ function Pagination({ totalPages, currentPage, basePath = '/articles' }: Paginat
         {nextPage ? (
           <Link
             href={`${basePath}/page/${currentPage + 1}`}
-            className="font-body inline-flex items-center rounded-lg border border-slate-300 bg-white px-4 py-2 font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+            className="font-body inline-flex items-center rounded-lg border border-slate-300 bg-white px-4 py-2 font-medium text-slate-700 transition-all hover:bg-slate-50 active:scale-95 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
           >
             Siguiente
             <svg className="ml-3 h-5 w-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
@@ -166,8 +167,10 @@ export default function ArticlesLayout({
         {/* Lista de artículos */}
         {displayPosts.length > 0 && (
           <div className="space-y-8">
-            {displayPosts.map((post) => (
-              <ArticleCard key={post.slug} post={post} />
+            {displayPosts.map((post, i) => (
+              <FadeIn key={post.slug} delay={i * 80}>
+                <ArticleCard post={post} />
+              </FadeIn>
             ))}
           </div>
         )}
@@ -195,7 +198,7 @@ export default function ArticlesLayout({
               </p>
               <Link
                 href="/newsletter"
-                className="font-body inline-flex items-center rounded-lg bg-sky-600 px-4 py-2 font-medium text-white transition-colors hover:bg-sky-700 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+                className="font-body inline-flex items-center rounded-lg bg-sky-600 px-4 py-2 font-medium text-white transition-all hover:bg-sky-700 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 active:scale-95"
               >
                 Suscribirse a la newsletter
                 <svg className="ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">

@@ -5,6 +5,7 @@ import BlogNewsletterForm from 'pliny/ui/BlogNewsletterForm'
 import type { MDXComponents } from 'mdx/types'
 import dynamic from 'next/dynamic'
 import Image from './Image'
+import ZoomableImage from './ZoomableImage'
 import CustomLink from './Link'
 
 const AnalysisCarousel = dynamic(() => import('./AnalysisCarousel'))
@@ -168,17 +169,9 @@ const hasValidContent = (children: React.ReactNode): boolean => {
   return true
 }
 
-// Wrapper para Image con espaciado consistente
-const ImageWithSpacing = (props: React.ComponentProps<typeof Image>) => (
-  <div className="my-1.5">
-    {/* eslint-disable-next-line jsx-a11y/alt-text */}
-    <Image {...props} />
-  </div>
-)
-
 export const components: MDXComponents = {
-  // Componentes base
-  Image: ImageWithSpacing,
+  // Componentes base - imagen con zoom al hacer clic
+  Image: ZoomableImage as unknown as React.ComponentType<React.ComponentProps<typeof Image>>,
   TOCInline,
   a: CustomLink,
   pre: Pre,
