@@ -1,0 +1,165 @@
+---
+title: 'El recurso invisible del fútbol: cómo se mide el espacio'
+date: '2026-03-09'
+section: 'analytics-lab'
+image: '/static/images/articles/analytics-lab/espacio/Portada.jpg'
+featured: true
+---
+
+Alguna vez viendo a Messi te has preguntado, ¿cómo se mete este ca\*\*\*\* entre 4 rivales y nadie le quita el balón? ¿Cómo tira esa pared imposible, si no hay hueco? ¿Cómo encuentra sitio donde parece que no existe?
+
+O al revés. Ves a un equipo presionar arriba y piensas, es imposible salir de ahí. Están todos los caminos cortados. ¿A quién se la paso? No hay nadie libre. Y sin embargo, hay equipos que salen. Y otros que no.
+
+La diferencia, casi siempre, es el espacio. No el espacio que ves, el que queda entre jugadores cuando miras la tele. Sino el espacio real. Quién puede llegar antes a cada zona del campo, quién tiene un segundo de ventaja, dónde hay un pasillo que se abre y se cierra en medio segundo. Ese espacio que los buenos jugadores leen sin pensar, casi por instinto.
+
+Y resulta que eso, que parece pura intuición, se puede medir. Con matemáticas y geometría. Suena raro, pero es más sencillo de lo que parece.
+
+## ¿Qué es el espacio en fútbol?
+
+En fútbol, cuando hablamos de espacio no hablamos de metros cuadrados vacíos. Hablamos de **zonas donde un jugador puede recibir, girar o progresar sin que un rival llegue a tiempo**. Es probablemente lo más importante del juego, más que la posesión, más que los pases completados. Si controlas el espacio, controlas el partido.
+
+El problema es que no se ve en ningún sitio. No sale en las estadísticas clásicas, no hay una columna en el acta que diga "metros cuadrados controlados". Por eso durante décadas se analizó el fútbol sin hablar de espacio con números.
+
+Eso cambió con dos modelos, los **diagramas de Voronoi** y el **Pitch Control**. Pero antes de meternos en ellos, mejor verlo con un ejemplo real.
+
+## Messi, Xavi e Iniesta: el espacio invisible
+
+Que Messi es bueno con el balón ya lo sabemos. Pero lo que de verdad mola no es lo que hace él, sino **cómo se mueven sus compañeros alrededor**. En el Barça de 2008-2012, la jugada típica era esta. Messi pasa a Iniesta o Xavi, corre hacia adelante, y un segundo después el balón vuelve a sus pies. En las mejores jugadas se encadenaban cuatro o cinco de estos pases directos.
+
+Pausemos una de esas jugadas justo en el momento en que Messi pasa el balón. Este ejemplo es de un Barça-Panathinaikos de Champions League en 2010, con visualizaciones de Soccermatics. Mirad cómo se colocan sus compañeros.
+
+<Image
+  src="/static/images/articles/analytics-lab/espacio/Messi1.png"
+  alt="Triángulos de pase de Messi con Xavi e Iniesta frente al Panathinaikos"
+  width={700}
+  height={450}
+  caption="Champions League 2010, Barça vs Panathinaikos. Messi tiene el balón, dos rivales van a por él. Los triángulos muestran sus opciones de pase hacia Xavi e Iniesta. Crédito: Soccermatics."
+/>
+
+Messi tiene el balón y avanza hacia portería. Dos jugadores del Panathinaikos van a placarle. Los triángulos de pase muestran sus opciones. Xavi está justo delante, Iniesta a su izquierda. Las posiciones ya son buenas porque ambos pueden recibir un pase directo.
+
+Pero si dibujamos un diagrama de Voronoi encima, empezamos a ver **lo buenas que son realmente** esas posiciones.
+
+<Image
+  src="/static/images/articles/analytics-lab/espacio/Messi2.png"
+  alt="Diagrama de Voronoi sobre la jugada de Messi, Xavi e Iniesta"
+  width={700}
+  height={500}
+  caption="El mismo instante con el diagrama de Voronoi superpuesto. El pase natural cae justo en la perpendicular entre Messi y Xavi, exactamente donde se abre el hueco entre los defensas. Crédito: Soccermatics."
+/>
+
+El Voronoi divide el campo según qué jugador está más cerca de cada punto. Y lo que vemos es brutal: **el pase natural cae justo en la perpendicular entre la línea de Messi y Xavi**, exactamente en el hueco entre los defensas. ¿Casualidad? Yo creo que no. Y lo bonito es que con el Voronoi puedes empezar a verlo.
+
+## Diagramas de Voronoi
+
+Un diagrama de Voronoi hace algo muy sencillo: parte el campo en zonas donde cada punto pertenece al jugador más cercano. Sin más.
+
+<div style={{textAlign: 'center', fontSize: '1.4em', margin: '2rem 0'}}>
+
+$$\text{Voronoi}(p_i) = \{ x \in \text{Campo} \mid \|x - p_i\| \leq \|x - p_j\| \; \forall j \neq i \}$$
+
+</div>
+
+Para mi abuela, para cada punto del campo, miras qué jugador está más cerca y le asignas ese trozo. El resultado es un mosaico de polígonos, uno por jugador, que te muestra cuánto campo "controla" cada uno.
+
+<Image
+  src="/static/images/articles/analytics-lab/espacio/voronoi.png"
+  alt="Diagrama de Voronoi de un Köln vs Bayern München"
+  width={800}
+  height={500}
+  caption="Voronoi del Köln vs Bayern München. Cada zona de color pertenece al jugador más cercano. Se ve rápido quién controla más terreno."
+/>
+
+Es útil para un vistazo rápido. Ves de un golpe qué equipo domina más terreno, dónde hay huecos, qué jugadores están aislados. Pero tiene un problema gordo.
+
+### El problema del Voronoi
+
+Trata a todos los jugadores igual. Da lo mismo que uno esté esprintando hacia una zona y otro caminando en sentido contrario. Si están a la misma distancia, les toca el mismo trozo. Las fronteras son binarias, o es tuyo o es mío, no hay zonas disputadas.
+
+El Voronoi nos dice **quién está más cerca**, pero no **quién tiene más probabilidad de llegar primero**. Un defensa esprintando a 8 m/s hacia una zona debería controlar más espacio del que le asigna el Voronoi. Necesitamos algo que tenga en cuenta la **velocidad** y la **incertidumbre**.
+
+Os dejo un vídeo para que veáis cómo se ajusta dinámicamente frame a frame.
+
+<VideoPlayer src="/static/images/articles/analytics-lab/espacio/voronoi_clip.mp4" />
+
+## Pitch Control (Spearman, 2018)
+
+El **Pitch Control** viene a resolver eso. En vez de decir "este punto es del jugador A", calcula **la probabilidad de que cada equipo controle cada punto del campo**. Ya no es blanco o negro, es una escala de grises.
+
+<Image
+  src="/static/images/articles/analytics-lab/espacio/ppcf.png"
+  alt="Pitch Control (PPCF) del Köln vs Bayern München"
+  width={800}
+  height={500}
+  caption="Pitch Control del mismo partido. El rojo indica control del Bayern, el azul del Köln. Las zonas intermedias (más claras) son las disputadas. Comparad con el Voronoi de arriba."
+/>
+
+¿Cómo funciona? Se basa en tres ideas.
+
+### 1. Tiempo de llegada
+
+Lo primero es calcular cuánto tarda cada jugador en llegar a un punto del campo. El modelo asume que primero hay un tiempo de reacción donde el jugador sigue moviéndose con su velocidad actual, y después esprintando a tope hacia el objetivo.
+
+<div style={{textAlign: 'center', fontSize: '1.4em', margin: '2rem 0'}}>
+
+$$T_i(x) = t_{\text{reac}} + \frac{\|x - (p_i + v_i \cdot t_{\text{reac}})\|}{v_{\max}}$$
+
+</div>
+
+Donde $t_{\text{reac}} = 0.7$ s es el tiempo de reacción, $v_i$ es la velocidad actual del jugador y $v_{\max} = 5$ m/s la velocidad máxima del modelo.
+
+### 2. Probabilidad de haber llegado
+
+Con el tiempo de llegada calculado, el siguiente paso es convertirlo en una probabilidad. No es "llega o no llega", sino "cuánta probabilidad hay de que haya llegado en el instante $\tau$". Para eso se usa una sigmoide.
+
+<div style={{textAlign: 'center', fontSize: '1.4em', margin: '2rem 0'}}>
+
+$$\rho_i(\tau, x) = \frac{1}{1 + e^{-\frac{\pi}{\sqrt{3}\sigma}(\tau - T_i(x))}}$$
+
+</div>
+
+El parámetro $\sigma = 0.45$ s controla la incertidumbre. Cuanto más alto, más borrosas son las fronteras entre zonas.
+
+### 3. Control acumulado
+
+Por último, se integran las probabilidades de todos los jugadores de cada equipo para obtener el control total en cada punto.
+
+<div style={{textAlign: 'center', fontSize: '1.4em', margin: '2rem 0'}}>
+
+$$\text{PPCF}_{\text{att}}(x) = \sum_i \int_0^{\infty} \lambda_i \cdot \rho_i(\tau, x) \cdot (1 - \text{PPCF}_{\text{att}} - \text{PPCF}_{\text{def}}) \, d\tau$$
+
+</div>
+
+Donde $\lambda_{\text{att}} = 4.3$ es la tasa de control del balón.
+
+### ¿Por qué es mejor que el Voronoi?
+
+La gracia es sencilla. Un jugador que corre **hacia** una zona llega antes y controla más espacio. Uno que corre en sentido contrario, pierde territorio. Las fronteras se desplazan según hacia dónde corre cada jugador. Justo lo que el Voronoi no puede hacer.
+
+Aquí lo veis en movimiento.
+
+<VideoPlayer src="/static/images/articles/analytics-lab/espacio/ppcf_clip.mp4" />
+
+## ¿Para qué sirve esto en el fútbol real?
+
+Esto no es solo teoría. Los equipos que tienen datos de tracking (posiciones de los 22 jugadores a 25 fotogramas por segundo) ya lo usan para cosas del día a día. Y no hablo de clubes con presupuestos de ciencia ficción, hablo de departamentos de análisis normales que buscan sacarle partido a los datos que ya tienen.
+
+El ejemplo más claro es el posicionamiento sin balón. Imagina que tu equipo ataca por la derecha y tienes un lateral izquierdo que se queda abierto en su banda, a 50 metros de la jugada. En el vídeo parece que está "en su sitio". Pero si miras el Pitch Control, ves que está dejando un agujero enorme en el centro del campo. Si ese lateral se mete unos metros hacia dentro, de repente el mediocentro puede subir más, el espacio cerca del área se comprime para el rival, y todo el equipo gana. Es un movimiento de 10 metros que no sale en ninguna estadística pero que cambia completamente la estructura del ataque. Con el Pitch Control lo ves al instante, con vídeo necesitas media hora para explicarlo.
+
+Sirve también para medir la presión alta. Cuando un equipo presiona arriba, el objetivo es que el rival no tenga espacio para salir. Pero no todas las presiones son iguales. Hay equipos que corren mucho y presionan mal, y equipos que corren menos pero cubren mejor el campo. Con estas herramientas puedes cuantificar exactamente cuánto espacio le queda al equipo que intenta salir, comparar qué estructura de presión funciona mejor, y ver en qué zonas se te escapan los pases.
+
+¿Por qué el City de Guardiola recuperaba tan rápido cuando perdía el balón? En parte porque sus laterales se metían al centro cuando el equipo atacaba. Zinchenko, por ejemplo, jugaba de lateral izquierdo pero cuando el City tenía el balón en el último tercio, se colocaba como un mediocentro más. Si perdían el balón, ya había gente controlando el espacio central. No era solo ganas de correr, era colocación. El equipo estaba diseñado para que la transición defensiva empezara antes de perder el balón. Y eso, sin Pitch Control, es muy difícil de enseñar a un jugador.
+
+Porque al final esa es una de las aplicaciones más potentes. Los jugadores lo pillan enseguida. Les enseñas el mapa y ven dónde están bien y dónde no, sin que tengas que explicarles mucho. Es inmediato, es visual, es concreto. Mucho más útil que decirle a alguien "colócate mejor" o "tienes que cerrar el espacio". ¿Qué espacio? ¿Dónde? Con el Pitch Control se lo señalas y ya.
+
+## Entonces, ¿con cuál me quedo?
+
+El **Voronoi** te dice qué jugador está más cerca de cada punto del campo. Es rápido, es visual, se entiende en un segundo. Pero no tiene en cuenta la velocidad, la dirección ni la incertidumbre. Un jugador parado y uno esprintando reciben el mismo territorio si están a la misma distancia.
+
+El **Pitch Control** va un paso más allá. Calcula la probabilidad real de que cada equipo controle cada zona, teniendo en cuenta la velocidad, el tiempo de reacción y la incertidumbre. Las fronteras dejan de ser rígidas y pasan a ser blandas, con zonas disputadas que se ven en gris. Lo que no captura todavía es la fatiga, la intención táctica o la trayectoria del balón.
+
+Con datos de tracking a 25Hz podemos calcular el Pitch Control en cada frame y ver cómo evoluciona el dominio espacial en tiempo real. Algo que la posesión clásica no puede contar.
+
+El espacio siempre estuvo ahí. Messi, Xavi e Iniesta lo entendían de forma intuitiva. Ahora podemos verlo, medirlo y enseñarlo.
+
+Si queréis trastear con el código del Pitch Control y el Voronoi, lo tenéis abierto en mi [GitHub](https://github.com/jaime-oriol/pitch-control).

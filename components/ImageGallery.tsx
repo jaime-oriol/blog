@@ -4,26 +4,28 @@ import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 
-interface GalleryImage {
+interface GalleryItem {
   src: string
   alt: string
   title: string
-  category: 'Pass Network' | 'Shot Map' | 'Radar' | 'Comparativa' | 'Análisis' | 'Otro'
+  category: 'Pass Network' | 'Shot Map' | 'Radar' | 'Comparativa' | 'Análisis' | 'Video' | 'Otro'
+  type?: 'image' | 'video'
 }
 
-const getCategoryColor = (category: GalleryImage['category']) => {
+const getCategoryColor = (category: GalleryItem['category']) => {
   const colors = {
     'Pass Network': 'bg-sky-500/90 text-white',
     'Shot Map': 'bg-emerald-500/90 text-white',
     Radar: 'bg-purple-500/90 text-white',
     Comparativa: 'bg-orange-500/90 text-white',
     Análisis: 'bg-indigo-500/90 text-white',
+    Video: 'bg-rose-500/90 text-white',
     Otro: 'bg-slate-500/90 text-white',
   }
   return colors[category]
 }
 
-const images: GalleryImage[] = [
+const firstRow: GalleryItem[] = [
   {
     src: '/static/images/articles/villareal/J8-RM/pn1.png',
     alt: 'Pass Network Real Madrid vs Villareal',
@@ -42,6 +44,26 @@ const images: GalleryImage[] = [
     title: 'Shot Map Individual',
     category: 'Shot Map',
   },
+]
+
+const videoRow: GalleryItem[] = [
+  {
+    src: '/static/images/articles/analytics-lab/espacio/voronoi_clip.mp4',
+    alt: 'Diagrama de Voronoi dinámico aplicado a un partido real',
+    title: 'Voronoi Dinámico',
+    category: 'Video',
+    type: 'video',
+  },
+  {
+    src: '/static/images/articles/analytics-lab/espacio/ppcf_clip.mp4',
+    alt: 'Pitch Control (PPCF) dinámico aplicado a un partido real',
+    title: 'Pitch Control Dinámico',
+    category: 'Video',
+    type: 'video',
+  },
+]
+
+const restRows: GalleryItem[] = [
   {
     src: '/static/images/articles/atm/sorloth/sorloth_individual_COMBINED_2324.png',
     alt: 'Radar estadístico Alexander Sørloth temporada 23/24',
@@ -79,6 +101,8 @@ const images: GalleryImage[] = [
     category: 'Pass Network',
   },
 ]
+
+const images: GalleryItem[] = [...firstRow, ...videoRow, ...restRows]
 
 export default function ImageGallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
@@ -123,37 +147,41 @@ export default function ImageGallery() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [selectedImage, closeLightbox, goToPrevious, goToNext])
 
-  return (
-    <>
-      {/* Grid masonry responsive con animaciones */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20 dark:bg-slate-800 dark:hover:shadow-sky-400/20 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} `}
-            style={{
-              transitionDelay: `${index * 50}ms`,
-            }}
-          >
-            {/* Contenedor de imagen con aspect ratio */}
-            <div
-              className="relative aspect-video cursor-pointer overflow-hidden"
-              onClick={() => openLightbox(index)}
-              role="button"
-              tabIndex={0}
-              aria-label={`Abrir ${image.title}`}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault()
-                  openLightbox(index)
-                }
-              }}
-            >
-              {/* Skeleton loader */}
+  const renderCard = (image: GalleryItem, index: number) => {
+    const isVideo = image.type === 'video'
+    return (
+      <div
+        key={index}
+        className={`group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20 dark:bg-slate-800 dark:hover:shadow-sky-400/20 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} `}
+        style={{ transitionDelay: `${index * 50}ms` }}
+      >
+        <div
+          className="relative aspect-video cursor-pointer overflow-hidden"
+          onClick={() => openLightbox(index)}
+          role="button"
+          tabIndex={0}
+          aria-label={`Abrir ${image.title}`}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              openLightbox(index)
+            }
+          }}
+        >
+          {isVideo ? (
+            <video
+              src={image.src}
+              muted
+              loop
+              autoPlay
+              playsInline
+              className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <>
               {!imageLoaded[index] && (
                 <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800" />
               )}
-
               <Image
                 src={image.src}
                 alt={image.alt}
@@ -162,20 +190,35 @@ export default function ImageGallery() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                 onLoad={() => setImageLoaded((prev) => ({ ...prev, [index]: true }))}
               />
-
-              {/* Overlay gradiente con título */}
-              <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <div>
-                  <h3 className="text-lg font-bold text-white drop-shadow-lg">{image.title}</h3>
-                  <p className="text-sm text-white/90">{image.alt}</p>
-                </div>
-              </div>
+            </>
+          )}
+          <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <div>
+              <h3 className="text-lg font-bold text-white drop-shadow-lg">{image.title}</h3>
+              <p className="text-sm text-white/90">{image.alt}</p>
             </div>
-
-            {/* Borde inferior decorativo */}
-            <div className="h-1 w-0 bg-gradient-to-r from-sky-500 to-purple-500 transition-all duration-500 group-hover:w-full" />
           </div>
-        ))}
+        </div>
+        <div className="h-1 w-0 bg-gradient-to-r from-sky-500 to-purple-500 transition-all duration-500 group-hover:w-full" />
+      </div>
+    )
+  }
+
+  return (
+    <>
+      {/* Fila 1: 3 imágenes */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {firstRow.map((image, i) => renderCard(image, i))}
+      </div>
+
+      {/* Fila 2: 2 vídeos */}
+      <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {videoRow.map((image, i) => renderCard(image, firstRow.length + i))}
+      </div>
+
+      {/* Filas 3-4: resto */}
+      <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {restRows.map((image, i) => renderCard(image, firstRow.length + videoRow.length + i))}
       </div>
 
       {/* Lightbox Modal mejorado */}
@@ -218,16 +261,28 @@ export default function ImageGallery() {
               }
             }}
           >
-            {/* Imagen sin overlay */}
+            {/* Contenido sin overlay */}
             <div className="relative h-[75vh] w-[90vw] max-w-6xl">
-              <Image
-                src={images[selectedImage].src}
-                alt={images[selectedImage].alt}
-                fill
-                className="object-contain drop-shadow-2xl"
-                sizes="90vw"
-                priority
-              />
+              {images[selectedImage].type === 'video' ? (
+                <video
+                  src={images[selectedImage].src}
+                  controls
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="h-full w-full object-contain drop-shadow-2xl"
+                />
+              ) : (
+                <Image
+                  src={images[selectedImage].src}
+                  alt={images[selectedImage].alt}
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                  sizes="90vw"
+                  priority
+                />
+              )}
             </div>
 
             {/* Info FUERA de la imagen */}

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Image from '@/components/Image'
+import NextImage from 'next/image'
 
 const PhotoCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -71,16 +71,15 @@ const PhotoCarousel = () => {
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {photos.map((photo, index) => (
-            <div key={index} className="relative min-w-full">
-              <Image
+            <div key={index} className="relative aspect-[3/2] min-w-full">
+              <NextImage
                 src={photo.src}
                 alt={photo.alt}
-                width={1200}
-                height={800}
-                className="h-auto w-full object-contain"
+                fill
+                className="object-cover object-bottom"
                 priority={index === 0}
+                sizes="100vw"
               />
-              {/* Overlay sutil para mejorar legibilidad si hay texto */}
               <div className="absolute inset-0 bg-black/10"></div>
             </div>
           ))}

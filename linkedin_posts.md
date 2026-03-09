@@ -410,3 +410,17 @@ Domingo 01/02/2026, Madrid - Rayo Vallecano, minuto 97, otro penalti para el Mad
 Análisis completo: https://lnkd.in/ej7hWRVG
 
 ¿Qué discusión eterna en vuestra organización nadie se ha molestado en medir?
+
+Medir lo que parece intuición.
+
+Hay gente que ve huecos donde tú no ves nada. Que toma decisiones en medio segundo que tú necesitas una reunión entera para procesar. Y piensas, bueno, es talento puro, no se puede enseñar.
+
+Pues resulta que sí. Con geometría bastante básica puedes medir exactamente dónde están esos huecos, quién llega antes a cada zona y por qué unos los ven y otros no.
+
+Lo mejor es cuando se lo enseñas a alguien. Le pones el mapa delante y lo pilla solo. Sin explicaciones, sin teoría. Ahí está el hueco, ahí lo estás dejando, ahí deberías estar.
+
+En el fútbol esto ya se aplica. Los equipos con datos de tracking miden quién controla cada metro cuadrado del campo en tiempo real. Messi lo leía por instinto, ahora se puede enseñar con un mapa.
+
+He escrito sobre cómo se mide el espacio con modelos reales, visualizaciones dinámicas y código abierto en GitHub: [LINK]
+
+¿Cuántas decisiones en vuestro día a día dependen de "intuición" que en realidad se podría medir?
