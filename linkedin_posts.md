@@ -424,3 +424,15 @@ En el fútbol esto ya se aplica. Los equipos con datos de tracking miden quién 
 He escrito sobre cómo se mide el espacio con modelos reales, visualizaciones dinámicas y código abierto en GitHub: [LINK]
 
 ¿Cuántas decisiones en vuestro día a día dependen de "intuición" que en realidad se podría medir?
+
+---
+
+Living a dream.
+
+On March 25th I'll be presenting at Opta Forum 2026 in London. The reference event in sports analytics worldwide, organized by Stats Perform.
+
+My research won the analysis category of the Opta Vision Research Competition: measuring how teams break a high press by linking off-ball runs to passing decision quality under pressure.
+
+From watching these talks at home to being on that stage. Some things you just have to live.
+
+See you in London.
