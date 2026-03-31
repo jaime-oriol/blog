@@ -6,7 +6,7 @@ import Main from './Main'
 export default async function Page() {
   const sortedPosts = sortPostsWithPinned(allCoreContent(sortPosts(allBlogs)))
   const publishedPosts = sortedPosts.filter((post) => !post.draft)
-  const recentPosts = publishedPosts.slice(0, 3)
+  const recentPosts = publishedPosts.slice(0, 4)
 
   return <Main posts={recentPosts} />
 }

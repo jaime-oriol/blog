@@ -6,7 +6,7 @@ import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
 
 // Constantes de configuración
-const MAX_DISPLAY = 3
+const MAX_DISPLAY = 4
 
 // Tipos específicos para este componente
 interface MainProps {
