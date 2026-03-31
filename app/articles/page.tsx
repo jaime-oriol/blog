@@ -1,6 +1,7 @@
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
 import { genPageMetadata } from 'app/seo'
+import { sortPostsWithPinned } from '@/lib/sortPosts'
 import ArticlesLayout from '@/components/ArticlesLayout'
 
 const POSTS_PER_PAGE = 4
@@ -13,9 +14,7 @@ export const metadata = genPageMetadata({
 
 export default async function BlogPage() {
   // Obtener TODOS los posts y ordenarlos (más reciente primero)
-  const allPosts = allCoreContent(sortPosts(allBlogs))
-
-  // Filtrar solo los posts publicados (no drafts)
+  const allPosts = sortPostsWithPinned(allCoreContent(sortPosts(allBlogs)))
   const publishedPosts = allPosts.filter((post) => !post.draft)
 
   const pageNumber = 1

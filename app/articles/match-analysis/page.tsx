@@ -1,6 +1,7 @@
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
 import { genPageMetadata } from 'app/seo'
+import { sortPostsWithPinned } from '@/lib/sortPosts'
 import ArticlesLayout from '@/components/ArticlesLayout'
 
 const POSTS_PER_PAGE = 4
@@ -12,7 +13,7 @@ export const metadata = genPageMetadata({
 })
 
 export default async function MatchAnalysisPage() {
-  const allPosts = allCoreContent(sortPosts(allBlogs))
+  const allPosts = sortPostsWithPinned(allCoreContent(sortPosts(allBlogs)))
   const publishedPosts = allPosts.filter((post) => !post.draft)
 
   // Filtrar posts de esta sección y también posts legacy de 'scouting'

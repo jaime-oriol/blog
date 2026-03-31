@@ -1,0 +1,56 @@
+---
+title: 'Opta Forum 2026. Ganador, Categoría Analysis'
+date: '2026-03-25'
+section: 'analytics-lab'
+image: '/static/images/articles/opta-forum-2026/portada.png'
+pinned: true
+---
+
+El pasado 25 de marzo tuve la oportunidad de presentar mi investigación en el Opta Forum 2026 en Londres, el evento de referencia en analytics deportivo organizado por Stats Perform.
+
+## La categoría
+
+Opta planteó un reto dentro de su programa Performance Research Questions. La categoría de análisis pedía lo siguiente: usando datos de Opta Vision (tracking a 25fps, carreras sin balón, predicciones de pase, presiones y pases que rompen líneas), proponer una metodología para identificar cómo los equipos en posesión intentan superar la presión alta del rival, y medir su efectividad haciéndolo.
+
+## Mi propuesta - Breaking the Press from the Back: Linking Off-Ball Runs to Passing Decision Quality Under High Pressing
+
+La investigación conecta dos capas de análisis que hasta ahora se estudiaban por separado: la calidad de las carreras sin balón para generar opciones de pase bajo presión, y la calidad de la decisión del pasador respecto a las alternativas disponibles.
+
+El pipeline funciona en cuatro fases, partido a partido:
+
+**Fase 1. Identificar build-up bajo presión alta.** Filtrar las posesiones que arrancan en el tercio defensivo contra un bloque alto, usando las fases de juego y los eventos de presión de Opta Vision.
+
+**Fase 2. Mapear el paisaje de pase.** Para cada momento de decisión, se extraen las predicciones de pase de la opción elegida y todas las alternativas disponibles: xPass (probabilidad de completar), xThreat (amenaza esperada) y un score compuesto pass_quality que combina ambas.
+
+**Fase 3. Vincular carreras sin balón a las opciones que crean.** Las carreras off-ball se cruzan con las opciones de pase disponibles. Cada opción se traza hasta la carrera que la generó, con sus cualificadores de velocidad, geometría y creación de espacio.
+
+**Fase 4. Clasificar cada decisión en 12 escenarios.** Tres ejes independientes cruzados:
+
+- **Tipo de carrera**: TARGETED (el pasador eligió al corredor), DISRUPTIVE (la carrera arrastró defensores y creó espacio para otro jugador, detectado via Pitch Control contrafactual) o OTHER (la carrera existió pero no tuvo influencia causal).
+- **Decisión**: BEST OPTION (eligió la opción de mayor pass_quality) o MISSED OPTION (eligió una opción inferior).
+- **Resultado**: si la jugada acabó rompiendo la presión o no.
+
+<Image
+  src="/static/images/articles/opta-forum-2026/recurso-1.png"
+  alt="Árbol de 12 escenarios: tipo de carrera x decisión x resultado"
+  width={800}
+  height={300}
+/>
+
+El grid 3x2x2 produce 12 escenarios etiquetados y se resume en una vista macro 2x2: SUCCESSFUL, DENIED, FORTUNATE y WASTED.
+
+<Image
+  src="/static/images/articles/opta-forum-2026/recurso-2.png"
+  alt="Grid macro 2x2: decisión x resultado"
+  width={800}
+  height={300}
+/>
+
+## La presentación
+
+<video
+  src="/static/images/articles/opta-forum-2026/presentacion.mp4"
+  controls
+  playsInline
+  style={{ width: '100%', borderRadius: '8px', marginTop: '1rem' }}
+/>

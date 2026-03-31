@@ -67,7 +67,7 @@ const getSectionAccentBg = (section: string) => {
 }
 
 export default function ArticleCard({ post }: ArticleCardProps) {
-  const { slug, date, title, section, image, summary, readingTime } = post
+  const { slug, date, title, section, image, summary, readingTime, pinned } = post
   const minutes = readingTime ? Math.ceil(JSON.parse(JSON.stringify(readingTime)).minutes) : null
   const displayImage = image || '/static/images/default-article.jpg'
 
@@ -90,6 +90,14 @@ export default function ArticleCard({ post }: ArticleCardProps) {
             />
             {/* Overlay sutil para mejor contraste */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/5 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+            {/* Pin icon para artículos fijados */}
+            {pinned && (
+              <div className="absolute top-2 left-2 rounded-full bg-sky-600 p-1.5 shadow-md">
+                <svg className="h-3.5 w-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z" />
+                </svg>
+              </div>
+            )}
           </div>
         </div>
 

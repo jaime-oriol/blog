@@ -8,6 +8,7 @@ import { SearchProvider, SearchConfig } from 'pliny/search'
 import Header from '@/components/Header'
 import SectionContainer from '@/components/SectionContainer'
 import Footer from '@/components/Footer'
+import OptaBanner from '@/components/OptaBanner'
 import siteMetadata from '@/content/siteMetadata.js'
 import { ThemeProviders } from './theme-providers'
 import AuthSessionProvider from '@/components/SessionProvider'
@@ -123,6 +124,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
                 <Header />
                 <main className="mb-auto">{children}</main>
+                <OptaBanner />
               </SearchProvider>
               <Footer />
             </SectionContainer>

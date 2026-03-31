@@ -1,6 +1,6 @@
 import { genPageMetadata } from 'app/seo'
 import { allBlogs } from 'contentlayer/generated'
-import { sortPosts } from 'pliny/utils/contentlayer'
+import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import NewsletterForm from '@/components/NewsletterForm'
 import ArticleCard from '@/components/ArticleCard'
 
@@ -12,7 +12,9 @@ export const metadata = genPageMetadata({
 
 export default function Newsletter() {
   const sortedPosts = sortPosts(allBlogs)
+  const allPosts = allCoreContent(sortedPosts)
   const latestPost = sortedPosts[0]
+  const optaPost = allPosts.find((post) => post.pinned)
 
   return (
     <>
@@ -118,6 +120,16 @@ export default function Newsletter() {
               No te pierdas el último artículo
             </h3>
             <ArticleCard post={latestPost} />
+          </div>
+        )}
+
+        {/* OPTA FORUM */}
+        {optaPost && (
+          <div className="mt-12">
+            <h3 className="font-headings mb-8 text-2xl font-semibold text-slate-900 dark:text-slate-100">
+              Opta Forum 2026
+            </h3>
+            <ArticleCard post={optaPost} />
           </div>
         )}
       </div>

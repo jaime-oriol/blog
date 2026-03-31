@@ -25,13 +25,12 @@ const BioSection = () => {
           </p>
 
           <p>
-            Actualmente curso el cuarto año de un doble grado en Business Analytics e Ingeniería
+            Curso el cuarto año de un doble grado de cinco en Business Analytics e Ingeniería
             Informática en la Universidad Francisco de Vitoria, una combinación deliberadamente
-            elegida. El futuro del análisis futbolístico requiere dominar tanto el lenguaje
-            estadístico como las herramientas computacionales que lo hacen aplicable. Este año
-            inicio además el Máster en Big Data aplicado al Scouting del Sevilla FC en Sport Data
-            Campus, buscando traducir la intuición futbolística en modelos predictivos rigurosos y
-            aplicables al rendimiento profesional.
+            elegida. Además trabajo como Data Scientist en Minsait y curso el Máster en Big Data
+            aplicado al Scouting en Fútbol en Sport Data Campus. En marzo de 2026 gané la categoría
+            de Analysis del Opta Forum organizado por Stats Perform, presentando mi investigación
+            sobre cómo los equipos rompen la presión alta del rival en Londres.
           </p>
 
           <p>
@@ -57,6 +56,39 @@ const BioSection = () => {
             con la ambición de expandir los límites de lo que podemos entender y medir en el fútbol
             moderno.
           </p>
+
+          <div className="flex flex-col gap-3 pt-4 sm:flex-row">
+            <a
+              href="/static/CV_Jaime_Oriol.pdf"
+              download
+              className="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-slate-50 hover:shadow-md active:scale-95 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+            >
+              <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              CV en Español
+            </a>
+            <a
+              href="/static/CV_Jaime_Oriol_ING.pdf"
+              download
+              className="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-slate-50 hover:shadow-md active:scale-95 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+            >
+              <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              CV in English
+            </a>
+          </div>
         </div>
       </div>
     </div>

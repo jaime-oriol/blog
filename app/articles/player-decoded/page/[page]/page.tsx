@@ -1,12 +1,13 @@
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
+import { sortPostsWithPinned } from '@/lib/sortPosts'
 import ArticlesLayout from '@/components/ArticlesLayout'
 
 const POSTS_PER_PAGE = 4
 
 export const generateStaticParams = async () => {
-  const allPosts = allCoreContent(sortPosts(allBlogs))
+  const allPosts = sortPostsWithPinned(allCoreContent(sortPosts(allBlogs)))
   const publishedPosts = allPosts.filter((post) => !post.draft)
   const sectionPosts = publishedPosts.filter(
     (post) =>
@@ -31,7 +32,7 @@ export default async function PlayerDecodedPaginationPage(props: {
     return notFound()
   }
 
-  const allPosts = allCoreContent(sortPosts(allBlogs))
+  const allPosts = sortPostsWithPinned(allCoreContent(sortPosts(allBlogs)))
   const publishedPosts = allPosts.filter((post) => !post.draft)
   const sectionPosts = publishedPosts.filter(
     (post) =>

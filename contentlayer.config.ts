@@ -113,6 +113,7 @@ export const Blog = defineDocumentType(() => ({
     canonicalUrl: { type: 'string' },
     section: { type: 'string', required: true }, // Nuevo campo obligatorio
     featured: { type: 'boolean' }, // Campo para artículos destacados
+    pinned: { type: 'boolean' }, // Artículos fijados siempre primero
   },
   computedFields: {
     ...computedFields,
