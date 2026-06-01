@@ -436,3 +436,19 @@ My research won the analysis category of the Opta Vision Research Competition: m
 From watching these talks at home to being on that stage. Some things you just have to live.
 
 See you in London.
+
+---
+
+Last Wednesday I presented my research proposal "Breaking the Press from the Back: Linking Off-Ball Runs to Passing Decision Quality Under High Pressing" at hashtag#OptaForum2026
+
+I want to thank Stats Perform and Andy Cooper for putting together such an incredible event, I got to meet and learn from some of the brightest minds in football and data, people I've admired for a long time. Truly a special experience.
+
+Here's the full video of my presentation: https://lnkd.in/eRw_zsz3
+
+I'd love to hear your thoughts, feel free to reach out with any feedback or questions. 
+
+And if you want to check out the other amazing sessions from the Forum, you can request access here:
+https://lnkd.in/eaWuMsQd
+
+---
+
