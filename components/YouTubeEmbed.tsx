@@ -21,6 +21,7 @@ export default function YouTubeEmbed({ src, title = 'Video de YouTube' }: YouTub
   const videoId = getVideoId(src)
 
   useEffect(() => {
+    const container = containerRef.current
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -35,13 +36,13 @@ export default function YouTubeEmbed({ src, title = 'Video de YouTube' }: YouTub
       }
     )
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
+    if (container) {
+      observer.observe(container)
     }
 
     return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current)
+      if (container) {
+        observer.unobserve(container)
       }
     }
   }, [isVisible])

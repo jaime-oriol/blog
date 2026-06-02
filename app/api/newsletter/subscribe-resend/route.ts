@@ -55,7 +55,8 @@ async function checkExistingContact(
     }
 
     const existingContact = response.data?.data.find(
-      (contact) => contact.email.toLowerCase() === email.toLowerCase()
+      (contact: { email: string; id: string; unsubscribed: boolean }) =>
+        contact.email.toLowerCase() === email.toLowerCase()
     )
 
     if (existingContact) {
@@ -203,9 +204,10 @@ export async function GET() {
       return NextResponse.json({ error: 'Error obteniendo estadísticas' }, { status: 500 })
     }
 
-    const contacts = response.data?.data || []
-    const confirmed = contacts.filter((contact) => !contact.unsubscribed).length
-    const pending = contacts.filter((contact) => contact.unsubscribed).length
+    type Contact = { email: string; id: string; unsubscribed: boolean }
+    const contacts: Contact[] = response.data?.data || []
+    const confirmed = contacts.filter((contact: Contact) => !contact.unsubscribed).length
+    const pending = contacts.filter((contact: Contact) => contact.unsubscribed).length
 
     return NextResponse.json({
       total: contacts.length,

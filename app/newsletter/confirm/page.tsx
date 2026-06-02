@@ -55,7 +55,8 @@ function ConfirmContent() {
         }
       } catch (error) {
         console.error('Confirmation error:', error)
-        if (error.name === 'AbortError') {
+        const err = error as Error
+        if (err.name === 'AbortError') {
           setStatus('error')
           setMessage('Tiempo de espera agotado. Inténtalo de nuevo.')
         } else {
