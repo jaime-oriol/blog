@@ -14,9 +14,27 @@ const YouTubeEmbed = dynamic(() => import('./YouTubeEmbed'))
 
 // Table wrapper con diseño profesional
 const TableWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="w-full overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
-    <table className="w-full border-collapse bg-white dark:bg-slate-800">{children}</table>
+  <div className="my-6 w-full overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+    <table className="w-full border-collapse bg-white text-left text-sm dark:bg-slate-900">
+      {children}
+    </table>
   </div>
+)
+
+const Thead = ({ children }: { children: React.ReactNode }) => (
+  <thead className="bg-slate-50 dark:bg-slate-800">{children}</thead>
+)
+
+const Th = ({ children }: { children: React.ReactNode }) => (
+  <th className="border-b border-slate-200 px-4 py-3 font-semibold text-slate-900 dark:border-slate-700 dark:text-slate-100">
+    {children}
+  </th>
+)
+
+const Td = ({ children }: { children: React.ReactNode }) => (
+  <td className="border-b border-slate-100 px-4 py-3 text-slate-700 dark:border-slate-800 dark:text-slate-200">
+    {children}
+  </td>
 )
 
 // Componente para destacar conceptos técnicos
@@ -176,6 +194,9 @@ export const components: MDXComponents = {
   a: CustomLink,
   pre: Pre,
   table: TableWrapper,
+  thead: Thead,
+  th: Th,
+  td: Td,
   BlogNewsletterForm,
 
   // Componentes personalizados FootballDecoded
