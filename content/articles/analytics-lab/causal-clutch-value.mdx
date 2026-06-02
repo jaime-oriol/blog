@@ -1,0 +1,173 @@
+---
+title: 'Causal Clutch Value. Un marco para medir el rendimiento bajo presión'
+date: '2026-06-02'
+section: 'analytics-lab'
+image: '/static/images/articles/ccv/portada.png'
+tags: ['clutch', 'causal-inference', 'rendimiento', 'análisis-táctico']
+summary: 'El rendimiento clutch es central en el scouting moderno pero su medición con rigor causal sigue sin resolverse. Presentamos CCV: un marco que estima el efecto emocional del gol sobre el desempeño del jugador.'
+author: 'Jaime Oriol'
+readingTime: '12 min'
+featured: false
+---
+
+# Causal Clutch Value
+
+## El rendimiento que nadie mide de verdad
+
+Hay algo que todos vemos en el fútbol y que ningún ranking público captura: qué pasa con un jugador cuando importa más.
+
+No es mérito colectivo. No es táctica. Es algo más primitivo. El gol acaba de marcar. El equipo está en el filo. Noventa minutos. Cien mil personas gritando. Y en ese momento, hay jugadores que se crecen y otros que se encogen.
+
+Llevamos años midiendo todo: pases, disparos, regates, control de espacio. Pero esa medición asume que el contexto emocional es ruido. Como si la decisión de un defensa en el minuto 45 —cuando el marcador es 1-1 en semifinales— fuera comparable a la misma decisión en el minuto 10 de un 3-0.
+
+No lo es.
+
+El problema es que cualquier intento de medir "clutch performance" en la literatura abierta se reduce a evento puro. Rankings públicos que aparecen cuando importa partir. Sin tracking sincronizado. Sin separación entre lo que hizo el jugador individual y lo que hizo el patrón colectivo del equipo.
+
+Es como intentar medir la calidad de un pase mirando solo si llegó o no llegó al compañero, ignorando que ese compañero estaba marcado por dos defensas en lugar de uno.
+
+## Mi propuesta: Causal Clutch Value
+
+Durante los últimos meses, he trabajado en construir un framework causal que estime exactamente esto: **el efecto del shock emocional del gol sobre el desempeño del jugador**, residualizado contra el bloque del equipo, medido en cuatro canales de performance y validado contra la realidad observable del torneo.
+
+Lo llamé **Causal Clutch Value (CCV)**.
+
+<Image
+  src="/static/images/articles/ccv/fig_cap4_mapa_conceptual.png"
+  alt="Mapa conceptual del CCV: descomposición de shocks y reacciones"
+  width={1200}
+  height={700}
+  caption="Mapa conceptual del framework CCV: cómo los shocks emocionales generan reacciones en cuatro canales de performance"
+/>
+
+### El shock como experimento natural
+
+Todo comenzó viéndolo claro en la final del Mundial 2022. Bajo presión extrema, algunos jugadores parecían operar en otra dimensión. Otros se paralizaban. La pregunta era: ¿cómo separo la capacidad individual de responder de lo que el equipo estaba haciendo colectivamente?
+
+La respuesta estaba en el shock del gol como experimento natural.
+
+Cuando Argentina marca el 1-0, el gol es un shock emocional con efecto aleatorizado condicionado en características pre-disparo (xG esperado). El shock es discontinuo en tiempo. Y la respuesta no es instantánea: ocurre en los minutos siguientes.
+
+Eso permite un diseño causal robusto.
+
+### Arquitectura de cinco capas
+
+El framework funciona así:
+
+<Image
+  src="/static/images/articles/ccv/fig_cap4_capas_causales.png"
+  alt="Las 5 capas causales del framework CCV"
+  width={1200}
+  height={800}
+  caption="Las cinco capas de la arquitectura CCV: aislamiento del efecto individual del patrón colectivo del equipo"
+/>
+
+**Capa 1: Identificación de shocks**
+Identifico cada gol en el torneo. Para cada gol, calculo el xG esperado en el pre-disparo. Eso me da una medida de "sorpresa": un gol a 0.05 xG es más sorpresivo que uno a 0.78 xG.
+
+**Capa 2: Ventanas de análisis**
+Alrededor de cada gol, abro una ventana de ±10 minutos. Es el tiempo que la literatura sugiere que dura el efecto emocional antes de que la racionalidad táctica vuelva a dominar.
+
+**Capa 3: Cuantificación del bloque del equipo**
+Aquí es donde la mayoría de análisis fallan. No mido solo al jugador. Mido el comportamiento colectivo del equipo en esa ventana temporal y lo dejo fuera de la ecuación. Necesito saber cuánto de lo que cambia en un jugador es su respuesta individual vs. la reconfiguración táctica que Simeone o Deschamps acaban de hacer desde el banquillo.
+
+Uso leave-one-out regression: para cada jugador, construyo un indicador del patrón del equipo excluyéndolo a él. Eso es mi "team block".
+
+**Capa 4: Medición en cuatro canales**
+No todo lo que cambia con un shock emocional es lo mismo. Un delantero y un lateral reaccionan de formas distintas. Mido el efecto en cuatro dimensiones:
+
+- **Empuje Ofensivo**: intensidad y progresión con balón
+- **Solidez Defensiva**: presión, cobertura, recuperaciones
+- **Inteligencia Espacial**: posicionamiento, off-ball runs, anticipación
+- **Pulso Físico**: aceleración, distancia recorrida, intensidad
+
+**Capa 5: Efecto heterogéneo bayesiano**
+El efecto no es igual para todos. Un portero responde diferente a un mediocampista. Un extremo diferente a un central. Construyo un modelo bayesiano jerárquico que permite que cada jugador tenga su propio efecto, pero que el modelo aprenda de la similitud entre posiciones.
+
+Eso me da intervalos de credibilidad por jugador. No solo punto estimates.
+
+<Image
+  src="/static/images/articles/ccv/fig_cap4_pipeline_dag.jpg"
+  alt="Pipeline DAG de 6 fases: arquitectura técnica completa"
+  width={1200}
+  height={700}
+  caption="Pipeline DAG: las 6 fases de ejecución que transforman datos brutos en outputs actionables de scouting"
+/>
+
+### La validación: Near-miss quasi-experiment
+
+Aquí viene lo crucial. Cualquier framework causal puede sonar bien sobre el papel. Pero ¿funciona en realidad?
+
+Para validarlo, construí un quasi-experimento de "near-miss". La premisa es simple: si tu modelo es correcto, debería predecir mejor a los jugadores que casi anotaron que a los que casi anotaron pero la bola pasó centímetros a un lado.
+
+En fútbol, eso es casi-aleatorio. El disparo es idéntico. Solo que uno entra y otro no.
+
+Si tu modelo de "clutch performance" realmente está midiendo algo real sobre cómo responden los jugadores, debería ser sensible a eso. Y lo fue.
+
+## Los resultados
+
+Apliqué esto al Mundial de Qatar 2022. Datos de PFF FC: tracking continuo sincronizado a 25Hz de los 22 jugadores, cobertura completa de fase eliminatoria.
+
+**El efecto poblacional medio es estadísticamente indistinguible de cero en los cuatro canales.**
+
+Eso significa que el shock emocional, en promedio, no mueve a los jugadores. El equipo cambia. El contexto emocional es brutal. Pero el jugador promedio responde con indiferencia estadística.
+
+Lo interesante es dónde **no** es cero.
+
+Bajo alta proximidad a eliminación, con cuatro jugadores significativamente liderados por Kylian Mbappé (coeficiente +0.11 desviaciones estándar, probabilidad posterior 0.97):
+
+**Hay talento que sí responde.**
+
+No es mayoría. Es minoría. Pero es significativo.
+
+<Image
+  src="/static/images/articles/ccv/fig_cap6_cate_heterogeneity.png"
+  alt="Heterogeneidad del efecto CATE por jugador"
+  width={1200}
+  height={700}
+  caption="Distribución del efecto heterogéneo por jugador: dónde está concentrado el clutch performance"
+/>
+
+<Image
+  src="/static/images/articles/ccv/ppcf_mbappe_2_2_final.png"
+  alt="Análisis táctico de Kylian Mbappé en la final"
+  width={1200}
+  height={700}
+  caption="Caso de estudio: respuesta de Mbappé en momentos decisivos. La métrica lo captura de forma explícita"
+/>
+
+A nivel específico de celda (posición + contexto):
+
+- Veintidós jugadores muestran efecto significativo post-gol en la celda ataque-tras-marcar
+- Solo cuatro en defensa muestran patrón similar pero inverso: se protegen más post-gol concedido
+- Off-ball e inteligencia espacial: heterogeneidad alta, efecto débil agregado
+
+### El scout-facing output
+
+El resultado final es lo que importa: un ranking tridimensional de "clutch players" con incertidumbre bayesiana cuantificada.
+
+Dieciséis categorías posicionales de PFF. Cuatro buckets de agregación (GK/DEF/MED/ATT). Para cada uno, un jugador que responde bajo presión cuando la mayoría no responde.
+
+Eso es información accionable.
+
+## La reflexión
+
+Esto no responde si el "clutch" es innato o entrenable. Eso requiere un estudio longitudinal que este proyecto no es.
+
+Lo que sí muestra es que **hay dimensiones de la respuesta emocional que el fútbol moderno no mide pero debería**.
+
+Todos hablamos de talento. De capacidad técnica. De construcción de equipo. Pero el talento que responde cuando la presión psicológica es máxima, cuando hay menos tiempo para procesar, cuando la emoción contamina el procesamiento racional...
+
+Eso sigue siendo territorio ignoto para la mayoría de clubes. Y es precisamente donde se deciden los torneos.
+
+Porque la táctica y la técnica se pueden enseñar. La capacidad de ejecutar cuando tiemblas... eso es otra cosa.
+
+---
+
+**Código y datos públicos en [GitHub CCV](https://github.com/jaime-oriol/CCV)**
+
+**Agradecimientos a Pablo Sanzol, David R. Sáez Ávila y Miguel Ángel del Barrio. Su exigencia y rigor durante todo el máster fueron la base de este trabajo.**
+
+---
+
+¿Creéis que el rendimiento bajo presión es algo que se puede medir objetivamente o siempre tendrá un componente subjetivo que escapa a los números?
