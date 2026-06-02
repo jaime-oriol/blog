@@ -3,11 +3,7 @@ title: 'TFM: Causal Clutch Value. El rendimiento bajo presión que el fútbol no
 date: '2026-06-02'
 section: 'analytics-lab'
 image: '/static/images/articles/ccv/portada.png'
-tags: ['clutch', 'causal-inference', 'scouting', 'world-cup-2022']
-summary: 'Un framework causal para medir la respuesta individual ante shocks emocionales. Método, datos, resultados de Qatar 2022, y por qué Mbappé es el outlier estadístico.'
-author: 'Jaime Oriol'
-readingTime: '18 min'
-featured: false
+featured: true
 ---
 
 # Causal Clutch Value
@@ -133,11 +129,11 @@ Mbappé es el único con efecto sustancial en pressure-clutch. No es "mejor en g
 Los números concretos: en los 80-82 minutos de la final Argentina-Francia, cuando el marcador era 2-2 y Argentina estaba en máxima presión de eliminación, Mbappé concentró su ofensiva. El modelo lo etiqueta como +0.11 SD de respuesta individual respecto al bloque de Francia en esa ventana temporal. Eso es una firma causal.
 
 <Image
-  src="/static/images/articles/ccv/ppcf_mbappe_2_2_final.png"
+  src="/static/images/articles/ccv/radar_report_mbappe.png"
   alt="Scout-facing de Mbappé"
   width={1200}
   height={700}
-  caption="Ficha scout-facing de Kylian Mbappé. Los doce ejes representan cuatro canales × tres contextos de shock. En presión alta post-gol en contra, domina en los cuadrantes superiores (ofensiva y off-ball)."
+  caption="Ficha scout-facing de Kylian Mbappé. Radar de doce ejes representando cuatro canales de desempeño (ofensivo, defensivo, off-ball, físico) × tres contextos de shock (gol a favor, gol en contra, proximidad eliminación). Mbappé muestra dominio absoluto en los cuadrantes ofensivos y off-ball bajo presión."
 />
 
 ### Validación contra grades humanos PFF
