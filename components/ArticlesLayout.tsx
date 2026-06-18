@@ -31,7 +31,7 @@ function Pagination({ totalPages, currentPage, basePath = '/articles' }: Paginat
         {prevPage ? (
           <Link
             href={currentPage - 1 === 1 ? basePath : `${basePath}/page/${currentPage - 1}`}
-            className="font-body inline-flex items-center rounded-lg border border-slate-300 bg-white px-4 py-2 font-medium text-slate-700 transition-all hover:bg-slate-50 active:scale-95 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+            className="font-body border-fd-200 text-fd-700 hover:bg-fd-50 dark:border-fd-900 dark:text-fd-300 dark:hover:bg-fd-950/40 inline-flex items-center rounded-lg border bg-white px-4 py-2 font-medium transition-all active:scale-95 dark:bg-slate-800"
           >
             <svg className="mr-3 h-5 w-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
               <path
@@ -59,7 +59,7 @@ function Pagination({ totalPages, currentPage, basePath = '/articles' }: Paginat
         {nextPage ? (
           <Link
             href={`${basePath}/page/${currentPage + 1}`}
-            className="font-body inline-flex items-center rounded-lg border border-slate-300 bg-white px-4 py-2 font-medium text-slate-700 transition-all hover:bg-slate-50 active:scale-95 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+            className="font-body border-fd-200 text-fd-700 hover:bg-fd-50 dark:border-fd-900 dark:text-fd-300 dark:hover:bg-fd-950/40 inline-flex items-center rounded-lg border bg-white px-4 py-2 font-medium transition-all active:scale-95 dark:bg-slate-800"
           >
             Siguiente
             <svg className="ml-3 h-5 w-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
@@ -115,13 +115,13 @@ export default function ArticlesLayout({
   }
 
   return (
-    <div className="mx-auto max-w-full px-3 py-2 sm:max-w-5xl sm:px-4 md:px-6 xl:px-0">
+    <div className="py-2">
       {/* Header de la sección */}
-      <div className="mb-6 text-left">
-        <h1 className="font-headings mb-8 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
+      <div className="mb-6 space-y-3 text-left">
+        <h1 className="font-headings text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-slate-100">
           {title}
         </h1>
-        <p className="font-body mt-4 text-xl text-slate-600 dark:text-slate-400">
+        <p className="font-body text-xl text-slate-600 dark:text-slate-400">
           {getSectionDescription(section)}
         </p>
       </div>
@@ -190,7 +190,7 @@ export default function ArticlesLayout({
         {displayPosts.length > 0 && (
           <div className="mt-16 border-t border-slate-200 pt-8 dark:border-slate-700">
             <div className="rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
-              <h3 className="font-headings mb-8 text-lg font-semibold text-slate-900 dark:text-slate-100">
+              <h3 className="font-headings mb-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
                 ¿Te gustó este análisis?
               </h3>
               <p className="font-body mb-4 text-slate-600 dark:text-slate-400">
@@ -198,7 +198,7 @@ export default function ArticlesLayout({
               </p>
               <Link
                 href="/newsletter"
-                className="font-body inline-flex items-center rounded-lg bg-sky-600 px-4 py-2 font-medium text-white transition-all hover:bg-sky-700 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 active:scale-95"
+                className="font-body bg-fd-600 ease-fd hover:bg-fd-700 focus:ring-fd-500 inline-flex items-center rounded-lg px-4 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 focus:ring-2 focus:ring-offset-2 active:scale-95"
               >
                 Suscribirse a la newsletter
                 <svg className="ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">

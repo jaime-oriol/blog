@@ -64,8 +64,11 @@ const ThemeSwitch = () => {
   return (
     <div className="flex items-center">
       <Menu as="div" className="relative inline-block text-left">
-        <div className="hover:text-primary-500 dark:hover:text-primary-400 flex items-center justify-center">
-          <MenuButton aria-label="Theme switcher">
+        <div className="hover:text-fd dark:hover:text-fd-300 flex items-center justify-center transition-colors">
+          <MenuButton
+            aria-label="Theme switcher"
+            className="ease-fd transition-transform duration-300 hover:scale-110"
+          >
             {mounted ? resolvedTheme === 'dark' ? <Moon /> : <Sun /> : <Blank />}
           </MenuButton>
         </div>
@@ -85,7 +88,7 @@ const ThemeSwitch = () => {
                   <MenuItem>
                     {({ focus }) => (
                       <button
-                        className={`${focus ? 'bg-primary-600 text-white' : ''} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                        className={`${focus ? 'bg-fd-600 text-white' : ''} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       >
                         <div className="mr-2">
                           <Sun />
@@ -100,7 +103,7 @@ const ThemeSwitch = () => {
                     {({ focus }) => (
                       <button
                         className={`${
-                          focus ? 'bg-primary-600 text-white' : ''
+                          focus ? 'bg-fd-600 text-white' : ''
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       >
                         <div className="mr-2">
@@ -116,7 +119,7 @@ const ThemeSwitch = () => {
                     {({ focus }) => (
                       <button
                         className={`${
-                          focus ? 'bg-primary-600 text-white' : ''
+                          focus ? 'bg-fd-600 text-white' : ''
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       >
                         <div className="mr-2">

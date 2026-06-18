@@ -59,6 +59,24 @@
   --z-60: 60;
   --z-70: 70;
   --z-80: 80;
+
+  /* Azul de marca FootballDecoded (#0043D8) - acento real de interfaz.
+     sky-* queda reservado como tema de la sección player-decoded. */
+  --color-fd: #0043d8;
+  --color-fd-50: #eaf1ff;
+  --color-fd-100: #d5e2ff;
+  --color-fd-200: #adc4ff;
+  --color-fd-300: #7da0fb;
+  --color-fd-400: #4b73f2;
+  --color-fd-500: #1e4fe4;
+  --color-fd-600: #0043d8;
+  --color-fd-700: #0036ad;
+  --color-fd-800: #002c8a;
+  --color-fd-900: #07266e;
+  --color-fd-950: #04163f;
+
+  /* Curva de movimiento de marca (easeOutExpo) para un tacto premium */
+  --ease-fd: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Configuración de familias tipográficas según Manual de Identidad Corporativa */
@@ -134,14 +152,14 @@
 
   a,
   button {
-    outline-color: var(--color-sky-500);
+    outline-color: var(--color-fd-500);
   }
 
   a:focus-visible,
   button:focus-visible {
     outline: 2px solid;
     border-radius: var(--radius-sm);
-    outline-color: var(--color-sky-500);
+    outline-color: var(--color-fd-500);
   }
 }
 
@@ -196,7 +214,7 @@
     --tw-prose-body: var(--color-slate-900);
     --tw-prose-headings: var(--color-slate-900);
     --tw-prose-lead: var(--color-slate-600);
-    --tw-prose-links: var(--color-sky-700);
+    --tw-prose-links: var(--color-fd-600);
     --tw-prose-bold: var(--color-slate-900);
     --tw-prose-counters: var(--color-slate-500);
     --tw-prose-bullets: var(--color-slate-300);
@@ -210,24 +228,28 @@
     --tw-prose-th-borders: var(--color-slate-300);
     --tw-prose-td-borders: var(--color-slate-200);
 
-    /* Espaciado optimizado para lectura técnica */
+    /* Espaciado y tamaño optimizados para lectura técnica larga */
     & p {
-      margin-top: 0.75rem;
-      margin-bottom: 0.75rem;
+      margin-top: 0;
+      margin-bottom: 1.25rem;
       font-family: var(--font-sans);
+      font-size: 1.0625rem;
       line-height: 1.75;
+      text-wrap: pretty;
     }
 
-    /* Enlaces con mejor contraste y hover */
+    /* Enlaces con mejor contraste y hover (azul de marca FD) */
     & a {
       color: var(--tw-prose-links);
       text-decoration: underline;
-      text-decoration-thickness: 1px;
+      text-decoration-thickness: 1.5px;
+      text-decoration-color: color-mix(in srgb, var(--tw-prose-links) 45%, transparent);
       text-underline-offset: 2px;
       font-weight: 500;
 
       &:hover {
-        color: var(--color-sky-800);
+        color: var(--color-fd-700);
+        text-decoration-color: var(--color-fd-700);
         text-decoration-thickness: 2px;
       }
 
@@ -255,18 +277,20 @@
 
     & h2 {
       font-size: 1.875em;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
+      margin-top: 2.25rem;
+      margin-bottom: 0.75rem;
       line-height: 1.3333333;
       font-weight: 600;
+      text-wrap: balance;
     }
 
     & h3 {
       font-size: 1.5em;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
+      margin-top: 1.75rem;
+      margin-bottom: 0.5rem;
       line-height: 1.6;
       font-weight: 600;
+      text-wrap: balance;
     }
 
     /* Código inline con mejor legibilidad */
@@ -374,7 +398,7 @@
     --tw-prose-body: var(--color-slate-100);
     --tw-prose-headings: var(--color-slate-100);
     --tw-prose-lead: var(--color-slate-400);
-    --tw-prose-links: var(--color-sky-400);
+    --tw-prose-links: var(--color-fd-300);
     --tw-prose-bold: var(--color-slate-100);
     --tw-prose-counters: var(--color-slate-400);
     --tw-prose-bullets: var(--color-slate-600);
@@ -390,9 +414,11 @@
 
     & a {
       color: var(--tw-prose-links);
+      text-decoration-color: color-mix(in srgb, var(--tw-prose-links) 45%, transparent);
 
       &:hover {
-        color: var(--color-sky-300);
+        color: var(--color-fd-200);
+        text-decoration-color: var(--color-fd-200);
       }
 
       & code {
@@ -519,4 +545,16 @@ input:-webkit-autofill:focus {
 .linkicon {
   display: inline-block;
   vertical-align: middle;
+}
+
+/* Respeta a usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

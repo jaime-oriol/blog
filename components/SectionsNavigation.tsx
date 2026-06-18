@@ -64,7 +64,7 @@ export default function SectionsNavigation({ variant }: SectionsNavigationProps)
         onMouseLeave={() => setIsOpen(false)}
       >
         {/* Trigger Button */}
-        <button className="font-body flex items-center font-medium text-slate-700 transition-colors hover:text-sky-700 dark:text-slate-300 dark:hover:text-sky-400">
+        <button className="font-body hover:text-fd dark:hover:text-fd-300 flex items-center font-medium text-slate-700 transition-colors dark:text-slate-300">
           Artículos
           <svg
             className={`ml-1 h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
@@ -130,7 +130,7 @@ export default function SectionsNavigation({ variant }: SectionsNavigationProps)
                   href={section.href}
                   className={`group relative flex min-w-0 flex-col py-4 text-center transition-colors duration-200 ${
                     isActive
-                      ? 'text-sky-700 dark:text-sky-400'
+                      ? 'text-fd dark:text-fd-300'
                       : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
                   }`}
                 >
@@ -140,7 +140,7 @@ export default function SectionsNavigation({ variant }: SectionsNavigationProps)
                   <div
                     className={`absolute right-0 bottom-0 left-0 h-0.5 rounded-full transition-all duration-200 ${
                       isActive
-                        ? 'bg-sky-500 opacity-100'
+                        ? 'bg-fd dark:bg-fd-300 opacity-100'
                         : 'bg-transparent opacity-0 group-hover:bg-slate-300 group-hover:opacity-50 dark:group-hover:bg-slate-600'
                     }`}
                   />
@@ -169,7 +169,7 @@ export default function SectionsNavigation({ variant }: SectionsNavigationProps)
                 href={section.href}
                 className={`group flex items-start rounded-lg px-3 py-3 text-sm transition-colors ${
                   isActive
-                    ? 'bg-sky-50 text-sky-700 dark:bg-sky-900/20 dark:text-sky-300'
+                    ? 'bg-fd-50 text-fd-700 dark:bg-fd-950/40 dark:text-fd-300'
                     : 'text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-700/50'
                 }`}
               >

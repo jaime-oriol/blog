@@ -16,17 +16,27 @@ import { usePathname } from 'next/navigation'
 const Header = () => {
   const { theme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  let headerClass =
-    'flex items-center w-full bg-white dark:bg-slate-900 justify-between pt-8 pb-6 px-3 sm:py-6 sm:px-0'
-  if (siteMetadata.stickyNav) {
-    headerClass += ' sticky top-0 z-50 border-b border-slate-200 dark:border-slate-700'
-  }
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const headerClass = [
+    'sticky top-0 z-40 flex w-full items-center justify-between',
+    'bg-white/80 px-3 py-5 backdrop-blur-md transition-shadow duration-300 sm:px-0 sm:py-4 dark:bg-slate-900/80',
+    scrolled
+      ? 'border-b border-slate-200/70 shadow-sm dark:border-slate-700/70'
+      : 'border-b border-transparent',
+  ].join(' ')
 
   const isDark =
     mounted && (resolvedTheme === 'dark' || (theme === 'system' && resolvedTheme === 'dark'))
@@ -69,14 +79,14 @@ const Header = () => {
                 href={link.href}
                 className={`group font-helvetica-regular text-fd-body relative flex items-center gap-2 font-medium transition-colors duration-300 ${
                   isActive
-                    ? 'text-sky-700 dark:text-sky-400'
-                    : 'text-slate-700 hover:text-sky-700 dark:text-slate-300 dark:hover:text-sky-400'
+                    ? 'text-fd dark:text-fd-300'
+                    : 'hover:text-fd dark:hover:text-fd-300 text-slate-700 dark:text-slate-300'
                 } `}
               >
                 <Icon className="h-4 w-4" />
                 {link.title}
                 <span
-                  className={`absolute -bottom-1 left-0 h-0.5 bg-sky-700 transition-all duration-300 dark:bg-sky-400 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'} `}
+                  className={`bg-fd dark:bg-fd-300 absolute -bottom-1 left-0 h-0.5 transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'} `}
                 />
               </Link>
             )

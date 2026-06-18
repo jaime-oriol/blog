@@ -16,6 +16,12 @@ export default function FadeIn({ children, className = '', delay = 0 }: FadeInPr
     const el = ref.current
     if (!el) return
 
+    // Si el usuario prefiere menos movimiento, mostramos sin animar
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setIsVisible(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -30,6 +36,8 @@ export default function FadeIn({ children, className = '', delay = 0 }: FadeInPr
     return () => observer.disconnect()
   }, [])
 
+  const ease = 'cubic-bezier(0.22, 1, 0.36, 1)'
+
   return (
     <div
       ref={ref}
@@ -37,7 +45,7 @@ export default function FadeIn({ children, className = '', delay = 0 }: FadeInPr
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
+        transition: `opacity 0.6s ${ease} ${delay}ms, transform 0.6s ${ease} ${delay}ms`,
       }}
     >
       {children}

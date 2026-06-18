@@ -47,7 +47,7 @@ const MobileNav = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className="hover:text-primary-500 dark:hover:text-primary-400 h-8 w-8 text-gray-900 dark:text-gray-100"
+          className="hover:text-fd dark:hover:text-fd-300 h-8 w-8 text-slate-900 transition-colors dark:text-slate-100"
         >
           <path
             fillRule="evenodd"
@@ -81,7 +81,7 @@ const MobileNav = () => {
             leaveTo="translate-x-full opacity-0"
             unmount={false}
           >
-            <DialogPanel className="fixed top-0 left-0 z-70 h-full w-full bg-white/95 duration-300 dark:bg-gray-950/98">
+            <DialogPanel className="fixed top-0 left-0 z-70 h-full w-full bg-white/95 backdrop-blur-md duration-300 dark:bg-slate-900/95">
               <nav
                 ref={navRef}
                 className="mt-8 flex h-full basis-0 flex-col items-start overflow-y-auto pt-2 pl-12 text-left"
@@ -93,7 +93,7 @@ const MobileNav = () => {
                     return (
                       <div key={link.title} className="mb-4">
                         <button
-                          className="font-helvetica-bold hover:text-primary-500 dark:hover:text-primary-400 text-fd-title flex items-center gap-3 py-2 pr-4 font-bold tracking-widest text-gray-900 outline outline-0 dark:text-gray-100"
+                          className="font-helvetica-bold text-fd-title hover:text-fd dark:hover:text-fd-300 flex items-center gap-3 py-2 pr-4 font-bold tracking-widest text-slate-900 outline outline-0 transition-colors dark:text-slate-100"
                           onClick={() => setArticlesOpen(!articlesOpen)}
                         >
                           <Icon className="h-5 w-5" />
@@ -125,8 +125,8 @@ const MobileNav = () => {
                                   href={section.href}
                                   className={`font-helvetica-regular block py-1 text-sm transition-colors duration-300 ${
                                     isActive
-                                      ? 'font-medium text-sky-700 dark:text-sky-400'
-                                      : 'text-gray-700 hover:text-sky-700 dark:text-gray-300 dark:hover:text-sky-400'
+                                      ? 'text-fd dark:text-fd-300 font-medium'
+                                      : 'hover:text-fd dark:hover:text-fd-300 text-slate-700 dark:text-slate-300'
                                   } `}
                                   onClick={onToggleNav}
                                 >
@@ -150,8 +150,8 @@ const MobileNav = () => {
                       href={link.href}
                       className={`font-helvetica-bold text-fd-title mb-4 flex items-center gap-3 py-2 pr-4 font-bold tracking-widest outline outline-0 transition-colors duration-300 ${
                         isActive
-                          ? 'text-sky-700 dark:text-sky-400'
-                          : 'text-gray-900 hover:text-sky-700 dark:text-gray-100 dark:hover:text-sky-400'
+                          ? 'text-fd dark:text-fd-300'
+                          : 'hover:text-fd dark:hover:text-fd-300 text-slate-900 dark:text-slate-100'
                       } `}
                       onClick={onToggleNav}
                     >
@@ -162,13 +162,13 @@ const MobileNav = () => {
                 })}
 
                 {/* AuthButton para móvil */}
-                <div className="mt-4 border-t border-gray-200 pt-4 dark:border-gray-700">
+                <div className="mt-4 border-t border-slate-200 pt-4 dark:border-slate-700">
                   <AuthButton />
                 </div>
               </nav>
 
               <button
-                className="hover:text-primary-500 dark:hover:text-primary-400 fixed top-7 right-4 z-80 h-16 w-16 p-4 text-gray-900 dark:text-gray-100"
+                className="hover:text-fd dark:hover:text-fd-300 fixed top-7 right-4 z-80 h-16 w-16 p-4 text-slate-900 transition-colors dark:text-slate-100"
                 aria-label="Toggle Menu"
                 onClick={onToggleNav}
               >

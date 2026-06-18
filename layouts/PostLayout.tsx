@@ -122,7 +122,7 @@ export default function PostLayout({
   }
 
   return (
-    <div className="mx-auto max-w-full px-3 py-2 sm:max-w-5xl sm:px-4 md:px-6 xl:px-0">
+    <div className="py-2">
       <ReadingProgressBar />
       <ScrollTopAndComment />
       {toc && <TableOfContents toc={toc} />}
@@ -171,7 +171,7 @@ export default function PostLayout({
           <header className="relative mb-10">
             {/* Header con imagen de fondo difuminada */}
             {displayImage && (
-              <div className="relative mb-10 h-64 overflow-hidden rounded-xl bg-slate-200 md:h-80 dark:bg-slate-700">
+              <div className="relative mb-10 h-72 overflow-hidden rounded-xl bg-slate-200 md:h-96 dark:bg-slate-700">
                 {/* Imagen de fondo recortada y difuminada */}
                 <div
                   className="absolute inset-0 scale-110 bg-cover bg-center blur-[1px]"
@@ -187,7 +187,7 @@ export default function PostLayout({
                 <div className="relative flex h-full flex-col justify-between p-6 text-white md:p-8">
                   {/* Título alineado en la esquina superior izquierda */}
                   <div className="flex justify-start">
-                    <h1 className="font-helvetica-bold rounded-xl bg-gradient-to-r from-black/40 via-black/30 to-black/40 px-4 py-3 text-left text-xl leading-snug font-bold tracking-tight text-white shadow-2xl backdrop-blur-sm sm:px-6 sm:py-4 sm:text-2xl lg:text-3xl">
+                    <h1 className="font-helvetica-bold rounded-xl bg-gradient-to-r from-black/30 via-black/20 to-black/30 px-4 py-3 text-left text-2xl leading-snug font-bold tracking-tight text-white shadow-2xl backdrop-blur-sm sm:px-6 sm:py-4 sm:text-3xl lg:text-4xl">
                       {title}
                     </h1>
                   </div>
@@ -282,7 +282,7 @@ export default function PostLayout({
                       href={`/articles/${prev.slug}`}
                       className="block rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
                     >
-                      <h3 className="font-helvetica-bold text-fd-subtitle font-medium text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
+                      <h3 className="font-helvetica-bold text-fd-subtitle group-hover:text-fd dark:group-hover:text-fd-300 font-medium text-slate-900 transition-colors dark:text-slate-100">
                         {prev.title}
                       </h3>
                     </Link>
@@ -298,7 +298,7 @@ export default function PostLayout({
                       href={`/articles/${next.slug}`}
                       className="block rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
                     >
-                      <h3 className="font-helvetica-bold text-fd-subtitle font-medium text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
+                      <h3 className="font-helvetica-bold text-fd-subtitle group-hover:text-fd dark:group-hover:text-fd-300 font-medium text-slate-900 transition-colors dark:text-slate-100">
                         {next.title}
                       </h3>
                     </Link>
@@ -312,7 +312,7 @@ export default function PostLayout({
           <div className="text-center">
             <Link
               href="/articles"
-              className="font-helvetica-regular inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 transition-all hover:bg-slate-50 active:scale-95 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+              className="font-helvetica-regular border-fd-200 text-fd-700 ease-fd hover:bg-fd-50 dark:border-fd-900 dark:text-fd-300 dark:hover:bg-fd-950/40 inline-flex items-center rounded-lg border bg-white px-6 py-3 font-medium transition-all duration-300 active:scale-95 dark:bg-slate-800"
             >
               <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                 <path

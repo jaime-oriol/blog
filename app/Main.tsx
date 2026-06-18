@@ -24,7 +24,7 @@ interface MainProps {
  */
 export default function Main({ posts }: MainProps) {
   return (
-    <div className="mx-auto max-w-full px-3 py-4 sm:max-w-5xl sm:px-4 md:px-6 xl:px-0">
+    <div className="py-4">
       {/* === SECCIÓN INTRODUCTORIA === */}
       <IntroSection />
 
@@ -44,7 +44,7 @@ function IntroSection() {
   return (
     <section className="mb-12">
       {/* Cita destacada como título principal */}
-      <blockquote className="mb-8 border-l-4 border-sky-600 bg-slate-50 py-4 pl-6 dark:border-sky-400 dark:bg-slate-800/50">
+      <blockquote className="border-fd dark:border-fd-400 mb-8 border-l-4 bg-slate-50 py-4 pl-6 dark:bg-slate-800/50">
         <p className="font-helvetica-bold text-xl font-bold text-slate-900 italic sm:text-2xl dark:text-slate-100">
           "El fútbol es como el ajedrez, pero sin dados."
         </p>
@@ -55,7 +55,7 @@ function IntroSection() {
 
       {/* Descripción del proyecto */}
       <div className="font-helvetica-light text-fd-body space-y-6 leading-relaxed text-slate-900 dark:text-slate-100">
-        <p>
+        <p className="text-lg text-slate-700 sm:text-xl dark:text-slate-300">
           La paradoja de Podolski captura perfectamente la dualidad del fútbol moderno: un juego de
           estrategia pura donde el azar no debería existir, pero donde lo impredecible define los
           momentos decisivos. FootballDecoded nace precisamente en esa intersección entre lo medible
@@ -113,7 +113,7 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
       {/* Lista de artículos */}
       {hasArticles && (
         <>
-          <div className="space-y-6">
+          <div className="space-y-8">
             {recentPosts.map((post, i) => (
               <FadeIn key={post.slug} delay={i * 80}>
                 <ArticleCard post={post} />
@@ -125,7 +125,7 @@ function RecentArticlesSection({ posts }: { posts: CoreContent<Blog>[] }) {
           <div className="mt-8 text-center">
             <Link
               href="/articles"
-              className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-50 hover:shadow-md active:scale-95 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+              className="border-fd-200 text-fd-700 ease-fd hover:bg-fd-50 dark:border-fd-900 dark:text-fd-300 dark:hover:bg-fd-950/40 inline-flex items-center rounded-lg border bg-white px-6 py-3 font-medium shadow-sm transition-all duration-300 hover:shadow-md active:scale-95 dark:bg-slate-800"
             >
               <span className="font-helvetica-regular">Ver todos los artículos</span>
               <ArrowRightIcon />
@@ -170,7 +170,7 @@ function NewsletterSection() {
 
           <Link
             href="/newsletter"
-            className="inline-flex items-center rounded-lg bg-sky-600 px-6 py-3 font-medium text-white shadow-sm transition-all hover:bg-sky-700 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 active:scale-95"
+            className="bg-fd-600 ease-fd hover:bg-fd-700 focus:ring-fd-500 inline-flex items-center rounded-lg px-6 py-3 font-medium text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md focus:ring-2 focus:ring-offset-2 active:scale-95"
           >
             <span className="font-helvetica-regular">Suscribirse gratis</span>
             <ArrowRightIcon />

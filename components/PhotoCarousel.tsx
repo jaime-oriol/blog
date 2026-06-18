@@ -58,7 +58,7 @@ const PhotoCarousel = () => {
   const handleMouseLeave = () => setIsAutoPlay(true)
 
   return (
-    <div className="relative w-full bg-gray-50 dark:bg-gray-900">
+    <div className="relative w-full bg-slate-50 dark:bg-slate-900">
       {/* Contenedor principal del carrusel */}
       <div
         className="relative min-h-[16rem] overflow-hidden"
@@ -88,11 +88,11 @@ const PhotoCarousel = () => {
         {/* Controles de navegación */}
         <button
           onClick={goToPrevious}
-          className="absolute top-1/2 left-4 z-10 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-lg transition-all duration-200 hover:bg-white/95 dark:bg-gray-800/80 dark:hover:bg-gray-800/95"
+          className="absolute top-1/2 left-4 z-10 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-lg transition-all duration-200 hover:bg-white/95 dark:bg-slate-800/80 dark:hover:bg-slate-800/95"
           aria-label="Imagen anterior"
         >
           <svg
-            className="h-5 w-5 text-gray-800 dark:text-gray-200"
+            className="h-5 w-5 text-slate-800 dark:text-slate-200"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -108,11 +108,11 @@ const PhotoCarousel = () => {
 
         <button
           onClick={goToNext}
-          className="absolute top-1/2 right-4 z-10 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-lg transition-all duration-200 hover:bg-white/95 dark:bg-gray-800/80 dark:hover:bg-gray-800/95"
+          className="absolute top-1/2 right-4 z-10 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-lg transition-all duration-200 hover:bg-white/95 dark:bg-slate-800/80 dark:hover:bg-slate-800/95"
           aria-label="Siguiente imagen"
         >
           <svg
-            className="h-5 w-5 text-gray-800 dark:text-gray-200"
+            className="h-5 w-5 text-slate-800 dark:text-slate-200"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

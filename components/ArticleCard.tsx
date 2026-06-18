@@ -66,13 +66,30 @@ const getSectionAccentBg = (section: string) => {
   }
 }
 
+const getSectionShadow = (section: string) => {
+  switch (section) {
+    case 'player-decoded':
+      return 'hover:shadow-sky-500/10'
+    case 'match-analysis':
+      return 'hover:shadow-emerald-500/10'
+    case 'team-architecture':
+      return 'hover:shadow-indigo-500/10'
+    case 'analytics-lab':
+      return 'hover:shadow-orange-500/10'
+    default:
+      return 'hover:shadow-fd-500/10'
+  }
+}
+
 export default function ArticleCard({ post }: ArticleCardProps) {
   const { slug, date, title, section, image, summary, readingTime, pinned } = post
   const minutes = readingTime ? Math.ceil(JSON.parse(JSON.stringify(readingTime)).minutes) : null
   const displayImage = image || '/static/images/default-article.jpg'
 
   return (
-    <article className="group relative overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:shadow-md dark:border-slate-700 dark:bg-slate-800">
+    <article
+      className={`group ease-fd relative overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800 ${getSectionShadow(section)}`}
+    >
       <Link href={`/articles/${slug}`} className="flex flex-col sm:flex-row sm:items-stretch">
         {/* Imagen arriba en móvil, izquierda en desktop */}
         <div className="relative h-48 w-full flex-shrink-0 overflow-hidden bg-slate-200 sm:h-auto sm:w-64 dark:bg-slate-700">
@@ -82,7 +99,7 @@ export default function ArticleCard({ post }: ArticleCardProps) {
               src={displayImage}
               alt={title}
               fill
-              className="object-cover transition-transform duration-200 group-hover:scale-105"
+              className="ease-fd object-cover transition-transform duration-500 group-hover:scale-105"
               priority={true}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               quality={85}
@@ -106,7 +123,7 @@ export default function ArticleCard({ post }: ArticleCardProps) {
           {/* MÓVIL: Layout vertical con título completo arriba */}
           <div className="sm:hidden">
             {/* TÍTULO - ancho completo en móvil */}
-            <h3 className="font-helvetica-bold text-fd-subtitle mb-3 leading-tight font-bold tracking-tight text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
+            <h3 className="font-helvetica-bold group-hover:text-fd dark:group-hover:text-fd-300 mb-3 text-xl leading-tight font-bold tracking-tight text-slate-900 transition-colors dark:text-slate-100">
               {title}
             </h3>
 
@@ -131,7 +148,7 @@ export default function ArticleCard({ post }: ArticleCardProps) {
             {/* Footer con CTA y fecha */}
             <div className="flex items-center justify-between">
               {/* CTA */}
-              <div className="text-fd-body flex items-center font-medium text-sky-700 transition-all duration-200 group-hover:text-sky-600 dark:text-sky-400 dark:group-hover:text-sky-300">
+              <div className="text-fd-body text-fd group-hover:text-fd-700 dark:text-fd-300 dark:group-hover:text-fd-200 flex items-center font-medium transition-all duration-200">
                 <span className="font-helvetica-regular">Leer análisis</span>
                 <svg
                   className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
@@ -147,11 +164,11 @@ export default function ArticleCard({ post }: ArticleCardProps) {
               </div>
 
               {/* Fecha y reading time */}
-              <div className="flex flex-shrink-0 items-center gap-2 text-slate-500 dark:text-slate-400">
+              <div className="flex flex-shrink-0 items-center gap-2 text-slate-600 dark:text-slate-300">
                 {minutes && (
                   <span className="font-helvetica-light text-fd-body">{minutes} min</span>
                 )}
-                {minutes && <span className="text-slate-300 dark:text-slate-600">|</span>}
+                {minutes && <span className="text-slate-400 dark:text-slate-500">·</span>}
                 <time dateTime={date} className="font-helvetica-light text-fd-body">
                   {formatDate(date, siteMetadata.locale)}
                 </time>
@@ -164,7 +181,7 @@ export default function ArticleCard({ post }: ArticleCardProps) {
             {/* Header con título y etiqueta de sección en la misma línea */}
             <div className="flex items-start justify-between gap-4">
               {/* TÍTULO */}
-              <h3 className="font-helvetica-bold text-fd-subtitle flex-1 leading-tight font-bold tracking-tight text-slate-900 transition-colors group-hover:text-sky-700 dark:text-slate-100 dark:group-hover:text-sky-400">
+              <h3 className="font-helvetica-bold group-hover:text-fd dark:group-hover:text-fd-300 flex-1 text-2xl leading-tight font-bold tracking-tight text-slate-900 transition-colors dark:text-slate-100">
                 {title}
               </h3>
 
@@ -188,7 +205,7 @@ export default function ArticleCard({ post }: ArticleCardProps) {
             {/* Footer con CTA y fecha */}
             <div className="flex items-center justify-between pt-4">
               {/* CTA - lenguaje directo para profesionales */}
-              <div className="text-fd-body flex items-center font-medium text-sky-700 transition-all duration-200 group-hover:text-sky-600 dark:text-sky-400 dark:group-hover:text-sky-300">
+              <div className="text-fd-body text-fd group-hover:text-fd-700 dark:text-fd-300 dark:group-hover:text-fd-200 flex items-center font-medium transition-all duration-200">
                 <span className="font-helvetica-regular">Leer análisis</span>
                 <svg
                   className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
@@ -204,11 +221,11 @@ export default function ArticleCard({ post }: ArticleCardProps) {
               </div>
 
               {/* Fecha y reading time */}
-              <div className="flex flex-shrink-0 items-center gap-2 text-slate-500 dark:text-slate-400">
+              <div className="flex flex-shrink-0 items-center gap-2 text-slate-600 dark:text-slate-300">
                 {minutes && (
                   <span className="font-helvetica-light text-fd-body">{minutes} min</span>
                 )}
-                {minutes && <span className="text-slate-300 dark:text-slate-600">|</span>}
+                {minutes && <span className="text-slate-400 dark:text-slate-500">·</span>}
                 <time dateTime={date} className="font-helvetica-light text-fd-body">
                   {formatDate(date, siteMetadata.locale)}
                 </time>
