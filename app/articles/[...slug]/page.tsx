@@ -1,5 +1,5 @@
 // blog/app/blog/[...slug]/page.tsx
-import 'css/prism.css'
+import '@/css/prism.css'
 import 'katex/dist/katex.css'
 
 import { components } from '@/components/MDXComponents'

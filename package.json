@@ -26,7 +26,8 @@
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts",
     "prepare": "husky",
-    "newsletter": "node ./scripts/newsletter-manager.mjs"
+    "newsletter": "node ./scripts/newsletter-manager.mjs",
+    "sync:cv": "bash ./scripts/sync-cv.sh"
   },
   "dependencies": {
     "@headlessui/react": "2.2.0",
