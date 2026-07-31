@@ -15,15 +15,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/content/*": ["content/*"],
-      "@/layouts/*": ["layouts/*"],
-      "@/lib/*": ["lib/*"],
-      "@/css/*": ["css/*"],
+      "app/*": ["./app/*"],
+      "@/components/*": ["./components/*"],
+      "@/content/*": ["./content/*"],
+      "@/layouts/*": ["./layouts/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/css/*": ["./css/*"],
       "contentlayer/generated": ["./.contentlayer/generated"],
-      "pliny/*": ["node_modules/pliny/*"]
+      "pliny/*": ["./node_modules/pliny/*"]
     },
     "plugins": [
       {
