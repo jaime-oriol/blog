@@ -1,1 +1,2 @@
+bash ./scripts/sync-cv.sh
 npx --no-install lint-staged
