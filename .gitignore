@@ -46,6 +46,9 @@ yarn-error.log*
 # Contentlayer
 .contentlayer
 
+# TypeScript build cache
+tsconfig.tsbuildinfo
+
 # ===== DATOS SENSIBLES - NO SUBIR A GITHUB =====
 
 # Newsletter data - contains user emails and tokens
